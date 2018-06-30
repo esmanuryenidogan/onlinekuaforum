@@ -1,0 +1,160 @@
+﻿@model IEnumerable<Berberim.Data.Randevular>
+@{
+    Layout = null;
+
+
+
+}
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+    <title>Müşteri Giriş</title>
+    <link rel="shortcut icon" href="../../common-files/images/favicon.png" type="image/png">
+    
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/MusteriLogin/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/MusteriLogin/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/MusteriLogin/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/MusteriLogin/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/MusteriLogin/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/MusteriLogin/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/MusteriLogin/css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+</head>
+<body>
+
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100" style="width: 90%;padding: 20px;">
+
+                <table class="table table-striped">
+
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalonAd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalonTel)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalonMail)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PersonelAdSoyad)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MüsteriAd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MüsteriTel)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MusteriMail)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RandevuSaati)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RandevuTarihi)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.IslemAd)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.IslemFiyat)
+                        </th>
+                     
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalonAd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalonTel)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalonMail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PersonelAdSoyad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MüsteriAd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MüsteriTel)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MusteriMail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RandevuSaati)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RandevuTarihi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IslemAd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IslemFiyat)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                <!--Table-->
+                <!--Table-->
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="~/MusteriLogin/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/MusteriLogin/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/MusteriLogin/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/MusteriLogin/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/MusteriLogin/vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/MusteriLogin/js/main.js"></script>
+
+</body>
+</html>

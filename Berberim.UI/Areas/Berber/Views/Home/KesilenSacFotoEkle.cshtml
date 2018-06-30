@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "KesilenSacFotoEkle";
+    Layout = "~/Areas/Berber/Views/_BerberLayout.cshtml";
+}
+
+@using (Html.BeginForm("KesilenSacFotoEkle", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+
+    <fieldset>
+        <!-- Form Name -->
+        <legend>Kesilen Saç Fotoğrafı Ekle</legend>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput"></label>
+            <div class="col-md-4">
+
+                <input type="file" name="foto" accept="image/*" required />
+                <span class="help-block"></span>
+            </div>
+        </div>
+
+
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="singlebutton"></label>
+            <div class="col-md-4">
+                <input type="submit" name="gonder" value="Ekle" class="btn btn-success" />
+                <input type="reset" name="temizle" value="Temizle" class="btn btn-info" />
+            </div>
+        </div>
+
+    </fieldset>
+}
+
+

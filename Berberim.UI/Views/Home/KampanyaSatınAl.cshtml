@@ -1,0 +1,79 @@
+﻿@model Berberim.UI.Models.BerberDetayModel
+@{
+    ViewBag.Title = "KampanyaSatınAl";
+    Layout = "~/Views/_BerberOzelSayfa.cshtml";
+}
+
+<style>
+    .yazi input {
+        color: black;
+        background-color: white;
+    }
+</style>
+
+<!-- Select Basic -->
+
+<div class="container">
+    <div class="row">
+        <br />
+        @using (Html.BeginForm("KampanyaSatınAl", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+
+            <fieldset>
+
+                <legend>Kampanya Formu</legend>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="personel">Personel Seçiniz </label>
+                    <div class="col-md-4">
+                        @{
+
+                        var personeller = new List<SelectListItem>();
+
+                        foreach (var item in Model.Personeller)
+                        {
+                            personeller.Add(new SelectListItem { Text = item.PersonelAdSoyad });
+                        }
+
+                        }
+
+                        @Html.DropDownListFor(m => m.Personeller, personeller, new { @class = "form-control", @style = "background-color:white" })
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="r_tarih">Randevu Tarihiniz</label>
+                    <div class="col-md-4">
+                        <div class="yazi"> <input id="r_tarih" name="r_tarih" type="date" class="form-control" style="color:gray"></div>
+                        <p style="color:red">@ViewBag.tarih</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="r_saat">Randevu Saatiniz</label>
+                    <div class="col-md-4">
+                        <select id="r_saat" name="r_saat" class="form-control" style="background-color:white">
+                            @foreach (var randevusaat in Model.RandevuSaat)
+                            {
+                                <option value="@randevusaat">@randevusaat</option>
+                            }
+
+
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="r_btnsend"></label>
+                    <div class="col-md-4">
+                        <button type="submit" id="r_btnsend" name="r_btnsend" class="btn btn-primary">Kampanyayı Al</button>
+                    </div>
+                </div>
+            </fieldset>
+        }
+            </div>
+            </div>
+
+
+       

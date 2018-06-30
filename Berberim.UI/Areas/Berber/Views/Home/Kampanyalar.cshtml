@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Berberim.Data.Kampanyalar>
+
+@{
+    ViewBag.Title = "Kampanyalar";
+    Layout = "~/Areas/Berber/Views/_BerberLayout.cshtml";
+}
+
+<style>
+    .icerik a {
+        cursor: context-menu;
+    }
+
+    .kampanyasil {
+        position: relative;
+        top: -3px;
+        float: right;
+        font-size: 16px;
+    }
+
+        .kampanyasil a:hover {
+            color: whitesmoke;
+            font-size: 18px;
+        }
+</style>
+
+<p>
+    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#smallmodal" style="margin-left:15px;margin-top:11px;margin-bottom:20px;">
+        Kampanya Ekle
+    </button>
+</p>
+@using (Html.BeginForm("KampanyaEkle", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content" style="width: 130%;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="smallmodalLabel">Kampanya Ekle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row form-group">
+                        <div class="col col-sm-4"><label for="input-normal" class=" form-control-label">Kampanya Başlığı</label></div>
+                        <div class="col col-sm-8"><input type="text" id="input-normal" name="baslik" placeholder="" class="form-control"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-sm-4"><label for="input-normal" class=" form-control-label">Kampanya İçeriği</label></div>
+                        <div class="col col-sm-8"><input type="text" id="input-normal" name="icerik" placeholder="" class="form-control"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-sm-4"><label for="input-normal" class=" form-control-label">Kampanya Fiyatı</label></div>
+                        <div class="col col-sm-8"><input type="number" id="input-normal" name="fiyat" placeholder="" class="form-control"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-sm-4"><label for="input-normal" class=" form-control-label">Kampanya Son Tarihi</label></div>
+                        <div class="col col-sm-8"><input type="date" id="input-normal" name="tarih" placeholder="" class="form-control"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Vazgeç</button>
+                    <button type="submit" class="btn btn-outline-primary">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@foreach (var item in Model)
+{
+    <div class="col-md-4">
+        <aside class="profile-nav alt">
+            <section class="card">
+                <div class="card-header user-header alt bg-dark">
+                    <div class="media">
+                        <a href="#">
+                            <img class="align-self-center rounded-circle mr-3" style="width: 85px; height: 85px;" alt="" src="~/Resimler/KampanyaPanel.jpg">
+                        </a>
+                        <div class="media-body">
+                            <h2 class="text-light display-6">@item.KampanyaBaslik</h2>
+                            <p>@item.SalonAd</p>
+                            <div class="kampanyasil">
+                                <a href="@Url.Action("KampanyaSil", "Home", new {id = item.id})">
+                                    <i class="fa fa-trash-o sil"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="icerik">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <a href="#"> <i class="fa fa-comments-o"></i> @item.KampanyaIcerik</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#"> <i class="fa fa-tasks"></i> Kampanya Fiyatı <span class="badge badge-info pull-right">@item.KampanyaFiyat TL</span></a>
+                        </li>
+                       
+                        <li class="list-group-item">
+                            <a href="#"> <i class="fa fa-gift"></i> Kampanya Gösterimi <span class="badge badge-success pull-right r-activity">Yayında</span></a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#"> <i class="fa fa-bell-o"></i> Kampanya Son Gün <span class="badge badge-warning pull-right">@item.KampanyaSonGun.ToString()</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </aside>
+    </div>
+}

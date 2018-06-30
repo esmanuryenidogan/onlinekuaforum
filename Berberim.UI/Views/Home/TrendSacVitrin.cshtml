@@ -1,0 +1,81 @@
+﻿@model List<Berberim.Data.TrendSaclar>
+@{
+    ViewBag.Title = "TrendSacVitrin";
+    Layout = "~/Views/_MusteriLayout.cshtml";
+}
+
+<style>
+
+    .resim img {
+
+        height:227px;
+        width:300px;
+
+    }
+
+</style>
+
+
+ <!-- End Header Parallax Image -->
+<!-- Begin Portfolio Boxed 4 columns with Space -->
+<section class="section-portfolio">
+    <div class="container">
+
+
+
+
+        <div class="anadiv" style="width: 100%;margin: auto;">
+            <div style="width: 100%; height: 50px; margin-bottom: 20px; text-align: center; margin-top: 20px;">
+                <div class="div1">
+
+                </div>
+
+                <div class="div1">
+
+                    <h4 style="font-family: Cursive;font-size: 19px;font-weight: 100;"><b>@Html.ActionLink("Berberler", "Index", "Home")</b></h4>
+                </div>
+
+                <div class="div1">
+
+                    <h4 style="font-family: Cursive;font-size: 19px;font-weight: 100;"><b>@Html.ActionLink("Kampanyalar", "KampanyaVitrin", "Home")</b></h4>
+                </div>
+
+                <div class="div1">
+
+                    <h4 style="font-family: Cursive;font-size: 19px;font-weight: 100;"><b>@Html.ActionLink("Trend Saçlar", "TrendSacVitrin", "Home")</b></h4>
+                </div>
+
+                <div class="div1">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="portfolioContainer grid-4">
+            @foreach (var trendsac in Model)
+            {
+                <figure class="effect-jazz branding">
+                    <div class="resim"><img src="~/Resimler/TrendSac/@trendsac.SacModelFoto"></div>
+
+                    <figcaption>
+                        <div class="see-more">
+                            <div class="see-more-inner">
+                                <a href="~/Resimler/TrendSac/@trendsac.SacModelFoto" class="magnific btn button-line button-white btn-rounded hover-effect">Büyüt</a>
+
+                            </div>
+                        </div>
+                    </figcaption>
+
+                </figure>
+
+            }
+        </div>
+
+    </div>
+</section>

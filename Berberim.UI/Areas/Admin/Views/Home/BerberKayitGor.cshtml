@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Berberim.Data.BerberSayfa>
+
+@{
+    ViewBag.Title = "BerberKayitGor";
+    Layout = "~/Areas/Admin/Views/_AdminSayfa.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title"></h3>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Arama">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalonAd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalonAdres)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalonTel)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalonMail)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalonHakkinda)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KoltukSayisi)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.VitrinYazi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VitrinFoto)
+                        </th>
+                        <th>
+                            Durum
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalonAd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalonAdres)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalonTel)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalonMail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalonHakkinda)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.KoltukSayisi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VitrinYazi)
+                            </td>
+                            <td>
+                                <img width="100" height="100" src="~/Resimler/SalonVitrinFoto/@item.VitrinFoto">
+                            </td>
+
+                           
+                                @if (item.IsActive == true)
+                                {
+                                <td><span class="label label-success">Aktif</span></td>
+                            }
+                            else
+                            {
+                                <td><span class="label label-danger">Pasif</span></td>
+                            }
+                               
+
+                                <td>@Html.ActionLink("Durum", "Guncelle", new { id = item.id })</td>
+                            </tr>
+                        }
+                </table>
+
+
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+

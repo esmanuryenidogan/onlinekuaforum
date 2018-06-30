@@ -1,0 +1,114 @@
+﻿@model Berberim.Data.BerberSayfa
+
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Areas/Berber/Views/_BerberLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    <div class="row" style="margin-top: 24px">
+        <div class="col-xs-6 col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>İletişim Bilgileri</strong>
+                </div>
+                <div class="card-body card-block">
+                    <div class="form-group">
+                        <label class=" form-control-label">Salon Adı</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-home"></i></div>
+                            @Html.TextBoxFor(a => a.SalonAd, new { @class = "form-control", @maxlength = "50" })
+                        </div>
+                        <small class="form-text text-muted"><span class="help-block"><h6 style="color:red">@ViewBag.uyarı</h6><h5 style="color:red">@ViewBag.mesaj</h5></span>
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label class=" form-control-label">Salon İl ve İlçe</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+                            @Html.TextBoxFor(a => a.iLveiLce, new { @class = "form-control", @maxlength = "40" })
+                        </div>
+                        <small class="form-text text-muted">Örnek : İstanbul / Fatih</small>
+                    </div>
+                    <div class="form-group">
+                        <label class=" form-control-label">Salon Açık Adres</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-road"></i></div>
+                            @Html.TextBoxFor(a => a.SalonAdres, new { @class = "form-control", @maxlength = "200" })
+                        </div>
+                        <small class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                        <label class=" form-control-label">Salon Telefonu</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                            @Html.TextBoxFor(a => a.SalonTel, new { @class = "form-control", @maxlength = "50", type = "number" })
+                        </div>
+                        <small class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                        <label class=" form-control-label">Salon Maili</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            @Html.TextBoxFor(a => a.SalonMail, new {@class = "form-control", @maxlength = "50", type = "email"})
+                        </div>
+                        <small class="form-text text-muted"></small>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6">
+            <div class="card" style="margin-bottom: 48px;">
+                <div class="card-header">
+                    <strong class="card-title">Salon Bilgileri</strong>
+                </div>
+               
+                <div class="form-group" style="width: 550px; margin-left: 20px; margin-top: 20px">
+                    <label class=" form-control-label">Salon Hakkında Bilgi</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-info-circle"></i></div>
+                        @Html.TextBoxFor(a => a.SalonHakkinda, new {@class = "form-control", @maxlength = "200"})
+                    </div>
+                    <small class="form-text text-muted"></small>
+                </div>
+                <div class="form-group" style="width: 550px;margin-left: 20px; margin-top: -3px">
+                    <label class=" form-control-label">Koltuk Sayısı</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></div>
+                        @Html.TextBoxFor(a => a.KoltukSayisi, new { @class = "form-control", @maxlength = "10", type = "number" })
+                    </div>
+                    <small class="form-text text-muted"></small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title">Vitrin Bilgileri</strong>
+                </div>
+                <div class="form-group" style="width: 550px; margin-left: 20px; margin-top: 20px;">
+                    <label class=" form-control-label">Vitrin Yazısı</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-comment"></i></div>
+                        @Html.TextBoxFor(a => a.VitrinYazi, new { @class = "form-control", @maxlength = "80" })
+                    </div>
+                    <small class="form-text text-muted"></small>
+                </div>
+                
+             <div class="form-group" style="width: 550px;margin-left: 20px; margin-top: -3px;">
+                    <label class=" form-control-label">Vitrin Fotoğrafı</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-camera"></i></div>
+                        <input type="file" name="foto" value="resim" class="form-control">
+                    </div>
+                    <small class="form-text text-muted"></small>
+                </div>    
+               
+            </div>
+            <div class="card-body pull-right" style="position: relative;top:-20px">
+                <button type="submit" class="btn btn-outline-primary">Kaydet</button>
+            </div>
+        </div>
+    </div>
+    
+}

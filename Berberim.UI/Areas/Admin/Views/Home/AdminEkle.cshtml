@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "AdminEkle";
+    Layout = "~/Areas/Admin/Views/_AdminSayfa.cshtml";
+}
+
+@using (Html.BeginForm("AdminEkle", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="col-md-12">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6" style="padding-top: 50px">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Admin Ekle</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+
+                <form class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Admin İsmi</label>
+
+                            <div class="col-sm-9">
+                                <input type="email" name="adminad" class="form-control" id="inputEmail3" placeholder="Admin İsim">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">Kullanıcı Adı</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" name="kuladi" class="form-control" id="inputPassword3" placeholder="Kullanıcı Adı">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">Şifre</label>
+
+                            <div class="col-sm-9">
+                                <input type="password" name="sifre" class="form-control" id="inputPassword3" placeholder="Şifre">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                     
+                        <button type="submit" class="btn btn-primary pull-right" style="margin-left: 10px;">Kaydet</button>
+                        <button type="reset" class="btn btn-default pull-right">Temizle</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div>
+}
+

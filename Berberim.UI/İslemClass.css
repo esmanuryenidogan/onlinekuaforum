@@ -1,0 +1,25 @@
+﻿.form-control{border:0; box-shadow:none}
+.form-control:focus{box-shadow:none;}
+
+label{color:#999;  padding-top: 5px; display:block; left:0; width:100%}
+
+.panel{border-width:2px; border-radius:7px}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td{border:2px solid #eee; vertical-align: middle;}
+.table-bordered{border-radius:7px}
+
+.form-control::-moz-placeholder {
+color: #999;
+opacity: 1
+}
+.form-control:-ms-input-placeholder {
+color: #999
+}
+.form-control::-webkit-input-placeholder {
+color: #999
+}

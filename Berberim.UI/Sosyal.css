@@ -1,0 +1,32 @@
+﻿.exsprite {width: 500px;height: 50px;}
+.exsprite ul li {cursor: pointer;height: 48px;position: relative;list-style-type: none;float: left;}
+.exsprite .icon {
+background: url('http://3.bp.blogspot.com/-XzI0OccnygA/VCBiSB_-UzI/AAAAAAAABbs/6bc04B7aNZY/s1600/html%2Bkod%2Bcanavar%C4%B1%2Bsosyal%2Bmedia%2Biconlar%C4%B1.png') 0 0 no-repeat;display: block;float:none;height: 48px;line-height: 48px;margin: 5px 0;position: relative;text-align: left;text-indent: 60px;text-shadow: #333 0 1px 0;white-space: nowrap;width: 48px;z-index: 5;
+ 
+-webkit-transition: width .3s ease-in-out, background-color .3s ease-in-out;
+-moz-transition: width .3s ease-in-out, background-color .3s ease-in-out;
+-o-transition: width .3s ease-in-out, background-color .3s ease-in-out;
+transition: width .3s ease-in-out, background-color .3s ease-in-out;
+ 
+-webkit-box-shadow: rgba(0, 0, 0, .28) 0 2px 3px;-moz-box-shadow: rgba(0, 0, 0, .28) 0 2px 3px;-o-box-shadow: rgba(0, 0, 0, .28) 0 2px 3px;box-shadow: rgba(0, 0, 0, .28) 0 2px 3px;text-decoration: none;
+font-family: 'Open Sans', Helvetica, Arial, sans-serif;font-weight: bold;
+color: #fafafa;
+overflow: hidden;
+border-radius: 30px;
+}
+.exsprite li:hover .icon {width: 150px;}
+.exsprite .facebook {background-color: rgba(45, 118, 185, .42);background-position: 0 -382px;}
+.exsprite li:hover .facebook {background-color: #2d76b9;background-position: 0 2px;}
+.exsprite .twitter {background-color: rgba(0, 161, 223, .42);background-position: 0 -430px;}
+.exsprite li:hover .twitter {background-color: #00A1DF;background-position: 0 -46px;text-indent: 66px;}
+.exsprite .google {background-color: rgba(167, 0, 0, .42);background-position: 0 -478px;}
+.exsprite li:hover .google {background-color: #A70000;background-position: 0 -94px;text-indent: 65px;}
+.exsprite .pinterest {background-color: rgba(204, 0, 0, .42);background-position: 0 -526px;}
+.exsprite li:hover .pinterest {background-color: #C00;background-position: 0 -142px;}
+.exsprite .linkedin {background-color: rgba(0, 87, 114, .42);background-position: 0 -574px;}
+.exsprite li:hover .linkedin {background-color: #005772;background-position: 0 -190px;}
+.exsprite .youtube {background-color: rgba(170, 0, 0, .42);background-position: 0 -670px;}
+.exsprite li:hover .youtube {background-color: #A00;background-position: 0 -286px;}
+.exsprite .rss {background-color: rgba(255, 109, 0, .42);background-position: 0 -718px;}
+.exsprite li:hover .rss {background-color: #EC5601;background-position: 0 -334px;text-indent: 55px;}
+<a target="_blank" href="http://htmlkodcanavari.blogspot.com" style="font-size: 6pt; text-decoration: none">Html Kodları,Dinamik Sosyal Medya Butonları,Css Kodşar,+1000 kodlar,Javascript kodlar</a>

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Berberim.Data.MüsteriKayit>
+
+@{
+    ViewBag.Title = "MusteriKayitGor";
+    Layout = "~/Areas/Admin/Views/_AdminSayfa.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title"></h3>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Arama">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MusteriAd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MusteriSoyad)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MusteriAdres)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MusteriMail)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MusteriTel)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MusteriDogumTarihi)
+                        </th>
+                        <th>
+                            Durum
+                        </th>
+        
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MusteriAd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MusteriSoyad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MusteriAdres)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MusteriMail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MusteriTel)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MusteriDogumTarihi)
+                            </td>
+
+
+                            @if (item.IsActive == true)
+                            {
+                                <td><span class="label label-success">Aktif</span></td>
+                            }
+                            else
+                            {
+                                <td><span class="label label-danger">Pasif</span></td>
+                            }
+
+
+                            <td>@Html.ActionLink("Durum", "MusteriGuncelle", new { id = item.id })</td>
+                        </tr>
+                    }
+                </table>
+
+
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>

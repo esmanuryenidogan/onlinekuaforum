@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Berberim.Data.TrendSaclar>
+
+@{
+    ViewBag.Title = "TrendSacGor";
+    Layout = "~/Areas/Admin/Views/_AdminSayfa.cshtml";
+}
+
+
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default" style="margin-top: 20px">
+    Trend Saç Ekle
+</button>
+@using (Html.BeginForm("TrendSac", "Home", FormMethod.Post, new {@class = "form-horizontal", enctype = "multipart/form-data"}))
+{
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Trend Saç Ekle</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="file" name="foto" class="form-control" placeholder="">
+
+                    </div>
+
+                    <!-- Button -->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Vazgeç</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+}
+    <table class="table" style="margin-top: 40px">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img width="100" height="100" src="~/Resimler/TrendSac/@item.SacModelFoto">
+                </td>
+
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("TrendSacSil", "Home", new {id = item.id})';" class="btn btn-danger">Sil</button>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+

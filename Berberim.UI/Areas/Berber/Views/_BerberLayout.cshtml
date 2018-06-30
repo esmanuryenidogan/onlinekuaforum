@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- Bootstrap core CSS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>Berber Panel</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="apple-touch-icon" href="~/BerberPanel/apple-icon.png">
+    <link rel="shortcut icon" href="~/common-files/images/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="~/BerberPanel/favicon.ico">
+    <link rel="shortcut icon" href="~/common-files/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="~/BerberPanel/assets/css/normalize.css">
+    <link rel="stylesheet" href="~/BerberPanel/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/BerberPanel/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/BerberPanel/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="~/BerberPanel/assets/css/flag-icon.min.css">
+    <link rel="stylesheet" href="~/BerberPanel/assets/css/cs-skin-elastic.css">
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
+    <link rel="stylesheet" href="~/BerberPanel/assets/scss/style.css">
+    <link href="~/BerberPanel/assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+    <link href='~/BerberPanel/https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <a class="navbar-brand" style="border: none;" href="./"><img src="~/assets/img/Berberim.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="~/Resimler/Ok.png" style="max-width: 160px !important;margin-right: 5px;" alt="Logo"></a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+
+                    <h3 class="menu-title">@Session["salonAd"]</h3><!-- /.menu-title -->
+                    <li>
+                        <a href="@Url.Action("BerberSalonEkle", "Home")">
+                            <i class="menu-icon fa fa-home"></i>
+                            Salon Ekle
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("BerberDuzenle", "Home")">
+                            <i class="menu-icon fa fa-edit"></i>
+                            Salon Düzenle
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("SalonFotograflarGor", "Home")">
+                            <i class="menu-icon fa fa-instagram"></i>
+                            Salon Fotoğrafları
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("KesilenSaclarGor", "Home")">
+                            <i class="menu-icon fa fa-scissors"></i>
+                            Kesilen Saçlar
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("PersonelDuzenle", "Home")">
+                            <i class="menu-icon fa fa-users"></i>
+                            Personellerim
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Berberİslem", "Home")">
+                            <i class="menu-icon fa fa-pencil"></i>
+                            İşlemlerim
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Kampanyalar", "Home")">
+                            <i class="menu-icon fa fa-star"></i>
+                            Kampanyalarım
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="@Url.Action("BerberRandevular", "Home")">
+                            <i class="menu-icon fa fa-calendar"></i>
+                            Randevularım
+                        </a>
+
+                    </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside><!-- /#left-panel -->
+    <!-- Left Panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        <header id="header" class="header">
+            <div class="header-menu">
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+
+                </div>
+
+                <div class="col-sm-5">
+
+                    @*<a href="#"> <i class="fa fa-sign-out pull-right" style="font-size: 25px; padding-top: 7px;" aria-hidden="true"></i></a>*@
+                    <div class="user-area dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="~/Resimler/Atakan.jpg" style="float: left" alt="User Avatar">
+                        </a>
+                     
+                        <a href="@Url.Action("BerberCikisYap", "Home")">
+                            <i class="fa fa-sign-out" title="Çıkış Yap" style="font-size: 25px;margin-top: 7px;float: right"></i>                           
+                        </a>
+                    </div>
+
+                    <div class="language-select dropdown" id="language-select">
+
+                        <div class="dropdown-menu" aria-labelledby="language">
+                            <div class="dropdown-item">
+                                <span class="flag-icon flag-icon-fr"></span>
+                            </div>
+                            <div class="dropdown-item">
+                                <i class="flag-icon flag-icon-es"></i>
+                            </div>
+                            <div class="dropdown-item">
+                                <i class="flag-icon flag-icon-us"></i>
+                            </div>
+                            <div class="dropdown-item">
+                                <i class="flag-icon flag-icon-it"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header><!-- /header -->
+        <!-- Header-->
+
+
+        <div class="col-sm-12">
+            @RenderBody()
+        </div>
+        <!--/.col-->
+
+
+
+    </div><!-- /#right-panel -->
+    <!-- Right Panel -->
+    <script src="~/BerberPanel/assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="~/BerberPanel/https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="~/BerberPanel/assets/js/plugins.js"></script>
+    <script src="~/BerberPanel/assets/js/main.js"></script>
+
+    <script src="~/BerberPanel/assets/js/lib/chart-js/Chart.bundle.js"></script>
+    <script src="~/BerberPanel/assets/js/dashboard.js"></script>
+    <script src="~/BerberPanel/assets/js/widgets.js"></script>
+    <script src="~/BerberPanel/assets/js/lib/vector-map/jquery.vmap.js"></script>
+    <script src="~/BerberPanel/assets/js/lib/vector-map/jquery.vmap.min.js"></script>
+    <script src="~/BerberPanel/assets/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
+    <script src="~/BerberPanel/assets/js/lib/vector-map/country/jquery.vmap.world.js"></script>
+    <script>
+        (function ($) {
+            "use strict";
+
+            jQuery('#vmap').vectorMap({
+                map: 'world_en',
+                backgroundColor: null,
+                color: '#ffffff',
+                hoverOpacity: 0.7,
+                selectedColor: '#1de9b6',
+                enableZoom: true,
+                showTooltip: true,
+                values: sample_data,
+                scaleColors: ['#1de9b6', '#03a9f5'],
+                normalizeFunction: 'polynomial'
+            });
+        })(jQuery);
+    </script>
+
+
+
+
+</body>
+</html>

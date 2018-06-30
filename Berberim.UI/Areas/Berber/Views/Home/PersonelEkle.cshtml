@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "PersonelEkle";
+    Layout = "~/Areas/Berber/Views/_BerberLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("PersonelEkle", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        <!-- Form Name -->
+        <legend>Personel Kayıt</legend>
+        <!-- Text input-->
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Personel Ad Soyad</label>
+            <div class="col-md-4">
+                <input id="textinput" name="personeladsoyad" type="text" placeholder="" class="form-control input-md" maxlength="25" required>
+                <span class="help-block">Örnek : Atakan Gemici</span>
+                <span class="help-block">Personel Adı-Soyadı 25 Karakterden Fazla Olamaz.</span>
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="singlebutton"></label>
+            <div class="col-md-4">
+                <input type="submit" name="gonder" value="Ekle" class="btn btn-success" />
+                <input type="reset" name="temizle" value="Temizle" class="btn btn-info" />
+            </div>
+        </div>
+
+    </fieldset>
+}
+

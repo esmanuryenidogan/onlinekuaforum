@@ -1,0 +1,16 @@
+﻿@model Berberim.Data.BerberSayfa
+
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Areas/Admin/Views/_AdminSayfa.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    <p>İsActive</p>
+    @Html.TextBoxFor(a => a.IsActive, new { @class = "form-control" })
+    <br />
+    <input type="submit" name="guncelle" value="Kaydet" class="btn btn-success" />
+
+}

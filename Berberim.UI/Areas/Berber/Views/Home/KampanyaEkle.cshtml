@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "KampanyaEkle";
+    Layout = "~/Areas/Berber/Views/_BerberLayout.cshtml";
+}
+
+@using (Html.BeginForm("KampanyaEkle", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        <legend>Kampanya Ekle</legend>
+        <!-- Text input-->
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Kampanya Başlık</label>
+            <div class="col-md-4">
+                <input id="textinput" name="baslik" type="text" placeholder="" class="form-control input-md" maxlength="20" required>
+                <span class="help-block">Kampanya Başlığı 20 Karakterden Fazla Olamaz.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Kampanya İçerik</label>
+            <div class="col-md-4">
+                <input id="textinput" name="icerik" type="text" placeholder="" class="form-control input-md" maxlength="60" required>
+                <span class="help-block">Kampanya İçeriği 60 Karakterden Fazla Olamaz.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Kampanya Fiyat</label>
+            <div class="col-md-4"> 
+                <input id="textinput" name="fiyat" type="number" placeholder="" class="form-control input-md" maxlength="20" required>
+                <span class="help-block">Örnek : 10</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Kampanya Son Tarihi</label>
+            <div class="col-md-4">
+                <input id="textinput" name="tarih" type="date" placeholder="" class="form-control input-md" maxlength="200" required>
+                <p style="color:red">@ViewBag.tarih</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="singlebutton"></label>
+            <div class="col-md-4">
+                <input type="submit" name="gonder" value="Kampanya Ekle" class="btn btn-success" />
+                <input type="reset" name="temizle" value="Temizle" class="btn btn-info" />
+            </div>
+        </div>
+
+    </fieldset>
+}

@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "BerberKayıt";
+    Layout = "~/Areas/Admin/Views/_AdminSayfa.cshtml";
+}
+
+
+@using (Html.BeginForm("BerberKayıt", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Salon Adı</label>
+            <div class="col-md-4">
+                <input id="textinput" name="salonad" type="text" placeholder="" class="form-control input-md" required>
+                <span class="help-block"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Kullanıcı Adı</label>
+            <div class="col-md-4">
+                <input id="textinput" name="kuladi" type="text" placeholder="" class="form-control input-md" required>
+                <span class="help-block"><h5 style="color:red">@ViewBag.uyarı</h5></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Şifre</label>
+            <div class="col-md-4">
+                <input id="textinput" name="sifre" type="password" placeholder="" class="form-control input-md" required>
+                <span class="help-block"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="singlebutton"></label>
+            <div class="col-md-4">
+                <input type="submit" name="gonder" value="Kayıt Et" class="btn btn-success" />
+                <input type="reset" name="temizle" value="Temizle" class="btn btn-info" />
+            </div>
+        </div>
+
+    </fieldset>
+}

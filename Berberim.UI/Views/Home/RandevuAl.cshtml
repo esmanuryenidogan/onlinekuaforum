@@ -1,0 +1,130 @@
+﻿@model Berberim.UI.Models.BerberDetayModel
+@{
+    ViewBag.Title = "RandevuAl";
+    Layout = "~/Views/_BerberOzelSayfa.cshtml";
+
+    
+
+    <link href="~/RandevuForm/Randevuformu.css" rel="stylesheet" />
+}
+
+<style>
+    
+    .yazi input{
+        color:black;
+        background-color:white;
+    }
+</style>
+
+
+<div class="container">
+    <div class="row">
+        <br />
+        @using (Html.BeginForm("RandevuAl", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Randevu Formu</legend>
+                <!-- Text input-->
+
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="r_personel">Personel Seçiniz</label>
+                    <div class="col-md-4" >
+                        @{
+
+                        var personeller = new List<SelectListItem>();
+
+                        foreach (var item in Model.Personeller)
+                        {
+                            personeller.Add(new SelectListItem { Text = item.PersonelAdSoyad });
+                        }
+
+                        }
+
+                        @Html.DropDownListFor(m => m.Personeller, personeller,new { @class = "form-control", @style = "background-color:white" })
+                    </div>
+                </div>
+
+                
+                <!-- Text input-->
+              
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="r_islem">İşlem Seçiniz</label>
+                    <div class="col-md-4">
+                        @{
+
+                        var islemler = new List<SelectListItem>();
+
+                        foreach (var item in Model.islemler)
+                        {
+                            islemler.Add(new SelectListItem { Text = item.IslemAd +" "+ item.IslemFiyat.ToString()+" "+"TL"} );
+                           
+                        }
+
+                        }
+
+                      @Html.DropDownListFor(m => m.islemler, islemler, new { @class = "form-control", @style = "background-color:white" })
+                    </div>
+                </div>
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="r_tarih">Randevu Tarihiniz</label>
+                    <div class="col-md-4">
+                        <div class="yazi"> <input id="r_tarih" name="r_tarih" type="date" class="form-control" style="color:gray"></div>
+                        <p style="color:red">@ViewBag.tarih</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="r_saat">Randevu Saatiniz</label>
+                    <div class="col-md-4">
+                        
+                        <div class="yazi">
+                            <select id="r_saat" name="r_saat" class="form-control" style="background-color:white">
+                                @foreach (var randevusaat in Model.RandevuSaat)
+                                {
+                                    <option value="@randevusaat">@randevusaat</option>
+                                }
+
+                            </select>
+                        </div> 
+                        <div>
+                            Your name:
+                            <input type="text" name="customerName"/>
+                        </div>
+
+                        <div>
+                            Your email address:
+                            <input type="text" name="customerEmail"/>
+                        </div>
+
+                        <div>
+                            Details about your problem: <br/>
+                            <textarea name="customerRequest" cols="45" rows="4"></textarea>
+                        </div>
+
+                        <div>
+                            <input type="submit" value="Submit"/>
+                        </div>
+                        
+                    </div>
+                </div>
+               
+        
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="randevual"></label>
+                    <div class="col-md-4">
+                        <button type="submit" id="r_btnsend" name="r_btnsend" class="btn btn-primary">Randevuyu Tamamla</button>
+
+                    </div>
+                </div>
+            </fieldset>
+        }
+
+    </div>
+</div>

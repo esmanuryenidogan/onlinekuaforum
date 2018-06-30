@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "TrendSac";
+    Layout = "~/Areas/Admin/Views/_AdminSayfa.cshtml";
+}
+
+@using (Html.BeginForm("TrendSac", "Home", FormMethod.Post, new { @class = "form-horizontal",enctype="multipart/form-data" }))
+{
+
+    <fieldset>
+        <!-- Form Name -->
+       
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput"></label>
+            <div class="col-md-4">
+                
+                <input type="file" class="form-control input-md" name="foto" accept="image/*" />
+                <span class="help-block"></span>
+            </div>
+        </div>
+
+        
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="singlebutton"></label>
+            <div class="col-md-4">
+                <input type="submit" name="gonder" value="Ekle" class="btn btn-success" />
+                <input type="reset" name="temizle" value="Temizle" class="btn btn-info" />
+            </div>
+        </div>
+
+    </fieldset>
+}
+

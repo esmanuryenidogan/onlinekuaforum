@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Berberim.Data.BerberSayfa>
+
+@{
+    ViewBag.Title = "BerberDuzenle";
+    Layout = "~/Areas/Berber/Views/_BerberLayout.cshtml";
+}
+
+
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Salon Bilgileri</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>
+                                   Salon Adı
+                                </th>
+                                <th>
+                                   İl ve İlçe
+                                </th>
+                                <th>
+                                    Adres
+                                </th>
+                                <th>
+                                    Telefon
+                                </th>
+                                <th>
+                                   E-Posta
+                                </th>
+                                <th>
+                                   Salon Hakkında
+                                </th>
+                                <th>
+                                    Koltuk Sayısı
+                                </th>
+       
+                                <th>
+                                    Vitrin Yazısı
+                                </th>
+                                <th>
+                                    Vitrin Fotoğrafı
+                                </th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr></tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SalonAd)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.iLveiLce)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SalonAdres)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SalonTel)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SalonMail)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SalonHakkinda)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.KoltukSayisi)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.VitrinYazi)
+                                    </td>
+                                    <td>
+                                        <img width="100" height="100" src="~/Resimler/SalonVitrinFoto/@item.VitrinFoto">
+                                    </td>
+            
+            
+                                    <td style="padding-top: 45px">
+                                        @Html.ActionLink("Güncelle", "Guncelle", new { id = item.id },new { @class = "btn btn-outline-info" })
+                                      
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div><!-- .animated -->
+</div><!-- .content -->

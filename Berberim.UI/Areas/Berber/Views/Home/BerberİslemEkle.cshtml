@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "BerberİslemEkle";
+    Layout = "~/Areas/Berber/Views/_BerberLayout.cshtml";
+}
+
+
+
+
+
+@using (Html.BeginForm("BerberİslemEkle", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        <legend>İşlem Ekle</legend>
+        <!-- Text input-->
+        
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">İşlem Adı</label>
+            <div class="col-md-4">
+                <input id="textinput" name="islemad" type="text" placeholder="" class="form-control input-md" maxlength="20" required>
+                <span class="help-block">İşlem Adı 20 Karakterden Fazla Olamaz.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">İşlem Fiyatı</label>
+            <div class="col-md-4">
+                <input id="textinput" name="islemfiyat" type="number" placeholder="" class="form-control input-md" maxlength="10" required>
+                <span class="help-block">Örnek : 10</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="singlebutton"></label>
+            <div class="col-md-4">
+                <input type="submit" name="gonder" value="Kayıt Et" class="btn btn-success" />
+                <input type="reset" name="temizle" value="Temizle" class="btn btn-info" />
+            </div>
+        </div>
+
+    </fieldset>
+}
+

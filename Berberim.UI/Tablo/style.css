@@ -1,0 +1,99 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+html {
+    background: url(http://upload.robinbrons.com/u/1362757499.png);
+}
+body {
+  font-family: 'Comic Sans MS', 'Comic Sans MS';
+  
+
+}
+
+
+
+.event {
+  width: 300px;
+  height: 80px;
+  background: #fff;
+  border: 1px solid #CCC;
+  border-radius: 2px;
+  font-size:20px;
+  margin: 50px;
+}
+.event:before {
+  content: '';
+  display: block;
+  width: 295px;
+  height: 70px;
+  background: #fff;
+  border: 1px solid #CCC;
+  border-radius: 2px; 
+  transform: rotate(2deg);
+  position: relative;
+  top: 12px;
+  left: 2px;
+  z-index: -1;
+  font-size:20px;
+
+}
+.event:after {
+  content: '';
+  display: block;
+  width: 295px;
+  height: 75px;
+  background: #fff;
+  border: 1px solid #CCC;
+  border-radius: 2px; 
+  transform: rotate(-2deg);
+  position: relative;
+  top: -136px;
+  z-index: -2;  
+  font-size:20px;
+
+}
+.event > span {
+  display: block;
+  width: 30px;
+  background: #232323;  
+  position: relative;
+  top: -55px;
+  left: -15px;
+  font-size:15px;
+  /* Text */
+  color: #fff;
+ 
+  padding: 2px 7px;
+  text-align: right;
+}
+.event > .info {
+  display: inline-block;
+  position: relative;
+  top: -75px;
+  left: 40px;
+  
+  
+  /* Text */
+  color: #232323;
+  font-weight: 600;
+  line-height: 25px;
+}
+.event > .info:first-line {
+  text-transform: uppercase;
+  font-size: 15px;
+  font-family:'Comic Sans MS';
+  
+  
+  
+}
+.event > .price {
+  display: inline-block;
+  width: 60px;
+  position: relative;
+  top: -85px;
+  left: 115px; 
+ 
+  
+  /* Text */
+  color: #E35354;
+  text-align: center;
+  font-weight: 700;
+}
