@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 
 namespace Berberim.Biz
 {
-    public class BerberimVeriCek
+    public class MusteriClass
     {
         BerberimEntities db;
-        public BerberimVeriCek() 
-        { 
-         db = new BerberimEntities();
-
-        }
-
-        public List<BerberSayfa> BerberKayitlar()
+        public MusteriClass()
         {
-            return (from i in db.BerberSayfa select i).ToList();
+            db = new BerberimEntities();
         }
+        public List<MüsteriKayit> MusteriKayıtlar()
+        {
+            return db.MüsteriKayit.ToList();
+        }
+
     }
 }

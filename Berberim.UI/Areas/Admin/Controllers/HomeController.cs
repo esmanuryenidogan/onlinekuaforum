@@ -256,7 +256,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
 
         
 
-       BerberimSınıfı ekle = new BerberimSınıfı();
+       SalonClass ekle = new SalonClass();
        
         public ActionResult BerberKayitGor()
         {
@@ -307,7 +307,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
         }
 
 
-        MusteriSınıfı mekle = new MusteriSınıfı();
+        MusteriClass mekle = new MusteriClass();
         public ActionResult MusteriKayitGor()
         {
             var gelen = (AdminGiris)Session["loginadmin"];

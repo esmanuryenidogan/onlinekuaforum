@@ -19,14 +19,15 @@ namespace Berberim.UI.Controllers
         BerberimEntities db = new BerberimEntities();
         public ActionResult Index()
         {
-
-            var berber = (from i in db.BerberSayfa where i.IsActive == true select i).ToList();
-
-            return View(berber);
+            var data = new tabMenu
+            {
+                berber = (from i in db.BerberSayfa where i.IsActive == true select i).ToList(),
+                kampanyalar = (from i in db.Kampanyalar where i.IsActive == true select i).ToList(),
+                trendSac = (from i in db.TrendSaclar where i.IsActive == true select i).ToList()
+            };
+            return View(data);
         }
-
-
-
+        
         public ActionResult MusteriKayit()
         {
             return View();

@@ -7,19 +7,16 @@ using System.Threading.Tasks;
 
 namespace Berberim.Biz
 {
-    public class Personeller
+    public class PersonalClass
     {
         BerberimEntities db;
-        public Personeller() 
-        { 
-         db = new BerberimEntities();
-
+        public PersonalClass()
+        {
+            db = new BerberimEntities();
         }
-
         public List<Personel> PersonelKayıt()
         {
-            return (from m in db.Personel where (m.IsActive == true) orderby m.PersonelAdSoyad select m).ToList();
-                    
+            return db.Personel.Where(m => m.IsActive == true).OrderBy(m => m.PersonelAdSoyad).ToList();
         }
     }
 }
