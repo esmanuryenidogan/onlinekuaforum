@@ -1,316 +1,312 @@
-﻿<!DOCTYPE html>
+﻿@model Berberim.Biz.tabMenu
 
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link rel="shortcut icon" href="~/common-files/images/favicon.png" type="image/png">
-    <link rel="stylesheet" href="~/common-files/css/style.min.css" />
-    <link rel="stylesheet" id="scheme-source" href="~/common-files/css/schemes/gray.css" />
-    <!-- BEGIN PAGE STYLE -->
-    <link rel="stylesheet" href="~/common-files/plugins/magnific/magnific-popup.min.css" />
-    <!-- END PAGE STYLE -->
-    <!-- [if lt IE 9]>
-      <script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="http://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif] -->
-    <link href="~/Sosyal.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="~/BerberPanel/assets/css/font-awesome.min.css">
-
-    <style>
-        h1 {
-            font-family: Calibri;
-        }
-
-        .anadiv {
-            margin: auto;
-            width: 100%;
-            height: 100%;
-            margin-left: 23%;
-        }
-
-        .div1 {
-            width: 20%;
-            height: 10%;
-            float: left;
-        }
-
-        .div2 {
-            width: 20%;
-            height: 10%;
-            float: left;
-        }
-
-        .div3 {
-            width: 20%;
-            height: 10%;
-            float: left;
-        }
-
-
-
-        a:hover {
-            color: #74b7b1;
-        }
-
-        .yenimage img {
-            height: 140px;
-            width: 150px;
-            border: 4px solid white;
-        }
-    </style>
-
-
-    <title>@ViewBag.Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="~/Common/Anasayfa/img/favicon.png" type="image/png">
+    <title>online Kuaförüm</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Common/Anasayfa/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/vendors/linericon/style.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/vendors/lightbox/simpleLightbox.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/vendors/animate-css/animate.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="~/Common/Anasayfa/css/style.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/css/responsive.css">
 </head>
 <body>
-    <!--  End Topbar simple -->
-    <!-- Header Parallax Image -->
 
-    <header class="center header-md bg-dark parallax" data-img="bg/banner7.png" data-speed="0.5" style="height: 400px">
-
-        <div class="container">
-
-            <div style="margin: auto !important;float: left;position: relative;top: 175px;right: 150px;">
-
-                @if (Session["musterikuladi"] != null)
-                {
-                    <div class="pull-right" style="padding-left: 40px;padding-top: 30px;">
-                        <h5 style="color: White; font-family: cursive;padding-left: 15px">@Session["musteriadsoyad"]</h5>
-                        <i class="fa fa-calendar"></i><label style="color: White; font-family: cursive;padding: 10px;"> @Html.ActionLink("Randevularım", "MusteriRandevuGoruntule", "Home")</label>
-                        <label>|</label>
-                        <i class="fa fa-sign-out" style="font-size: 17px; position: relative;left: 10px"></i><label style="color: White; font-family: cursive;position: relative;left: 20px;">@Html.ActionLink("Çıkış Yap", "CıkısYap", "Home")</label>
-                    </div>
-                    <div class="yenimage pull-left">
-                        <img src="~/Resimler/Profil.png" />
-                    </div>
-                }
-              
-                @*else
-                    {
-                    <div>
-                            <div class="top-text fade-text pull-left">
-                                <p>
-                                    <h3 style="font-family: Papyrus; color: white">TRENDLERLE TARZINIZI YANSITIN !</h3>
-                                </p>
-                                <p><h5 style="color: white">Kaliteli salonlarımızdan size en uygun randevuyu kolayca alın...</h5></p>
-                            </div>
-                        </div>
-                    }*@
-
-            </div>
-        </div>
-    </header>
-    <div>
-
-        <!-- BEGIN PRELOADER -->
-        <div class="loader-overlay">
-            <div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-            </div>
-        </div>
-        <!-- END PRELOADER -->
-        <!--  Begin Topbar simple -->
-        <div class="topnav fixed-topnav transparent">
-            <form action="#" class="form-search" method="get" role="form">
-                <div class="container">
-                    <div class="search-inner clearfix">
-                        <i class="fa fa-search"></i>
-                        <input type="text" placeholder="Search" name="s" class="search-input" autocomplete="off">
-                        <input type="submit" value="Search">
-                        <div class="search-close">
-                            <a href="#"><i class="line-icon-close"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div class="section">
-                <div id="topbar-hold" class="nav-hold container">
-                    <nav class="navbar" role="navigation">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <!-- Site Name -->
-                            <a href="#" style="position: relative; right: 150px;"><img src="~/assets/img/Berberim.png" /></a>
-
-                        </div>
-                        <!-- Main Navigation menu Starts -->
-                        <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown full-width">
-                                    @*@Html.ActionLink("Anasayfa", "Index", "Home")*@
-
-                                <li class="dropdown full-width">
-
-                                    @*@Html.ActionLink("ADMİN GİRİŞ", "AdminGiris", "Home", new { area = "Admin" }, null)*@
-                                    @Html.ActionLink("KULLANICI GİRİŞ", "MusteriGiris", "Home")
-                                </li>
-
-                                <li class="dropdown full-width">
-
-                                    @Html.ActionLink("SALON GİRİŞ", "BerberGiris", "Home", new { area = "Berber" }, null)
-                                </li>
+    <!--================Header Menu Area =================-->
+    <header class="header_area">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container box_1620">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <a class="navbar-brand logo_h" href="index.html"><img src="~/Common/Anasayfa/img/logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto">
+                        <li class="nav-item active"><a class="nav-link" href="index.html">Anasayfa</a></li>
+                      
+                        <li class="nav-item"><a class="nav-link" href="about-us.html">Hakkımızda</a></li>
+                      
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("MusteriGiris", "Home")">Kullanıcı Giriş</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("BerberGiris", "Home" ,new { area = "Berber" }, null)">Salon Giriş</a></li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                                <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
                             </ul>
+                        </li>
 
+                        <li class="nav-item"><a class="nav-link" href="contact.html">İLETİŞİM</a></li>
 
-                        </div>
-                        <!-- Main Navigation menu ends-->
-                    </nav>
+                    </ul>
+                   
                 </div>
             </div>
+        </nav>
+    </header>
+    @RenderBody()
+    <!--================Header Menu Area =================-->
+    <!--================Home Banner Area =================-->
+    <section class="home_banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+
         </div>
-
-
-        <div>
-            @RenderBody()
-
+    </section>
+    <!--================End Home Banner Area =================-->
+    <!--================Home Gallery Area =================-->
+    <section class="home_gallery_area p_120">
+        <div class="container">
+            <div class="isotope_fillter">
+                <ul class="gallery_filter list">
+                    <li class="active" data-filter=".ap"><a href="#">Salonlar</a></li>
+                    <li data-filter=".unp"><a href="#">Kampanyalar</a></li>
+                    <li data-filter=".unv"><a href="#">Trend Saç Modelleri</a></li>
+                  
+                </ul>
+            </div>
         </div>
+        <div class="container box_1620">
 
-
-    </div>
-    <!-- End Portfolio Boxed 4 columns with Space -->
-    <!-- Begin Call to Action Contact -->
-    <section class="section-call-action bg-gray-light" style="background-color: #f9f9f9">
-        <div class="container center">
-            <div class="w3-container">
-
-
-
-                <div id="id01" class="w3-modal">
-                    <div class="w3-modal-content" style="width: 700px; height: 400px; border-radius: 8px;">
-                        <div class="w3-container">
-                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                            <div style="margin-top: 70px;">
-                                @using (Html.BeginForm("IletisimMail", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
-                                {
-                                    <!-- Name input-->
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="name">Adınız :</label>
-                                        <div class="col-md-9">
-                                            <input id="name" name="name" type="text" placeholder="Adınız" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <!-- Email input-->
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="email">E-mail Adresiniz :</label>
-                                        <div class="col-md-9">
-                                            <input id="email" name="email" type="text" placeholder="E-mail" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <!-- Message body -->
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="message">Mesajınız :</label>
-                                        <div class="col-md-9">
-                                            <textarea class="form-control" id="message" name="message" placeholder="Lütfen Mesajınızı Girin..." rows="5"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <!-- Form actions -->
-                                    <div class="form-group">
-                                        <div class="col-md-12 text-right">
-                                            <button type="submit" class="btn btn-primary btn-lg">Gönder</button>
-                                        </div>
-                                    </div>
-
-                                }
+            <div class="gallery_f_inner row imageGallery1">
+                @foreach (var item in Model.berber)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 ap">
+                        <div class="h_gallery_item">
+                            <img style="width: 262px; height: 309px; " src="~/Resimler/SalonVitrinFoto/@item.VitrinFoto" alt="">
+                            <div class="hover">
+                                <a href="#"><h4>@item.SalonAd</h4></a>
+                                <a class="light" href="~/Common/Anasayfa/img/gallery/gallery-1.jpg"><i class="fa fa-arrow-circle-right"></i></a>
                             </div>
-
                         </div>
+
+                    </div>
+
+                }
+             
+            </div>
+            
+            <div class="gallery_f_inner row imageGallery1">
+                @foreach (var item in Model.kampanyalar)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 unp">
+                        <div class="h_gallery_item">
+                            <img style="width: 262px; height: 309px; " src="~/SalonFotolar/kampanya4.png" alt="">
+                            <div class="hover">
+                                <a href="#"><h4>@item.KampanyaBaslik<br />@item.KampanyaFiyat TL</h4></a>
+                                <a class="light" href="~/Common/Anasayfa/img/gallery/gallery-1.jpg"><i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+             
+            </div>
+
+            <div class="gallery_f_inner row imageGallery1">
+                @foreach (var item in Model.trendSac)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 unv">
+                        <div class="h_gallery_item">
+                            <img style="width: 262px; height: 309px; " src="~/Resimler/TrendSac/@item.SacModelFoto" alt="">
+                            <div class="hover">
+                                <a href="#"><h4></h4></a>
+                                <a class="light" href="~/Resimler/TrendSac/@item.SacModelFoto"><i class="fa fa-expand"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+             
+            </div>
+
+            <div class="button_more">
+             
+            </div>
+        </div>
+    </section>
+    <!--================End Home Gallery Area =================-->
+    <!--================Testimonials Area =================-->
+    <section class="testimonials_area p_120">
+        <div class="container">
+            <div class="row testimonials_inner">
+                <div class="col-lg-6">
+                    <div class="c_feedback_text">
+                        <h4>Client’s Feedback</h4>
+                        <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="section-title">SİZDE BERBERİNİZDEN KOLAYCA RANDEVU ALINMASINI İSTİYORSANIZ BİZİMLE İLETİŞİME GEÇİN.</h3>
+                <div class="col-lg-6">
+                    @*<div class="t_slider owl-carousel">
+                        @foreach (var item in Model.musteriYorumlar)
+                        { 
+                        <div class="item">
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img src="~/Common/Anasayfa/img/testimonials/test-1.png" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <p>@item.MüsteriYorumu</p>
+                                    <h4>@item.MüsteriAd</h4>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>*@
                 </div>
-                <div class="col-md-12">
-                    @Html.ActionLink("Bize Ulaşın", "IletisimMail", null , "Home", new { @class = "btn btn-dark btn-rounded hover-effect" })
+            </div>
+        </div>
 
+    </section>
+    <!--================End Testimonials Area =================-->
+    <!--================Service Area =================-->
+    <section class="service_area p_120">
+        <div class="container">
+            <div class="main_title">
+                <h2>Neden Online Kuaförüm ?</h2>
+                <p>Who are in extremely love with eco friendly system.</p>
+            </div>
+            <div class="row service_inner">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service_item">
+                        <a href="#"><h4>Expert Technicians</h4></a>
+                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service_item">
+                        <a href="#"><h4>Professional Service</h4></a>
+                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service_item">
+                        <a href="#"><h4>Great Support</h4></a>
+                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service_item">
+                        <a href="#"><h4>Technical Skills</h4></a>
+                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service_item">
+                        <a href="#"><h4>Highly Recomended</h4></a>
+                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service_item">
+                        <a href="#"><h4>Positive Reviews</h4></a>
+                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End Call to Action Contact -->
-    <!-- Begin Footer 3 columns Dark -->
-    <div class="section-footer footer-wrap bg-dark">
-
-
-        <!-- End Call to Action Contact -->
-        <!-- Begin Footer 3 columns Dark -->
-        <div class="section-footer footer-wrap bg-dark">
-            <div class="container footer center">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h4>ŞİRKET BİLGİLERİ</h4>
-                        <p>Bu proje 2017 yılında tarafımızca yapıldı</p>
-                        <p>Kolay randevu merkezi</p>
-                        <p>İş yerinizin randevuları için bize ulaşın</p>
-                        <p>Bizimle İşinizi Geliştirin</p>
-                    </div>
-                    <div class="col-md-3">
-                        <h4>İLETİŞİM</h4>
-                        <p><i class="line-icon-map"></i>İstanbul / Türkiye</p>
-                        <p><i class="line-icon-screen-smartphone"></i>0541 950 10 26 / 0537 050 08 21</p>
-                        <p><i class="line-icon-envelope-open"></i>berberim@gmail.com</p>
-                        <p><i class="line-icon-calendar"></i>@DateTime.Now.Year - My ASP.NET Application</p>
-                    </div>
-
-                    <div class="col-md-3">
-                        <h4>NEDEN BİZ ?</h4>
-                        <p>Kolay İşlemler</p>
-                        <p>Hızlı Erişimler</p>
-                        <p>Pratik Çözümler</p>
-                        <p>Güvenli Bilgiler</p>
-                    </div>
-                    <div class="col-md-3">
-                        <h4>BİZİ TAKİP EDİN</h4>
-                        <div class="exsprite">
-                            <ul>
-                                <li><a class="icon facebook" href="#">Facebook</a></li>
-                                <li><a class="icon google" href="#">Google+</a></li>
-                                <li><a class="icon twitter" href="#">Twitter</a></li>
-                            </ul>
+    <!--================End Service Area =================-->
+    <!--================Instagram Area =================-->
+    <section class="instagram_area">
+        <div class="container box_1620">
+            <div class="insta_btn">
+                <a class="btn theme_btn" href="#">Follow us on instagram</a>
+            </div>
+            <div class="instagram_image row m0">
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-1.jpg" alt=""></a>
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-2.jpg" alt=""></a>
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-3.jpg" alt=""></a>
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-4.jpg" alt=""></a>
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-5.jpg" alt=""></a>
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-6.jpg" alt=""></a>
+            </div>
+        </div>
+    </section>
+    <!--================End Instagram Area =================-->
+    <!--================Footer Area =================-->
+    <footer class="footer_area p_120">
+        <div class="container">
+            <div class="row footer_inner">
+                <div class="col-lg-5 col-sm-6">
+                    <aside class="f_widget ab_widget">
+                        <div class="f_title">
+                            <h3>About Me</h3>
                         </div>
-                    </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore </p>
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </aside>
+                </div>
+                <div class="col-lg-5 col-sm-6">
+                    <aside class="f_widget news_widget">
+                        <div class="f_title">
+                            <h3>Newsletter</h3>
+                        </div>
+                        <p>Stay updated with our latest trends</p>
+                        <div id="mc_embed_signup">
+                            <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
+                                <div class="input-group d-flex flex-row">
+                                    <input name="EMAIL" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
+                                    <button class="btn sub-btn"><span class="lnr lnr-arrow-right"></span></button>
+                                </div>
+                                <div class="mt-10 info"></div>
+                            </form>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-lg-2">
+                    <aside class="f_widget social_widget">
+                        <div class="f_title">
+                            <h3>Follow Me</h3>
+                        </div>
+                        <p>Let us be social</p>
+                        <ul class="list">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                        </ul>
+                    </aside>
                 </div>
             </div>
         </div>
-
-        <!-- End Footer 3 columns Dark -->
-        <!-- Begin Copyright Dark -->
-        <!-- End Copyright Dark -->
-
-        <a href="#" class="scrollup"><i class="fa fa-angle-up" style="padding: 0px !important"></i></a>
-
-        <script src="../../common-files/plugins/jquery/jquery-1.11.1.min.js"></script>
-        <script src="../../common-files/plugins/bootstrap/bootstrap.min.js"></script>
-        <script src="../../common-files/plugins/modernizr/modernizr.js"></script>
-        <script src="../../common-files/plugins/retina/retina.min.js"></script>
-        <script src="../../common-files/plugins/jquery/jquery.easing.1.3.js"></script>
-        <script src="../../common-files/plugins/appear/jquery.appear.min.js"></script>
-        <script src="../../common-files/plugins/smoothscroll/smoothscroll.min.js"></script>
-        <script src="../../common-files/plugins/smart-menu/jquery.smartmenus.min.js"></script>
-        <!-- BEGIN PAGE SCRIPTS -->
-        <script src="../../common-files/plugins/parallax/scripts/jquery.parallax-1.1.3.js"></script>
-        <script src="../../common-files/plugins/magnific/jquery.magnific-popup.min.js"></script>
-        <script src="../../common-files/plugins/isotope/isotope.pkgd.min.js"></script>
-        <!-- END PAGE SCRIPTS -->
-        <script src="../../common-files/js/application.js"></script>
-
-
-    </div>
-
-
-
-
-
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/Common/Anasayfa/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Common/Anasayfa/js/popper.js"></script>
+    <script src="~/Common/Anasayfa/js/bootstrap.min.js"></script>
+    <script src="~/Common/Anasayfa/js/stellar.js"></script>
+    <script src="~/Common/Anasayfa/vendors/lightbox/simpleLightbox.min.js"></script>
+    <script src="~/Common/Anasayfa/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/Common/Anasayfa/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Common/Anasayfa/vendors/isotope/isotope-min.js"></script>
+    <script src="~/Common/Anasayfa/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/Common/Anasayfa/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Common/Anasayfa/js/mail-script.js"></script>
+    <script src="~/Common/Anasayfa/js/theme.js"></script>
 </body>
 </html>
