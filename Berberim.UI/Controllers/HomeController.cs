@@ -24,6 +24,7 @@ namespace Berberim.UI.Controllers
                 salon = _db.SALON.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                 kampanya = _db.KAMPANYA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                 trendSac = _db.TRENDHAIRS.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList()
+                //musteriYorumlar = _db.MusteriYorumlari.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
             };
             return View(data);
         }
