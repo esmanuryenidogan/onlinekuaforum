@@ -12115,7 +12115,7 @@
     <Content Include="SalonFotolar\kampanya1.png" />
     <Content Include="SalonFotolar\kampanya2.png" />
     <Content Include="SalonFotolar\kampanya3.png" />
-    <Content Include="SalonFotolar\kampanya4.png" />
+    <Content Include="SalonFotolar\kampanya.png" />
     <Content Include="SalonFotolar\kampanya5.png" />
     <Content Include="SalonFotolar\salon1.png" />
     <Content Include="SalonFotolar\salon10.png" />
@@ -14235,6 +14235,7 @@
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\MusteriGiris.cshtml" />
+    <Content Include="Views\Home\MusteriKayit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

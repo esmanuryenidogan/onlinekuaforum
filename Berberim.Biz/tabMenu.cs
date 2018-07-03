@@ -12,6 +12,6 @@ namespace Berberim.Biz
         public List<BerberSayfa> berber { get; set; }
         public List<Kampanyalar> kampanyalar { get; set; }
         public List<TrendSaclar> trendSac { get; set; }
-        //public List<MusteriYorumlari> musteriYorumlar { get; set; }
+        public List<MusteriYorumlari> musteriYorumlar { get; set; }
     }
 }

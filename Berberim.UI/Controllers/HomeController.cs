@@ -24,7 +24,7 @@ namespace Berberim.UI.Controllers
                 berber = _db.BerberSayfa.Where(i => i.IsActive == true).ToList(),
                 kampanyalar = _db.Kampanyalar.Where(i => i.IsActive == true).ToList(),
                 trendSac = _db.TrendSaclar.Where(i => i.IsActive == true).ToList(),
-                //musteriYorumlar = _db.MusteriYorumlari.Where(i => i.IsActive == true).ToList().Take(5).ToList()
+                musteriYorumlar = _db.MusteriYorumlari.Where(i => i.IsActive == true).ToList().Take(5).ToList()
             };
             return View(data);
         }
