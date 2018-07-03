@@ -8,15 +8,12 @@ namespace Berberim.UI.Models
 {
     public class BerberDetayModel
     {
-
-        
-
-        public BerberSayfa Berber { get; set; }
-        public List<Personel> Personeller  { get; set; }
-        public List<SalonFotolar> SalonFotolar { get; set; }
-        public List<KesilenSacModeller> KesilenSacModeller { get; set; }
-        public List<Islemler> islemler { get; set; }
-        public List<MusteriYorumlari> MusteriYorumlar { get; set; }
+        public SALON Berber { get; set; }
+        public List<PERSONEL> Personeller  { get; set; }
+        public List<SALONFOTO> SalonFotolar { get; set; }
+        public List<BSACMODEL> KesilenSacModeller { get; set; }
+        public List<ISLEM> Islemler { get; set; }
+        public List<YORUM> MusteriYorumlar { get; set; }
         public List<string> RandevuSaat { get; set; }
         public List<string> RandevuTarih { get; set; }
 

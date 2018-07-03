@@ -12,12 +12,13 @@ namespace Berberim.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class SalonFotolar
+    public partial class SALONFOTO
     {
-        public int id { get; set; }
-        public Nullable<int> BerberId { get; set; }
-        public string SalonAd { get; set; }
-        public string SalonFotograf { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> SALONID { get; set; }
+        public string FOTO { get; set; }
+        public Nullable<int> STATUS { get; set; }
+    
+        public virtual SALON SALON { get; set; }
     }
 }

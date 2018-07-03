@@ -12,14 +12,11 @@ namespace Berberim.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class TrendSaclar
+    public partial class TRENDHAIRS
     {
-        public int id { get; set; }
-        public string SacModelFoto { get; set; }
-        public Nullable<int> TrendID { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public string yeni { get; set; }
-    
-        public virtual AdminIslem AdminIslem { get; set; }
+        public int ID { get; set; }
+        public string TRENDADI { get; set; }
+        public string FOTO { get; set; }
+        public Nullable<int> STATUS { get; set; }
     }
 }

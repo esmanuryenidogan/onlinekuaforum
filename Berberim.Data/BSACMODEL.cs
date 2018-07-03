@@ -12,17 +12,13 @@ namespace Berberim.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Kampanyalar
+    public partial class BSACMODEL
     {
-        public int id { get; set; }
-        public Nullable<int> BerberId { get; set; }
-        public string SalonAd { get; set; }
-        public string KampanyaBaslik { get; set; }
-        public string KampanyaIcerik { get; set; }
-        public Nullable<decimal> KampanyaFiyat { get; set; }
-        public Nullable<System.DateTime> KampanyaSonGun { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> STATUS { get; set; }
+        public Nullable<int> SALONID { get; set; }
+        public string FOTO { get; set; }
     
-        public virtual BerberSayfa BerberSayfa { get; set; }
+        public virtual SALON SALON { get; set; }
     }
 }

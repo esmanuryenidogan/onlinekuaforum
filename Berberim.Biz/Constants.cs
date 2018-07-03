@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,13 @@ namespace Berberim.Biz
             public const int Deleted = 1;
             public const int Active = 2;
             public const int Passive = 3;
+        }
+        public static string ContactMail => ConfigurationManager.AppSettings["ContactMail"];
+
+        public struct SendMail
+        {
+            public const int Error = 1;
+            public const int Succes = 2;
         }
     }
 }

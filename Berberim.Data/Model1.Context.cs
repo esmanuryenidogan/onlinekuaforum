@@ -25,20 +25,18 @@ namespace Berberim.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AdminGiris> AdminGiris { get; set; }
-        public virtual DbSet<AdminIslem> AdminIslem { get; set; }
-        public virtual DbSet<Fiyat> Fiyat { get; set; }
-        public virtual DbSet<Islemler> Islemler { get; set; }
-        public virtual DbSet<Kampanyalar> Kampanyalar { get; set; }
-        public virtual DbSet<Kullanıcılar> Kullanıcılar { get; set; }
-        public virtual DbSet<MusteriYorumlari> MusteriYorumlari { get; set; }
-        public virtual DbSet<MüsteriKayit> MüsteriKayit { get; set; }
-        public virtual DbSet<OtomatikMail> OtomatikMail { get; set; }
-        public virtual DbSet<Personel> Personel { get; set; }
-        public virtual DbSet<TrendSaclar> TrendSaclar { get; set; }
-        public virtual DbSet<Randevular> Randevular { get; set; }
-        public virtual DbSet<SalonFotolar> SalonFotolar { get; set; }
-        public virtual DbSet<KesilenSacModeller> KesilenSacModeller { get; set; }
-        public virtual DbSet<BerberSayfa> BerberSayfa { get; set; }
+        public virtual DbSet<ADMIN> ADMIN { get; set; }
+        public virtual DbSet<BSACMODEL> BSACMODEL { get; set; }
+        public virtual DbSet<ISLEM> ISLEM { get; set; }
+        public virtual DbSet<KAMPANYA> KAMPANYA { get; set; }
+        public virtual DbSet<MAIL> MAIL { get; set; }
+        public virtual DbSet<MUSTERI> MUSTERI { get; set; }
+        public virtual DbSet<RANDEVU> RANDEVU { get; set; }
+        public virtual DbSet<SALON> SALON { get; set; }
+        public virtual DbSet<SALONFOTO> SALONFOTO { get; set; }
+        public virtual DbSet<SALONSAYFA> SALONSAYFA { get; set; }
+        public virtual DbSet<TRENDHAIRS> TRENDHAIRS { get; set; }
+        public virtual DbSet<YORUM> YORUM { get; set; }
+        public virtual DbSet<PERSONEL> PERSONEL { get; set; }
     }
 }

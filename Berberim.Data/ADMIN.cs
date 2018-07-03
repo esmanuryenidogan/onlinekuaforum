@@ -12,15 +12,13 @@ namespace Berberim.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminGiris
+    public partial class ADMIN
     {
-        public int id { get; set; }
-        public string AdminAd { get; set; }
-        public string AdminKulAdi { get; set; }
-        public string AdminSifre { get; set; }
-        public Nullable<int> YetkiID { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-    
-        public virtual Kullanıcılar Kullanıcılar { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> STATUS { get; set; }
+        public string AD { get; set; }
+        public string SOYAD { get; set; }
+        public string EMAIL { get; set; }
+        public string SIFRE { get; set; }
     }
 }
