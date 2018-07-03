@@ -20,7 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <Use64BitIISExpress />
     <UseGlobalApplicationHostFile />
   </PropertyGroup>
@@ -14232,7 +14232,9 @@
     <Content Include="Tablo\islemlertags.css" />
     <Content Include="Tablo\islemleryeni.css" />
     <Content Include="Tablo\style.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\MusteriGiris.cshtml" />
     <None Include="Web.Debug.config">
