@@ -309,7 +309,7 @@ namespace Berberim.UI.Controllers
         {
             var gelen = Session["musteri"].ToString();
             var musteriId = (from i in _db.MUSTERI where i.EMAIL == gelen select i.ID).SingleOrDefault();
-            var berberbilgi = (from i in _db.SALON where i.ID == id select i).SingleOrDefault();
+            var berberbilgi = (from i in _db.SALONSAYFA where i.SALONID == id select i).SingleOrDefault();
             var musteribilgi = (from i in _db.MUSTERI where i.ID == musteriId select i).SingleOrDefault();
 
             string personel = Request["Personeller"];
@@ -322,13 +322,13 @@ namespace Berberim.UI.Controllers
             {
                  var randevual = new RANDEVU
                  {
-                    MUSTERIAD = musteribilgi?.MusteriAd,
-                    MUSTERITEL = musteribilgi?.MusteriTel,
-                    MUSTERIMAIL = musteribilgi?.MusteriMail,
-                    SALONAD = berberbilgi?.SalonAd,
-                    SALONTEL = berberbilgi?.SalonTel,
-                    SALONMAIL = berberbilgi?.SalonMail,
-                    KOLTUKSAY = berberbilgi?.KoltukSayisi,
+                    MUSTERIAD = musteribilgi?.AD,
+                    MUSTERITEL = musteribilgi?.TEL,
+                    MUSTERIMAIL = musteribilgi?.EMAIL,
+                    SALONAD = berberbilgi?.AD,
+                    SALONTEL = berberbilgi?.TEL,
+                    SALONMAIL = berberbilgi?.EMAIL,
+                    KOLTUKSAY = berberbilgi?.KOLTUKSAY.ToString(),
                     RANDEVUTARIH = tarih,
                     RANDEVUSAAT = saat.ToString(),
                     PERSONEL = personel,
