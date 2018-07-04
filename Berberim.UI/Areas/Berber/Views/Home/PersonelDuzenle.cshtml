@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Berberim.Data.Personel>
+﻿@model IEnumerable<Berberim.Data.PERSONEL>
 
 @{
     ViewBag.Title = "PersonelDuzenle";
@@ -60,12 +60,12 @@
             <div class="card-body">
                 <div class="mx-auto d-block">
                     <img class="rounded-circle mx-auto d-block" src="~/Resimler/admin.jpg" alt="Card image cap">
-                    <h5 class="text-sm-center mt-2 mb-1">@item.PersonelAdSoyad</h5>
-                    <div class="location text-sm-center"><i class="ti-cut"></i> Saç Uzmanı</div>
+                    <h5 class="text-sm-center mt-2 mb-1">@item.ADSOYAD</h5>
+                    <div class="location text-sm-center"><i class="ti-cut"></i> @item.UNVAN</div>
                 </div>
                 <hr>
                 <div class="card-text text-sm-center">
-                    @Html.ActionLink("Sil", "PersonelSil", new { id = item.id }, new { @class = "btn btn-outline-danger" })
+                    @Html.ActionLink("Sil", "PersonelSil", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
 
                 </div>
             </div>

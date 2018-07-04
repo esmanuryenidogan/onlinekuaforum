@@ -55,36 +55,39 @@
                                 <tr></tr>
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.SalonAd)
+                                        @Html.DisplayFor(modelItem => item.AD)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.iLveiLce)
+                                        @Html.DisplayFor(modelItem => item.IL)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.SalonAdres)
+                                        @Html.DisplayFor(modelItem => item.ILCE)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.SalonTel)
+                                        @Html.DisplayFor(modelItem => item.ADRES)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.SalonMail)
+                                        @Html.DisplayFor(modelItem => item.TEL)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.SalonHakkinda)
+                                        @Html.DisplayFor(modelItem => item.EMAIL)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.KoltukSayisi)
+                                        @Html.DisplayFor(modelItem => item.HAKKINDA)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.VitrinYazi)
+                                        @Html.DisplayFor(modelItem => item.KOLTUKSAY)
                                     </td>
                                     <td>
-                                        <img width="100" height="100" src="~/Resimler/SalonVitrinFoto/@item.VitrinFoto">
+                                        @Html.DisplayFor(modelItem => item.VITRINYAZI)
+                                    </td>
+                                    <td>
+                                        <img width="100" height="100" src="~/Resimler/SalonVitrinFoto/@item.VITRINFOTO">
                                     </td>
             
             
                                     <td style="padding-top: 45px">
-                                        @Html.ActionLink("Güncelle", "Guncelle", new { id = item.id },new { @class = "btn btn-outline-info" })
+                                        @Html.ActionLink("Güncelle", "Guncelle", new { id = item.ID },new { @class = "btn btn-outline-info" })
                                       
                                     </td>
                                 </tr>

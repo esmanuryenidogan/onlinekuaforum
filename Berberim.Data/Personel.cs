@@ -16,9 +16,11 @@ namespace Berberim.Data
     {
         public int ID { get; set; }
         public Nullable<int> SALONID { get; set; }
-        public Nullable<int> STATUS { get; set; }
         public string ADSOYAD { get; set; }
+        public string UNVAN { get; set; }
+        public string CINSIYET { get; set; }
         public string FOTO { get; set; }
+        public Nullable<int> STATUS { get; set; }
     
         public virtual SALON SALON { get; set; }
     }

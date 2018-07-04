@@ -19,34 +19,27 @@ namespace Berberim.Data
             this.BSACMODEL = new HashSet<BSACMODEL>();
             this.ISLEM = new HashSet<ISLEM>();
             this.KAMPANYA = new HashSet<KAMPANYA>();
+            this.PERSONEL = new HashSet<PERSONEL>();
             this.RANDEVU = new HashSet<RANDEVU>();
             this.SALONFOTO = new HashSet<SALONFOTO>();
             this.SALONSAYFA = new HashSet<SALONSAYFA>();
             this.YORUM = new HashSet<YORUM>();
-            this.PERSONEL = new HashSet<PERSONEL>();
         }
     
         public int ID { get; set; }
         public int STATUS { get; set; }
         public string SALONADI { get; set; }
-        public string ADRES { get; set; }
-        public string IL { get; set; }
-        public string ILCE { get; set; }
         public string EMAIL { get; set; }
         public string SIFRE { get; set; }
-        public string HAKKINDA { get; set; }
-        public string KOLTUKSAYI { get; set; }
-        public string VITRINYAZI { get; set; }
-        public string VITRINFOTO { get; set; }
         public System.DateTime CREATEDATE { get; set; }
     
         public virtual ICollection<BSACMODEL> BSACMODEL { get; set; }
         public virtual ICollection<ISLEM> ISLEM { get; set; }
         public virtual ICollection<KAMPANYA> KAMPANYA { get; set; }
+        public virtual ICollection<PERSONEL> PERSONEL { get; set; }
         public virtual ICollection<RANDEVU> RANDEVU { get; set; }
         public virtual ICollection<SALONFOTO> SALONFOTO { get; set; }
         public virtual ICollection<SALONSAYFA> SALONSAYFA { get; set; }
         public virtual ICollection<YORUM> YORUM { get; set; }
-        public virtual ICollection<PERSONEL> PERSONEL { get; set; }
     }
 }

@@ -226,7 +226,7 @@ namespace Berberim.UI.Controllers
             var gelen = Session["musteri"].ToString();
             var musteriID = (from i in _db.MUSTERI where i.EMAIL == gelen select i.ID).FirstOrDefault();
             var kampanyaID = (from i in _db.KAMPANYA where i.SALONID == id select i.ID).FirstOrDefault();
-            var berberbilgi = (from i in _db.SALON where i.ID == id select i).FirstOrDefault();
+            var berberbilgi = (from i in _db.SALONSAYFA where i.ID == id select i).FirstOrDefault();
             var musteribilgi = (from i in _db.MUSTERI where i.ID == musteriID select i).FirstOrDefault();
             var kampanyabilgileri = (from i in _db.KAMPANYA where i.ID == kampanyaID select i).FirstOrDefault();
 
@@ -241,7 +241,7 @@ namespace Berberim.UI.Controllers
                 {
                     SALONID = id,
                     MUSTERIID = musteriID,
-                    SALONAD = berberbilgi?.SALONADI,
+                    SALONAD = berberbilgi?.AD,
                     SALONTEL = "",
                     SALONMAIL = berberbilgi?.EMAIL,
                     MUSTERIAD = musteribilgi?.AD,
@@ -250,7 +250,7 @@ namespace Berberim.UI.Controllers
                     RANDEVUTARIH = tarih,
                     RANDEVUSAAT = saat.ToString(),
                     PERSONEL = personel,
-                    KOLTUKSAY = berberbilgi?.KOLTUKSAYI,
+                    KOLTUKSAY = berberbilgi?.KOLTUKSAY.ToString(),
                     STATUS = Constants.RecordStatu.Active
                 };
                 _db.RANDEVU.Add(ral);

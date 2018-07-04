@@ -15,7 +15,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
         // GET: Berber/Home
         public ActionResult Index()
         {
-            var gelen = (ADMIN)Session["berberkuladi"];
+            var gelen = Session["berberkuladi"];
             return View(gelen != null ? "Index" : "BerberGiris");
         }
 
@@ -58,8 +58,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult BerberSalonEkle(string salonad, string koltuk, string salonmail, string salonadres, string salontel, string vitrinyazi, string foto, string personeladsoyad, string personelfoto, string salonhakkinda, string il, string ilce)
         {
             var gelen = (SALON)Session["berberkuladi"];
-            var salonID = (from i in db.SALON where i.EMAIL == gelen.EMAIL select i).FirstOrDefault();
-            var salon = (from i in db.SALONSAYFA where i.SALONID == salonID.ID select i).FirstOrDefault();
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
 
             //if (salonID != null)
             //{
@@ -78,7 +77,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
                     HAKKINDA = salonhakkinda,
                     EMAIL = salonmail,
                     VITRINYAZI = vitrinyazi,
-                    SALONID = salonID?.ID,
+                    SALONID = gelen.ID,
                     IL = il,
                     ILCE = ilce,
                     STATUS = Constants.RecordStatu.Active
@@ -302,8 +301,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
             if (gelen != null)
             {
-                var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i.ID).FirstOrDefault();
-                var personel = (from i in db.PERSONEL where i.SALONID == salon select i).ToList();
+                var personel = (from i in db.PERSONEL where i.SALONID == gelen.ID select i).ToList();
 
                 return View(personel);
             }
@@ -328,11 +326,12 @@ namespace Berberim.UI.Areas.Berber.Controllers
             var pekle = new PERSONEL();
             if (gelen != null)
             {
-                var salonad = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).SingleOrDefault();
                 pekle.ADSOYAD = personeladsoyad;
                 pekle.STATUS = Constants.RecordStatu.Active;
-                pekle.SALONID = salonad?.ID;
+                pekle.SALONID = gelen.ID;
                 pekle.FOTO = "";
+                pekle.UNVAN = "";
+                pekle.CINSIYET = "";
                 db.PERSONEL.Add(pekle);
                 db.SaveChanges();
 
@@ -355,8 +354,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
             if (gelen != null)
             {
-                var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i.ID).SingleOrDefault();
-                var islemler = (from i in db.ISLEM where i.SALONID == salon select i).ToList();
+                var islemler = (from i in db.ISLEM where i.SALONID == gelen.ID select i).ToList();
 
                 return View(islemler);
             }
@@ -382,12 +380,11 @@ namespace Berberim.UI.Areas.Berber.Controllers
             var islemekle = new ISLEM();
             if (gelen != null)
             {
-                var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).SingleOrDefault();
                 islemekle.STATUS = Constants.RecordStatu.Active;
                 islemekle.AD = islemad;
                 islemekle.FIYAT = islemfiyat;
-                islemekle.SALONID = salon.ID;
-                islemekle.SALONAD = salon.AD;
+                islemekle.SALONID = gelen.ID;
+                islemekle.SALONAD = gelen.SALONADI;
                 db.ISLEM.Add(islemekle);
                 db.SaveChanges();
 
@@ -409,8 +406,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
             var gelen = (SALON)Session["berberkuladi"];
             if (gelen != null)
             {
-                var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i.ID).SingleOrDefault();
-                var kampanyalar = (from i in db.KAMPANYA where i.SALONID == salon select i).ToList();
+                var kampanyalar = (from i in db.KAMPANYA where i.SALONID == gelen.ID select i).ToList();
                 return View(kampanyalar);
             }
             return View("BerberGiris");
@@ -443,14 +439,12 @@ namespace Berberim.UI.Areas.Berber.Controllers
             KAMPANYA kekle = new KAMPANYA();
             if (gelen != null)
             {
-                var salonad = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
-
                 kekle.STATUS = Constants.RecordStatu.Active;
                 kekle.BASLIK = baslik;
                 kekle.ICERIK = icerik;
                 kekle.FIYAT = fiyat;
-                kekle.SALONID = salonad.ID;
-                kekle.SALONAD = salonad.AD;
+                kekle.SALONID = gelen.ID;
+                kekle.SALONAD = gelen.SALONADI;
                 kekle.SONGUN = tarih;
                 db.KAMPANYA.Add(kekle);
                 db.SaveChanges();

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Berberim.Data.SalonFotolar>
+﻿@model IEnumerable<Berberim.Data.SALONFOTO>
 
 @{
     ViewBag.Title = "SalonFotograflarGor";
@@ -41,9 +41,9 @@
        
             <div class="col-md-3">
                 <div class="card">
-                    <img src="~/Resimler/SalonFotograflar/@item.SalonFotograf">
+                    <img src="~/Resimler/SalonFotograflar/@item.FOTO">
                     <div class="card-body" style="margin: auto">
-                        @Html.ActionLink("Sil", "SalonFotograflarSil", new { id = item.id }, new { @class = "btn btn-outline-danger" })
+                        @Html.ActionLink("Sil", "SalonFotograflarSil", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
                     </div>
                 </div>
             </div>

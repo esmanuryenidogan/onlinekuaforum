@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Berberim.Data.KesilenSacModeller>
+﻿@model IEnumerable<Berberim.Data.BSACMODEL>
 
 @{
     ViewBag.Title = "KesilenSaclarGor";
@@ -43,9 +43,9 @@
         <tr>
             <div class="col-md-3">
                 <div class="card">
-                    <img src="~/Resimler/KesilenSaclar/@item.KesilenSacFotolar">
+                    <img src="~/Resimler/KesilenSaclar/@item.FOTO">
                     <div class="card-body" style="margin: auto">
-                        @Html.ActionLink("Sil", "KesilenSacSil", new { id = item.id }, new { @class = "btn btn-outline-danger" })
+                        @Html.ActionLink("Sil", "KesilenSacSil", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
                     </div>
                 </div>
             </div>

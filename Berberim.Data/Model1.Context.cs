@@ -32,11 +32,11 @@ namespace Berberim.Data
         public virtual DbSet<MAIL> MAIL { get; set; }
         public virtual DbSet<MUSTERI> MUSTERI { get; set; }
         public virtual DbSet<RANDEVU> RANDEVU { get; set; }
-        public virtual DbSet<SALON> SALON { get; set; }
         public virtual DbSet<SALONFOTO> SALONFOTO { get; set; }
         public virtual DbSet<SALONSAYFA> SALONSAYFA { get; set; }
         public virtual DbSet<TRENDHAIRS> TRENDHAIRS { get; set; }
         public virtual DbSet<YORUM> YORUM { get; set; }
         public virtual DbSet<PERSONEL> PERSONEL { get; set; }
+        public virtual DbSet<SALON> SALON { get; set; }
     }
 }

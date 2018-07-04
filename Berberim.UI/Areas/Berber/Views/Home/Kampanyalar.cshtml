@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Berberim.Data.Kampanyalar>
+﻿@model IEnumerable<Berberim.Data.KAMPANYA>
 
 @{
     ViewBag.Title = "Kampanyalar";
@@ -78,10 +78,10 @@
                             <img class="align-self-center rounded-circle mr-3" style="width: 85px; height: 85px;" alt="" src="~/Resimler/KampanyaPanel.jpg">
                         </a>
                         <div class="media-body">
-                            <h2 class="text-light display-6">@item.KampanyaBaslik</h2>
-                            <p>@item.SalonAd</p>
+                            <h2 class="text-light display-6">@item.BASLIK</h2>
+                            <p>@item.SALONAD</p>
                             <div class="kampanyasil">
-                                <a href="@Url.Action("KampanyaSil", "Home", new {id = item.id})">
+                                <a href="@Url.Action("KampanyaSil", "Home", new {id = item.ID})">
                                     <i class="fa fa-trash-o sil"></i>
                                 </a>
                             </div>
@@ -92,17 +92,17 @@
                 <div class="icerik">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <a href="#"> <i class="fa fa-comments-o"></i> @item.KampanyaIcerik</a>
+                            <a href="#"> <i class="fa fa-comments-o"></i> @item.ICERIK</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="#"> <i class="fa fa-tasks"></i> Kampanya Fiyatı <span class="badge badge-info pull-right">@item.KampanyaFiyat TL</span></a>
+                            <a href="#"> <i class="fa fa-tasks"></i> Kampanya Fiyatı <span class="badge badge-info pull-right">@item.FIYAT TL</span></a>
                         </li>
                        
                         <li class="list-group-item">
                             <a href="#"> <i class="fa fa-gift"></i> Kampanya Gösterimi <span class="badge badge-success pull-right r-activity">Yayında</span></a>
                         </li>
                         <li class="list-group-item">
-                            <a href="#"> <i class="fa fa-bell-o"></i> Kampanya Son Gün <span class="badge badge-warning pull-right">@item.KampanyaSonGun.ToString()</span></a>
+                            <a href="#"> <i class="fa fa-bell-o"></i> Kampanya Son Gün <span class="badge badge-warning pull-right">@item.SONGUN.ToString()</span></a>
                         </li>
                     </ul>
                 </div>

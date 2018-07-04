@@ -81,9 +81,11 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SALONID" Type="int" />
-          <Property Name="STATUS" Type="int" />
-          <Property Name="ADSOYAD" Type="nvarchar" MaxLength="200" />
+          <Property Name="ADSOYAD" Type="nvarchar(max)" />
+          <Property Name="UNVAN" Type="nvarchar(max)" />
+          <Property Name="CINSIYET" Type="nvarchar(max)" />
           <Property Name="FOTO" Type="nvarchar(max)" />
+          <Property Name="STATUS" Type="int" />
         </EntityType>
         <EntityType Name="RANDEVU">
           <Key>
@@ -110,18 +112,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="STATUS" Type="int" Nullable="false" />
           <Property Name="SALONADI" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ADRES" Type="nvarchar(max)" />
-          <Property Name="IL" Type="nvarchar(max)" />
-          <Property Name="ILCE" Type="nvarchar(max)" />
           <Property Name="EMAIL" Type="nvarchar(max)" Nullable="false" />
           <Property Name="SIFRE" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="HAKKINDA" Type="nvarchar(max)" />
-          <Property Name="KOLTUKSAYI" Type="nvarchar(max)" />
-          <Property Name="VITRINYAZI" Type="nvarchar(max)" />
-          <Property Name="VITRINFOTO" Type="nvarchar(max)" />
           <Property Name="CREATEDATE" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SALONFOTO">
@@ -359,11 +354,20 @@
           <EntitySet Name="MAIL" EntityType="BerberimModel.MAIL" />
           <EntitySet Name="MUSTERI" EntityType="BerberimModel.MUSTERI" />
           <EntitySet Name="RANDEVU" EntityType="BerberimModel.RANDEVU" />
-          <EntitySet Name="SALON" EntityType="BerberimModel.SALON" />
           <EntitySet Name="SALONFOTO" EntityType="BerberimModel.SALONFOTO" />
           <EntitySet Name="SALONSAYFA" EntityType="BerberimModel.SALONSAYFA" />
           <EntitySet Name="TRENDHAIRS" EntityType="BerberimModel.TRENDHAIRS" />
           <EntitySet Name="YORUM" EntityType="BerberimModel.YORUM" />
+          <AssociationSet Name="FK_RANDEVU_MUSTERI" Association="BerberimModel.FK_RANDEVU_MUSTERI">
+            <End Role="MUSTERI" EntitySet="MUSTERI" />
+            <End Role="RANDEVU" EntitySet="RANDEVU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YORUM_MUSTERI" Association="BerberimModel.FK_YORUM_MUSTERI">
+            <End Role="MUSTERI" EntitySet="MUSTERI" />
+            <End Role="YORUM" EntitySet="YORUM" />
+          </AssociationSet>
+          <EntitySet Name="PERSONEL" EntityType="BerberimModel.PERSONEL" />
+          <EntitySet Name="SALON" EntityType="BerberimModel.SALON" />
           <AssociationSet Name="FK_BSACMODEL_SALON" Association="BerberimModel.FK_BSACMODEL_SALON">
             <End Role="SALON" EntitySet="SALON" />
             <End Role="BSACMODEL" EntitySet="BSACMODEL" />
@@ -376,13 +380,9 @@
             <End Role="SALON" EntitySet="SALON" />
             <End Role="KAMPANYA" EntitySet="KAMPANYA" />
           </AssociationSet>
-          <AssociationSet Name="FK_RANDEVU_MUSTERI" Association="BerberimModel.FK_RANDEVU_MUSTERI">
-            <End Role="MUSTERI" EntitySet="MUSTERI" />
-            <End Role="RANDEVU" EntitySet="RANDEVU" />
-          </AssociationSet>
-          <AssociationSet Name="FK_YORUM_MUSTERI" Association="BerberimModel.FK_YORUM_MUSTERI">
-            <End Role="MUSTERI" EntitySet="MUSTERI" />
-            <End Role="YORUM" EntitySet="YORUM" />
+          <AssociationSet Name="FK_PERSONEL_SALON" Association="BerberimModel.FK_PERSONEL_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="PERSONEL" EntitySet="PERSONEL" />
           </AssociationSet>
           <AssociationSet Name="FK_RANDEVU_SALON" Association="BerberimModel.FK_RANDEVU_SALON">
             <End Role="SALON" EntitySet="SALON" />
@@ -399,11 +399,6 @@
           <AssociationSet Name="FK_YORUM_SALON" Association="BerberimModel.FK_YORUM_SALON">
             <End Role="SALON" EntitySet="SALON" />
             <End Role="YORUM" EntitySet="YORUM" />
-          </AssociationSet>
-          <EntitySet Name="PERSONEL" EntityType="BerberimModel.PERSONEL" />
-          <AssociationSet Name="FK_PERSONEL_SALON" Association="BerberimModel.FK_PERSONEL_SALON">
-            <End Role="SALON" EntitySet="SALON" />
-            <End Role="PERSONEL" EntitySet="PERSONEL" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="ADMIN">
@@ -504,32 +499,6 @@
           <NavigationProperty Name="MUSTERI" Relationship="BerberimModel.FK_RANDEVU_MUSTERI" FromRole="RANDEVU" ToRole="MUSTERI" />
           <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_RANDEVU_SALON" FromRole="RANDEVU" ToRole="SALON" />
         </EntityType>
-        <EntityType Name="SALON">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="STATUS" Type="Int32" Nullable="false" />
-          <Property Name="SALONADI" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ILCE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SIFRE" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HAKKINDA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="KOLTUKSAYI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="VITRINYAZI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="VITRINFOTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="BSACMODEL" Relationship="BerberimModel.FK_BSACMODEL_SALON" FromRole="SALON" ToRole="BSACMODEL" />
-          <NavigationProperty Name="ISLEM" Relationship="BerberimModel.FK_ISLEM_SALON" FromRole="SALON" ToRole="ISLEM" />
-          <NavigationProperty Name="KAMPANYA" Relationship="BerberimModel.FK_KAMPANYA_SALON" FromRole="SALON" ToRole="KAMPANYA" />
-          <NavigationProperty Name="RANDEVU" Relationship="BerberimModel.FK_RANDEVU_SALON" FromRole="SALON" ToRole="RANDEVU" />
-          <NavigationProperty Name="SALONFOTO" Relationship="BerberimModel.FK_SALONFOTO_SALON" FromRole="SALON" ToRole="SALONFOTO" />
-          <NavigationProperty Name="SALONSAYFA" Relationship="BerberimModel.FK_SALONSAYFA_SALON1" FromRole="SALON" ToRole="SALONSAYFA" />
-          <NavigationProperty Name="YORUM" Relationship="BerberimModel.FK_YORUM_SALON" FromRole="SALON" ToRole="YORUM" />
-          <NavigationProperty Name="PERSONEL" Relationship="BerberimModel.FK_PERSONEL_SALON" FromRole="SALON" ToRole="PERSONEL" />
-        </EntityType>
         <EntityType Name="SALONFOTO">
           <Key>
             <PropertyRef Name="ID" />
@@ -582,6 +551,62 @@
           <NavigationProperty Name="MUSTERI" Relationship="BerberimModel.FK_YORUM_MUSTERI" FromRole="YORUM" ToRole="MUSTERI" />
           <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_YORUM_SALON" FromRole="YORUM" ToRole="SALON" />
         </EntityType>
+        <Association Name="FK_RANDEVU_MUSTERI">
+          <End Type="BerberimModel.MUSTERI" Role="MUSTERI" Multiplicity="0..1" />
+          <End Type="BerberimModel.RANDEVU" Role="RANDEVU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MUSTERI">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RANDEVU">
+              <PropertyRef Name="MUSTERIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YORUM_MUSTERI">
+          <End Type="BerberimModel.MUSTERI" Role="MUSTERI" Multiplicity="0..1" />
+          <End Type="BerberimModel.YORUM" Role="YORUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MUSTERI">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YORUM">
+              <PropertyRef Name="MUSTERIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PERSONEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SALONID" Type="Int32" />
+          <Property Name="ADSOYAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UNVAN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CINSIYET" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FOTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Int32" />
+          <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_PERSONEL_SALON" FromRole="PERSONEL" ToRole="SALON" />
+        </EntityType>
+        <EntityType Name="SALON">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="SALONADI" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIFRE" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="BSACMODEL" Relationship="BerberimModel.FK_BSACMODEL_SALON" FromRole="SALON" ToRole="BSACMODEL" />
+          <NavigationProperty Name="ISLEM" Relationship="BerberimModel.FK_ISLEM_SALON" FromRole="SALON" ToRole="ISLEM" />
+          <NavigationProperty Name="KAMPANYA" Relationship="BerberimModel.FK_KAMPANYA_SALON" FromRole="SALON" ToRole="KAMPANYA" />
+          <NavigationProperty Name="PERSONEL" Relationship="BerberimModel.FK_PERSONEL_SALON" FromRole="SALON" ToRole="PERSONEL" />
+          <NavigationProperty Name="RANDEVU" Relationship="BerberimModel.FK_RANDEVU_SALON" FromRole="SALON" ToRole="RANDEVU" />
+          <NavigationProperty Name="SALONFOTO" Relationship="BerberimModel.FK_SALONFOTO_SALON" FromRole="SALON" ToRole="SALONFOTO" />
+          <NavigationProperty Name="SALONSAYFA" Relationship="BerberimModel.FK_SALONSAYFA_SALON1" FromRole="SALON" ToRole="SALONSAYFA" />
+          <NavigationProperty Name="YORUM" Relationship="BerberimModel.FK_YORUM_SALON" FromRole="SALON" ToRole="YORUM" />
+        </EntityType>
         <Association Name="FK_BSACMODEL_SALON">
           <End Type="BerberimModel.SALON" Role="SALON" Multiplicity="0..1" />
           <End Type="BerberimModel.BSACMODEL" Role="BSACMODEL" Multiplicity="*" />
@@ -618,27 +643,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RANDEVU_MUSTERI">
-          <End Type="BerberimModel.MUSTERI" Role="MUSTERI" Multiplicity="0..1" />
-          <End Type="BerberimModel.RANDEVU" Role="RANDEVU" Multiplicity="*" />
+        <Association Name="FK_PERSONEL_SALON">
+          <End Type="BerberimModel.SALON" Role="SALON" Multiplicity="0..1" />
+          <End Type="BerberimModel.PERSONEL" Role="PERSONEL" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MUSTERI">
+            <Principal Role="SALON">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="RANDEVU">
-              <PropertyRef Name="MUSTERIID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_YORUM_MUSTERI">
-          <End Type="BerberimModel.MUSTERI" Role="MUSTERI" Multiplicity="0..1" />
-          <End Type="BerberimModel.YORUM" Role="YORUM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MUSTERI">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="YORUM">
-              <PropertyRef Name="MUSTERIID" />
+            <Dependent Role="PERSONEL">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -686,29 +699,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="YORUM">
-              <PropertyRef Name="SALONID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="PERSONEL">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SALONID" Type="Int32" />
-          <Property Name="STATUS" Type="Int32" />
-          <Property Name="ADSOYAD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FOTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_PERSONEL_SALON" FromRole="PERSONEL" ToRole="SALON" />
-        </EntityType>
-        <Association Name="FK_PERSONEL_SALON">
-          <End Type="BerberimModel.SALON" Role="SALON" Multiplicity="0..1" />
-          <End Type="BerberimModel.PERSONEL" Role="PERSONEL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SALON">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PERSONEL">
               <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
@@ -817,25 +807,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SALON">
-            <EntityTypeMapping TypeName="BerberimModel.SALON">
-              <MappingFragment StoreEntitySet="SALON">
-                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
-                <ScalarProperty Name="VITRINFOTO" ColumnName="VITRINFOTO" />
-                <ScalarProperty Name="VITRINYAZI" ColumnName="VITRINYAZI" />
-                <ScalarProperty Name="KOLTUKSAYI" ColumnName="KOLTUKSAYI" />
-                <ScalarProperty Name="HAKKINDA" ColumnName="HAKKINDA" />
-                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="ILCE" ColumnName="ILCE" />
-                <ScalarProperty Name="IL" ColumnName="IL" />
-                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
-                <ScalarProperty Name="SALONADI" ColumnName="SALONADI" />
-                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SALONFOTO">
             <EntityTypeMapping TypeName="BerberimModel.SALONFOTO">
               <MappingFragment StoreEntitySet="SALONFOTO">
@@ -891,10 +862,24 @@
           <EntitySetMapping Name="PERSONEL">
             <EntityTypeMapping TypeName="BerberimModel.PERSONEL">
               <MappingFragment StoreEntitySet="PERSONEL">
-                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
-                <ScalarProperty Name="ADSOYAD" ColumnName="ADSOYAD" />
                 <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="CINSIYET" ColumnName="CINSIYET" />
+                <ScalarProperty Name="UNVAN" ColumnName="UNVAN" />
+                <ScalarProperty Name="ADSOYAD" ColumnName="ADSOYAD" />
                 <ScalarProperty Name="SALONID" ColumnName="SALONID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALON">
+            <EntityTypeMapping TypeName="BerberimModel.SALON">
+              <MappingFragment StoreEntitySet="SALON">
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SALONADI" ColumnName="SALONADI" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -12,22 +12,22 @@
         <EntityTypeShape EntityType="BerberimModel.MAIL" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="BerberimModel.MUSTERI" Width="1.5" PointX="3.75" PointY="1.625" />
         <EntityTypeShape EntityType="BerberimModel.RANDEVU" Width="1.5" PointX="3" PointY="14.125" />
-        <EntityTypeShape EntityType="BerberimModel.SALON" Width="1.5" PointX="0.75" PointY="11.875" />
         <EntityTypeShape EntityType="BerberimModel.SALONFOTO" Width="1.5" PointX="3" PointY="22.375" />
         <EntityTypeShape EntityType="BerberimModel.SALONSAYFA" Width="1.5" PointX="3" PointY="9.125" />
         <EntityTypeShape EntityType="BerberimModel.TRENDHAIRS" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="BerberimModel.YORUM" Width="1.5" PointX="6" PointY="12.875" />
+        <AssociationConnector Association="BerberimModel.FK_RANDEVU_MUSTERI" />
+        <AssociationConnector Association="BerberimModel.FK_YORUM_MUSTERI" />
+        <EntityTypeShape EntityType="BerberimModel.PERSONEL" Width="1.5" PointX="3" PointY="32.125" />
+        <EntityTypeShape EntityType="BerberimModel.SALON" Width="1.5" PointX="0.75" PointY="18.625" />
         <AssociationConnector Association="BerberimModel.FK_BSACMODEL_SALON" />
         <AssociationConnector Association="BerberimModel.FK_ISLEM_SALON" />
         <AssociationConnector Association="BerberimModel.FK_KAMPANYA_SALON" />
-        <AssociationConnector Association="BerberimModel.FK_RANDEVU_MUSTERI" />
-        <AssociationConnector Association="BerberimModel.FK_YORUM_MUSTERI" />
+        <AssociationConnector Association="BerberimModel.FK_PERSONEL_SALON" />
         <AssociationConnector Association="BerberimModel.FK_RANDEVU_SALON" />
         <AssociationConnector Association="BerberimModel.FK_SALONFOTO_SALON" />
         <AssociationConnector Association="BerberimModel.FK_SALONSAYFA_SALON1" />
         <AssociationConnector Association="BerberimModel.FK_YORUM_SALON" />
-        <EntityTypeShape EntityType="BerberimModel.PERSONEL" Width="1.5" PointX="3" PointY="32.375" />
-        <AssociationConnector Association="BerberimModel.FK_PERSONEL_SALON" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
