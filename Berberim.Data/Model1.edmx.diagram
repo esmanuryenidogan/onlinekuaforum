@@ -5,39 +5,29 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="63f86e960fe24f9dbc75fdea43fdba77" Name="Diagram1" ZoomLevel="101">
-        <EntityTypeShape EntityType="BerberimModel.AdminGiris" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BerberimModel.AdminIslem" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BerberimModel.Fiyat" Width="1.5" PointX="7.5" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BerberimModel.Islemler" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BerberimModel.Kampanyalar" Width="1.5" PointX="5.25" PointY="23.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BerberimModel.Kullanıcılar" Width="1.5" PointX="0.75" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BerberimModel.MusteriYorumlari" Width="1.5" PointX="8.25" PointY="26.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BerberimModel.MüsteriKayit" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
-        <EntityTypeShape EntityType="BerberimModel.OtomatikMail" Width="1.5" PointX="8.25" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BerberimModel.Personel" Width="1.5" PointX="5.25" PointY="34.5" IsExpanded="true" />
-        <AssociationConnector Association="BerberimModel.FK__AdminGiri__Yetki__1273C1CD" ManuallyRouted="false" />
-        <AssociationConnector Association="BerberimModel.FK__AdminIsle__Yetki__1BFD2C07" ManuallyRouted="false" />
-        <AssociationConnector Association="BerberimModel.FK__Fiyat__IslemId__34C8D9D1" ManuallyRouted="false" />
-        <AssociationConnector Association="BerberimModel.FK__Fiyat__MusteriId__33D4B598" ManuallyRouted="false" />
-        <AssociationConnector Association="BerberimModel.FK__MüsteriKa__Yetki__173876EA" ManuallyRouted="false" />
-        <AssociationConnector Association="BerberimModel.FK__MusteriYo__Muste__2D27B809" ManuallyRouted="false" />
-        <AssociationConnector Association="BerberimModel.FK__OtomatikM__Muste__3B75D760" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="BerberimModel.TrendSaclar" Width="1.5" PointX="5.25" PointY="12.75" />
-        <AssociationConnector Association="BerberimModel.FK__TrendSacl__Trend__300424B4" />
-        <EntityTypeShape EntityType="BerberimModel.Randevular" Width="1.5" PointX="10.5" PointY="21.25" />
-        <AssociationConnector Association="BerberimModel.FK__Randevula__Islem__29572725" />
-        <AssociationConnector Association="BerberimModel.FK__Randevula__Muste__286302EC" />
-        <EntityTypeShape EntityType="BerberimModel.SalonFotolar" Width="1.5" PointX="4.625" PointY="8.125" />
-        <EntityTypeShape EntityType="BerberimModel.KesilenSacModeller" Width="1.5" PointX="1.375" PointY="7.375" />
-        <EntityTypeShape EntityType="BerberimModel.BerberSayfa" Width="1.5" PointX="3" PointY="17.25" />
-        <AssociationConnector Association="BerberimModel.FK__BerberSay__Yetki__1ED998B2" />
-        <AssociationConnector Association="BerberimModel.FK__Fiyat__BerberId__32E0915F" />
-        <AssociationConnector Association="BerberimModel.FK__Islemler__Berber__24927208" />
-        <AssociationConnector Association="BerberimModel.FK__Kampanyal__Berbe__37A5467C" />
-        <AssociationConnector Association="BerberimModel.FK__MusteriYo__Berbe__2C3393D0" />
-        <AssociationConnector Association="BerberimModel.FK__OtomatikM__Berbe__3A81B327" />
-        <AssociationConnector Association="BerberimModel.FK__Personel__Berber__21B6055D" />
-        <AssociationConnector Association="BerberimModel.FK__Randevula__Berbe__276EDEB3" />
+        <EntityTypeShape EntityType="BerberimModel.ADMIN" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BerberimModel.BSACMODEL" Width="1.5" PointX="3" PointY="6.375" />
+        <EntityTypeShape EntityType="BerberimModel.ISLEM" Width="1.5" PointX="3" PointY="25.125" />
+        <EntityTypeShape EntityType="BerberimModel.KAMPANYA" Width="1.5" PointX="3" PointY="28.125" />
+        <EntityTypeShape EntityType="BerberimModel.MAIL" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BerberimModel.MUSTERI" Width="1.5" PointX="3.75" PointY="1.625" />
+        <EntityTypeShape EntityType="BerberimModel.RANDEVU" Width="1.5" PointX="3" PointY="14.125" />
+        <EntityTypeShape EntityType="BerberimModel.SALON" Width="1.5" PointX="0.75" PointY="11.875" />
+        <EntityTypeShape EntityType="BerberimModel.SALONFOTO" Width="1.5" PointX="3" PointY="22.375" />
+        <EntityTypeShape EntityType="BerberimModel.SALONSAYFA" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="BerberimModel.TRENDHAIRS" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BerberimModel.YORUM" Width="1.5" PointX="6" PointY="12.875" />
+        <AssociationConnector Association="BerberimModel.FK_BSACMODEL_SALON" />
+        <AssociationConnector Association="BerberimModel.FK_ISLEM_SALON" />
+        <AssociationConnector Association="BerberimModel.FK_KAMPANYA_SALON" />
+        <AssociationConnector Association="BerberimModel.FK_RANDEVU_MUSTERI" />
+        <AssociationConnector Association="BerberimModel.FK_YORUM_MUSTERI" />
+        <AssociationConnector Association="BerberimModel.FK_RANDEVU_SALON" />
+        <AssociationConnector Association="BerberimModel.FK_SALONFOTO_SALON" />
+        <AssociationConnector Association="BerberimModel.FK_SALONSAYFA_SALON1" />
+        <AssociationConnector Association="BerberimModel.FK_YORUM_SALON" />
+        <EntityTypeShape EntityType="BerberimModel.PERSONEL" Width="1.5" PointX="3" PointY="32.375" />
+        <AssociationConnector Association="BerberimModel.FK_PERSONEL_SALON" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

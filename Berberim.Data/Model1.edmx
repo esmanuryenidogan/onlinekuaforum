@@ -5,1039 +5,711 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BerberimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AdminGiris">
+        <EntityType Name="ADMIN">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AdminAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="AdminKulAdi" Type="nvarchar" MaxLength="200" />
-          <Property Name="AdminSifre" Type="nvarchar" MaxLength="200" />
-          <Property Name="YetkiID" Type="int" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="AD" Type="nvarchar(max)" />
+          <Property Name="SOYAD" Type="nvarchar(max)" />
+          <Property Name="EMAIL" Type="nvarchar(max)" />
+          <Property Name="SIFRE" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="AdminIslem">
+        <EntityType Name="BSACMODEL">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SalonAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="BerberKulAdi" Type="nvarchar" MaxLength="200" />
-          <Property Name="BerberSifre" Type="nvarchar" MaxLength="200" />
-          <Property Name="YetkiID" Type="int" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="SALONID" Type="int" />
+          <Property Name="FOTO" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="BerberSayfa">
+        <EntityType Name="ISLEM">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SalonAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="KoltukSayisi" Type="nvarchar" MaxLength="200" />
-          <Property Name="SalonAdres" Type="nvarchar(max)" />
-          <Property Name="SalonTel" Type="nvarchar" MaxLength="50" />
-          <Property Name="VitrinFoto" Type="nvarchar" MaxLength="200" />
-          <Property Name="VitrinYazi" Type="nvarchar" MaxLength="200" />
-          <Property Name="SalonMail" Type="nvarchar" MaxLength="50" />
-          <Property Name="SalonHakkinda" Type="nvarchar(max)" />
-          <Property Name="YetkiID" Type="int" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="SalonID" Type="int" />
-          <Property Name="iLveiLce" Type="nvarchar" MaxLength="200" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="SALONID" Type="int" Nullable="false" />
+          <Property Name="SALONAD" Type="nvarchar(max)" />
+          <Property Name="AD" Type="nvarchar(max)" />
+          <Property Name="FIYAT" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
-        <EntityType Name="Fiyat">
+        <EntityType Name="KAMPANYA">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BerberId" Type="int" />
-          <Property Name="MusteriId" Type="int" />
-          <Property Name="IslemId" Type="int" />
-          <Property Name="MüsteriAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="SalonAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="IslemAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="IslemFiyat" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="SALONID" Type="int" />
+          <Property Name="SALONAD" Type="nvarchar(max)" />
+          <Property Name="BASLIK" Type="nvarchar(max)" />
+          <Property Name="ICERIK" Type="nvarchar(max)" />
+          <Property Name="FIYAT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SONGUN" Type="datetime" />
         </EntityType>
-        <EntityType Name="Islemler">
+        <EntityType Name="MAIL">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BerberId" Type="int" />
-          <Property Name="SalonAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="IslemAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="IslemFiyat" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TO" Type="nvarchar(max)" />
+          <Property Name="FROM" Type="nvarchar(max)" />
+          <Property Name="SUBJECT" Type="nvarchar(max)" />
+          <Property Name="MAIL" Type="nvarchar(max)" />
+          <Property Name="ISSEND" Type="int" />
         </EntityType>
-        <EntityType Name="Kampanyalar">
+        <EntityType Name="MUSTERI">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BerberId" Type="int" />
-          <Property Name="SalonAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="KampanyaBaslik" Type="nvarchar" MaxLength="200" />
-          <Property Name="KampanyaIcerik" Type="nvarchar" MaxLength="200" />
-          <Property Name="KampanyaFiyat" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="KampanyaSonGun" Type="datetime" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="AD" Type="nvarchar" MaxLength="200" />
+          <Property Name="SOYAD" Type="nvarchar" MaxLength="200" />
+          <Property Name="ADRES" Type="nvarchar" MaxLength="200" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="TEL" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOGUMTARIHI" Type="nvarchar" MaxLength="50" />
+          <Property Name="SIFRE" Type="nvarchar" MaxLength="200" />
+          <Property Name="FOTO" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="KesilenSacModeller">
+        <EntityType Name="PERSONEL">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BerberId" Type="int" />
-          <Property Name="SalonAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="KesilenSacFotolar" Type="nvarchar" MaxLength="200" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SALONID" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="ADSOYAD" Type="nvarchar" MaxLength="200" />
+          <Property Name="FOTO" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Kullanıcılar">
+        <EntityType Name="RANDEVU">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Yetki" Type="int" />
-          <Property Name="isim" Type="nvarchar" MaxLength="200" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SALONID" Type="int" />
+          <Property Name="MUSTERIID" Type="int" />
+          <Property Name="ISLEMID" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="SALONAD" Type="nvarchar(max)" />
+          <Property Name="KOLTUKSAY" Type="nvarchar(max)" />
+          <Property Name="SALONTEL" Type="nvarchar(max)" />
+          <Property Name="SALONMAIL" Type="nvarchar(max)" />
+          <Property Name="PERSONEL" Type="nvarchar(max)" />
+          <Property Name="MUSTERIAD" Type="nvarchar(max)" />
+          <Property Name="MUSTERISOYAD" Type="nvarchar(max)" />
+          <Property Name="MUSTERITEL" Type="nvarchar(max)" />
+          <Property Name="MUSTERIMAIL" Type="nvarchar(max)" />
+          <Property Name="RANDEVUTARIH" Type="datetime" />
+          <Property Name="RANDEVUSAAT" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="MusteriYorumlari">
+        <EntityType Name="SALON">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BerberId" Type="int" />
-          <Property Name="MusteriId" Type="int" />
-          <Property Name="SalonAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="MüsteriAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="MüsteriSoyad" Type="nvarchar" MaxLength="200" />
-          <Property Name="MüsteriYorumu" Type="nvarchar(max)" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="SALONADI" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ADRES" Type="nvarchar(max)" />
+          <Property Name="IL" Type="nvarchar(max)" />
+          <Property Name="ILCE" Type="nvarchar(max)" />
+          <Property Name="EMAIL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SIFRE" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HAKKINDA" Type="nvarchar(max)" />
+          <Property Name="KOLTUKSAYI" Type="nvarchar(max)" />
+          <Property Name="VITRINYAZI" Type="nvarchar(max)" />
+          <Property Name="VITRINFOTO" Type="nvarchar(max)" />
+          <Property Name="CREATEDATE" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="MüsteriKayit">
+        <EntityType Name="SALONFOTO">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MusteriAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="MusteriSoyad" Type="nvarchar" MaxLength="200" />
-          <Property Name="MusteriAdres" Type="nvarchar" MaxLength="200" />
-          <Property Name="MusteriMail" Type="nvarchar" MaxLength="50" />
-          <Property Name="MusteriTel" Type="nvarchar" MaxLength="50" />
-          <Property Name="MusteriDogumTarihi" Type="nvarchar" MaxLength="50" />
-          <Property Name="MusteriKullaniciAdi" Type="nvarchar" MaxLength="200" />
-          <Property Name="MusteriKullaniciSifre" Type="nvarchar" MaxLength="200" />
-          <Property Name="YetkiID" Type="int" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SALONID" Type="int" />
+          <Property Name="FOTO" Type="nvarchar(max)" />
+          <Property Name="STATUS" Type="int" />
         </EntityType>
-        <EntityType Name="OtomatikMail">
+        <EntityType Name="SALONSAYFA">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BerberId" Type="int" />
-          <Property Name="MusteriId" Type="int" />
-          <Property Name="SalonAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="SalonMail" Type="nvarchar" MaxLength="50" />
-          <Property Name="MusteriAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="MusteriMail" Type="nvarchar" MaxLength="50" />
-          <Property Name="Mesaj" Type="nvarchar" MaxLength="200" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SALONID" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="AD" Type="nvarchar(max)" />
+          <Property Name="ADRES" Type="nvarchar(max)" />
+          <Property Name="IL" Type="nvarchar(max)" />
+          <Property Name="ILCE" Type="nvarchar(max)" />
+          <Property Name="EMAIL" Type="nvarchar(max)" />
+          <Property Name="TEL" Type="nvarchar(max)" />
+          <Property Name="VITRINFOTO" Type="nvarchar(max)" />
+          <Property Name="VITRINYAZI" Type="nvarchar(max)" />
+          <Property Name="HAKKINDA" Type="nvarchar(max)" />
+          <Property Name="KOLTUKSAY" Type="int" />
         </EntityType>
-        <EntityType Name="Personel">
+        <EntityType Name="TRENDHAIRS">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BerberId" Type="int" />
-          <Property Name="SalonAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="PersonelAdSoyad" Type="nvarchar" MaxLength="200" />
-          <Property Name="PersonelFoto" Type="varbinary(max)" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TRENDADI" Type="nvarchar(max)" />
+          <Property Name="FOTO" Type="nvarchar(max)" />
+          <Property Name="STATUS" Type="int" />
         </EntityType>
-        <EntityType Name="Randevular">
+        <EntityType Name="YORUM">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BerberId" Type="int" />
-          <Property Name="MusteriId" Type="int" />
-          <Property Name="IslemId" Type="int" />
-          <Property Name="SalonAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="KoltukSayisi" Type="nvarchar" MaxLength="200" />
-          <Property Name="SalonTel" Type="nvarchar" MaxLength="50" />
-          <Property Name="SalonMail" Type="nvarchar" MaxLength="50" />
-          <Property Name="PersonelAdSoyad" Type="nvarchar" MaxLength="200" />
-          <Property Name="MüsteriAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="MüsteriTel" Type="nvarchar" MaxLength="50" />
-          <Property Name="MusteriMail" Type="nvarchar" MaxLength="50" />
-          <Property Name="RandevuTarihi" Type="datetime" />
-          <Property Name="RandevuSaati" Type="time" Precision="7" />
-          <Property Name="IslemAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="IslemFiyat" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="SALONID" Type="int" />
+          <Property Name="MUSTERIID" Type="int" />
+          <Property Name="MUSTERIAD" Type="nvarchar" MaxLength="200" />
+          <Property Name="MUSTERISOYAD" Type="nvarchar" MaxLength="200" />
+          <Property Name="YORUM" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="SalonFotolar">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BerberId" Type="int" />
-          <Property Name="SalonAd" Type="nvarchar" MaxLength="200" />
-          <Property Name="SalonFotograf" Type="nvarchar" MaxLength="200" />
-          <Property Name="IsActive" Type="bit" />
-        </EntityType>
-        <EntityType Name="TrendSaclar">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SacModelFoto" Type="nvarchar" MaxLength="200" />
-          <Property Name="TrendID" Type="int" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="yeni" Type="nchar" MaxLength="10" />
-        </EntityType>
-        <Association Name="FK__AdminGiri__Yetki__1273C1CD">
-          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
-          <End Role="AdminGiris" Type="Self.AdminGiris" Multiplicity="*" />
+        <Association Name="FK_BSACMODEL_SALON">
+          <End Role="SALON" Type="Self.SALON" Multiplicity="0..1" />
+          <End Role="BSACMODEL" Type="Self.BSACMODEL" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Kullanıcılar">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="AdminGiris">
-              <PropertyRef Name="YetkiID" />
+            <Dependent Role="BSACMODEL">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AdminIsle__Yetki__1BFD2C07">
-          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
-          <End Role="AdminIslem" Type="Self.AdminIslem" Multiplicity="*" />
+        <Association Name="FK_ISLEM_SALON">
+          <End Role="SALON" Type="Self.SALON" Multiplicity="1" />
+          <End Role="ISLEM" Type="Self.ISLEM" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Kullanıcılar">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="AdminIslem">
-              <PropertyRef Name="YetkiID" />
+            <Dependent Role="ISLEM">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BerberSay__Yetki__1ED998B2">
-          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
-          <End Role="BerberSayfa" Type="Self.BerberSayfa" Multiplicity="*" />
+        <Association Name="FK_KAMPANYA_SALON">
+          <End Role="SALON" Type="Self.SALON" Multiplicity="0..1" />
+          <End Role="KAMPANYA" Type="Self.KAMPANYA" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Kullanıcılar">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="BerberSayfa">
-              <PropertyRef Name="YetkiID" />
+            <Dependent Role="KAMPANYA">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Fiyat__BerberId__32E0915F">
-          <End Role="BerberSayfa" Type="Self.BerberSayfa" Multiplicity="0..1" />
-          <End Role="Fiyat" Type="Self.Fiyat" Multiplicity="*" />
+        <Association Name="FK_PERSONEL_SALON">
+          <End Role="SALON" Type="Self.SALON" Multiplicity="0..1" />
+          <End Role="PERSONEL" Type="Self.PERSONEL" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Fiyat">
-              <PropertyRef Name="BerberId" />
+            <Dependent Role="PERSONEL">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Fiyat__IslemId__34C8D9D1">
-          <End Role="Islemler" Type="Self.Islemler" Multiplicity="0..1" />
-          <End Role="Fiyat" Type="Self.Fiyat" Multiplicity="*" />
+        <Association Name="FK_RANDEVU_MUSTERI">
+          <End Role="MUSTERI" Type="Self.MUSTERI" Multiplicity="0..1" />
+          <End Role="RANDEVU" Type="Self.RANDEVU" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Islemler">
-              <PropertyRef Name="id" />
+            <Principal Role="MUSTERI">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Fiyat">
-              <PropertyRef Name="IslemId" />
+            <Dependent Role="RANDEVU">
+              <PropertyRef Name="MUSTERIID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Fiyat__MusteriId__33D4B598">
-          <End Role="MüsteriKayit" Type="Self.MüsteriKayit" Multiplicity="0..1" />
-          <End Role="Fiyat" Type="Self.Fiyat" Multiplicity="*" />
+        <Association Name="FK_RANDEVU_SALON">
+          <End Role="SALON" Type="Self.SALON" Multiplicity="0..1" />
+          <End Role="RANDEVU" Type="Self.RANDEVU" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MüsteriKayit">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Fiyat">
-              <PropertyRef Name="MusteriId" />
+            <Dependent Role="RANDEVU">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Islemler__Berber__24927208">
-          <End Role="BerberSayfa" Type="Self.BerberSayfa" Multiplicity="0..1" />
-          <End Role="Islemler" Type="Self.Islemler" Multiplicity="*" />
+        <Association Name="FK_SALONFOTO_SALON">
+          <End Role="SALON" Type="Self.SALON" Multiplicity="0..1" />
+          <End Role="SALONFOTO" Type="Self.SALONFOTO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Islemler">
-              <PropertyRef Name="BerberId" />
+            <Dependent Role="SALONFOTO">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Kampanyal__Berbe__37A5467C">
-          <End Role="BerberSayfa" Type="Self.BerberSayfa" Multiplicity="0..1" />
-          <End Role="Kampanyalar" Type="Self.Kampanyalar" Multiplicity="*" />
+        <Association Name="FK_SALONSAYFA_SALON1">
+          <End Role="SALON" Type="Self.SALON" Multiplicity="0..1" />
+          <End Role="SALONSAYFA" Type="Self.SALONSAYFA" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Kampanyalar">
-              <PropertyRef Name="BerberId" />
+            <Dependent Role="SALONSAYFA">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MusteriYo__Berbe__2C3393D0">
-          <End Role="BerberSayfa" Type="Self.BerberSayfa" Multiplicity="0..1" />
-          <End Role="MusteriYorumlari" Type="Self.MusteriYorumlari" Multiplicity="*" />
+        <Association Name="FK_YORUM_MUSTERI">
+          <End Role="MUSTERI" Type="Self.MUSTERI" Multiplicity="0..1" />
+          <End Role="YORUM" Type="Self.YORUM" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
+            <Principal Role="MUSTERI">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="MusteriYorumlari">
-              <PropertyRef Name="BerberId" />
+            <Dependent Role="YORUM">
+              <PropertyRef Name="MUSTERIID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MusteriYo__Muste__2D27B809">
-          <End Role="MüsteriKayit" Type="Self.MüsteriKayit" Multiplicity="0..1" />
-          <End Role="MusteriYorumlari" Type="Self.MusteriYorumlari" Multiplicity="*" />
+        <Association Name="FK_YORUM_SALON">
+          <End Role="SALON" Type="Self.SALON" Multiplicity="0..1" />
+          <End Role="YORUM" Type="Self.YORUM" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MüsteriKayit">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="MusteriYorumlari">
-              <PropertyRef Name="MusteriId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__MüsteriKa__Yetki__173876EA">
-          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
-          <End Role="MüsteriKayit" Type="Self.MüsteriKayit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kullanıcılar">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MüsteriKayit">
-              <PropertyRef Name="YetkiID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OtomatikM__Berbe__3A81B327">
-          <End Role="BerberSayfa" Type="Self.BerberSayfa" Multiplicity="0..1" />
-          <End Role="OtomatikMail" Type="Self.OtomatikMail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="OtomatikMail">
-              <PropertyRef Name="BerberId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OtomatikM__Muste__3B75D760">
-          <End Role="MüsteriKayit" Type="Self.MüsteriKayit" Multiplicity="0..1" />
-          <End Role="OtomatikMail" Type="Self.OtomatikMail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MüsteriKayit">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="OtomatikMail">
-              <PropertyRef Name="MusteriId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Personel__Berber__21B6055D">
-          <End Role="BerberSayfa" Type="Self.BerberSayfa" Multiplicity="0..1" />
-          <End Role="Personel" Type="Self.Personel" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Personel">
-              <PropertyRef Name="BerberId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Randevula__Berbe__276EDEB3">
-          <End Role="BerberSayfa" Type="Self.BerberSayfa" Multiplicity="0..1" />
-          <End Role="Randevular" Type="Self.Randevular" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Randevular">
-              <PropertyRef Name="BerberId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Randevula__Islem__29572725">
-          <End Role="Islemler" Type="Self.Islemler" Multiplicity="0..1" />
-          <End Role="Randevular" Type="Self.Randevular" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Islemler">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Randevular">
-              <PropertyRef Name="IslemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Randevula__Muste__286302EC">
-          <End Role="MüsteriKayit" Type="Self.MüsteriKayit" Multiplicity="0..1" />
-          <End Role="Randevular" Type="Self.Randevular" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MüsteriKayit">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Randevular">
-              <PropertyRef Name="MusteriId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TrendSacl__Trend__300424B4">
-          <End Role="AdminIslem" Type="Self.AdminIslem" Multiplicity="0..1" />
-          <End Role="TrendSaclar" Type="Self.TrendSaclar" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AdminIslem">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TrendSaclar">
-              <PropertyRef Name="TrendID" />
+            <Dependent Role="YORUM">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BerberimModelStoreContainer">
-          <EntitySet Name="AdminGiris" EntityType="Self.AdminGiris" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AdminIslem" EntityType="Self.AdminIslem" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BerberSayfa" EntityType="Self.BerberSayfa" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Fiyat" EntityType="Self.Fiyat" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Islemler" EntityType="Self.Islemler" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Kampanyalar" EntityType="Self.Kampanyalar" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="KesilenSacModeller" EntityType="Self.KesilenSacModeller" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Kullanıcılar" EntityType="Self.Kullanıcılar" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MusteriYorumlari" EntityType="Self.MusteriYorumlari" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MüsteriKayit" EntityType="Self.MüsteriKayit" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OtomatikMail" EntityType="Self.OtomatikMail" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Randevular" EntityType="Self.Randevular" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SalonFotolar" EntityType="Self.SalonFotolar" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TrendSaclar" EntityType="Self.TrendSaclar" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__AdminGiri__Yetki__1273C1CD" Association="Self.FK__AdminGiri__Yetki__1273C1CD">
-            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
-            <End Role="AdminGiris" EntitySet="AdminGiris" />
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BSACMODEL" EntityType="Self.BSACMODEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ISLEM" EntityType="Self.ISLEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KAMPANYA" EntityType="Self.KAMPANYA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAIL" EntityType="Self.MAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MUSTERI" EntityType="Self.MUSTERI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERSONEL" EntityType="Self.PERSONEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RANDEVU" EntityType="Self.RANDEVU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALON" EntityType="Self.SALON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALONFOTO" EntityType="Self.SALONFOTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALONSAYFA" EntityType="Self.SALONSAYFA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRENDHAIRS" EntityType="Self.TRENDHAIRS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YORUM" EntityType="Self.YORUM" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BSACMODEL_SALON" Association="Self.FK_BSACMODEL_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="BSACMODEL" EntitySet="BSACMODEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__AdminIsle__Yetki__1BFD2C07" Association="Self.FK__AdminIsle__Yetki__1BFD2C07">
-            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
-            <End Role="AdminIslem" EntitySet="AdminIslem" />
+          <AssociationSet Name="FK_ISLEM_SALON" Association="Self.FK_ISLEM_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="ISLEM" EntitySet="ISLEM" />
           </AssociationSet>
-          <AssociationSet Name="FK__BerberSay__Yetki__1ED998B2" Association="Self.FK__BerberSay__Yetki__1ED998B2">
-            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
+          <AssociationSet Name="FK_KAMPANYA_SALON" Association="Self.FK_KAMPANYA_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="KAMPANYA" EntitySet="KAMPANYA" />
           </AssociationSet>
-          <AssociationSet Name="FK__Fiyat__BerberId__32E0915F" Association="Self.FK__Fiyat__BerberId__32E0915F">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="Fiyat" EntitySet="Fiyat" />
+          <AssociationSet Name="FK_PERSONEL_SALON" Association="Self.FK_PERSONEL_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="PERSONEL" EntitySet="PERSONEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__Fiyat__IslemId__34C8D9D1" Association="Self.FK__Fiyat__IslemId__34C8D9D1">
-            <End Role="Islemler" EntitySet="Islemler" />
-            <End Role="Fiyat" EntitySet="Fiyat" />
+          <AssociationSet Name="FK_RANDEVU_MUSTERI" Association="Self.FK_RANDEVU_MUSTERI">
+            <End Role="MUSTERI" EntitySet="MUSTERI" />
+            <End Role="RANDEVU" EntitySet="RANDEVU" />
           </AssociationSet>
-          <AssociationSet Name="FK__Fiyat__MusteriId__33D4B598" Association="Self.FK__Fiyat__MusteriId__33D4B598">
-            <End Role="MüsteriKayit" EntitySet="MüsteriKayit" />
-            <End Role="Fiyat" EntitySet="Fiyat" />
+          <AssociationSet Name="FK_RANDEVU_SALON" Association="Self.FK_RANDEVU_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="RANDEVU" EntitySet="RANDEVU" />
           </AssociationSet>
-          <AssociationSet Name="FK__Islemler__Berber__24927208" Association="Self.FK__Islemler__Berber__24927208">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="Islemler" EntitySet="Islemler" />
+          <AssociationSet Name="FK_SALONFOTO_SALON" Association="Self.FK_SALONFOTO_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="SALONFOTO" EntitySet="SALONFOTO" />
           </AssociationSet>
-          <AssociationSet Name="FK__Kampanyal__Berbe__37A5467C" Association="Self.FK__Kampanyal__Berbe__37A5467C">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="Kampanyalar" EntitySet="Kampanyalar" />
+          <AssociationSet Name="FK_SALONSAYFA_SALON1" Association="Self.FK_SALONSAYFA_SALON1">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="SALONSAYFA" EntitySet="SALONSAYFA" />
           </AssociationSet>
-          <AssociationSet Name="FK__MusteriYo__Berbe__2C3393D0" Association="Self.FK__MusteriYo__Berbe__2C3393D0">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="MusteriYorumlari" EntitySet="MusteriYorumlari" />
+          <AssociationSet Name="FK_YORUM_MUSTERI" Association="Self.FK_YORUM_MUSTERI">
+            <End Role="MUSTERI" EntitySet="MUSTERI" />
+            <End Role="YORUM" EntitySet="YORUM" />
           </AssociationSet>
-          <AssociationSet Name="FK__MusteriYo__Muste__2D27B809" Association="Self.FK__MusteriYo__Muste__2D27B809">
-            <End Role="MüsteriKayit" EntitySet="MüsteriKayit" />
-            <End Role="MusteriYorumlari" EntitySet="MusteriYorumlari" />
-          </AssociationSet>
-          <AssociationSet Name="FK__MüsteriKa__Yetki__173876EA" Association="Self.FK__MüsteriKa__Yetki__173876EA">
-            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
-            <End Role="MüsteriKayit" EntitySet="MüsteriKayit" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OtomatikM__Berbe__3A81B327" Association="Self.FK__OtomatikM__Berbe__3A81B327">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="OtomatikMail" EntitySet="OtomatikMail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OtomatikM__Muste__3B75D760" Association="Self.FK__OtomatikM__Muste__3B75D760">
-            <End Role="MüsteriKayit" EntitySet="MüsteriKayit" />
-            <End Role="OtomatikMail" EntitySet="OtomatikMail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Personel__Berber__21B6055D" Association="Self.FK__Personel__Berber__21B6055D">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="Personel" EntitySet="Personel" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Randevula__Berbe__276EDEB3" Association="Self.FK__Randevula__Berbe__276EDEB3">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="Randevular" EntitySet="Randevular" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Randevula__Islem__29572725" Association="Self.FK__Randevula__Islem__29572725">
-            <End Role="Islemler" EntitySet="Islemler" />
-            <End Role="Randevular" EntitySet="Randevular" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Randevula__Muste__286302EC" Association="Self.FK__Randevula__Muste__286302EC">
-            <End Role="MüsteriKayit" EntitySet="MüsteriKayit" />
-            <End Role="Randevular" EntitySet="Randevular" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TrendSacl__Trend__300424B4" Association="Self.FK__TrendSacl__Trend__300424B4">
-            <End Role="AdminIslem" EntitySet="AdminIslem" />
-            <End Role="TrendSaclar" EntitySet="TrendSaclar" />
+          <AssociationSet Name="FK_YORUM_SALON" Association="Self.FK_YORUM_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="YORUM" EntitySet="YORUM" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BerberimModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AdminGiris">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AdminAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="AdminKulAdi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="AdminSifre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="YetkiID" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK__AdminGiri__Yetki__1273C1CD" FromRole="AdminGiris" ToRole="Kullanıcılar" />
-        </EntityType>
-        <EntityType Name="AdminIslem">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SalonAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="BerberKulAdi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="BerberSifre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="YetkiID" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK__AdminIsle__Yetki__1BFD2C07" FromRole="AdminIslem" ToRole="Kullanıcılar" />
-          <NavigationProperty Name="TrendSaclar" Relationship="BerberimModel.FK__TrendSacl__Trend__300424B4" FromRole="AdminIslem" ToRole="TrendSaclar" />
-        </EntityType>
-        <EntityType Name="Fiyat">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BerberId" Type="Int32" />
-          <Property Name="MusteriId" Type="Int32" />
-          <Property Name="IslemId" Type="Int32" />
-          <Property Name="MüsteriAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="SalonAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IslemAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IslemFiyat" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Islemler" Relationship="Self.FK__Fiyat__IslemId__34C8D9D1" FromRole="Fiyat" ToRole="Islemler" />
-          <NavigationProperty Name="MüsteriKayit" Relationship="Self.FK__Fiyat__MusteriId__33D4B598" FromRole="Fiyat" ToRole="MüsteriKayit" />
-          <NavigationProperty Name="BerberSayfa" Relationship="BerberimModel.FK__Fiyat__BerberId__32E0915F" FromRole="Fiyat" ToRole="BerberSayfa" />
-        </EntityType>
-        <EntityType Name="Islemler">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BerberId" Type="Int32" />
-          <Property Name="SalonAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IslemAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IslemFiyat" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Fiyat" Relationship="Self.FK__Fiyat__IslemId__34C8D9D1" FromRole="Islemler" ToRole="Fiyat" />
-          <NavigationProperty Name="Randevular" Relationship="BerberimModel.FK__Randevula__Islem__29572725" FromRole="Islemler" ToRole="Randevular" />
-          <NavigationProperty Name="BerberSayfa" Relationship="BerberimModel.FK__Islemler__Berber__24927208" FromRole="Islemler" ToRole="BerberSayfa" />
-        </EntityType>
-        <EntityType Name="Kampanyalar">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BerberId" Type="Int32" />
-          <Property Name="SalonAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="KampanyaBaslik" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="KampanyaIcerik" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="KampanyaFiyat" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="KampanyaSonGun" Type="DateTime" Precision="3" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="BerberSayfa" Relationship="BerberimModel.FK__Kampanyal__Berbe__37A5467C" FromRole="Kampanyalar" ToRole="BerberSayfa" />
-        </EntityType>
-        <EntityType Name="Kullanıcılar">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Yetki" Type="Int32" />
-          <Property Name="isim" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="AdminGiris" Relationship="Self.FK__AdminGiri__Yetki__1273C1CD" FromRole="Kullanıcılar" ToRole="AdminGiris" />
-          <NavigationProperty Name="AdminIslem" Relationship="Self.FK__AdminIsle__Yetki__1BFD2C07" FromRole="Kullanıcılar" ToRole="AdminIslem" />
-          <NavigationProperty Name="MüsteriKayit" Relationship="Self.FK__MüsteriKa__Yetki__173876EA" FromRole="Kullanıcılar" ToRole="MüsteriKayit" />
-          <NavigationProperty Name="BerberSayfa" Relationship="BerberimModel.FK__BerberSay__Yetki__1ED998B2" FromRole="Kullanıcılar" ToRole="BerberSayfa" />
-        </EntityType>
-        <EntityType Name="MusteriYorumlari">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BerberId" Type="Int32" />
-          <Property Name="MusteriId" Type="Int32" />
-          <Property Name="SalonAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MüsteriAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MüsteriSoyad" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MüsteriYorumu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="MüsteriKayit" Relationship="Self.FK__MusteriYo__Muste__2D27B809" FromRole="MusteriYorumlari" ToRole="MüsteriKayit" />
-          <NavigationProperty Name="BerberSayfa" Relationship="BerberimModel.FK__MusteriYo__Berbe__2C3393D0" FromRole="MusteriYorumlari" ToRole="BerberSayfa" />
-        </EntityType>
-        <EntityType Name="MüsteriKayit">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MusteriAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MusteriSoyad" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MusteriAdres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MusteriMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MusteriTel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MusteriDogumTarihi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MusteriKullaniciAdi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MusteriKullaniciSifre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="YetkiID" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Fiyat" Relationship="Self.FK__Fiyat__MusteriId__33D4B598" FromRole="MüsteriKayit" ToRole="Fiyat" />
-          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK__MüsteriKa__Yetki__173876EA" FromRole="MüsteriKayit" ToRole="Kullanıcılar" />
-          <NavigationProperty Name="MusteriYorumlari" Relationship="Self.FK__MusteriYo__Muste__2D27B809" FromRole="MüsteriKayit" ToRole="MusteriYorumlari" />
-          <NavigationProperty Name="OtomatikMail" Relationship="Self.FK__OtomatikM__Muste__3B75D760" FromRole="MüsteriKayit" ToRole="OtomatikMail" />
-          <NavigationProperty Name="Randevular" Relationship="BerberimModel.FK__Randevula__Muste__286302EC" FromRole="MüsteriKayit" ToRole="Randevular" />
-        </EntityType>
-        <EntityType Name="OtomatikMail">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BerberId" Type="Int32" />
-          <Property Name="MusteriId" Type="Int32" />
-          <Property Name="SalonAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="SalonMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MusteriAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MusteriMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Mesaj" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="MüsteriKayit" Relationship="Self.FK__OtomatikM__Muste__3B75D760" FromRole="OtomatikMail" ToRole="MüsteriKayit" />
-          <NavigationProperty Name="BerberSayfa" Relationship="BerberimModel.FK__OtomatikM__Berbe__3A81B327" FromRole="OtomatikMail" ToRole="BerberSayfa" />
-        </EntityType>
-        <EntityType Name="Personel">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BerberId" Type="Int32" />
-          <Property Name="SalonAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="PersonelAdSoyad" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="PersonelFoto" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="BerberSayfa" Relationship="BerberimModel.FK__Personel__Berber__21B6055D" FromRole="Personel" ToRole="BerberSayfa" />
-        </EntityType>
-        <Association Name="FK__AdminGiri__Yetki__1273C1CD">
-          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
-          <End Role="AdminGiris" Type="Self.AdminGiris" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kullanıcılar">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="AdminGiris">
-              <PropertyRef Name="YetkiID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__AdminIsle__Yetki__1BFD2C07">
-          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
-          <End Role="AdminIslem" Type="Self.AdminIslem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kullanıcılar">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="AdminIslem">
-              <PropertyRef Name="YetkiID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Fiyat__IslemId__34C8D9D1">
-          <End Role="Islemler" Type="Self.Islemler" Multiplicity="0..1" />
-          <End Role="Fiyat" Type="Self.Fiyat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Islemler">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Fiyat">
-              <PropertyRef Name="IslemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Fiyat__MusteriId__33D4B598">
-          <End Role="MüsteriKayit" Type="Self.MüsteriKayit" Multiplicity="0..1" />
-          <End Role="Fiyat" Type="Self.Fiyat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MüsteriKayit">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Fiyat">
-              <PropertyRef Name="MusteriId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__MüsteriKa__Yetki__173876EA">
-          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
-          <End Role="MüsteriKayit" Type="Self.MüsteriKayit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kullanıcılar">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MüsteriKayit">
-              <PropertyRef Name="YetkiID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__MusteriYo__Muste__2D27B809">
-          <End Role="MüsteriKayit" Type="Self.MüsteriKayit" Multiplicity="0..1" />
-          <End Role="MusteriYorumlari" Type="Self.MusteriYorumlari" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MüsteriKayit">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MusteriYorumlari">
-              <PropertyRef Name="MusteriId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OtomatikM__Muste__3B75D760">
-          <End Role="MüsteriKayit" Type="Self.MüsteriKayit" Multiplicity="0..1" />
-          <End Role="OtomatikMail" Type="Self.OtomatikMail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MüsteriKayit">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="OtomatikMail">
-              <PropertyRef Name="MusteriId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BerberimEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AdminGiris" EntityType="Self.AdminGiris" />
-          <EntitySet Name="AdminIslem" EntityType="Self.AdminIslem" />
-          <EntitySet Name="Fiyat" EntityType="Self.Fiyat" />
-          <EntitySet Name="Islemler" EntityType="Self.Islemler" />
-          <EntitySet Name="Kampanyalar" EntityType="Self.Kampanyalar" />
-          <EntitySet Name="Kullanıcılar" EntityType="Self.Kullanıcılar" />
-          <EntitySet Name="MusteriYorumlari" EntityType="Self.MusteriYorumlari" />
-          <EntitySet Name="MüsteriKayit" EntityType="Self.MüsteriKayit" />
-          <EntitySet Name="OtomatikMail" EntityType="Self.OtomatikMail" />
-          <EntitySet Name="Personel" EntityType="Self.Personel" />
-          <AssociationSet Name="FK__AdminGiri__Yetki__1273C1CD" Association="Self.FK__AdminGiri__Yetki__1273C1CD">
-            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
-            <End Role="AdminGiris" EntitySet="AdminGiris" />
+          <EntitySet Name="ADMIN" EntityType="BerberimModel.ADMIN" />
+          <EntitySet Name="BSACMODEL" EntityType="BerberimModel.BSACMODEL" />
+          <EntitySet Name="ISLEM" EntityType="BerberimModel.ISLEM" />
+          <EntitySet Name="KAMPANYA" EntityType="BerberimModel.KAMPANYA" />
+          <EntitySet Name="MAIL" EntityType="BerberimModel.MAIL" />
+          <EntitySet Name="MUSTERI" EntityType="BerberimModel.MUSTERI" />
+          <EntitySet Name="RANDEVU" EntityType="BerberimModel.RANDEVU" />
+          <EntitySet Name="SALON" EntityType="BerberimModel.SALON" />
+          <EntitySet Name="SALONFOTO" EntityType="BerberimModel.SALONFOTO" />
+          <EntitySet Name="SALONSAYFA" EntityType="BerberimModel.SALONSAYFA" />
+          <EntitySet Name="TRENDHAIRS" EntityType="BerberimModel.TRENDHAIRS" />
+          <EntitySet Name="YORUM" EntityType="BerberimModel.YORUM" />
+          <AssociationSet Name="FK_BSACMODEL_SALON" Association="BerberimModel.FK_BSACMODEL_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="BSACMODEL" EntitySet="BSACMODEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__AdminIsle__Yetki__1BFD2C07" Association="Self.FK__AdminIsle__Yetki__1BFD2C07">
-            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
-            <End Role="AdminIslem" EntitySet="AdminIslem" />
+          <AssociationSet Name="FK_ISLEM_SALON" Association="BerberimModel.FK_ISLEM_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="ISLEM" EntitySet="ISLEM" />
           </AssociationSet>
-          <AssociationSet Name="FK__Fiyat__IslemId__34C8D9D1" Association="Self.FK__Fiyat__IslemId__34C8D9D1">
-            <End Role="Islemler" EntitySet="Islemler" />
-            <End Role="Fiyat" EntitySet="Fiyat" />
+          <AssociationSet Name="FK_KAMPANYA_SALON" Association="BerberimModel.FK_KAMPANYA_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="KAMPANYA" EntitySet="KAMPANYA" />
           </AssociationSet>
-          <AssociationSet Name="FK__Fiyat__MusteriId__33D4B598" Association="Self.FK__Fiyat__MusteriId__33D4B598">
-            <End Role="MüsteriKayit" EntitySet="MüsteriKayit" />
-            <End Role="Fiyat" EntitySet="Fiyat" />
+          <AssociationSet Name="FK_RANDEVU_MUSTERI" Association="BerberimModel.FK_RANDEVU_MUSTERI">
+            <End Role="MUSTERI" EntitySet="MUSTERI" />
+            <End Role="RANDEVU" EntitySet="RANDEVU" />
           </AssociationSet>
-          <AssociationSet Name="FK__MüsteriKa__Yetki__173876EA" Association="Self.FK__MüsteriKa__Yetki__173876EA">
-            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
-            <End Role="MüsteriKayit" EntitySet="MüsteriKayit" />
+          <AssociationSet Name="FK_YORUM_MUSTERI" Association="BerberimModel.FK_YORUM_MUSTERI">
+            <End Role="MUSTERI" EntitySet="MUSTERI" />
+            <End Role="YORUM" EntitySet="YORUM" />
           </AssociationSet>
-          <AssociationSet Name="FK__MusteriYo__Muste__2D27B809" Association="Self.FK__MusteriYo__Muste__2D27B809">
-            <End Role="MüsteriKayit" EntitySet="MüsteriKayit" />
-            <End Role="MusteriYorumlari" EntitySet="MusteriYorumlari" />
+          <AssociationSet Name="FK_RANDEVU_SALON" Association="BerberimModel.FK_RANDEVU_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="RANDEVU" EntitySet="RANDEVU" />
           </AssociationSet>
-          <AssociationSet Name="FK__OtomatikM__Muste__3B75D760" Association="Self.FK__OtomatikM__Muste__3B75D760">
-            <End Role="MüsteriKayit" EntitySet="MüsteriKayit" />
-            <End Role="OtomatikMail" EntitySet="OtomatikMail" />
+          <AssociationSet Name="FK_SALONFOTO_SALON" Association="BerberimModel.FK_SALONFOTO_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="SALONFOTO" EntitySet="SALONFOTO" />
           </AssociationSet>
-          <EntitySet Name="TrendSaclar" EntityType="BerberimModel.TrendSaclar" />
-          <AssociationSet Name="FK__TrendSacl__Trend__300424B4" Association="BerberimModel.FK__TrendSacl__Trend__300424B4">
-            <End Role="AdminIslem" EntitySet="AdminIslem" />
-            <End Role="TrendSaclar" EntitySet="TrendSaclar" />
+          <AssociationSet Name="FK_SALONSAYFA_SALON1" Association="BerberimModel.FK_SALONSAYFA_SALON1">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="SALONSAYFA" EntitySet="SALONSAYFA" />
           </AssociationSet>
-          <EntitySet Name="Randevular" EntityType="BerberimModel.Randevular" />
-          <AssociationSet Name="FK__Randevula__Islem__29572725" Association="BerberimModel.FK__Randevula__Islem__29572725">
-            <End Role="Islemler" EntitySet="Islemler" />
-            <End Role="Randevular" EntitySet="Randevular" />
+          <AssociationSet Name="FK_YORUM_SALON" Association="BerberimModel.FK_YORUM_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="YORUM" EntitySet="YORUM" />
           </AssociationSet>
-          <AssociationSet Name="FK__Randevula__Muste__286302EC" Association="BerberimModel.FK__Randevula__Muste__286302EC">
-            <End Role="MüsteriKayit" EntitySet="MüsteriKayit" />
-            <End Role="Randevular" EntitySet="Randevular" />
-          </AssociationSet>
-          <EntitySet Name="SalonFotolar" EntityType="BerberimModel.SalonFotolar" />
-          <EntitySet Name="KesilenSacModeller" EntityType="BerberimModel.KesilenSacModeller" />
-          <EntitySet Name="BerberSayfa" EntityType="BerberimModel.BerberSayfa" />
-          <AssociationSet Name="FK__BerberSay__Yetki__1ED998B2" Association="BerberimModel.FK__BerberSay__Yetki__1ED998B2">
-            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Fiyat__BerberId__32E0915F" Association="BerberimModel.FK__Fiyat__BerberId__32E0915F">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="Fiyat" EntitySet="Fiyat" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Islemler__Berber__24927208" Association="BerberimModel.FK__Islemler__Berber__24927208">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="Islemler" EntitySet="Islemler" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Kampanyal__Berbe__37A5467C" Association="BerberimModel.FK__Kampanyal__Berbe__37A5467C">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="Kampanyalar" EntitySet="Kampanyalar" />
-          </AssociationSet>
-          <AssociationSet Name="FK__MusteriYo__Berbe__2C3393D0" Association="BerberimModel.FK__MusteriYo__Berbe__2C3393D0">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="MusteriYorumlari" EntitySet="MusteriYorumlari" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OtomatikM__Berbe__3A81B327" Association="BerberimModel.FK__OtomatikM__Berbe__3A81B327">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="OtomatikMail" EntitySet="OtomatikMail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Personel__Berber__21B6055D" Association="BerberimModel.FK__Personel__Berber__21B6055D">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="Personel" EntitySet="Personel" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Randevula__Berbe__276EDEB3" Association="BerberimModel.FK__Randevula__Berbe__276EDEB3">
-            <End Role="BerberSayfa" EntitySet="BerberSayfa" />
-            <End Role="Randevular" EntitySet="Randevular" />
+          <EntitySet Name="PERSONEL" EntityType="BerberimModel.PERSONEL" />
+          <AssociationSet Name="FK_PERSONEL_SALON" Association="BerberimModel.FK_PERSONEL_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="PERSONEL" EntitySet="PERSONEL" />
           </AssociationSet>
           </EntityContainer>
-        <EntityType Name="TrendSaclar">
+        <EntityType Name="ADMIN">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SacModelFoto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="TrendID" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="AdminIslem" Relationship="BerberimModel.FK__TrendSacl__Trend__300424B4" FromRole="TrendSaclar" ToRole="AdminIslem" />
-          <Property Name="yeni" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="AD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SOYAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIFRE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK__TrendSacl__Trend__300424B4">
-          <End Type="BerberimModel.AdminIslem" Role="AdminIslem" Multiplicity="0..1" />
-          <End Type="BerberimModel.TrendSaclar" Role="TrendSaclar" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AdminIslem">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TrendSaclar">
-              <PropertyRef Name="TrendID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Randevular">
+        <EntityType Name="BSACMODEL">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BerberId" Type="Int32" />
-          <Property Name="MusteriId" Type="Int32" />
-          <Property Name="IslemId" Type="Int32" />
-          <Property Name="SalonAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="KoltukSayisi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="SalonTel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SalonMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PersonelAdSoyad" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MüsteriAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MüsteriTel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MusteriMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RandevuTarihi" Type="DateTime" Precision="3" />
-          <Property Name="RandevuSaati" Type="Time" Precision="7" />
-          <Property Name="IslemAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IslemFiyat" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Islemler" Relationship="BerberimModel.FK__Randevula__Islem__29572725" FromRole="Randevular" ToRole="Islemler" />
-          <NavigationProperty Name="MüsteriKayit" Relationship="BerberimModel.FK__Randevula__Muste__286302EC" FromRole="Randevular" ToRole="MüsteriKayit" />
-          <NavigationProperty Name="BerberSayfa" Relationship="BerberimModel.FK__Randevula__Berbe__276EDEB3" FromRole="Randevular" ToRole="BerberSayfa" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="SALONID" Type="Int32" />
+          <Property Name="FOTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_BSACMODEL_SALON" FromRole="BSACMODEL" ToRole="SALON" />
         </EntityType>
-        <Association Name="FK__Randevula__Islem__29572725">
-          <End Type="BerberimModel.Islemler" Role="Islemler" Multiplicity="0..1" />
-          <End Type="BerberimModel.Randevular" Role="Randevular" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Islemler">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Randevular">
-              <PropertyRef Name="IslemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Randevula__Muste__286302EC">
-          <End Type="BerberimModel.MüsteriKayit" Role="MüsteriKayit" Multiplicity="0..1" />
-          <End Type="BerberimModel.Randevular" Role="Randevular" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MüsteriKayit">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Randevular">
-              <PropertyRef Name="MusteriId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="SalonFotolar">
+        <EntityType Name="ISLEM">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BerberId" Type="Int32" />
-          <Property Name="SalonAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="SalonFotograf" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="SALONID" Type="Int32" Nullable="false" />
+          <Property Name="SALONAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FIYAT" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_ISLEM_SALON" FromRole="ISLEM" ToRole="SALON" />
         </EntityType>
-        <EntityType Name="KesilenSacModeller">
+        <EntityType Name="KAMPANYA">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BerberId" Type="Int32" />
-          <Property Name="SalonAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="KesilenSacFotolar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="SALONID" Type="Int32" />
+          <Property Name="SALONAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BASLIK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ICERIK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FIYAT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SONGUN" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_KAMPANYA_SALON" FromRole="KAMPANYA" ToRole="SALON" />
         </EntityType>
-        <EntityType Name="BerberSayfa">
+        <EntityType Name="MAIL">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SalonAd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="KoltukSayisi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="SalonAdres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SalonTel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="VitrinFoto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="VitrinYazi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="SalonMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SalonHakkinda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="YetkiID" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="SalonID" Type="Int32" />
-          <Property Name="iLveiLce" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Kullanıcılar" Relationship="BerberimModel.FK__BerberSay__Yetki__1ED998B2" FromRole="BerberSayfa" ToRole="Kullanıcılar" />
-          <NavigationProperty Name="Fiyat" Relationship="BerberimModel.FK__Fiyat__BerberId__32E0915F" FromRole="BerberSayfa" ToRole="Fiyat" />
-          <NavigationProperty Name="Islemler" Relationship="BerberimModel.FK__Islemler__Berber__24927208" FromRole="BerberSayfa" ToRole="Islemler" />
-          <NavigationProperty Name="Kampanyalar" Relationship="BerberimModel.FK__Kampanyal__Berbe__37A5467C" FromRole="BerberSayfa" ToRole="Kampanyalar" />
-          <NavigationProperty Name="MusteriYorumlari" Relationship="BerberimModel.FK__MusteriYo__Berbe__2C3393D0" FromRole="BerberSayfa" ToRole="MusteriYorumlari" />
-          <NavigationProperty Name="OtomatikMail" Relationship="BerberimModel.FK__OtomatikM__Berbe__3A81B327" FromRole="BerberSayfa" ToRole="OtomatikMail" />
-          <NavigationProperty Name="Personel" Relationship="BerberimModel.FK__Personel__Berber__21B6055D" FromRole="BerberSayfa" ToRole="Personel" />
-          <NavigationProperty Name="Randevular" Relationship="BerberimModel.FK__Randevula__Berbe__276EDEB3" FromRole="BerberSayfa" ToRole="Randevular" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FROM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SUBJECT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MAIL1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ISSEND" Type="Int32" />
         </EntityType>
-        <Association Name="FK__BerberSay__Yetki__1ED998B2">
-          <End Type="BerberimModel.Kullanıcılar" Role="Kullanıcılar" Multiplicity="0..1" />
-          <End Type="BerberimModel.BerberSayfa" Role="BerberSayfa" Multiplicity="*" />
+        <EntityType Name="MUSTERI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="AD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SOYAD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ADRES" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TEL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOGUMTARIHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SIFRE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FOTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RANDEVU" Relationship="BerberimModel.FK_RANDEVU_MUSTERI" FromRole="MUSTERI" ToRole="RANDEVU" />
+          <NavigationProperty Name="YORUM" Relationship="BerberimModel.FK_YORUM_MUSTERI" FromRole="MUSTERI" ToRole="YORUM" />
+        </EntityType>
+        <EntityType Name="RANDEVU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SALONID" Type="Int32" />
+          <Property Name="MUSTERIID" Type="Int32" />
+          <Property Name="ISLEMID" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="SALONAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KOLTUKSAY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SALONTEL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SALONMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PERSONEL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MUSTERIAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MUSTERISOYAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MUSTERITEL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MUSTERIMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RANDEVUTARIH" Type="DateTime" Precision="3" />
+          <Property Name="RANDEVUSAAT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MUSTERI" Relationship="BerberimModel.FK_RANDEVU_MUSTERI" FromRole="RANDEVU" ToRole="MUSTERI" />
+          <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_RANDEVU_SALON" FromRole="RANDEVU" ToRole="SALON" />
+        </EntityType>
+        <EntityType Name="SALON">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="SALONADI" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ILCE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIFRE" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HAKKINDA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KOLTUKSAYI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VITRINYAZI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VITRINFOTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="BSACMODEL" Relationship="BerberimModel.FK_BSACMODEL_SALON" FromRole="SALON" ToRole="BSACMODEL" />
+          <NavigationProperty Name="ISLEM" Relationship="BerberimModel.FK_ISLEM_SALON" FromRole="SALON" ToRole="ISLEM" />
+          <NavigationProperty Name="KAMPANYA" Relationship="BerberimModel.FK_KAMPANYA_SALON" FromRole="SALON" ToRole="KAMPANYA" />
+          <NavigationProperty Name="RANDEVU" Relationship="BerberimModel.FK_RANDEVU_SALON" FromRole="SALON" ToRole="RANDEVU" />
+          <NavigationProperty Name="SALONFOTO" Relationship="BerberimModel.FK_SALONFOTO_SALON" FromRole="SALON" ToRole="SALONFOTO" />
+          <NavigationProperty Name="SALONSAYFA" Relationship="BerberimModel.FK_SALONSAYFA_SALON1" FromRole="SALON" ToRole="SALONSAYFA" />
+          <NavigationProperty Name="YORUM" Relationship="BerberimModel.FK_YORUM_SALON" FromRole="SALON" ToRole="YORUM" />
+          <NavigationProperty Name="PERSONEL" Relationship="BerberimModel.FK_PERSONEL_SALON" FromRole="SALON" ToRole="PERSONEL" />
+        </EntityType>
+        <EntityType Name="SALONFOTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SALONID" Type="Int32" />
+          <Property Name="FOTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Int32" />
+          <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_SALONFOTO_SALON" FromRole="SALONFOTO" ToRole="SALON" />
+        </EntityType>
+        <EntityType Name="SALONSAYFA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SALONID" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="AD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ILCE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TEL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VITRINFOTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VITRINYAZI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HAKKINDA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KOLTUKSAY" Type="Int32" />
+          <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_SALONSAYFA_SALON1" FromRole="SALONSAYFA" ToRole="SALON" />
+        </EntityType>
+        <EntityType Name="TRENDHAIRS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TRENDADI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FOTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Int32" />
+        </EntityType>
+        <EntityType Name="YORUM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="SALONID" Type="Int32" />
+          <Property Name="MUSTERIID" Type="Int32" />
+          <Property Name="MUSTERIAD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MUSTERISOYAD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="YORUM1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MUSTERI" Relationship="BerberimModel.FK_YORUM_MUSTERI" FromRole="YORUM" ToRole="MUSTERI" />
+          <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_YORUM_SALON" FromRole="YORUM" ToRole="SALON" />
+        </EntityType>
+        <Association Name="FK_BSACMODEL_SALON">
+          <End Type="BerberimModel.SALON" Role="SALON" Multiplicity="0..1" />
+          <End Type="BerberimModel.BSACMODEL" Role="BSACMODEL" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Kullanıcılar">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="BerberSayfa">
-              <PropertyRef Name="YetkiID" />
+            <Dependent Role="BSACMODEL">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Fiyat__BerberId__32E0915F">
-          <End Type="BerberimModel.BerberSayfa" Role="BerberSayfa" Multiplicity="0..1" />
-          <End Type="BerberimModel.Fiyat" Role="Fiyat" Multiplicity="*" />
+        <Association Name="FK_ISLEM_SALON">
+          <End Type="BerberimModel.SALON" Role="SALON" Multiplicity="1" />
+          <End Type="BerberimModel.ISLEM" Role="ISLEM" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Fiyat">
-              <PropertyRef Name="BerberId" />
+            <Dependent Role="ISLEM">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Islemler__Berber__24927208">
-          <End Type="BerberimModel.BerberSayfa" Role="BerberSayfa" Multiplicity="0..1" />
-          <End Type="BerberimModel.Islemler" Role="Islemler" Multiplicity="*" />
+        <Association Name="FK_KAMPANYA_SALON">
+          <End Type="BerberimModel.SALON" Role="SALON" Multiplicity="0..1" />
+          <End Type="BerberimModel.KAMPANYA" Role="KAMPANYA" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Islemler">
-              <PropertyRef Name="BerberId" />
+            <Dependent Role="KAMPANYA">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Kampanyal__Berbe__37A5467C">
-          <End Type="BerberimModel.BerberSayfa" Role="BerberSayfa" Multiplicity="0..1" />
-          <End Type="BerberimModel.Kampanyalar" Role="Kampanyalar" Multiplicity="*" />
+        <Association Name="FK_RANDEVU_MUSTERI">
+          <End Type="BerberimModel.MUSTERI" Role="MUSTERI" Multiplicity="0..1" />
+          <End Type="BerberimModel.RANDEVU" Role="RANDEVU" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
+            <Principal Role="MUSTERI">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Kampanyalar">
-              <PropertyRef Name="BerberId" />
+            <Dependent Role="RANDEVU">
+              <PropertyRef Name="MUSTERIID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MusteriYo__Berbe__2C3393D0">
-          <End Type="BerberimModel.BerberSayfa" Role="BerberSayfa" Multiplicity="0..1" />
-          <End Type="BerberimModel.MusteriYorumlari" Role="MusteriYorumlari" Multiplicity="*" />
+        <Association Name="FK_YORUM_MUSTERI">
+          <End Type="BerberimModel.MUSTERI" Role="MUSTERI" Multiplicity="0..1" />
+          <End Type="BerberimModel.YORUM" Role="YORUM" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
+            <Principal Role="MUSTERI">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="MusteriYorumlari">
-              <PropertyRef Name="BerberId" />
+            <Dependent Role="YORUM">
+              <PropertyRef Name="MUSTERIID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OtomatikM__Berbe__3A81B327">
-          <End Type="BerberimModel.BerberSayfa" Role="BerberSayfa" Multiplicity="0..1" />
-          <End Type="BerberimModel.OtomatikMail" Role="OtomatikMail" Multiplicity="*" />
+        <Association Name="FK_RANDEVU_SALON">
+          <End Type="BerberimModel.SALON" Role="SALON" Multiplicity="0..1" />
+          <End Type="BerberimModel.RANDEVU" Role="RANDEVU" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="OtomatikMail">
-              <PropertyRef Name="BerberId" />
+            <Dependent Role="RANDEVU">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Personel__Berber__21B6055D">
-          <End Type="BerberimModel.BerberSayfa" Role="BerberSayfa" Multiplicity="0..1" />
-          <End Type="BerberimModel.Personel" Role="Personel" Multiplicity="*" />
+        <Association Name="FK_SALONFOTO_SALON">
+          <End Type="BerberimModel.SALON" Role="SALON" Multiplicity="0..1" />
+          <End Type="BerberimModel.SALONFOTO" Role="SALONFOTO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Personel">
-              <PropertyRef Name="BerberId" />
+            <Dependent Role="SALONFOTO">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Randevula__Berbe__276EDEB3">
-          <End Type="BerberimModel.BerberSayfa" Role="BerberSayfa" Multiplicity="0..1" />
-          <End Type="BerberimModel.Randevular" Role="Randevular" Multiplicity="*" />
+        <Association Name="FK_SALONSAYFA_SALON1">
+          <End Type="BerberimModel.SALON" Role="SALON" Multiplicity="0..1" />
+          <End Type="BerberimModel.SALONSAYFA" Role="SALONSAYFA" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BerberSayfa">
-              <PropertyRef Name="id" />
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Randevular">
-              <PropertyRef Name="BerberId" />
+            <Dependent Role="SALONSAYFA">
+              <PropertyRef Name="SALONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YORUM_SALON">
+          <End Type="BerberimModel.SALON" Role="SALON" Multiplicity="0..1" />
+          <End Type="BerberimModel.YORUM" Role="YORUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YORUM">
+              <PropertyRef Name="SALONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PERSONEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SALONID" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="ADSOYAD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FOTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SALON" Relationship="BerberimModel.FK_PERSONEL_SALON" FromRole="PERSONEL" ToRole="SALON" />
+        </EntityType>
+        <Association Name="FK_PERSONEL_SALON">
+          <End Type="BerberimModel.SALON" Role="SALON" Multiplicity="0..1" />
+          <End Type="BerberimModel.PERSONEL" Role="PERSONEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALON">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PERSONEL">
+              <PropertyRef Name="SALONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1047,211 +719,183 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BerberimModelStoreContainer" CdmEntityContainer="BerberimEntities">
-          <EntitySetMapping Name="AdminGiris">
-            <EntityTypeMapping TypeName="BerberimModel.AdminGiris">
-              <MappingFragment StoreEntitySet="AdminGiris">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="AdminAd" ColumnName="AdminAd" />
-                <ScalarProperty Name="AdminKulAdi" ColumnName="AdminKulAdi" />
-                <ScalarProperty Name="AdminSifre" ColumnName="AdminSifre" />
-                <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <EntitySetMapping Name="ADMIN">
+            <EntityTypeMapping TypeName="BerberimModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AdminIslem">
-            <EntityTypeMapping TypeName="BerberimModel.AdminIslem">
-              <MappingFragment StoreEntitySet="AdminIslem">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="SalonAd" ColumnName="SalonAd" />
-                <ScalarProperty Name="BerberKulAdi" ColumnName="BerberKulAdi" />
-                <ScalarProperty Name="BerberSifre" ColumnName="BerberSifre" />
-                <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <EntitySetMapping Name="BSACMODEL">
+            <EntityTypeMapping TypeName="BerberimModel.BSACMODEL">
+              <MappingFragment StoreEntitySet="BSACMODEL">
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="SALONID" ColumnName="SALONID" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Fiyat">
-            <EntityTypeMapping TypeName="BerberimModel.Fiyat">
-              <MappingFragment StoreEntitySet="Fiyat">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="BerberId" ColumnName="BerberId" />
-                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
-                <ScalarProperty Name="IslemId" ColumnName="IslemId" />
-                <ScalarProperty Name="MüsteriAd" ColumnName="MüsteriAd" />
-                <ScalarProperty Name="SalonAd" ColumnName="SalonAd" />
-                <ScalarProperty Name="IslemAd" ColumnName="IslemAd" />
-                <ScalarProperty Name="IslemFiyat" ColumnName="IslemFiyat" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <EntitySetMapping Name="ISLEM">
+            <EntityTypeMapping TypeName="BerberimModel.ISLEM">
+              <MappingFragment StoreEntitySet="ISLEM">
+                <ScalarProperty Name="FIYAT" ColumnName="FIYAT" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="SALONAD" ColumnName="SALONAD" />
+                <ScalarProperty Name="SALONID" ColumnName="SALONID" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Islemler">
-            <EntityTypeMapping TypeName="BerberimModel.Islemler">
-              <MappingFragment StoreEntitySet="Islemler">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="BerberId" ColumnName="BerberId" />
-                <ScalarProperty Name="SalonAd" ColumnName="SalonAd" />
-                <ScalarProperty Name="IslemAd" ColumnName="IslemAd" />
-                <ScalarProperty Name="IslemFiyat" ColumnName="IslemFiyat" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <EntitySetMapping Name="KAMPANYA">
+            <EntityTypeMapping TypeName="BerberimModel.KAMPANYA">
+              <MappingFragment StoreEntitySet="KAMPANYA">
+                <ScalarProperty Name="SONGUN" ColumnName="SONGUN" />
+                <ScalarProperty Name="FIYAT" ColumnName="FIYAT" />
+                <ScalarProperty Name="ICERIK" ColumnName="ICERIK" />
+                <ScalarProperty Name="BASLIK" ColumnName="BASLIK" />
+                <ScalarProperty Name="SALONAD" ColumnName="SALONAD" />
+                <ScalarProperty Name="SALONID" ColumnName="SALONID" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Kampanyalar">
-            <EntityTypeMapping TypeName="BerberimModel.Kampanyalar">
-              <MappingFragment StoreEntitySet="Kampanyalar">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="BerberId" ColumnName="BerberId" />
-                <ScalarProperty Name="SalonAd" ColumnName="SalonAd" />
-                <ScalarProperty Name="KampanyaBaslik" ColumnName="KampanyaBaslik" />
-                <ScalarProperty Name="KampanyaIcerik" ColumnName="KampanyaIcerik" />
-                <ScalarProperty Name="KampanyaFiyat" ColumnName="KampanyaFiyat" />
-                <ScalarProperty Name="KampanyaSonGun" ColumnName="KampanyaSonGun" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <EntitySetMapping Name="MAIL">
+            <EntityTypeMapping TypeName="BerberimModel.MAIL">
+              <MappingFragment StoreEntitySet="MAIL">
+                <ScalarProperty Name="ISSEND" ColumnName="ISSEND" />
+                <ScalarProperty Name="MAIL1" ColumnName="MAIL" />
+                <ScalarProperty Name="SUBJECT" ColumnName="SUBJECT" />
+                <ScalarProperty Name="FROM" ColumnName="FROM" />
+                <ScalarProperty Name="TO" ColumnName="TO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Kullanıcılar">
-            <EntityTypeMapping TypeName="BerberimModel.Kullanıcılar">
-              <MappingFragment StoreEntitySet="Kullanıcılar">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
-                <ScalarProperty Name="isim" ColumnName="isim" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <EntitySetMapping Name="MUSTERI">
+            <EntityTypeMapping TypeName="BerberimModel.MUSTERI">
+              <MappingFragment StoreEntitySet="MUSTERI">
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+                <ScalarProperty Name="DOGUMTARIHI" ColumnName="DOGUMTARIHI" />
+                <ScalarProperty Name="TEL" ColumnName="TEL" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MusteriYorumlari">
-            <EntityTypeMapping TypeName="BerberimModel.MusteriYorumlari">
-              <MappingFragment StoreEntitySet="MusteriYorumlari">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="BerberId" ColumnName="BerberId" />
-                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
-                <ScalarProperty Name="SalonAd" ColumnName="SalonAd" />
-                <ScalarProperty Name="MüsteriAd" ColumnName="MüsteriAd" />
-                <ScalarProperty Name="MüsteriSoyad" ColumnName="MüsteriSoyad" />
-                <ScalarProperty Name="MüsteriYorumu" ColumnName="MüsteriYorumu" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <EntitySetMapping Name="RANDEVU">
+            <EntityTypeMapping TypeName="BerberimModel.RANDEVU">
+              <MappingFragment StoreEntitySet="RANDEVU">
+                <ScalarProperty Name="RANDEVUSAAT" ColumnName="RANDEVUSAAT" />
+                <ScalarProperty Name="RANDEVUTARIH" ColumnName="RANDEVUTARIH" />
+                <ScalarProperty Name="MUSTERIMAIL" ColumnName="MUSTERIMAIL" />
+                <ScalarProperty Name="MUSTERITEL" ColumnName="MUSTERITEL" />
+                <ScalarProperty Name="MUSTERISOYAD" ColumnName="MUSTERISOYAD" />
+                <ScalarProperty Name="MUSTERIAD" ColumnName="MUSTERIAD" />
+                <ScalarProperty Name="PERSONEL" ColumnName="PERSONEL" />
+                <ScalarProperty Name="SALONMAIL" ColumnName="SALONMAIL" />
+                <ScalarProperty Name="SALONTEL" ColumnName="SALONTEL" />
+                <ScalarProperty Name="KOLTUKSAY" ColumnName="KOLTUKSAY" />
+                <ScalarProperty Name="SALONAD" ColumnName="SALONAD" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="ISLEMID" ColumnName="ISLEMID" />
+                <ScalarProperty Name="MUSTERIID" ColumnName="MUSTERIID" />
+                <ScalarProperty Name="SALONID" ColumnName="SALONID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MüsteriKayit">
-            <EntityTypeMapping TypeName="BerberimModel.MüsteriKayit">
-              <MappingFragment StoreEntitySet="MüsteriKayit">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="MusteriAd" ColumnName="MusteriAd" />
-                <ScalarProperty Name="MusteriSoyad" ColumnName="MusteriSoyad" />
-                <ScalarProperty Name="MusteriAdres" ColumnName="MusteriAdres" />
-                <ScalarProperty Name="MusteriMail" ColumnName="MusteriMail" />
-                <ScalarProperty Name="MusteriTel" ColumnName="MusteriTel" />
-                <ScalarProperty Name="MusteriDogumTarihi" ColumnName="MusteriDogumTarihi" />
-                <ScalarProperty Name="MusteriKullaniciAdi" ColumnName="MusteriKullaniciAdi" />
-                <ScalarProperty Name="MusteriKullaniciSifre" ColumnName="MusteriKullaniciSifre" />
-                <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <EntitySetMapping Name="SALON">
+            <EntityTypeMapping TypeName="BerberimModel.SALON">
+              <MappingFragment StoreEntitySet="SALON">
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="VITRINFOTO" ColumnName="VITRINFOTO" />
+                <ScalarProperty Name="VITRINYAZI" ColumnName="VITRINYAZI" />
+                <ScalarProperty Name="KOLTUKSAYI" ColumnName="KOLTUKSAYI" />
+                <ScalarProperty Name="HAKKINDA" ColumnName="HAKKINDA" />
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ILCE" ColumnName="ILCE" />
+                <ScalarProperty Name="IL" ColumnName="IL" />
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="SALONADI" ColumnName="SALONADI" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OtomatikMail">
-            <EntityTypeMapping TypeName="BerberimModel.OtomatikMail">
-              <MappingFragment StoreEntitySet="OtomatikMail">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="BerberId" ColumnName="BerberId" />
-                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
-                <ScalarProperty Name="SalonAd" ColumnName="SalonAd" />
-                <ScalarProperty Name="SalonMail" ColumnName="SalonMail" />
-                <ScalarProperty Name="MusteriAd" ColumnName="MusteriAd" />
-                <ScalarProperty Name="MusteriMail" ColumnName="MusteriMail" />
-                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <EntitySetMapping Name="SALONFOTO">
+            <EntityTypeMapping TypeName="BerberimModel.SALONFOTO">
+              <MappingFragment StoreEntitySet="SALONFOTO">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="SALONID" ColumnName="SALONID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Personel">
-            <EntityTypeMapping TypeName="BerberimModel.Personel">
-              <MappingFragment StoreEntitySet="Personel">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="BerberId" ColumnName="BerberId" />
-                <ScalarProperty Name="SalonAd" ColumnName="SalonAd" />
-                <ScalarProperty Name="PersonelAdSoyad" ColumnName="PersonelAdSoyad" />
-                <ScalarProperty Name="PersonelFoto" ColumnName="PersonelFoto" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <EntitySetMapping Name="SALONSAYFA">
+            <EntityTypeMapping TypeName="BerberimModel.SALONSAYFA">
+              <MappingFragment StoreEntitySet="SALONSAYFA">
+                <ScalarProperty Name="KOLTUKSAY" ColumnName="KOLTUKSAY" />
+                <ScalarProperty Name="HAKKINDA" ColumnName="HAKKINDA" />
+                <ScalarProperty Name="VITRINYAZI" ColumnName="VITRINYAZI" />
+                <ScalarProperty Name="VITRINFOTO" ColumnName="VITRINFOTO" />
+                <ScalarProperty Name="TEL" ColumnName="TEL" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ILCE" ColumnName="ILCE" />
+                <ScalarProperty Name="IL" ColumnName="IL" />
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="SALONID" ColumnName="SALONID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TrendSaclar">
-            <EntityTypeMapping TypeName="BerberimModel.TrendSaclar">
-              <MappingFragment StoreEntitySet="TrendSaclar">
-                <ScalarProperty Name="yeni" ColumnName="yeni" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="TrendID" ColumnName="TrendID" />
-                <ScalarProperty Name="SacModelFoto" ColumnName="SacModelFoto" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="TRENDHAIRS">
+            <EntityTypeMapping TypeName="BerberimModel.TRENDHAIRS">
+              <MappingFragment StoreEntitySet="TRENDHAIRS">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="TRENDADI" ColumnName="TRENDADI" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Randevular">
-            <EntityTypeMapping TypeName="BerberimModel.Randevular">
-              <MappingFragment StoreEntitySet="Randevular">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IslemFiyat" ColumnName="IslemFiyat" />
-                <ScalarProperty Name="IslemAd" ColumnName="IslemAd" />
-                <ScalarProperty Name="RandevuSaati" ColumnName="RandevuSaati" />
-                <ScalarProperty Name="RandevuTarihi" ColumnName="RandevuTarihi" />
-                <ScalarProperty Name="MusteriMail" ColumnName="MusteriMail" />
-                <ScalarProperty Name="MüsteriTel" ColumnName="MüsteriTel" />
-                <ScalarProperty Name="MüsteriAd" ColumnName="MüsteriAd" />
-                <ScalarProperty Name="PersonelAdSoyad" ColumnName="PersonelAdSoyad" />
-                <ScalarProperty Name="SalonMail" ColumnName="SalonMail" />
-                <ScalarProperty Name="SalonTel" ColumnName="SalonTel" />
-                <ScalarProperty Name="KoltukSayisi" ColumnName="KoltukSayisi" />
-                <ScalarProperty Name="SalonAd" ColumnName="SalonAd" />
-                <ScalarProperty Name="IslemId" ColumnName="IslemId" />
-                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
-                <ScalarProperty Name="BerberId" ColumnName="BerberId" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="YORUM">
+            <EntityTypeMapping TypeName="BerberimModel.YORUM">
+              <MappingFragment StoreEntitySet="YORUM">
+                <ScalarProperty Name="YORUM1" ColumnName="YORUM" />
+                <ScalarProperty Name="MUSTERISOYAD" ColumnName="MUSTERISOYAD" />
+                <ScalarProperty Name="MUSTERIAD" ColumnName="MUSTERIAD" />
+                <ScalarProperty Name="MUSTERIID" ColumnName="MUSTERIID" />
+                <ScalarProperty Name="SALONID" ColumnName="SALONID" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SalonFotolar">
-            <EntityTypeMapping TypeName="BerberimModel.SalonFotolar">
-              <MappingFragment StoreEntitySet="SalonFotolar">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="SalonFotograf" ColumnName="SalonFotograf" />
-                <ScalarProperty Name="SalonAd" ColumnName="SalonAd" />
-                <ScalarProperty Name="BerberId" ColumnName="BerberId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="KesilenSacModeller">
-            <EntityTypeMapping TypeName="BerberimModel.KesilenSacModeller">
-              <MappingFragment StoreEntitySet="KesilenSacModeller">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="KesilenSacFotolar" ColumnName="KesilenSacFotolar" />
-                <ScalarProperty Name="SalonAd" ColumnName="SalonAd" />
-                <ScalarProperty Name="BerberId" ColumnName="BerberId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BerberSayfa">
-            <EntityTypeMapping TypeName="BerberimModel.BerberSayfa">
-              <MappingFragment StoreEntitySet="BerberSayfa">
-                <ScalarProperty Name="iLveiLce" ColumnName="iLveiLce" />
-                <ScalarProperty Name="SalonID" ColumnName="SalonID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
-                <ScalarProperty Name="SalonHakkinda" ColumnName="SalonHakkinda" />
-                <ScalarProperty Name="SalonMail" ColumnName="SalonMail" />
-                <ScalarProperty Name="VitrinYazi" ColumnName="VitrinYazi" />
-                <ScalarProperty Name="VitrinFoto" ColumnName="VitrinFoto" />
-                <ScalarProperty Name="SalonTel" ColumnName="SalonTel" />
-                <ScalarProperty Name="SalonAdres" ColumnName="SalonAdres" />
-                <ScalarProperty Name="KoltukSayisi" ColumnName="KoltukSayisi" />
-                <ScalarProperty Name="SalonAd" ColumnName="SalonAd" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="PERSONEL">
+            <EntityTypeMapping TypeName="BerberimModel.PERSONEL">
+              <MappingFragment StoreEntitySet="PERSONEL">
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="ADSOYAD" ColumnName="ADSOYAD" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="SALONID" ColumnName="SALONID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

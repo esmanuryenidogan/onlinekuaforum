@@ -9,14 +9,14 @@ namespace Berberim.Biz
 {
     public class PersonalClass
     {
-        BerberimEntities db;
+        readonly BerberimEntities _db;
         public PersonalClass()
         {
-            db = new BerberimEntities();
+            _db = new BerberimEntities();
         }
-        public List<Personel> PersonelKayıt()
+        public List<PERSONEL> PersonelKayıt()
         {
-            return db.Personel.Where(m => m.IsActive == true).OrderBy(m => m.PersonelAdSoyad).ToList();
+            return _db.PERSONEL.Where(m => m.STATUS == Constants.RecordStatu.Active).OrderBy(m => m.ADSOYAD).ToList();
         }
     }
 }

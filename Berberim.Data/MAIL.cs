@@ -12,12 +12,13 @@ namespace Berberim.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class KesilenSacModeller
+    public partial class MAIL
     {
-        public int id { get; set; }
-        public Nullable<int> BerberId { get; set; }
-        public string SalonAd { get; set; }
-        public string KesilenSacFotolar { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public int ID { get; set; }
+        public string TO { get; set; }
+        public string FROM { get; set; }
+        public string SUBJECT { get; set; }
+        public string MAIL1 { get; set; }
+        public Nullable<int> ISSEND { get; set; }
     }
 }

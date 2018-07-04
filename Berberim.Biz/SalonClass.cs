@@ -9,18 +9,18 @@ namespace Berberim.Biz
 {
     public class SalonClass
     {
-        private BerberimEntities _db = new BerberimEntities();
-        public List<Personel> GetPersonels()
+        private readonly BerberimEntities _db = new BerberimEntities();
+        public List<PERSONEL> GetPersonels()
         {
-            return _db.Personel.ToList();
+            return _db.PERSONEL.ToList();
         }
-        public List<Islemler> GetIslems()
+        public List<ISLEM> GetIslems()
         {
-            return _db.Islemler.ToList();
+            return _db.ISLEM.ToList();
         }
-        public List<BerberSayfa> GetSalons()
+        public List<SALONSAYFA> GetSalons()
         {
-            return _db.BerberSayfa.ToList();
+            return _db.SALONSAYFA.ToList();
         }
     }
 }

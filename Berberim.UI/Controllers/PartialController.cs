@@ -10,21 +10,15 @@ namespace Berberim.UI.Controllers
     public class PartialController : Controller
     {
         // GET: Partial
-
-        BerberimEntities db = new BerberimEntities();
+        BerberimEntities _db = new BerberimEntities();
         public PartialViewResult MusteriPartial()
         {
-            
-                return PartialView();                       
+            return PartialView();
         }
 
         public ActionResult MusteriLayout()
         {
-            
             return View();
-        
         }
-
-
     }
 }

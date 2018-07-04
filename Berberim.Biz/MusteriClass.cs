@@ -9,14 +9,14 @@ namespace Berberim.Biz
 {
     public class MusteriClass
     {
-        BerberimEntities db;
+        readonly BerberimEntities _db;
         public MusteriClass()
         {
-            db = new BerberimEntities();
+            _db = new BerberimEntities();
         }
-        public List<MüsteriKayit> MusteriKayıtlar()
+        public List<MUSTERI> MusteriKayıtlar()
         {
-            return db.MüsteriKayit.ToList();
+            return _db.MUSTERI.ToList();
         }
 
     }
