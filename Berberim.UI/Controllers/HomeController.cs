@@ -21,10 +21,10 @@ namespace Berberim.UI.Controllers
         {
             var data = new tabMenu
             {
-                berber = _db.BerberSayfa.Where(i => i.IsActive == true).ToList(),
-                kampanyalar = _db.Kampanyalar.Where(i => i.IsActive == true).ToList(),
-                trendSac = _db.TrendSaclar.Where(i => i.IsActive == true).ToList(),
-                musteriYorumlar = _db.MusteriYorumlari.Where(i => i.IsActive == true).ToList().Take(5).ToList()
+                salon = _db.SALONSAYFA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                kampanya = _db.KAMPANYA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                trendSac = _db.TRENDHAIRS.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
             };
             return View(data);
         }

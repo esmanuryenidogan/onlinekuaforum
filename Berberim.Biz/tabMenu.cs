@@ -9,9 +9,9 @@ namespace Berberim.Biz
 {
     public class tabMenu
     {
-        public List<BerberSayfa> berber { get; set; }
-        public List<Kampanyalar> kampanyalar { get; set; }
-        public List<TrendSaclar> trendSac { get; set; }
-        public List<MusteriYorumlari> musteriYorumlar { get; set; }
+        public List<SALONSAYFA> salon { get; set; }
+        public List<KAMPANYA> kampanya { get; set; }
+        public List<TRENDHAIRS> trendSac { get; set; }
+        public List<YORUM> musteriYorum { get; set; }
     }
 }
