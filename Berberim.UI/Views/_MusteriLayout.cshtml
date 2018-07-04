@@ -93,9 +93,9 @@
                 {
                     <div class="col-lg-3 col-md-4 col-sm-6 ap">
                         <div class="h_gallery_item">
-                            <img style="width: 263px; height: 309px;" src="~/Resimler/SalonVitrinFoto/@item.VitrinFoto" alt="">
+                            <img style="width: 263px; height: 309px;" src="~/Resimler/SalonVitrinFoto/@item.VITRINFOTO" alt="">
                             <div class="hover">
-                                <a href="#"><h4>@item.SALONADI</h4></a>
+                                <a href="#"><h4>@item.AD</h4></a>
                                 <a class="light" href="~/Common/Anasayfa/img/gallery/gallery-1.jpg"><i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                 {
                     <div class="col-lg-3 col-md-4 col-sm-6 unv" style="display: none">
                         <div class="h_gallery_item">
-                            <img style="width: 263px; height: 309px;" src="~/Resimler/TrendSac/@item.SacModelFoto" alt="">
+                            <img style="width: 263px; height: 309px;" src="~/Resimler/TrendSac/@item.FOTO" alt="">
                             <div class="hover">
                                 <a href="#"><h4></h4></a>
                                 <a class="light" href="~/Resimler/TrendSac/@item.FOTO"><i class="fa fa-expand"></i></a>
@@ -160,7 +160,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="t_slider owl-carousel">
-                        @foreach (var item in Model.musteriYorumlar)
+                        @foreach (var item in Model.musteriYorum)
                         {
                             <div class="item">
                                 <div class="media">
@@ -168,8 +168,8 @@
                                         <img src="~/Common/Anasayfa/img/testimonials/test-1.png" alt="">
                                     </div>
                                     <div class="media-body">
-                                        <p>@item.MüsteriYorumu</p>
-                                        <h4>@item.MüsteriAd</h4>
+                                        <p>@item.YORUM1</p>
+                                        <h4>@item.MUSTERIAD</h4>
 
                                     </div>
                                 </div>
