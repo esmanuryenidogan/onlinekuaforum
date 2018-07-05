@@ -164,8 +164,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
         {
             var gelen = (ADMIN)Session["loginadmin"];
             if (gelen == null) return View("AdminGiris");
-            var sonuc = (from i in db.SALONSAYFA select i).ToList();
-
+            var sonuc = db.SALONSAYFA.Where(i=>i.STATUS==Constants.RecordStatu.Active).ToList();
             return View(sonuc);
         }
 

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Berberim.Data.SALONSAYFA>
+﻿@using Berberim.Biz
+@model IEnumerable<Berberim.Data.SALONSAYFA>
 
 @{
     ViewBag.Title = "BerberKayitGor";
@@ -25,29 +26,29 @@
                 <table class="table table-hover">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.SalonAd)
+                            @Html.DisplayNameFor(model => model.AD)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.SalonAdres)
+                            @Html.DisplayNameFor(model => model.ADRES)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.SalonTel)
+                            @Html.DisplayNameFor(model => model.TEL)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.SalonMail)
+                            @Html.DisplayNameFor(model => model.EMAIL)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.SalonHakkinda)
+                            @Html.DisplayNameFor(model => model.HAKKINDA)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.KoltukSayisi)
+                            @Html.DisplayNameFor(model => model.KOLTUKSAY)
                         </th>
 
                         <th>
-                            @Html.DisplayNameFor(model => model.VitrinYazi)
+                            @Html.DisplayNameFor(model => model.VITRINYAZI)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.VitrinFoto)
+                            @Html.DisplayNameFor(model => model.VITRINFOTO)
                         </th>
                         <th>
                             Durum
@@ -60,42 +61,42 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SalonAd)
+                                @Html.DisplayFor(modelItem => item.AD)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SalonAdres)
+                                @Html.DisplayFor(modelItem => item.ADRES)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SalonTel)
+                                @Html.DisplayFor(modelItem => item.TEL)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SalonMail)
+                                @Html.DisplayFor(modelItem => item.EMAIL)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SalonHakkinda)
+                                @Html.DisplayFor(modelItem => item.HAKKINDA)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.KoltukSayisi)
+                                @Html.DisplayFor(modelItem => item.KOLTUKSAY)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.VitrinYazi)
+                                @Html.DisplayFor(modelItem => item.VITRINYAZI)
                             </td>
                             <td>
-                                <img width="100" height="100" src="~/Resimler/SalonVitrinFoto/@item.VitrinFoto">
+                                <img width="100" height="100" src="~/Resimler/SalonVitrinFoto/@item.VITRINFOTO">
                             </td>
 
                            
-                                @if (item.IsActive == true)
+                                @if (item.STATUS == Constants.RecordStatu.Active)
                                 {
-                                <td><span class="label label-success">Aktif</span></td>
-                            }
-                            else
-                            {
-                                <td><span class="label label-danger">Pasif</span></td>
-                            }
+                                    <td><span class="label label-success">Aktif</span></td>
+                                }
+                                else
+                                {
+                                    <td><span class="label label-danger">Pasif</span></td>
+                                }
                                
 
-                                <td>@Html.ActionLink("Durum", "Guncelle", new { id = item.id })</td>
+                                <td>@Html.ActionLink("Durum", "Guncelle", new { id = item.ID })</td>
                             </tr>
                         }
                 </table>
