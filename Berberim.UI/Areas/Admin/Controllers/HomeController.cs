@@ -7,12 +7,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Net.Mail;
+using Berberim.Data.Models;
 
 namespace Berberim.UI.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
-        BerberimEntities db = new BerberimEntities();
+        OnlineKuaforumDbContext db = new OnlineKuaforumDbContext();
         // GET: Admin/Home
         public ActionResult Index()
         {
@@ -36,7 +37,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
                 {
                     AD = adminad,
                     EMAIL = email,
-                    SIFRE = sifre,
+                    SİFRE = sifre,
                     STATUS = Constants.RecordStatu.Active
                 };
                 db.ADMIN.Add(adminekle);
@@ -55,7 +56,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult AdminGiris(string email,string sifre)
         {
-            var sonuc = (from i in db.ADMIN where i.STATUS == Constants.RecordStatu.Active && i.EMAIL == email && i.SIFRE == sifre select i).FirstOrDefault();
+            var sonuc = (from i in db.ADMIN where i.STATUS == Constants.RecordStatu.Active && i.EMAIL == email && i.SİFRE == sifre select i).FirstOrDefault();
 
             if (sonuc != null)
             {
@@ -188,23 +189,23 @@ namespace Berberim.UI.Areas.Admin.Controllers
         {
             var gelen = (ADMIN)Session["loginadmin"];
             if (gelen == null) return View("AdminGiris");
-            var sonuc = (from i in db.MUSTERI select i).ToList();
+            var sonuc = (from i in db.MUSTERİ select i).ToList();
             return View(sonuc);
         }
 
         public ActionResult MusteriGuncelle(int id)
         {
             var gelen = (ADMIN)Session["loginadmin"];
-            return gelen != null ? View("MusteriGuncelle", db.MUSTERI.Find(id)) : View("AdminGiris");
+            return gelen != null ? View("MusteriGuncelle", db.MUSTERİ.Find(id)) : View("AdminGiris");
         }
 
         [HttpPost]
-        public ActionResult MusteriGuncelle(MUSTERI u)
+        public ActionResult MusteriGuncelle(MUSTERİ u)
         {
-            var mevcut = db.MUSTERI.Find(u.ID);
+            var mevcut = db.MUSTERİ.Find(u.ID);
             if (mevcut != null) mevcut.STATUS = u.STATUS;
             db.SaveChanges();
-            return View("MusteriKayitGor",db.MUSTERI);
+            return View("MusteriKayitGor",db.MUSTERİ);
         }
 
         public ActionResult OtomatikMail()
@@ -218,7 +219,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
         {
             try
             {
-                var musteriler = (from i in db.MUSTERI where i.STATUS == Constants.RecordStatu.Active select i).FirstOrDefault();
+                var musteriler = (from i in db.MUSTERİ where i.STATUS == Constants.RecordStatu.Active select i).FirstOrDefault();
                 MailMessage ePosta = new MailMessage();
                 ePosta.From = new MailAddress("berberim@gmail.com");
                 ePosta.To.Add(musteriler.EMAIL);
@@ -234,7 +235,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
                 {
                     TO = musteriler.EMAIL,
                     FROM = Constants.ContactMail,
-                    MAIL1 = mesaj,
+                    MAILADRESS = mesaj,
                     SUBJECT = konu
                 };
                 return View();

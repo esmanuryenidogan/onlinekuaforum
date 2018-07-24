@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Berberim.Data.Models;
 
 namespace Berberim.Biz
 {
     public class PersonalClass
     {
-        readonly BerberimEntities _db;
+        readonly OnlineKuaforumDbContext _db;
         public PersonalClass()
         {
-            _db = new BerberimEntities();
+            _db = new OnlineKuaforumDbContext();
         }
         public List<PERSONEL> PersonelKayıt()
         {

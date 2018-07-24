@@ -6,12 +6,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Berberim.Biz;
+using Berberim.Data.Models;
 
 namespace Berberim.UI.Areas.Berber.Controllers
 {
     public class HomeController : Controller
     {
-        BerberimEntities db = new BerberimEntities();
+        OnlineKuaforumDbContext db = new OnlineKuaforumDbContext();
         // GET: Berber/Home
         public ActionResult Index()
         {
@@ -27,7 +28,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
         [HttpPost]
         public ActionResult BerberGiris(string email, string sifre)
         {
-            var sonuc = (from i in db.SALON where i.STATUS == Constants.RecordStatu.Active && i.EMAIL == email && i.SIFRE == sifre select i).FirstOrDefault();
+            var sonuc = (from i in db.SALON where i.STATUS == Constants.RecordStatu.Active && i.EMAIL == email && i.SİFRE == sifre select i).FirstOrDefault();
 
             //string gelen = Request.Form["kuladi"];
             //Session.Add("kuladi", gelen);
@@ -222,7 +223,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
                         httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
                         salonfotoekle.FOTO = dosyaAdi + uzanti;
                     }
-                    salonfotoekle.SALONID = salonId?.ID;
+                    salonfotoekle.SALONID = salonId.ID;
                     salonfotoekle.STATUS = Constants.RecordStatu.Active;
                 }
             }
@@ -373,7 +374,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
         }
 
         [HttpPost]
-        public ActionResult BerberİslemEkle(string islemad, decimal islemfiyat)
+        public ActionResult BerberİslemEkle(string islemad, int islemfiyat)
         {
             var gelen = (SALON)Session["berberkuladi"];
 
@@ -432,7 +433,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
         }
 
         [HttpPost]
-        public ActionResult KampanyaEkle(string baslik, string icerik, decimal fiyat, DateTime tarih)
+        public ActionResult KampanyaEkle(string baslik, string icerik, int fiyat, DateTime tarih)
         {
             var gelen = (SALON)Session["berberkuladi"];
 

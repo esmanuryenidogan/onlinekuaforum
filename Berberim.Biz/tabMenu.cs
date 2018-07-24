@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Berberim.Data;
+using Berberim.Data.Models;
 
 namespace Berberim.Biz
 {

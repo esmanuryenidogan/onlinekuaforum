@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Berberim.Data.Models;
 
 namespace Berberim.Biz
 {
     public class SalonClass
     {
-        private readonly BerberimEntities _db = new BerberimEntities();
+        OnlineKuaforumDbContext _db = new OnlineKuaforumDbContext();
+
         public List<PERSONEL> GetPersonels()
         {
             return _db.PERSONEL.ToList();

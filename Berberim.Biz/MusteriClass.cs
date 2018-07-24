@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Berberim.Data.Models;
 
 namespace Berberim.Biz
 {
     public class MusteriClass
     {
-        readonly BerberimEntities _db;
+        readonly OnlineKuaforumDbContext _db;
         public MusteriClass()
         {
-            _db = new BerberimEntities();
+            _db = new OnlineKuaforumDbContext();
         }
-        public List<MUSTERI> MusteriKayıtlar()
+        public List<MUSTERİ> MusteriKayıtlar()
         {
-            return _db.MUSTERI.ToList();
+            return _db.MUSTERİ.ToList();
         }
 
     }
