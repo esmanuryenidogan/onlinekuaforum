@@ -127,7 +127,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
             {
                 return View("Guncelle", db.SALONSAYFA.Find(ID));
             }
-                return View("BerberGiris");
+            return View("BerberGiris");
         }
 
         [HttpPost]
@@ -176,9 +176,14 @@ namespace Berberim.UI.Areas.Berber.Controllers
             if (gelen != null)
             {
                 var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
-                var salonfoto = (from i in db.SALONFOTO where i.SALONID == salon.ID select i).ToList();
+               
+                if (salon != null)
+                {
+                    var salonfoto = (from i in db.SALONFOTO where i.SALONID == salon.ID select i).ToList();
+                    return View(salonfoto);
+                }
 
-                return View(salonfoto);
+               
             }
             return View("BerberGiris");
         }

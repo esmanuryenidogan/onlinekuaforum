@@ -1,294 +1,500 @@
-﻿@model Berberim.UI.Models.BerberDetayModel
-@{
-    ViewBag.Title = "BerberSayfa";
-    Layout = "~/Views/_BerberOzelSayfa.cshtml";
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="~/Common/Anasayfa/img/favicon.png" type="image/png">
+    <title>Bitmap Photography Multi</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Common/Anasayfa/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/vendors/linericon/style.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/vendors/lightbox/simpleLightbox.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/vendors/animate-css/animate.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="~/Common/Anasayfa/css/style.css">
+    <link rel="stylesheet" href="~/Common/Anasayfa/css/responsive.css">
+</head>
+<body>
 
-}
+    <!--================Header Menu Area =================-->
+    <header class="header_area">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container box_1620">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <a class="navbar-brand logo_h" href="index.html"><img src="~/Common/Anasayfa/img/logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
 
-<script src="~/SalonFotolar.js"></script>
-<script src="~/SalonGaleri/jssor.slider-24.1.5.min.js"></script>
+                        <li class="nav-item"><a class="nav-link" href="about-us.html">Hakkımızda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">İLETİŞİM</a></li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GİRİŞ</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="@Url.Action("MusteriGiris", "Home")">Kullanıcı Giriş</a></li>@*Giriş yapıldıktan sonra çıkış yap butonu gelicek*@
+                                <li class="nav-item"><a class="nav-link" href="@Url.Action("BerberGiris", "Home", new {area = "Berber"}, null)">Salon Giriş</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-<script type="text/javascript">
-    jssor_1_slider_init = function () {
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--================Header Menu Area =================-->
+    <!--================Home Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+            <div class="container">
+                <div class="banner_content text-center">
 
-        var jssor_1_SlideshowTransitions = [
-            { $Duration: 1200, x: 0.3, $During: { $Left: [0.3, 0.7] }, $Easing: { $Left: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, x: -0.3, $SlideOut: true, $Easing: { $Left: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, x: -0.3, $During: { $Left: [0.3, 0.7] }, $Easing: { $Left: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, x: 0.3, $SlideOut: true, $Easing: { $Left: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, y: 0.3, $During: { $Top: [0.3, 0.7] }, $Easing: { $Top: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, y: -0.3, $SlideOut: true, $Easing: { $Top: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, y: -0.3, $During: { $Top: [0.3, 0.7] }, $Easing: { $Top: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, y: 0.3, $SlideOut: true, $Easing: { $Top: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, x: 0.3, $Cols: 2, $During: { $Left: [0.3, 0.7] }, $ChessMode: { $Column: 3 }, $Easing: { $Left: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, x: 0.3, $Cols: 2, $SlideOut: true, $ChessMode: { $Column: 3 }, $Easing: { $Left: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, y: 0.3, $Rows: 2, $During: { $Top: [0.3, 0.7] }, $ChessMode: { $Row: 12 }, $Easing: { $Top: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, y: 0.3, $Rows: 2, $SlideOut: true, $ChessMode: { $Row: 12 }, $Easing: { $Top: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, y: 0.3, $Cols: 2, $During: { $Top: [0.3, 0.7] }, $ChessMode: { $Column: 12 }, $Easing: { $Top: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, y: -0.3, $Cols: 2, $SlideOut: true, $ChessMode: { $Column: 12 }, $Easing: { $Top: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, x: 0.3, $Rows: 2, $During: { $Left: [0.3, 0.7] }, $ChessMode: { $Row: 3 }, $Easing: { $Left: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, x: -0.3, $Rows: 2, $SlideOut: true, $ChessMode: { $Row: 3 }, $Easing: { $Left: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, x: 0.3, y: 0.3, $Cols: 2, $Rows: 2, $During: { $Left: [0.3, 0.7], $Top: [0.3, 0.7] }, $ChessMode: { $Column: 3, $Row: 12 }, $Easing: { $Left: $Jease$.$InCubic, $Top: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, x: 0.3, y: 0.3, $Cols: 2, $Rows: 2, $During: { $Left: [0.3, 0.7], $Top: [0.3, 0.7] }, $SlideOut: true, $ChessMode: { $Column: 3, $Row: 12 }, $Easing: { $Left: $Jease$.$InCubic, $Top: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, $Delay: 20, $Clip: 3, $Assembly: 260, $Easing: { $Clip: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, $Delay: 20, $Clip: 3, $SlideOut: true, $Assembly: 260, $Easing: { $Clip: $Jease$.$OutCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, $Delay: 20, $Clip: 12, $Assembly: 260, $Easing: { $Clip: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            { $Duration: 1200, $Delay: 20, $Clip: 12, $SlideOut: true, $Assembly: 260, $Easing: { $Clip: $Jease$.$OutCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 }
-        ];
-
-        var jssor_1_options = {
-            $AutoPlay: 1,
-            $SlideshowOptions: {
-                $Class: $JssorSlideshowRunner$,
-                $Transitions: jssor_1_SlideshowTransitions,
-                $TransitionsOrder: 1
-            },
-            $ArrowNavigatorOptions: {
-                $Class: $JssorArrowNavigator$
-            },
-            $ThumbnailNavigatorOptions: {
-                $Class: $JssorThumbnailNavigator$,
-                $Cols: 10,
-                $SpacingX: 8,
-                $SpacingY: 8,
-                $Align: 360
-            }
-        };
-
-        var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-
-        /*responsive code begin*/
-        /*remove responsive code if you don't want the slider scales while window resizing*/
-        function ScaleSlider() {
-            var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-            if (refSize) {
-                refSize = Math.min(refSize, 800);
-                jssor_1_slider.$ScaleWidth(refSize);
-            }
-            else {
-                window.setTimeout(ScaleSlider, 30);
-            }
-        }
-        ScaleSlider();
-        $Jssor$.$AddEvent(window, "load", ScaleSlider);
-        $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-        $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-        /*responsive code end*/
-    };
-</script>
-<style>
-
-    .sol {
-        margin-left: 15px;
-        float: left;
-        padding: 35px;
-    }
-
-    .yanyana {
-        float: left;
-    }
-
-    /* jssor slider arrow navigator skin 05 css */
-    /*
-        .jssora05l                  (normal)
-        .jssora05r                  (normal)
-        .jssora05l:hover            (normal mouseover)
-        .jssora05r:hover            (normal mouseover)
-        .jssora05l.jssora05ldn      (mousedown)
-        .jssora05r.jssora05rdn      (mousedown)
-        .jssora05l.jssora05lds      (disabled)
-        .jssora05r.jssora05rds      (disabled)
-        */
-    .jssora05l, .jssora05r {
-        display: block;
-        position: absolute;
-        /* size of arrow element */
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        background: url('img/a17.png') no-repeat;
-        overflow: hidden;
-    }
-
-    .jssora05l {
-        background-position: -10px -40px;
-    }
-
-    .jssora05r {
-        background-position: -70px -40px;
-    }
-
-    .jssora05l:hover {
-        background-position: -130px -40px;
-    }
-
-    .jssora05r:hover {
-        background-position: -190px -40px;
-    }
-
-    .jssora05l.jssora05ldn {
-        background-position: -250px -40px;
-    }
-
-    .jssora05r.jssora05rdn {
-        background-position: -310px -40px;
-    }
-
-    .jssora05l.jssora05lds {
-        background-position: -10px -40px;
-        opacity: .3;
-        pointer-events: none;
-    }
-
-    .jssora05r.jssora05rds {
-        background-position: -70px -40px;
-        opacity: .3;
-        pointer-events: none;
-    }
-    /* jssor slider thumbnail navigator skin 01 css */ /*.jssort01 .p            (normal).jssort01 .p:hover      (normal mouseover).jssort01 .p.pav        (active).jssort01 .p.pdn        (mousedown)*/
-
-    .jssort01 .p {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 72px;
-        height: 72px;
-    }
-
-    .jssort01 .t {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    .jssort01 .w {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
-    }
-
-    .jssort01 .c {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 68px;
-        height: 68px;
-        border: #000 2px solid;
-        box-sizing: content-box;
-        background: url('img/t01.png') -800px -800px no-repeat;
-        _background: none;
-    }
-
-    .jssort01 .pav .c {
-        top: 2px;
-        _top: 0px;
-        left: 2px;
-        _left: 0px;
-        width: 68px;
-        height: 68px;
-        border: #000 0px solid;
-        _border: #fff 2px solid;
-        background-position: 50% 50%;
-    }
-
-    .jssort01 .p:hover .c {
-        top: 0px;
-        left: 0px;
-        width: 70px;
-        height: 70px;
-        border: #fff 1px solid;
-        background-position: 50% 50%;
-    }
-
-    .jssort01 .p.pdn .c {
-        background-position: 50% 50%;
-        width: 68px;
-        height: 68px;
-        border: #000 2px solid;
-    }
-
-    * html .jssort01 .c, * html .jssort01 .pdn .c, * html .jssort01 .pav .c { /* ie quirks mode adjust */
-        width /**/: 72px;
-        height /**/: 72px;
-    }
-</style>
-
-<body class="is-preload">
-    <div class="container" style="margin: 0px !important">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="portfolio">
-                    <div class="portfolio-thumbnail">
-
-                        <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:735px;height:456px;overflow:hidden;visibility:hidden;background-color:#24262e;">
-                            <!-- Loading Screen -->
-                            <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('img/loading.gif') no-repeat 50% 50%;background-color:rgba(0, 0, 0, 0.7);"></div>
-                            <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:735px;height:356px;overflow:hidden;">
-                                @foreach (var item in Model.SalonFotolar)
-                                {
-                                    <div>
-
-
-                                        <img data-u="image" src="~/Resimler/SalonFotograflar/@item.SalonFotograf">
-                                        <img data-u="thumb" src="~/Resimler/SalonFotograflar/@item.SalonFotograf">
-
-
-                                    </div>
-                                }
-                                <a data-u="any" href="https://www.jssor.com" style="display:none">javascript slider</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+    <!--================Blog Area =================-->
+    <section class="blog_area single-post-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post row">
+                        <div class="col-lg-12">
+                            <div class="feature-img">
+                                <img class="img-fluid" src="~/Common/Anasayfa/img/blog/feature-img1.jpg" alt="">
                             </div>
-                            <!-- Thumbnail Navigator -->
-                            <div data-u="thumbnavigator" class="jssort01" style="position:absolute;left:0px;bottom:0px;width:800px;height:100px;" data-autocenter="1">
-                                <!-- Thumbnail Item Skin Begin -->
-                                <div data-u="slides" style="cursor: default;">
-                                    <div data-u="prototype" class="p">
-                                        <div class="w">
-                                            <div data-u="thumbnailtemplate" class="t"></div>
-                                        </div>
-                                        <div class="c"></div>
-                                    </div>
-                                </div>
-                                <!-- Thumbnail Item Skin End -->
-                            </div>
-                            <!-- Arrow Navigator -->
-                            <span data-u="arrowleft" class="jssora05l" style="top:158px;left:8px;width:40px;height:40px;"></span>
-                            <span data-u="arrowright" class="jssora05r" style="top:158px;right:8px;width:40px;height:40px;"></span>
                         </div>
-                        <script type="text/javascript">jssor_1_slider_init();</script>
-                        <!-- #endregion Jssor Slider End -->
-                        <section id="one" style="border-top: solid 2px #efefef;margin: 4em 0 0 0;padding: 4em 0 0 0;"></section>
-
-                      
-                        @foreach (var item in Model.Personeller)
-                        {
-
-
-
-                            <div class="event">
-
-                             
-
-                                <div class="info">
-
-                                    @item.PersonelAdSoyad
+                        <div class="col-lg-3  col-md-3">
+                            <div class="blog_info text-right">
+                                <div class="post_tag">
+                                    <a href="#">Food,</a>
+                                    <a class="active" href="#">Atakan Hair,</a>
+                                    <a href="#">Politics,</a>
+                                    <a href="#">Lifestyle</a>
                                 </div>
+                                <ul class="blog_meta list">
+                                    <li><a href="#">Mark wiens<i class="lnr lnr-user"></i></a></li>
+                                    <li><a href="#">12 Dec, 2017<i class="lnr lnr-calendar-full"></i></a></li>
+                                    <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                </ul>
+                                <ul class="social-links">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9 blog_details">
+                            <h2>Hakkımızda Kısmı</h2>
+                            <p class="excert">
+                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
+                            </p>
+                            <p>
+                                Boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has the willpower to actually sit through a self-imposed
+                            </p>
+                            <p>
+                                Boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has the willpower to actually sit through a self-imposed
+                            </p>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="quotes">
+                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training.
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <img class="img-fluid" src="~/Common/Anasayfa/img/blog/post-img1.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <img class="img-fluid" src="~/Common/Anasayfa/img/blog/post-img2.jpg" alt="">
+                                </div>
+                                <div class="col-lg-12 mt-25">
+                                    <p>
+                                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower.
+                                    </p>
+                                    <p>
+                                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-area">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                                <h5>Personeller</h5>
 
                             </div>
+                            <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comments-area">
+                        <h4>05 Comments</h4>
+                        <div class="comment-list">
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb">
+                                        <img src="~/Common/Anasayfa/img/blog/c1.jpg" alt="">
+                                    </div>
+                                    <div class="desc">
+                                        <h5><a href="#">Emilly Blunt</a></h5>
+                                        <p class="date">December 4, 2017 at 3:12 pm </p>
+                                        <p class="comment">
+                                            Never say goodbye till the end comes!
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reply-btn">
+                                    <a href="" class="btn-reply text-uppercase">reply</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-list left-padding">
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb">
+                                        <img src="~/Common/Anasayfa/img/blog/c2.jpg" alt="">
+                                    </div>
+                                    <div class="desc">
+                                        <h5><a href="#">Elsie Cunningham</a></h5>
+                                        <p class="date">December 4, 2017 at 3:12 pm </p>
+                                        <p class="comment">
+                                            Never say goodbye till the end comes!
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reply-btn">
+                                    <a href="" class="btn-reply text-uppercase">reply</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-list left-padding">
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb">
+                                        <img src="~/Common/Anasayfa/img/blog/c3.jpg" alt="">
+                                    </div>
+                                    <div class="desc">
+                                        <h5><a href="#">Annie Stephens</a></h5>
+                                        <p class="date">December 4, 2017 at 3:12 pm </p>
+                                        <p class="comment">
+                                            Never say goodbye till the end comes!
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reply-btn">
+                                    <a href="" class="btn-reply text-uppercase">reply</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-list">
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb">
+                                        <img src="~/Common/Anasayfa/img/blog/c4.jpg" alt="">
+                                    </div>
+                                    <div class="desc">
+                                        <h5><a href="#">Maria Luna</a></h5>
+                                        <p class="date">December 4, 2017 at 3:12 pm </p>
+                                        <p class="comment">
+                                            Never say goodbye till the end comes!
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reply-btn">
+                                    <a href="" class="btn-reply text-uppercase">reply</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-list">
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb">
+                                        <img src="~/Common/Anasayfa/img/blog/c5.jpg" alt="">
+                                    </div>
+                                    <div class="desc">
+                                        <h5><a href="#">Ina Hayes</a></h5>
+                                        <p class="date">December 4, 2017 at 3:12 pm </p>
+                                        <p class="comment">
+                                            Never say goodbye till the end comes!
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reply-btn">
+                                    <a href="" class="btn-reply text-uppercase">reply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-form">
+                        <h4>Yorum</h4>
+                        <form>
 
-
-
-                        }
-                    
-                      
+                            <div class="form-group">
+                                <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                            </div>
+                            <a href="#" class="primary-btn button_hover">Yorum Yap</a>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+                        <aside class="single_sidebar_widget search_widget">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Randevu Al Butonu">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+                                </span>
+                            </div><!-- /input-group -->
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single_sidebar_widget author_widget">
+                            <img class="author_img rounded-circle" src="~/Common/Anasayfa/img/blog/author.png" alt="">
+                            <h4>Charlie Barber</h4>
+                            <p>Senior blog writer</p>
+                            <div class="social_icon">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-github"></i></a>
+                                <a href="#"><i class="fa fa-behance"></i></a>
+                            </div>
+                            <p>Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.</p>
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single_sidebar_widget popular_post_widget">
+                            <h3 class="widget_title">Popular Posts</h3>
+                            <div class="media post_item">
+                                <img src="~/Common/Anasayfa/img/blog/popular-post/post1.jpg" alt="post">
+                                <div class="media-body">
+                                    <a href="blog-details.html"><h3>Space The Final Frontier</h3></a>
+                                    <p>02 Hours ago</p>
+                                </div>
+                            </div>
+                            <div class="media post_item">
+                                <img src="img/blog/popular-post/post2.jpg" alt="post">
+                                <div class="media-body">
+                                    <a href="blog-details.html"><h3>The Amazing Hubble</h3></a>
+                                    <p>02 Hours ago</p>
+                                </div>
+                            </div>
+                            <div class="media post_item">
+                                <img src="~/Common/Anasayfa/img/blog/popular-post/post3.jpg" alt="post">
+                                <div class="media-body">
+                                    <a href="blog-details.html"><h3>Astronomy Or Astrology</h3></a>
+                                    <p>03 Hours ago</p>
+                                </div>
+                            </div>
+                            <div class="media post_item">
+                                <img src="~/Common/Anasayfa/img/blog/popular-post/post4.jpg" alt="post">
+                                <div class="media-body">
+                                    <a href="blog-details.html"><h3>Asteroids telescope</h3></a>
+                                    <p>01 Hours ago</p>
+                                </div>
+                            </div>
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single_sidebar_widget ads_widget">
+                            <a href="#"><img class="img-fluid" src="img/blog/add.jpg" alt=""></a>
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single_sidebar_widget post_category_widget">
+                            <h4 class="widget_title">İşlemler</h4>
+                            <ul class="list cat-list">
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Technology</p>
+                                        <p>37</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Lifestyle</p>
+                                        <p>24</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Fashion</p>
+                                        <p>59</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Art</p>
+                                        <p>29</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Food</p>
+                                        <p>15</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Architecture</p>
+                                        <p>09</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Adventure</p>
+                                        <p>44</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single-sidebar-widget newsletter_widget">
+                            <h4 class="widget_title">Newsletter</h4>
+                            <p>
+                                Here, I focus on a range of items and features that we use in life without
+                                giving them a second thought.
+                            </p>
+                            <div class="form-group d-flex flex-row">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
+                                </div>
+                                <a href="#" class="bbtns">Subcribe</a>
+                            </div>
+                            <p class="text-bottom">You can unsubscribe at any time</p>
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single-sidebar-widget tag_cloud_widget">
+                            <h4 class="widget_title">Popüler Kuaförler</h4>
+                            <ul class="list">
+                                <li><a href="#">Technology</a></li>
+                                <li><a href="#">Fashion</a></li>
+                                <li><a href="#">Architecture</a></li>
+                                <li><a href="#">Fashion</a></li>
+                                <li><a href="#">Food</a></li>
+                                <li><a href="#">Technology</a></li>
+                                <li><a href="#">Lifestyle</a></li>
+                                <li><a href="#">Art</a></li>
+                                <li><a href="#">Adventure</a></li>
+                                <li><a href="#">Food</a></li>
+                                <li><a href="#">Lifestyle</a></li>
+                                <li><a href="#">Adventure</a></li>
+                            </ul>
+                        </aside>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </body>
+    </section>
+    <!--================Blog Area =================-->
+    <!--================Instagram Area =================-->
+    <section class="instagram_area top_pad">
+        <div class="container box_1620">
+            <div class="insta_btn">
+                <a class="btn theme_btn" href="#">BİZİ TAKİP EDİN</a>
+            </div>
+            <div class="instagram_image row m0">
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-1.jpg" alt=""></a>
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-2.jpg" alt=""></a>
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-3.jpg" alt=""></a>
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-4.jpg" alt=""></a>
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-5.jpg" alt=""></a>
+                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-6.jpg" alt=""></a>
+            </div>
+        </div>
+    </section>
+    <!--================End Instagram Area =================-->
+    <!--================Footer Area =================-->
+    <footer class="footer_area p_120">
+        <div class="container">
+            <div class="row footer_inner">
+                <div class="col-lg-5 col-sm-6">
+                    <aside class="f_widget ab_widget">
+                        <div class="f_title">
+                            <h3>HAKKIMIZDA</h3>
+                        </div>
+                        <p>Kuaförlerimizin kazançlarını arttırırken aynı zamanda mutlu müşteriler edinmeyi hedefliyoruz. </p>
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">EA YAZILIM</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </aside>
+                </div>
+                <div class="col-lg-5 col-sm-6">
+                    <aside class="f_widget news_widget">
+                        <div class="f_title">
+                            <h3>HABERDAR OL</h3>
+                        </div>
+                        <p>Bize mail adresinizi bırakın işletmenizin daha çok müşteriye ulaşabilmesi için sizi bilgilendirelim :) </p>
+                        <div id="mc_embed_signup">
+                            <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
+                                <div class="input-group d-flex flex-row">
+                                    <input name="EMAIL" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
+                                    <button class="btn sub-btn"><span class="lnr lnr-arrow-right"></span></button>
+                                </div>
+                                <div class="mt-10 info"></div>
+                            </form>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-lg-2">
+                    <aside class="f_widget social_widget">
+                        <div class="f_title">
+                            <h3>BİZİ TAKİP ET</h3>
+                        </div>
+                        <p>Bizi sosyal medya hesaplarımızdan takip edebilirsiniz</p>
+                        <ul class="list">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/Common/Anasayfa/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Common/Anasayfa/js/popper.js"></script>
+    <script src="~/Common/Anasayfa/js/bootstrap.min.js"></script>
+    <script src="~/Common/Anasayfa/js/stellar.js"></script>
+    <script src="~/Common/Anasayfa/vendors/lightbox/simpleLightbox.min.js"></script>
+    <script src="~/Common/Anasayfa/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/Common/Anasayfa/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Common/Anasayfa/vendors/isotope/isotope-min.js"></script>
+    <script src="~/Common/Anasayfa/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/Common/Anasayfa/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Common/Anasayfa/js/mail-script.js"></script>
+    <script src="~/Common/Anasayfa/js/theme.js">
+    </script>
+
+    <script>
+                                                            //function myClick(deger) {
+                    //    if (deger != null) {
+                    //        var nesne = document.getElementsByClassName(deger);
+                    //        nesne.style.display = true;
+                    //    }
+                    //}
+    </script>
+
+</body>
+</html>

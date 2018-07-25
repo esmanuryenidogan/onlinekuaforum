@@ -1,4 +1,4 @@
-﻿@model Berberim.Data.SALONSAYFA
+﻿@model Berberim.Data.Models.SALONSAYFA
 
 @{
     ViewBag.Title = "Guncelle";
@@ -18,7 +18,7 @@
                         <label class=" form-control-label">Salon Adı</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-home"></i></div>
-                            @Html.TextBoxFor(a => a.SalonAd, new { @class = "form-control", @maxlength = "50" })
+                            @Html.TextBoxFor(a => a.AD, new { @class = "form-control", @maxlength = "50" })
                         </div>
                         <small class="form-text text-muted"><span class="help-block"><h6 style="color:red">@ViewBag.uyarı</h6><h5 style="color:red">@ViewBag.mesaj</h5></span>
                         </small>
@@ -27,7 +27,7 @@
                         <label class=" form-control-label">Salon İl ve İlçe</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
-                            @Html.TextBoxFor(a => a.iLveiLce, new { @class = "form-control", @maxlength = "40" })
+                            @Html.TextBoxFor(a => a.IL, new { @class = "form-control", @maxlength = "40" })
                         </div>
                         <small class="form-text text-muted">Örnek : İstanbul / Fatih</small>
                     </div>
@@ -35,7 +35,7 @@
                         <label class=" form-control-label">Salon Açık Adres</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-road"></i></div>
-                            @Html.TextBoxFor(a => a.SalonAdres, new { @class = "form-control", @maxlength = "200" })
+                            @Html.TextBoxFor(a => a.ADRES, new { @class = "form-control", @maxlength = "200" })
                         </div>
                         <small class="form-text text-muted"></small>
                     </div>
@@ -43,7 +43,7 @@
                         <label class=" form-control-label">Salon Telefonu</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                            @Html.TextBoxFor(a => a.SalonTel, new { @class = "form-control", @maxlength = "50", type = "number" })
+                            @Html.TextBoxFor(a => a.TEL, new { @class = "form-control", @maxlength = "50", type = "number" })
                         </div>
                         <small class="form-text text-muted"></small>
                     </div>
@@ -51,7 +51,7 @@
                         <label class=" form-control-label">Salon Maili</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                            @Html.TextBoxFor(a => a.SalonMail, new {@class = "form-control", @maxlength = "50", type = "email"})
+                            @Html.TextBoxFor(a => a.EMAIL, new {@class = "form-control", @maxlength = "50", type = "email"})
                         </div>
                         <small class="form-text text-muted"></small>
                     </div>
@@ -69,7 +69,7 @@
                     <label class=" form-control-label">Salon Hakkında Bilgi</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-info-circle"></i></div>
-                        @Html.TextBoxFor(a => a.SalonHakkinda, new {@class = "form-control", @maxlength = "200"})
+                        @Html.TextBoxFor(a => a.HAKKINDA, new {@class = "form-control", @maxlength = "200"})
                     </div>
                     <small class="form-text text-muted"></small>
                 </div>
@@ -77,7 +77,7 @@
                     <label class=" form-control-label">Koltuk Sayısı</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></div>
-                        @Html.TextBoxFor(a => a.KoltukSayisi, new { @class = "form-control", @maxlength = "10", type = "number" })
+                        @Html.TextBoxFor(a => a.KOLTUKSAY, new { @class = "form-control", @maxlength = "10", type = "number" })
                     </div>
                     <small class="form-text text-muted"></small>
                 </div>
@@ -90,7 +90,7 @@
                     <label class=" form-control-label">Vitrin Yazısı</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-comment"></i></div>
-                        @Html.TextBoxFor(a => a.VitrinYazi, new { @class = "form-control", @maxlength = "80" })
+                        @Html.TextBoxFor(a => a.VITRINYAZI, new { @class = "form-control", @maxlength = "80" })
                     </div>
                     <small class="form-text text-muted"></small>
                 </div>

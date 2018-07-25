@@ -25,22 +25,22 @@
                 <table class="table table-hover">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.MusteriAd)
+                            @Html.DisplayNameFor(model => model.AD)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.MusteriSoyad)
+                            @Html.DisplayNameFor(model => model.SOYAD)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.MusteriAdres)
+                            @Html.DisplayNameFor(model => model.ADRES)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.MusteriMail)
+                            @Html.DisplayNameFor(model => model.EMAIL)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.MusteriTel)
+                            @Html.DisplayNameFor(model => model.TEL)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.MusteriDogumTarihi)
+                            @Html.DisplayNameFor(model => model.DOGUMTARIHI)
                         </th>
                         <th>
                             Durum
@@ -53,36 +53,36 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MusteriAd)
+                                @Html.DisplayFor(modelItem => item.AD)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MusteriSoyad)
+                                @Html.DisplayFor(modelItem => item.SOYAD)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MusteriAdres)
+                                @Html.DisplayFor(modelItem => item.ADRES)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MusteriMail)
+                                @Html.DisplayFor(modelItem => item.EMAIL)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MusteriTel)
+                                @Html.DisplayFor(modelItem => item.TEL)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MusteriDogumTarihi)
+                                @Html.DisplayFor(modelItem => item.DOGUMTARIHI)
                             </td>
 
 
-                            @if (item.IsActive == true)
+                            @*@if (item.IsActive == true)
                             {
                                 <td><span class="label label-success">Aktif</span></td>
                             }
                             else
                             {
                                 <td><span class="label label-danger">Pasif</span></td>
-                            }
+                            }*@
 
 
-                            <td>@Html.ActionLink("Durum", "MusteriGuncelle", new { id = item.id })</td>
+                            <td>@Html.ActionLink("Durum", "MusteriGuncelle", new { id = item.ID })</td>
                         </tr>
                     }
                 </table>
