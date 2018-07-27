@@ -12007,6 +12007,7 @@
     <Content Include="Common\KullaniciGiris\vendor\select2\select2.js" />
     <Content Include="Common\KullaniciGiris\vendor\select2\select2.min.css" />
     <Content Include="Common\KullaniciGiris\vendor\select2\select2.min.js" />
+    <Content Include="Common\SalonFotoSlider\SliderGallery.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -14239,6 +14240,7 @@
     <Content Include="Views\Home\MusteriGiris.cshtml" />
     <Content Include="Views\Home\MusteriKayit.cshtml" />
     <Content Include="Views\Home\SalonSayfa.cshtml" />
+    <Content Include="Views\Home\slider.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
