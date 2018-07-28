@@ -12007,6 +12007,16 @@
     <Content Include="Common\KullaniciGiris\vendor\select2\select2.js" />
     <Content Include="Common\KullaniciGiris\vendor\select2\select2.min.css" />
     <Content Include="Common\KullaniciGiris\vendor\select2\select2.min.js" />
+    <Content Include="Common\SacModelleriGallery\css\pure-js-lightbox.css" />
+    <Content Include="Common\SacModelleriGallery\css\pure-js-lightbox.min.css" />
+    <Content Include="Common\SacModelleriGallery\img\img_1.jpg" />
+    <Content Include="Common\SacModelleriGallery\img\img_2.jpg" />
+    <Content Include="Common\SacModelleriGallery\img\img_3.jpg" />
+    <Content Include="Common\SacModelleriGallery\img\img_4.jpg" />
+    <Content Include="Common\SacModelleriGallery\img\img_5.jpg" />
+    <Content Include="Common\SacModelleriGallery\img\img_6.jpg" />
+    <Content Include="Common\SacModelleriGallery\src\pure-js-lightbox.js" />
+    <Content Include="Common\SacModelleriGallery\src\pure-js-lightbox.min.js" />
     <Content Include="Common\SalonFotoSlider\SliderGallery.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

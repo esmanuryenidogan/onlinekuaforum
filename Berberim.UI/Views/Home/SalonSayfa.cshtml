@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="~/Common/Anasayfa/vendors/lightbox/simpleLightbox.css">
     <link rel="stylesheet" href="~/Common/Anasayfa/vendors/nice-select/css/nice-select.css">
     <link rel="stylesheet" href="~/Common/Anasayfa/vendors/animate-css/animate.css">
+    <link rel="stylesheet" href="~/Common/SacModelleriGallery/css/pure-js-lightbox.min.css">
     <!-- main css -->
     <link rel="stylesheet" href="~/Common/Anasayfa/css/style.css">
     <link rel="stylesheet" href="~/Common/Anasayfa/css/responsive.css">
@@ -54,6 +55,18 @@
                 border: 1px solid #5cb85c !important;
                 background: #fff !important;
             }
+
+
+        #gallery img {
+            width: 247px;
+            height: 155px;
+            vertical-align: middle;
+        }
+
+        ul li {
+            list-style: none;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -195,13 +208,21 @@
                             <div class="quotes">
                                 MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training.
                             </div>
+
+
                             <div class="row">
-                                <div class="col-6">
-                                    <img class="img-fluid" src="~/Common/Anasayfa/img/blog/post-img1.jpg" alt="">
+                                <div class="col-12" style="padding-left:15px !important;margin:0px !important">
+                                    <ul id="gallery" style="width: 100%;padding:0px !important" class="pure-js-lightbox-container">
+                                        @foreach (var item in Model.KesilenSacModeller)
+                                        {
+                                            <li style="    padding-bottom: 4px;"><a href="~/Resimler/KesilenSaclar/@item.FOTO"><img src="~/Resimler/KesilenSaclar/@item.FOTO"/></a></li>
+                                            <li><a href="~/Resimler/KesilenSaclar/@item.FOTO"><img src="~/Resimler/KesilenSaclar/@item.FOTO"/></a></li>
+
+                                        }
+                                    </ul>
+
                                 </div>
-                                <div class="col-6">
-                                    <img class="img-fluid" src="~/Common/Anasayfa/img/blog/post-img2.jpg" alt="">
-                                </div>
+
                                 <div class="col-lg-12 mt-25">
                                     <p>
                                         MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower.
@@ -211,6 +232,9 @@
                                     </p>
                                 </div>
                             </div>
+
+
+
                         </div>
                     </div>
 
@@ -553,8 +577,10 @@
     <script src="~/Common/Anasayfa/js/theme.js">
     </script>
 
-    <script>
-                                                                                                                                                                                                            //function myClick(deger) {
+    <script src="~/Common/SacModelleriGallery/src/pure-js-lightbox.min.js"></script>
+    <script type="text/javascript">
+        // Make sure include the lightbox library BEFORE you use it
+        var test = new pureJSLightBox();
 
     </script>
 
