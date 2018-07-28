@@ -21,6 +21,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            line-height: 24px;
+            font-size: 14px;
+            font-family: "Poppins", sans-serif;
+            font-weight: 300;
+            color: #777777;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -126,16 +139,16 @@
                         <div class="col-lg-3  col-md-3">
                             <div class="blog_info text-right">
                                 <div class="post_tag">
-                                    <a href="#">Food,</a>
-                                    <a class="active" href="#">Atakan Hair,</a>
-                                    <a href="#">Politics,</a>
-                                    <a href="#">Lifestyle</a>
+                                    <a href="#">Salon,</a>
+                                    <a class="active" href="#" style="color:#4cd3e3">Atakan Hair,</a>
+                                    <a href="#">Adres,</a>
+                                    <a href="#">Bilgilerimiz</a>
                                 </div>
                                 <ul class="blog_meta list">
-                                    <li><a href="#">Mark wiens<i class="lnr lnr-user"></i></a></li>
-                                    <li><a href="#">12 Dec, 2017<i class="lnr lnr-calendar-full"></i></a></li>
-                                    <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
-                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                    <li><a href="#">Millet Caddesi<i class="lnr lnr-user"></i></a></li>
+                                    <li><a href="#">Şehremini Mh.<i class="lnr lnr-calendar-full"></i></a></li>
+                                    <li><a href="#">No:10, 34123<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Fatih/İstanbul<i class="lnr lnr-bubble"></i></a></li>
                                 </ul>
                                 <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -145,7 +158,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-lg-9 col-md-9 blog_details">
+                        <div class="col-lg-9 col-md-9 blog_details" style="padding-top:7px">
                             <h2>Hakkımızda Kısmı</h2>
                             <p class="excert">
                                 MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
@@ -179,123 +192,40 @@
                             </div>
                         </div>
                     </div>
-                    <div class="navigation-area">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                                <h5>Personeller</h5>
 
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-
-                            </div>
-                        </div>
-                    </div>
                     <div class="comments-area">
-                        <h4>05 Comments</h4>
-                        <div class="comment-list">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="~/Common/Anasayfa/img/blog/c1.jpg" alt="">
+                        <h4>@ViewBag.yorumsay Yorum</h4>
+                        @foreach (var item in Model.MusteriYorumlar)
+                        {
+                            <div class="comment-list">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="~/BerberPanel/images/admin.jpg" alt="" style="width:60px;height:60px;">
+                                        </div>
+                                        <div class="desc">
+                                            <h5><a href="#">@item.MUSTERIAD</a></h5>
+                                            <p class="date">4 Haziran 2018 </p>
+                                            <p class="comment">
+                                                @item.MYORUM
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="desc">
-                                        <h5><a href="#">Emilly Blunt</a></h5>
-                                        <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        <p class="comment">
-                                            Never say goodbye till the end comes!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                    <a href="" class="btn-reply text-uppercase">reply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-list left-padding">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="~/Common/Anasayfa/img/blog/c2.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h5><a href="#">Elsie Cunningham</a></h5>
-                                        <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        <p class="comment">
-                                            Never say goodbye till the end comes!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                    <a href="" class="btn-reply text-uppercase">reply</a>
+
                                 </div>
                             </div>
-                        </div>
-                        <div class="comment-list left-padding">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="~/Common/Anasayfa/img/blog/c3.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h5><a href="#">Annie Stephens</a></h5>
-                                        <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        <p class="comment">
-                                            Never say goodbye till the end comes!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                    <a href="" class="btn-reply text-uppercase">reply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-list">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="~/Common/Anasayfa/img/blog/c4.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h5><a href="#">Maria Luna</a></h5>
-                                        <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        <p class="comment">
-                                            Never say goodbye till the end comes!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                    <a href="" class="btn-reply text-uppercase">reply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-list">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="~/Common/Anasayfa/img/blog/c5.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h5><a href="#">Ina Hayes</a></h5>
-                                        <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        <p class="comment">
-                                            Never say goodbye till the end comes!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                    <a href="" class="btn-reply text-uppercase">reply</a>
-                                </div>
-                            </div>
-                        </div>
+                        }
+
                     </div>
                     <div class="comment-form">
-                        <h4>Yorum</h4>
+                        <h4>Yorumunuzu Bizimle Paylaşın</h4>
                         <form>
 
                             <div class="form-group">
-                                <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                                <textarea class="form-control mb-10" rows="5" name="message" placeholder="Mesajınız" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mesajınız'" required=""></textarea>
                             </div>
-                            <a href="#" class="primary-btn button_hover">Yorum Yap</a>
+
+                            <a href="#" class="genric-btn success" style="margin-top: 15px;text-decoration:none">Yorum Yap</a>
                         </form>
                     </div>
                 </div>
@@ -312,9 +242,9 @@
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget author_widget">
-                            <img class="author_img rounded-circle" src="~/Common/Anasayfa/img/blog/author.png" alt="">
-                            <h4>Charlie Barber</h4>
-                            <p>Senior blog writer</p>
+                            <img class="author_img rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="">
+                            <h4>Emre Tezcan</h4>
+                            <p>Salon Sahibi</p>
                             <div class="social_icon">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -325,35 +255,45 @@
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title" style="background-color:#fca0a0;font-size:15px;">Popular Posts</h3>
-                            <div class="media post_item">
-                                <img src="~/Common/Anasayfa/img/blog/popular-post/post1.jpg" alt="post">
-                                <div class="media-body">
-                                    <a href="blog-details.html"><h3>Space The Final Frontier</h3></a>
-                                    <p>02 Hours ago</p>
+                            <h3 class="widget_title" style="font-size:15px;">Personeller</h3>
+
+                            @foreach (var item in Model.Personeller)
+                            {
+
+                                <div class="media post_item">
+                                    <img class="author_img rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="post" width="100" height="90">
+                                    <div class="media-body">
+                                        <a href="blog-details.html"><h3>@item.ADSOYAD</h3></a>
+                                        <p>Saç Uzmanı</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="img/blog/popular-post/post2.jpg" alt="post">
-                                <div class="media-body">
-                                    <a href="blog-details.html"><h3>The Amazing Hubble</h3></a>
-                                    <p>02 Hours ago</p>
+
+                                <div class="media post_item">
+                                    <img class="author_img rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="post" width="100" height="90">
+                                    <div class="media-body">
+                                        <a href="blog-details.html"><h3>@item.ADSOYAD</h3></a>
+                                        <p>Saç Uzmanı</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="~/Common/Anasayfa/img/blog/popular-post/post3.jpg" alt="post">
-                                <div class="media-body">
-                                    <a href="blog-details.html"><h3>Astronomy Or Astrology</h3></a>
-                                    <p>03 Hours ago</p>
+
+                                <div class="media post_item">
+                                    <img class="author_img rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="post" width="100" height="90">
+                                    <div class="media-body">
+                                        <a href="blog-details.html"><h3>@item.ADSOYAD</h3></a>
+                                        <p>Saç Uzmanı</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="~/Common/Anasayfa/img/blog/popular-post/post4.jpg" alt="post">
-                                <div class="media-body">
-                                    <a href="blog-details.html"><h3>Asteroids telescope</h3></a>
-                                    <p>01 Hours ago</p>
+
+                                <div class="media post_item">
+                                    <img class="author_img rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="post" width="100" height="90">
+                                    <div class="media-body">
+                                        <a href="blog-details.html"><h3>@item.ADSOYAD</h3></a>
+                                        <p>Saç Uzmanı</p>
+                                    </div>
                                 </div>
-                            </div>
+                            }
+
+
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget ads_widget">
@@ -361,86 +301,50 @@
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget post_category_widget">
-                            <h3 class="widget_title" style="background-color:#fca0a0;font-size:15px;">Popular Posts</h3>
+                            <h3 class="widget_title" style="font-size:15px;">Hizmetler</h3>
                             <ul class="list cat-list">
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Technology</p>
-                                        <p>37</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Lifestyle</p>
-                                        <p>24</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Fashion</p>
-                                        <p>59</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Art</p>
-                                        <p>29</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Food</p>
-                                        <p>15</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Architecture</p>
-                                        <p>09</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Adventure</p>
-                                        <p>44</p>
-                                    </a>
-                                </li>
+                                @foreach (var item in Model.Islemler)
+                                {
+                                    <li>
+                                        <div class="d-flex justify-content-between">
+                                            <p>@item.AD</p>
+                                            <p>@item.FIYAT TL</p>
+                                        </div>
+                                    </li>
+                                }
+
                             </ul>
                             <div class="br"></div>
                         </aside>
                         <aside class="single-sidebar-widget newsletter_widget">
-                            <h3 class="widget_title" style="background-color:#fca0a0;font-size:15px;">Popular Posts</h3>
+                            <h3 class="widget_title" style="font-size:15px;">Salon İle İletişime Geçin</h3>
                             <p>
-                                Here, I focus on a range of items and features that we use in life without
-                                giving them a second thought.
+                                Görüşlerinizi , şikayetlerinizi ve önerilerinizi bizimle paylaşabilirsiniz.
                             </p>
                             <div class="form-group d-flex flex-row">
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
-                                    </div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
+                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Mesajınız" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mesajınız'">
                                 </div>
-                                <a href="#" class="bbtns">Subcribe</a>
+                                <a href="#" class="bbtns" style="line-height: 32px;height:33px">Gönder</a>
                             </div>
-                            <p class="text-bottom">You can unsubscribe at any time</p>
+                            <p class="text-bottom">En kısa sürede tarafınıza dönüş yapılacaktır.</p>
                             <div class="br"></div>
                         </aside>
                         <aside class="single-sidebar-widget tag_cloud_widget">
-                            <h3 class="widget_title" style="background-color:#fca0a0;font-size:15px;">Popular Posts</h3>
+                            <h3 class="widget_title" style="font-size:15px;">Popüler Salonlar</h3>
                             <ul class="list">
-                                <li><a href="#">Technology</a></li>
-                                <li><a href="#">Fashion</a></li>
-                                <li><a href="#">Architecture</a></li>
-                                <li><a href="#">Fashion</a></li>
-                                <li><a href="#">Food</a></li>
-                                <li><a href="#">Technology</a></li>
-                                <li><a href="#">Lifestyle</a></li>
-                                <li><a href="#">Art</a></li>
-                                <li><a href="#">Adventure</a></li>
-                                <li><a href="#">Food</a></li>
-                                <li><a href="#">Lifestyle</a></li>
-                                <li><a href="#">Adventure</a></li>
+                                <li><a href="#">İkon Hair</a></li>
+                                <li><a href="#">Nişantaşı Stil</a></li>
+                                <li><a href="#">Merkür Salon</a></li>
+                                <li><a href="#">ShowLine Saç Tasarım</a></li>
+                                <li><a href="#">Neewlod Hair</a></li>
+                                <li><a href="#">Sertaş Hair</a></li>
+                                <li><a href="#">İmaj Erkek Kuaförü</a></li>
+                                <li><a href="#">İva Kuaför</a></li>
+                                <li><a href="#">HK Hair Design</a></li>
+                                <li><a href="#">Black Hair Salon</a></li>
+                                <li><a href="#">Elite Erkek Kuaför</a></li>
+                                <li><a href="#">Star Güzellik Salonu</a></li>
                             </ul>
                         </aside>
                     </div>
@@ -453,7 +357,7 @@
     <section class="instagram_area top_pad">
         <div class="container box_1620">
             <div class="insta_btn">
-                <a class="btn theme_btn" href="#">BİZİ TAKİP EDİN</a>
+                <a class="btn theme_btn" href="#" style="font-weight: 600;">TERCİH EDİLEN SALONLAR</a>
             </div>
             <div class="instagram_image row m0">
                 <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-1.jpg" alt=""></a>
@@ -536,12 +440,12 @@
     </script>
 
     <script>
-                                                                                                                                            //function myClick(deger) {
-                                                                                                    //    if (deger != null) {
-                                                                                                    //        var nesne = document.getElementsByClassName(deger);
-                                                                                                    //        nesne.style.display = true;
-                                                                                                    //    }
-                                                                                                    //}
+                                                                                                                                                                            //function myClick(deger) {
+                                                                                                                                    //    if (deger != null) {
+                                                                                                                                    //        var nesne = document.getElementsByClassName(deger);
+                                                                                                                                    //        nesne.style.display = true;
+                                                                                                                                    //    }
+                                                                                                                                    //}
     </script>
 
 </body>

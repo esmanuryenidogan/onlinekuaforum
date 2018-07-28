@@ -14304,6 +14304,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Berber\Models\" />
     <Folder Include="Resimler\KesilenSaclar\" />
+    <Folder Include="Resimler\PersonelFotolar\" />
     <Folder Include="Resimler\SalonFotograflar\" />
     <Folder Include="Resimler\SalonVitrinFoto\" />
   </ItemGroup>
