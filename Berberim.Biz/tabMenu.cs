@@ -14,5 +14,7 @@ namespace Berberim.Biz
         public List<KAMPANYA> kampanya { get; set; }
         public List<TRENDHAIRS> trendSac { get; set; }
         public List<YORUM> musteriYorum { get; set; }
+        public List<MUSTERİ> musteri { get; set; }
+        public List<RANDEVU> randevu { get; set; }
     }
 }

@@ -27,6 +27,8 @@ namespace Berberim.UI.Controllers
                 salon = _db.SALONSAYFA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                 kampanya = _db.KAMPANYA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                 trendSac = _db.TRENDHAIRS.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                musteri = _db.MUSTERİ.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                randevu = _db.RANDEVU.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                 musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
             };
             return View(data);
@@ -75,9 +77,19 @@ namespace Berberim.UI.Controllers
             var sonuc = (from i in _db.MUSTERİ where i.STATUS == Constants.RecordStatu.Active && i.EMAIL == mail && i.SIFRE == sifre select i).FirstOrDefault();
             if (sonuc != null)
             {
+                var data = new tabMenu
+                {
+                    salon = _db.SALONSAYFA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                    kampanya = _db.KAMPANYA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                    trendSac = _db.TRENDHAIRS.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                    musteri = _db.MUSTERİ.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                    randevu = _db.RANDEVU.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                    musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
+                };
+
                 Session["musteriadsoyad"] = sonuc.AD + " " + sonuc.SOYAD;
                 Session["musteri"] = sonuc.EMAIL;
-                return View("Index");
+                return View("Index",data);
             }
             ViewBag.mesaj = "Kullanıcı Adı veya Şifre Hatalı!";
             return View();
@@ -86,7 +98,16 @@ namespace Berberim.UI.Controllers
         public ActionResult CıkısYap()
         {
             Session["musteri"] = null;
-            return View("Index");
+            var data = new tabMenu
+            {
+                salon = _db.SALONSAYFA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                kampanya = _db.KAMPANYA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                trendSac = _db.TRENDHAIRS.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                musteri = _db.MUSTERİ.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                randevu = _db.RANDEVU.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
+            };
+            return View("Index",data);
         }
 
         public ActionResult IletisimMail()
