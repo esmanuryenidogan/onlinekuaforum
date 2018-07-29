@@ -398,5 +398,10 @@ namespace Berberim.UI.Controllers
         {
             return View();
         }
+
+        public ActionResult İletisimSayfasi()
+        {
+            return View();
+        }
     }
 }
