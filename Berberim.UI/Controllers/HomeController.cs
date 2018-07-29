@@ -89,7 +89,7 @@ namespace Berberim.UI.Controllers
 
                 Session["musteriadsoyad"] = sonuc.AD + " " + sonuc.SOYAD;
                 Session["musteri"] = sonuc.EMAIL;
-                return View("Index",data);
+                return View("Index", data);
             }
             ViewBag.mesaj = "Kullanıcı Adı veya Şifre Hatalı!";
             return View();
@@ -107,7 +107,7 @@ namespace Berberim.UI.Controllers
                 randevu = _db.RANDEVU.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                 musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
             };
-            return View("Index",data);
+            return View("Index", data);
         }
 
         public ActionResult IletisimMail()
@@ -129,7 +129,7 @@ namespace Berberim.UI.Controllers
                 NetworkCredential sifre = new NetworkCredential("esmanur.yndgn@gmail.com", "esmanur1234");
                 client.Credentials = sifre;
                 client.Send(msg);
-                var sendMail=new MAIL()
+                var sendMail = new MAIL()
                 {
                     FROM = email,
                     TO = Constants.ContactMail,
@@ -218,14 +218,28 @@ namespace Berberim.UI.Controllers
             {
                 return View("MusteriGiris");
             }
+
             var sonuc = (from i in _db.SALON where i.ID == id select i).SingleOrDefault();
+            var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.ID select i).ToList();
             var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.ID select i).ToList();
+            var musteriyorumlar = (from i in _db.YORUM where i.SALONID == id select i).ToList();
+            var salonfotolar = (from i in _db.SALONFOTO where i.SALONID == id select i).ToList();
+            var kesilensacmodeller = (from i in _db.BSACMODEL where i.SALONID == id select i).ToList();
+            var kampanya = (from i in _db.KAMPANYA select i).ToList();
+            var yorumsay = (from i in _db.YORUM where i.SALONID == sonuc.ID select i.ID).Count();
+            ViewBag.yorumsay = yorumsay;
 
             BerberDetayModel model = new BerberDetayModel
             {
                 Berber = sonuc,
-                Personeller = personeller
+                Islemler = islemler,
+                Personeller = personeller,
+                SalonFotolar = salonfotolar,
+                KesilenSacModeller = kesilensacmodeller,
+                MusteriYorumlar = musteriyorumlar,
+                Kampanya = kampanya
             };
+
             List<string> randevuSaat = new List<string>
             {
                 "10:00",
@@ -242,7 +256,8 @@ namespace Berberim.UI.Controllers
             };
             model.RandevuSaat = randevuSaat;
             Session["gelenmodel"] = model;
-            return View(model);
+            ViewBag.kampanyaGelen = true;
+            return View("SalonSayfa", model);
         }
         [HttpPost]
         public ActionResult KampanyaSatınAl(int id, string r_ad, string r_telno, string r_email, string r_personel)
@@ -344,8 +359,8 @@ namespace Berberim.UI.Controllers
             var simdi = DateTime.Now;
             if (tarih > simdi)
             {
-                 var randevual = new RANDEVU
-                 {
+                var randevual = new RANDEVU
+                {
                     MUSTERIAD = musteribilgi?.AD,
                     MUSTERITEL = musteribilgi?.TEL,
                     MUSTERIMAIL = musteribilgi?.EMAIL,
@@ -365,9 +380,9 @@ namespace Berberim.UI.Controllers
 
                 return View("Index");
             }
-                var model = Session["model"];
-                ViewBag.tarih = "Geçmiş Tarih Seçilemez !";
-                return View(model);
+            var model = Session["model"];
+            ViewBag.tarih = "Geçmiş Tarih Seçilemez !";
+            return View(model);
         }
 
         public ActionResult MusteriRandevuGoruntule()

@@ -14250,7 +14250,7 @@
     <Content Include="Views\Home\MusteriGiris.cshtml" />
     <Content Include="Views\Home\MusteriKayit.cshtml" />
     <Content Include="Views\Home\SalonSayfa.cshtml" />
-    <Content Include="Views\Home\slider.cshtml" />
+    <Content Include="Views\Home\İletisimSayfasi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -134,8 +134,10 @@
                         <div class="h_gallery_item">
                             <img style="width: 263px; height: 309px;" src="~/SalonFotolar/kampanya.png" alt="">
                             <div class="hover">
-                                <a href="#"><h4>@item.BASLIK<br />@item.FIYAT TL</h4></a>
-                                <a class="light" href="~/Common/Anasayfa/img/gallery/gallery-1.jpg"><i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="@Url.Action("KampanyaSatınAl", "Home", new { @id = item.SALONID })"><h4>@item.BASLIK<br />@item.FIYAT TL</h4></a>
+                                <a href="@Url.Action("KampanyaSatınAl", "Home")" class="light">
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
                             </div>
                         </div>
 
@@ -159,7 +161,50 @@
                 }
             </div>
 
+            <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Randevuyu Tamamla</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <div class="row" style="padding-bottom: 20px;">
+                                    <div class="col-sm-3" style="text-align: right;">Personel Seçimi</div>
+                                    <div class="col-sm-8" style="position: relative;top: -7px;">
 
+                                    </div>
+
+                                </div>
+                                <div class="row" style="padding-bottom: 20px;">
+                                    <div class="col-sm-3" style="text-align: right;">İşlem Seçimi</div>
+                                    <div class="col-sm-8" style="position: relative;top: -7px;">
+
+                                    </div>
+
+                                </div>
+                                <div class="row" style="padding-bottom: 20px;">
+                                    <div class="col-sm-3" style="text-align: right;">Tarih Seçimi</div>
+
+                                </div>
+                                <div class="row" style="padding-bottom: 20px;">
+                                    <div class="col-sm-3" style="text-align: right;">Saat Seçimi</div>
+
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="genric-btn primary-border radius" data-dismiss="modal">Vazgeç</button>
+
+                                <button type="button" class="genric-btn success">Randevuyu Kaydet</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -339,12 +384,12 @@
     </script>
 
     <script>
-                                                                                                                //function myClick(deger) {
-                                                                        //    if (deger != null) {
-                                                                        //        var nesne = document.getElementsByClassName(deger);
-                                                                        //        nesne.style.display = true;
-                                                                        //    }
-                                                                        //}
+                                                                                                                                //function myClick(deger) {
+                                                                                        //    if (deger != null) {
+                                                                                        //        var nesne = document.getElementsByClassName(deger);
+                                                                                        //        nesne.style.display = true;
+                                                                                        //    }
+                                                                                        //}
     </script>
 
 </body>

@@ -215,8 +215,8 @@
                                     <ul id="gallery" style="width: 100%;padding:0px !important" class="pure-js-lightbox-container">
                                         @foreach (var item in Model.KesilenSacModeller)
                                         {
-                                            <li style="    padding-bottom: 4px;"><a href="~/Resimler/KesilenSaclar/@item.FOTO"><img src="~/Resimler/KesilenSaclar/@item.FOTO"/></a></li>
-                                            <li><a href="~/Resimler/KesilenSaclar/@item.FOTO"><img src="~/Resimler/KesilenSaclar/@item.FOTO"/></a></li>
+                                            <li style="    padding-bottom: 4px;"><a href="~/Resimler/KesilenSaclar/@item.FOTO"><img src="~/Resimler/KesilenSaclar/@item.FOTO" /></a></li>
+                                            <li><a href="~/Resimler/KesilenSaclar/@item.FOTO"><img src="~/Resimler/KesilenSaclar/@item.FOTO" /></a></li>
 
                                         }
                                     </ul>
@@ -279,17 +279,35 @@
                         <aside class="single_sidebar_widget search_widget" style="    text-align: center;">
                             <div class="input-group">
 
-
-                                <div>
-                                    <a href="#" data-toggle="modal" data-target="#largeModal" class="genric-btn success circle" style="text-decoration: none;width: 200px;font-size:15px;">Randevu Al</a>
-                                </div>
-
+                                @{
+                                    if (ViewBag.kampanyaGelen == true)
+                                    {
+                                        <div>
+                                            <a href="#" data-toggle="modal" data-target="#largeModal" class="genric-btn success circle" style="text-decoration: none;width: 200px;font-size:15px;">Kampanya Al</a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div>
+                                            <a href="#" data-toggle="modal" data-target="#largeModal" class="genric-btn success circle" style="text-decoration: none;width: 200px;font-size:15px;">Randevu Al</a>
+                                        </div>
+                                    }
+                                }
                                 <!-- large modal -->
                                 <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Randevuyu Tamamla</h4>
+                                                @if (ViewBag.kampanyaGelen == true)
+                                                {
+                                                    <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Kampanya Alımını Tamamla</h4>
+
+                                                }
+                                                else
+                                                {
+                                                    <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Randevuyu Tamamla</h4>
+
+                                                }
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -319,29 +337,32 @@
                                                         </div>
 
                                                     </div>
-                                                    <div class="row" style="padding-bottom: 20px;">
-                                                        <div class="col-sm-3" style="text-align: right;">İşlem Seçimi</div>
-                                                        <div class="col-sm-8" style="position: relative;top: -7px;">
-                                                            <div class="input-group-icon mt-8">
-                                                                <div class="icon"><i class="fa fa-scissors" aria-hidden="true"></i></div>
-                                                                @{
+                                                    @if (ViewBag.kampanyaGelen != true)
+                                                    {
+                                                        <div class="row" style="padding-bottom: 20px;">
+                                                            <div class="col-sm-3" style="text-align: right;">İşlem Seçimi</div>
+                                                            <div class="col-sm-8" style="position: relative;top: -7px;">
+                                                                <div class="input-group-icon mt-8">
+                                                                    <div class="icon"><i class="fa fa-scissors" aria-hidden="true"></i></div>
+                                                                    @{
 
-                                                                    var islemler = new List<SelectListItem>();
+                                                                        var islemler = new List<SelectListItem>();
 
-                                                                    foreach (var item in Model.Islemler)
-                                                                    {
-                                                                        islemler.Add(new SelectListItem { Text = item.AD });
+                                                                        foreach (var item in Model.Islemler)
+                                                                        {
+                                                                            islemler.Add(new SelectListItem { Text = item.AD });
+                                                                        }
+
                                                                     }
 
-                                                                }
-
-                                                                <div class="form-select" id="default-select">
-                                                                    @Html.DropDownListFor(m => m.Islemler, islemler, new { @class = "nice-select open", @style = "background-color:white" })
+                                                                    <div class="form-select" id="default-select">
+                                                                        @Html.DropDownListFor(m => m.Islemler, islemler, new { @class = "nice-select open", @style = "background-color:white" })
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                    </div>
+                                                        </div>
+                                                    }
                                                     <div class="row" style="padding-bottom: 20px;">
                                                         <div class="col-sm-3" style="text-align: right;">Tarih Seçimi</div>
                                                         <div class="col-sm-8" style="position: relative;top: -8px;">
@@ -366,32 +387,63 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="genric-btn primary-border radius" data-dismiss="modal">Vazgeç</button>
+                                                    @if (ViewBag.kampanyaGelen == true)
+                                                    {
+                                                        <button type="button" class="genric-btn success">Kampanyayı Kaydet</button>
 
-                                                    <button type="button" class="genric-btn success">Randevuyu Kaydet</button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button type="button" class="genric-btn success">Randevuyu Kaydet</button>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                             <!-- small modal -->
 
                             <div class="br"></div>
                         </aside>
-                        <aside class="single_sidebar_widget author_widget">
-                            <img class="author_img rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="">
-                            <h4>Emre Tezcan</h4>
-                            <p>Salon Sahibi</p>
-                            <div class="social_icon">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-github"></i></a>
-                                <a href="#"><i class="fa fa-behance"></i></a>
-                            </div>
-                            <p>Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.</p>
-                            <div class="br"></div>
-                        </aside>
+                        @{
+                            if (ViewBag.kampanyaGelen == true)
+                            {
+                                <aside class="single_sidebar_widget author_widget">
+                                    <h3 class="widget_title" style="font-size:15px;">Kampanya Detayları</h3>
+                                    @foreach (var item in Model.Kampanya)
+                                    {
+                                        <p>Kampanya Başlığı  :   @item.BASLIK</p>
+                                        <p>Kampanya Fiyatı   : @item.FIYAT TL</p>
+                                        <p>Kampanya İçeriği  : @item.ICERIK</p>
+                                        <p>Kampanya Son Günü : @item.SONGUN</p>
+
+
+                                    }
+
+                                    <div class="br"></div>
+                                </aside>
+                            }
+                            else
+                            {
+                                <aside class="single_sidebar_widget author_widget">
+                                    <img class="author_img rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="">
+                                    <h4>Emre Tezcan</h4>
+                                    <p>Salon Sahibi</p>
+                                    <div class="social_icon">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-github"></i></a>
+                                        <a href="#"><i class="fa fa-behance"></i></a>
+                                    </div>
+                                    <p>Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.</p>
+                                    <div class="br"></div>
+                                </aside>
+                            }
+                        }
+
                         <aside class="single_sidebar_widget popular_post_widget">
                             <h3 class="widget_title" style="font-size:15px;">Personeller</h3>
 
