@@ -64,7 +64,7 @@ namespace Berberim.UI.Controllers
             _db.MUSTERİ.Add(mekle);
             _db.SaveChanges();
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public ActionResult MusteriGiris()

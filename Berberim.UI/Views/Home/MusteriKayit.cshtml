@@ -38,10 +38,9 @@
 
     <div class="limiter">
         <div class="container-login100">
-            <div class="wrap-login100" style=" height: 615px;">
-                @using (Html.BeginForm("MusteriGiris", "Home", FormMethod.Post, new { style = "padding: 120px 65px 40px 65px !important;", @class = "login100-form validate-form" }))
+            <div class="wrap-login100" style="height: 615px;">
+                @using (Html.BeginForm("MusteriKayit", "Home", FormMethod.Post, new { style = "padding: 120px 65px 40px 65px !important;", @class = "login100-form validate-form" }))
                 {
-
                     <span class="login100-form-title p-b-34">
                         Kayıt Ol
                     </span>
@@ -72,22 +71,13 @@
                         <span class="focus-input100"></span>
                     </div>
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
-                            Kayıt Ol
-                        </button>
+                        <input type="submit" value="Kayıt Ol" class="login100-form-btn"/>
                     </div>
-
                     <div class="w-full text-center p-t-27 p-b-239">
-
-
                         <a href="~/Home/MusteriGiris" class="txt2">
                           Giriş Yap
                         </a>
                     </div>
-
-                  
-
-
                 }
                 <div class="login100-more" style="background-image: url('/Common/KullaniciGiris/images/barber.jpg');"></div>
             </div>
