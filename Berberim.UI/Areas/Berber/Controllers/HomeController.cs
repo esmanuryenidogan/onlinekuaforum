@@ -51,8 +51,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
         public ActionResult BerberSalonEkle()
         {
-            var gelen = (SALON)Session["berberkuladi"];
-            return gelen != null ? View() : View("BerberGiris");
+            return View() ;
         }
 
         [HttpPost]
