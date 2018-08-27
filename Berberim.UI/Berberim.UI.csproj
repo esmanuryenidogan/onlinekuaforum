@@ -14251,6 +14251,7 @@
     <Content Include="Views\Home\MusteriKayit.cshtml" />
     <Content Include="Views\Home\SalonSayfa.cshtml" />
     <Content Include="Views\Home\İletisimSayfasi.cshtml" />
+    <Content Include="Views\Home\RandevuAl.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

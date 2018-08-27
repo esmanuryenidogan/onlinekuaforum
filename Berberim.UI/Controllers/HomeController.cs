@@ -139,7 +139,7 @@ namespace Berberim.UI.Controllers
                 };
                 _db.MAIL.Add(sendMail);
                 _db.SaveChanges();
-                return View("Mailiniz iletildi.Teşekkürler!");
+                return View($"Mailiniz iletildi.Teşekkürler!");
             }
             catch (Exception)
             {
