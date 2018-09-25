@@ -39,7 +39,7 @@ namespace Berberim.UI.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult MusteriKayit(MUSTERİ m)
+        public ActionResult MusteriKayit(MUSTERI m)
         {
             var kullaniciInfo = _db.MUSTERİ.FirstOrDefault(i => i.EMAIL == m.EMAIL);
 
@@ -49,7 +49,7 @@ namespace Berberim.UI.Controllers
                 return View();
             }
             Session["musteri"] = kullaniciInfo;
-            MUSTERİ mekle = new MUSTERİ
+            MUSTERI mekle = new MUSTERI
             {
                 AD = m.AD,
                 SOYAD = m.SOYAD,

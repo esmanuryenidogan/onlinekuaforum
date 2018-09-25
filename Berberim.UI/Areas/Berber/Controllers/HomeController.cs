@@ -28,18 +28,21 @@ namespace Berberim.UI.Areas.Berber.Controllers
         [HttpPost]
         public ActionResult BerberGiris(string email, string sifre)
         {
-            var sonuc = (from i in db.SALON where i.STATUS == Constants.RecordStatu.Active && i.EMAIL == email && i.SİFRE == sifre select i).FirstOrDefault();
+            var sonuc = (from i in db.SALON where i.EMAIL == email && i.SIFRE == sifre select i).FirstOrDefault();
 
-            //string gelen = Request.Form["kuladi"];
-            //Session.Add("kuladi", gelen);
             if (sonuc != null)
             {
-                Session["berberkuladi"] = sonuc;
-                Session["berberinkulad"] = email;
-                Session["salonAd"] = sonuc.SALONADI;
-                return View("Index");
+                if (sonuc.STATUS == Constants.RecordStatu.Active)
+                {
+                    Session["berberkuladi"] = db.SALONSAYFA.FirstOrDefault(a => a.SALONID==sonuc.ID);
+                    return View("Index");
+                }
+                    ViewBag.mesaj = "Kullanıcınız aktif durumda olmadığından giriş yapamamaktasınız, kullanıcınızı aktif hale getirmek için bizimle iletişime geçebilirsiniz.";
             }
-            ViewBag.mesaj = "Kullanıcı Adı veya Şifre Hatalı !";
+            else
+            {
+                ViewBag.mesaj = "Kullanıcı Adı veya Şifre Hatalı !";
+            }
             return View();
         }
 
@@ -51,52 +54,46 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
         public ActionResult BerberSalonEkle()
         {
-            return View() ;
+            return View();
         }
 
         [HttpPost]
-        public ActionResult BerberSalonEkle(string salonad, string koltuk, string salonmail, string salonadres, string salontel, string vitrinyazi, string foto, string personeladsoyad, string personelfoto, string salonhakkinda, string il, string ilce)
+        public ActionResult BerberSalonEkle(string adsoyad, string email, string telefon)
         {
-            var gelen = (SALON)Session["berberkuladi"];
-            var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
-
-            //if (salonID != null)
-            //{
-            //    ViewBag.mesaj = "Size Tanımlı Bir Salon Mevcut !";
-            //    return View();
-            //}
+            var salon = (from i in db.SALON where i.EMAIL.Equals(email) select i).FirstOrDefault();
 
             if (salon == null)
             {
-                var berberekle = new SALONSAYFA
+                var berberekle = new SALON()
                 {
-                    AD = salonad,
-                    KOLTUKSAY = Convert.ToInt32(koltuk),
-                    ADRES = salonadres,
-                    TEL = salontel,
-                    HAKKINDA = salonhakkinda,
-                    EMAIL = salonmail,
-                    VITRINYAZI = vitrinyazi,
-                    SALONID = gelen.ID,
-                    IL = il,
-                    ILCE = ilce,
-                    STATUS = Constants.RecordStatu.Active
+                    ADSOYAD = adsoyad,
+                    TELEFON = telefon,
+                    EMAIL = email,
+                    CREATEDATE = DateTime.Now,
+                    STATUS = Constants.RecordStatu.Passive
                 };
-
-                string dosyaAdi = Guid.NewGuid().ToString().Replace("-", "");
-                var httpPostedFileBase = Request.Files[0];
-                if (httpPostedFileBase != null)
-                {
-                    string uzanti = System.IO.Path.GetExtension(httpPostedFileBase.FileName);
-                    string tamYolYeri = "~/Resimler/SalonVitrinFoto/" + dosyaAdi + uzanti;
-                    httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
-                    berberekle.VITRINFOTO = dosyaAdi + uzanti;
-                }
-                db.SALONSAYFA.Add(berberekle);
-                db.SaveChanges();
-
+                db.SALON.Add(berberekle);
+                var isSave=db.SaveChanges();
+                if (isSave > 0)
+                    ViewBag.isSucces = "Kayıt işlemi başarılı. En kısa sürede sizinle iletişime geçeceğiz.";
                 return View();
+                #region AddVitrinfoto 
+
+                //string dosyaAdi = Guid.NewGuid().ToString().Replace("-", "");
+                //var httpPostedFileBase = Request.Files[0];
+                //if (httpPostedFileBase != null)
+                //{
+                //    string uzanti = System.IO.Path.GetExtension(httpPostedFileBase.FileName);
+                //    string tamYolYeri = "~/Resimler/SalonVitrinFoto/" + dosyaAdi + uzanti;
+                //    httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
+                //    berberekle.VITRINFOTO = dosyaAdi + uzanti;
+                //}
+                //db.SALONSAYFA.Add(berberekle);
+                //db.SaveChanges();
+
+                #endregion
             }
+            ViewBag.isSucces = "*Girdiğiniz e-mail sistemimizde daha önceden kayıtlı.";
             return View();
         }
 
@@ -175,14 +172,14 @@ namespace Berberim.UI.Areas.Berber.Controllers
             if (gelen != null)
             {
                 var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
-               
+
                 if (salon != null)
                 {
                     var salonfoto = (from i in db.SALONFOTO where i.SALONID == salon.ID select i).ToList();
                     return View(salonfoto);
                 }
 
-               
+
             }
             return View("BerberGiris");
         }
@@ -380,7 +377,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
         [HttpPost]
         public ActionResult BerberİslemEkle(string islemad, int islemfiyat)
         {
-            var gelen = (SALON)Session["berberkuladi"];
+            var gelen = (SALONSAYFA)Session["berberkuladi"];
 
             var islemekle = new ISLEM();
             if (gelen != null)
@@ -389,7 +386,6 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 islemekle.AD = islemad;
                 islemekle.FIYAT = islemfiyat;
                 islemekle.SALONID = gelen.ID;
-                islemekle.SALONAD = gelen.SALONADI;
                 db.ISLEM.Add(islemekle);
                 db.SaveChanges();
 
@@ -439,7 +435,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
         [HttpPost]
         public ActionResult KampanyaEkle(string baslik, string icerik, int fiyat, DateTime tarih)
         {
-            var gelen = (SALON)Session["berberkuladi"];
+            var gelen = (SALONSAYFA)Session["berberkuladi"];
 
             KAMPANYA kekle = new KAMPANYA();
             if (gelen != null)
@@ -449,7 +445,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 kekle.ICERIK = icerik;
                 kekle.FIYAT = fiyat;
                 kekle.SALONID = gelen.ID;
-                kekle.SALONAD = gelen.SALONADI;
+                kekle.SALONAD = gelen.AD;
                 kekle.SONGUN = tarih;
                 db.KAMPANYA.Add(kekle);
                 db.SaveChanges();

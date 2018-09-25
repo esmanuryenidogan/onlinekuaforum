@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Berberim.Data.Models
 {
-    public class MUSTERİ
+    public class MUSTERI
     {
         public int ID { get; set; }
         public int STATUS { get; set; }

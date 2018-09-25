@@ -10,6 +10,8 @@ namespace Berberim.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
+            ContextKey = "Berberim.Data.Models.OnlineKuaforumDbContext";
         }
 
         protected override void Seed(Berberim.Data.Models.OnlineKuaforumDbContext context)

@@ -28,7 +28,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AdminEkle(string adminad,string email,string sifre)
+        public ActionResult AdminEkle(string adminad, string email, string sifre)
         {
             var gelen = (ADMIN)Session["loginadmin"];
             if (gelen != null)
@@ -45,7 +45,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
 
                 return View("Index");
             }
-                return View("AdminGiris");                   
+            return View("AdminGiris");
         }
 
         public ActionResult AdminGiris()
@@ -54,7 +54,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AdminGiris(string email,string sifre)
+        public ActionResult AdminGiris(string email, string sifre)
         {
             var sonuc = (from i in db.ADMIN where i.STATUS == Constants.RecordStatu.Active && i.EMAIL == email && i.SİFRE == sifre select i).FirstOrDefault();
 
@@ -65,41 +65,42 @@ namespace Berberim.UI.Areas.Admin.Controllers
 
                 return View("Index");
             }
-                ViewBag.girismesaj = "Kullanıcı Adı veya Şifre Hatalı !";
-                return View();          
+            ViewBag.girismesaj = "Kullanıcı Adı veya Şifre Hatalı !";
+            return View();
         }
 
-        #region OLD
+        public ActionResult BerberKayıt()
+        {
+            var salon = db.SALON.Where(i => i.STATUS == Constants.RecordStatu.Passive).ToList();
+            return View(salon);
+        }
 
-                //  public ActionResult BerberKayıt()
-        //  {
-        //      var gelen = (ADMIN)Session["loginadmin"];
+        [HttpPost]
+        public ActionResult BerberKayıt(int id)
+        {
+            var updSalon = db.SALON.FirstOrDefault(a => a.ID == id);
+            if (updSalon != null)
+            {
+                updSalon.STATUS = Constants.RecordStatu.Active;
+                updSalon.SIFRE = CreatePassword(6);
+            }
 
-        //      return View(gelen != null ? "BerberKayıt" : "AdminGiris");
-        //  }
+            db.SaveChanges();
+            return RedirectToAction("BerberKayıt");
+        }
 
-        //  [HttpPost]
-        //  public ActionResult BerberKayıt(string salonad, string email, string sifre)
-        //  {
-        //      var salon = (from i in db.SALON where i.EMAIL == email && i.SIFRE == sifre select i).FirstOrDefault();
+        public string CreatePassword(int size)
+        {
+            char[] cr = "0123456789ABCDEFGHIJKLMNOPQRSTUCWXYZ".ToCharArray();
+            string result = string.Empty;
+            Random r = new Random();
+            for (int i = 0; i < size; i++)
+            {
+                result += cr[r.Next(0, cr.Length - 1)].ToString();
+            }
 
-        //      if (salon != null)
-        //      {
-        //          ViewBag.uyarı = "Böyle Bir Kullanıcı Adı veya Şifre Ekledin !";
-        //          return View();
-        //      }
-
-        //      else
-        //      {
-        //          SALONSAYFA berber = new SALONSAYFA();
-        //          berber.STATUS = Constants.RecordStatu.Active;
-        //          db.SALONSAYFA.Add(berber);
-        //          db.SaveChanges();
-        //          return View();
-        //      }
-        //}
-
-        #endregion
+            return result;
+        }
 
         public ActionResult CikisYap()
         {
@@ -116,12 +117,12 @@ namespace Berberim.UI.Areas.Admin.Controllers
                 var trendsac = (from i in db.TRENDHAIRS select i).ToList();
                 return View(trendsac);
             }
-                return View("AdminGiris");            
+            return View("AdminGiris");
         }
 
         public ActionResult TrendSacSil(int id)
         {
-            var trendsacsil = new TRENDHAIRS();
+            var trendsacsil = new TRENDHAIR();
             db.TRENDHAIRS.Remove(db.TRENDHAIRS.Find(id));
             db.SaveChanges();
             return View("TrendSacGor", db.TRENDHAIRS);
@@ -136,7 +137,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult TrendSac(string foto)
         {
-            var sacekle = new TRENDHAIRS();
+            var sacekle = new TRENDHAIR();
             if (Request.Files.Count > 0)
             {
                 string DosyaAdi = Guid.NewGuid().ToString().Replace("-", "");
@@ -159,13 +160,13 @@ namespace Berberim.UI.Areas.Admin.Controllers
             return View("Index");
         }
 
-       SalonClass ekle = new SalonClass();
-       
+        SalonClass ekle = new SalonClass();
+
         public ActionResult BerberKayitGor()
         {
             var gelen = (ADMIN)Session["loginadmin"];
             if (gelen == null) return View("AdminGiris");
-            var sonuc = db.SALONSAYFA.Where(i=>i.STATUS==Constants.RecordStatu.Active).ToList();
+            var sonuc = db.SALONSAYFA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList();
             return View(sonuc);
         }
 
@@ -181,7 +182,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
             var mevcut = db.SALONSAYFA.Find(u.ID);
             if (mevcut != null) mevcut.STATUS = u.STATUS;
             db.SaveChanges();
-            return View("BerberKayitGor",db.SALONSAYFA);
+            return View("BerberKayitGor", db.SALONSAYFA);
         }
 
         MusteriClass mekle = new MusteriClass();
@@ -200,12 +201,12 @@ namespace Berberim.UI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult MusteriGuncelle(MUSTERİ u)
+        public ActionResult MusteriGuncelle(MUSTERI u)
         {
             var mevcut = db.MUSTERİ.Find(u.ID);
             if (mevcut != null) mevcut.STATUS = u.STATUS;
             db.SaveChanges();
-            return View("MusteriKayitGor",db.MUSTERİ);
+            return View("MusteriKayitGor", db.MUSTERİ);
         }
 
         public ActionResult OtomatikMail()
@@ -215,7 +216,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult OtomatikMail(string mesaj,string konu)
+        public ActionResult OtomatikMail(string mesaj, string konu)
         {
             try
             {
@@ -245,6 +246,6 @@ namespace Berberim.UI.Areas.Admin.Controllers
             {
                 return View();
             }
-        }        
+        }
     }
 }

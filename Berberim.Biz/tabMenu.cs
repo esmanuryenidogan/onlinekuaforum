@@ -12,9 +12,9 @@ namespace Berberim.Biz
     {
         public List<SALONSAYFA> salon { get; set; }
         public List<KAMPANYA> kampanya { get; set; }
-        public List<TRENDHAIRS> trendSac { get; set; }
+        public List<TRENDHAIR> trendSac { get; set; }
         public List<YORUM> musteriYorum { get; set; }
-        public List<MUSTERİ> musteri { get; set; }
+        public List<MUSTERI> musteri { get; set; }
         public List<RANDEVU> randevu { get; set; }
     }
 }

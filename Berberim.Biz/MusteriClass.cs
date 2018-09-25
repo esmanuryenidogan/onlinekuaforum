@@ -15,7 +15,7 @@ namespace Berberim.Biz
         {
             _db = new OnlineKuaforumDbContext();
         }
-        public List<MUSTERİ> MusteriKayıtlar()
+        public List<MUSTERI> MusteriKayıtlar()
         {
             return _db.MUSTERİ.ToList();
         }

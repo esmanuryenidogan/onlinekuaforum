@@ -10,10 +10,11 @@ namespace Berberim.Data.Models
     {
         public int ID { get; set; }
         public int STATUS { get; set; }
-        public string SALONADI { get; set; }
+        public string ADSOYAD { get; set; }
         public string EMAIL { get; set; }
+        public string TELEFON { get; set; }
         public DateTime CREATEDATE { get; set; }
-        public string SİFRE { get; set; }
+        public string SIFRE { get; set; }
 
          public int SALONID { get; set; }
 

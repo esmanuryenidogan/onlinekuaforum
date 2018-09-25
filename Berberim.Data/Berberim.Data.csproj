@@ -70,11 +70,11 @@
   <ItemGroup>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\YORUM.cs" />
-    <Compile Include="Models\TRENDHAIRS.cs" />
+    <Compile Include="Models\TRENDHAIR.cs" />
     <Compile Include="Models\SALONSAYFA.cs" />
     <Compile Include="Models\SALONFOTO.cs" />
     <Compile Include="Models\RANDEVU.cs" />
-    <Compile Include="Models\MUSTERİ.cs" />
+    <Compile Include="Models\MUSTERI.cs" />
     <Compile Include="Models\PERSONEL.cs" />
     <Compile Include="Models\MAIL.cs" />
     <Compile Include="Models\KAMPANYA.cs" />

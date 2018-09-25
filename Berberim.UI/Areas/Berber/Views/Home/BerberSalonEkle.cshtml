@@ -38,24 +38,31 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form" style="background-color: white" method="post" action="@Url.Action("BerberGiris", "Home")">
+                <form class="login100-form validate-form" style="background-color: white" method="post" action="@Url.Action("BerberSalonEkle", "Home")">
                     <span class="login100-form-title p-b-43">
                         Oturum Aç
                     </span>
+                    Siz de OnlineKuaförüm ailesine katılmak istiyorsanız lütfen istenen bilgileri girin, sizinle iletişime geçelim :) <br /><br />
+                    <div class="wrap-input100 validate-input" data-validate="FullName is required">
+                        <input class="input100" type="text" name="adsoyad">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Ad Soyad</span>
+                    </div>
                     <div class="wrap-input100 validate-input" data-validate="E-Posta is required">
                         <input class="input100" type="text" name="email">
                         <span class="focus-input100"></span>
-                        <span class="label-input100">E Posta</span>
+                        <span class="label-input100">E-Posta</span>
                     </div>
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="sifre">
+                    <div class="wrap-input100 validate-input" data-validate="Phone is required">
+                        <input class="input100" type="text" name="telefon">
                         <span class="focus-input100"></span>
-                        <span class="label-input100">Şifre</span>
+                        <span class="label-input100">Telefon</span>
                     </div>
                     <div class="flex-sb-m w-full p-t-3 p-b-32">
                         <div class="contact100-form-checkbox">
                         </div>
                     </div>
+                    <span style="font-weight: bold;">@ViewBag.isSucces</span><br /><br />
                     <div class="container-login100-form-btn">
                         <button type="submit" class="login100-form-btn">
                             Kayıt Ol
@@ -73,26 +80,26 @@
                 <div class="login100-more" style="background-image: url('../../../../BerberimAdminLogin/images/shutterstock_296112071-compressor.jpg');">
                 </div>
             </div>
-            </div>
-            </div>
+        </div>
+    </div>
 
-            <!--===============================================================================================-->
-            <script src="~/BerberLogin/vendor/jquery/jquery-3.2.1.min.js"></script>
-            <!--===============================================================================================-->
-            <script src="~/BerberLogin/vendor/animsition/js/animsition.min.js"></script>
-            <!--===============================================================================================-->
-            <script src="~/BerberLogin/vendor/bootstrap/js/popper.js"></script>
-            <script src="~/BerberLogin/vendor/bootstrap/js/bootstrap.min.js"></script>
-            <!--===============================================================================================-->
-            <script src="~/BerberLogin/vendor/select2/select2.min.js"></script>
-            <!--===============================================================================================-->
-            <script src="~/BerberLogin/vendor/daterangepicker/moment.min.js"></script>
-            <script src="~/BerberLogin/vendor/daterangepicker/daterangepicker.js"></script>
-            <!--===============================================================================================-->
-            <script src="~/BerberLogin/vendor/countdowntime/countdowntime.js"></script>
-            <!--===============================================================================================-->
-            <script src="~/BerberLogin/js/main.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/BerberLogin/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/BerberLogin/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/BerberLogin/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/BerberLogin/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/BerberLogin/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/BerberLogin/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/BerberLogin/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/BerberLogin/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/BerberLogin/js/main.js"></script>
 
-        </body>
-    </html>
+</body>
+</html>
 

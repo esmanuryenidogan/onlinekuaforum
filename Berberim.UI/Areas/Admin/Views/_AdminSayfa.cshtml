@@ -60,7 +60,7 @@
                                             <!-- start message -->
                                             <a href="#">
                                                 <div class="pull-left">
-                                                
+
                                                     <img src="~/Resimler/Atakan.jpg" class="img-circle" alt="User Image">
                                                 </div>
                                                 <h4>
@@ -168,7 +168,7 @@
                         </li>
                         <!-- Tasks: style can be found in dropdown.less -->
                         <li class="dropdown tasks-menu">
-                           
+
                             <ul class="dropdown-menu">
                                 <li class="header">You have 9 tasks</li>
                                 <li>
@@ -261,14 +261,13 @@
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
-                                
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="#" class="btn btn-default btn-flat">Raporlar</a>
                                     </div>
                                     <div class="pull-right">
-                                         @Html.ActionLink("Çıkış Yap", "CikisYap", "Home", new { @class = "btn btn-default btn-flat" })
+                                        @Html.ActionLink("Çıkış Yap", "CikisYap", "Home", new { @class = "btn btn-default btn-flat" })
                                     </div>
                                 </li>
                             </ul>
@@ -310,14 +309,14 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     @*<li>
-                <a href="pages/calendar.html">
-                    <i class="fa fa-calendar"></i> <span>Calendar</span>
-                    <span class="pull-right-container">
-                        <small class="label pull-right bg-red">3</small>
-                        <small class="label pull-right bg-blue">17</small>
-                    </span>
-                </a>
-            </li>*@
+                            <a href="pages/calendar.html">
+                                <i class="fa fa-calendar"></i> <span>Calendar</span>
+                                <span class="pull-right-container">
+                                    <small class="label pull-right bg-red">3</small>
+                                    <small class="label pull-right bg-blue">17</small>
+                                </span>
+                            </a>
+                        </li>*@
                     <li>
                         <a href="@Url.Action("BerberKayitGor", "Home")">
                             <i class="fa fa-home"></i>
@@ -337,10 +336,13 @@
                             <i class="fa fa-user-circle"></i>
                             <span>Trend Saçlar</span>
                         </a>
-
                     </li>
-                 
-                  
+                    <li>
+                        <a href="@Url.Action("BerberKayıt", "Home")">
+                            <i class="fa fa-user-success"></i>
+                            <span>Salon Onayları</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="@Url.Action("AdminEkle", "Home")">
                             <i class="fa fa-user-plus"></i>
@@ -363,15 +365,15 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             @*<section class="content-header">
-                <h1>
-                    Dashboard
-                    <small>Control panel</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
-                </ol>
-            </section>*@
+                    <h1>
+                        Dashboard
+                        <small>Control panel</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </section>*@
             <!-- Main content -->
             <section class="content">
                 @RenderBody()
@@ -379,7 +381,6 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-       
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Create the tabs -->
@@ -541,7 +542,7 @@
                         </div>
                         <!-- /.form-group -->
                     </form>
-                  
+
                 </div>
                 <!-- /.tab-pane -->
             </div>

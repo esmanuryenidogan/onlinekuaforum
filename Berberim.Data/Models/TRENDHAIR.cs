@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Berberim.Data.Models
 {
-    public class TRENDHAIRS
+    public class TRENDHAIR
     {
         public int ID { get; set; }
         public int STATUS { get; set; }
