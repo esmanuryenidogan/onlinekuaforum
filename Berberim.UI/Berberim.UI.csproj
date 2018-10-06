@@ -12102,7 +12102,9 @@
     <Content Include="MusteriLogin\vendor\tilt\tilt.jquery.min.js" />
     <Content Include="MusteriYorum.css" />
     <Content Include="MusteriYorumGosterme.css" />
+    <Content Include="Pages\About.html" />
     <Content Include="RandevuForm\Randevuformu.css" />
+    <Content Include="Resimler\hakkimizda.jpg" />
     <Content Include="Resimler\Atakan.jpg" />
     <Content Include="Resimler\B.png" />
     <Content Include="Resimler\banner.png" />
@@ -14252,6 +14254,10 @@
     <Content Include="Views\Home\SalonSayfa.cshtml" />
     <Content Include="Views\Home\İletisimSayfasi.cshtml" />
     <Content Include="Views\Home\RandevuAl.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -14265,6 +14271,9 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Berber\BerberAreaRegistration.cs" />
     <Compile Include="Areas\Berber\Controllers\HomeController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartialController.cs" />
     <Compile Include="Global.asax.cs">
