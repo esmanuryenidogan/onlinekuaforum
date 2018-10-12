@@ -34,10 +34,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
             {
                 if (sonuc.STATUS == Constants.RecordStatu.Active)
                 {
-                    Session["berberkuladi"] = db.SALONSAYFA.FirstOrDefault(a => a.SALONID==sonuc.ID);
+                    Session["berberkuladi"] = sonuc;
                     return View("Index");
                 }
-                    ViewBag.mesaj = "Kullanıcınız aktif durumda olmadığından giriş yapamamaktasınız, kullanıcınızı aktif hale getirmek için bizimle iletişime geçebilirsiniz.";
+                ViewBag.mesaj = "Kullanıcınız aktif durumda olmadığından giriş yapamamaktasınız, kullanıcınızı aktif hale getirmek için bizimle iletişime geçebilirsiniz.";
             }
             else
             {
@@ -54,7 +54,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
         public ActionResult BerberSalonEkle()
         {
-            return View();
+            return View("BerberSalonEkle");
         }
 
         [HttpPost]
@@ -73,7 +73,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
                     STATUS = Constants.RecordStatu.Passive
                 };
                 db.SALON.Add(berberekle);
-                var isSave=db.SaveChanges();
+                var isSave = db.SaveChanges();
                 if (isSave > 0)
                     ViewBag.isSucces = "Kayıt işlemi başarılı. En kısa sürede sizinle iletişime geçeceğiz.";
                 return View();
@@ -179,9 +179,13 @@ namespace Berberim.UI.Areas.Berber.Controllers
                     return View(salonfoto);
                 }
 
-
+                return View("SalonFotograflarGor");
             }
-            return View("BerberGiris");
+            else
+            {
+                return View();
+            }
+
         }
 
         public ActionResult SalonFotograflarSil(int ID)
