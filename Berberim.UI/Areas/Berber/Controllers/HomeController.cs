@@ -58,42 +58,48 @@ namespace Berberim.UI.Areas.Berber.Controllers
         }
 
         [HttpPost]
-        public ActionResult BerberSalonEkle(string adsoyad, string email, string telefon)
+        public ActionResult BerberSalonEkle(string salonad, string koltuk, string salonmail, string salonadres, string salontel, string vitrinyazi, string foto, string personeladsoyad, string personelfoto, string salonhakkinda, string il, string ilce)
         {
-            var salon = (from i in db.SALON where i.EMAIL.Equals(email) select i).FirstOrDefault();
+            var gelen = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
+
+            //if (salon != null)
+            //{
+            //    ViewBag.mesaj = "Size Tanımlı Bir Salon Mevcut !";
+            //    return View();
+            //}
 
             if (salon == null)
             {
-                var berberekle = new SALON()
+                var berberekle = new SALONSAYFA
                 {
-                    ADSOYAD = adsoyad,
-                    TELEFON = telefon,
-                    EMAIL = email,
-                    CREATEDATE = DateTime.Now,
-                    STATUS = Constants.RecordStatu.Passive
+                    AD = salonad,
+                    KOLTUKSAY = Convert.ToInt32(koltuk),
+                    ADRES = salonadres,
+                    TEL = salontel,
+                    HAKKINDA = salonhakkinda,
+                    EMAIL = salonmail,
+                    VITRINYAZI = vitrinyazi,
+                    SALONID = gelen.ID,
+                    IL = il,
+                    ILCE = ilce,
+                    STATUS = Constants.RecordStatu.Active
                 };
-                db.SALON.Add(berberekle);
-                var isSave = db.SaveChanges();
-                if (isSave > 0)
-                    ViewBag.isSucces = "Kayıt işlemi başarılı. En kısa sürede sizinle iletişime geçeceğiz.";
+
+                string dosyaAdi = Guid.NewGuid().ToString().Replace("-", "");
+                var httpPostedFileBase = Request.Files[0];
+                if (httpPostedFileBase != null)
+                {
+                    string uzanti = System.IO.Path.GetExtension(httpPostedFileBase.FileName);
+                    string tamYolYeri = "~/Resimler/SalonVitrinFoto/" + dosyaAdi + uzanti;
+                    httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
+                    berberekle.VITRINFOTO = dosyaAdi + uzanti;
+                }
+                db.SALONSAYFA.Add(berberekle);
+                db.SaveChanges();
+
                 return View();
-                #region AddVitrinfoto 
-
-                //string dosyaAdi = Guid.NewGuid().ToString().Replace("-", "");
-                //var httpPostedFileBase = Request.Files[0];
-                //if (httpPostedFileBase != null)
-                //{
-                //    string uzanti = System.IO.Path.GetExtension(httpPostedFileBase.FileName);
-                //    string tamYolYeri = "~/Resimler/SalonVitrinFoto/" + dosyaAdi + uzanti;
-                //    httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
-                //    berberekle.VITRINFOTO = dosyaAdi + uzanti;
-                //}
-                //db.SALONSAYFA.Add(berberekle);
-                //db.SaveChanges();
-
-                #endregion
             }
-            ViewBag.isSucces = "*Girdiğiniz e-mail sistemimizde daha önceden kayıtlı.";
             return View();
         }
 
