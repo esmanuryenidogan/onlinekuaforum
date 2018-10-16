@@ -12198,7 +12198,6 @@
     <Content Include="Areas\Berber\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Berber\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Berber\Views\Home\BerberGiris.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Guncelle.cshtml" />
     <Content Include="Areas\Admin\Views\Home\MusteriGuncelle.cshtml" />
     <Content Include="Areas\Admin\Views\Home\OtomatikMail.cshtml" />
     <Content Include="Areas\Berber\Views\Home\Rapor.cshtml" />
