@@ -15,11 +15,30 @@ namespace Berberim.UI.Areas.Admin.Controllers
     {
         private readonly OnlineKuaforumDbContext _db = new OnlineKuaforumDbContext();
         private SalonClass _ekle = new SalonClass();
+
         // GET: Admin/Home
+        public ActionResult AdminGiris()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AdminGiris(string email, string sifre)
+        {
+            var sonuc = (from i in _db.ADMIN where i.STATUS == Constants.RecordStatu.Active && i.EMAIL.Equals(email) && i.SİFRE.Equals(sifre)select i).FirstOrDefault();
+            if (sonuc != null)
+            {
+                Session["loginadmin"] = sonuc;
+                return View("Index");
+            }
+            ViewBag.girismesaj = "Kullanıcı adı veya şifre hatalı.";
+            return View();
+        }
+
         public ActionResult Index()
         {
             var gelen = (ADMIN)Session["loginadmin"];
-            return View(gelen != null ? "Index" : "AdminGiris");
+            if (gelen != null) return View(gelen);
+            return View("AdminGiris");
         }
 
         public ActionResult BerberKayitGor()
@@ -77,27 +96,6 @@ namespace Berberim.UI.Areas.Admin.Controllers
                 return View("Index");
             }
             return View("AdminGiris");
-        }
-
-        public ActionResult AdminGiris()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AdminGiris(string email, string sifre)
-        {
-            var sonuc = (from i in _db.ADMIN where i.STATUS == Constants.RecordStatu.Active && i.EMAIL == email && i.SİFRE == sifre select i).FirstOrDefault();
-
-            if (sonuc != null)
-            {
-                Session["loginadmin"] = sonuc;
-                Session["adminkuladi"] = sonuc.EMAIL;
-
-                return View("Index");
-            }
-            ViewBag.girismesaj = "Kullanıcı Adı veya Şifre Hatalı !";
-            return View();
         }
 
         public ActionResult BerberKayıt()
