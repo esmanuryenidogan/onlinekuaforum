@@ -46,12 +46,17 @@
                 <ul class="nav navbar-nav">
 
                     <h3 class="menu-title">@Session["salonAd"]</h3><!-- /.menu-title -->
-                    <li>
-                        <a href="@Url.Action("BerberSalonEkle", "Home")">
-                            <i class="menu-icon fa fa-home"></i>
-                            Salon Ekle
-                        </a>
-                    </li>
+
+                    @if (ViewBag.salonControl == null)
+                    {
+                        <li>
+                            <a href="@Url.Action("BerberSalonEkle", "Home")">
+                                <i class="menu-icon fa fa-home"></i>
+                                Salon Ekle
+                            </a>
+                        </li>
+                    }
+
                     <li>
                         <a href="@Url.Action("BerberDuzenle", "Home")">
                             <i class="menu-icon fa fa-edit"></i>
@@ -123,9 +128,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="~/Resimler/Atakan.jpg" style="float: left" alt="User Avatar">
                         </a>
-                     
+
                         <a href="@Url.Action("BerberCikisYap", "Home")">
-                            <i class="fa fa-sign-out" title="Çıkış Yap" style="font-size: 25px;margin-top: 7px;float: right"></i>                           
+                            <i class="fa fa-sign-out" title="Çıkış Yap" style="font-size: 25px;margin-top: 7px;float: right"></i>
                         </a>
                     </div>
 

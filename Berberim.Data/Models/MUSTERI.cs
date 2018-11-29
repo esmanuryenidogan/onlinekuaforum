@@ -14,8 +14,7 @@ namespace Berberim.Data.Models
         public string SOYAD { get; set; }
         public string ADRES { get; set; }
         public string EMAIL { get; set; }
-        public string TEL { get; set; }
-        public DateTime DOGUMTARIHI { get; set; }
+        public string TEL { get; set; }      
         public string SIFRE { get; set; }
         public string FOTO { get; set; }
 

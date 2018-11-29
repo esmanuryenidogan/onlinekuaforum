@@ -16,6 +16,11 @@ namespace Berberim.UI.Areas.Berber.Controllers
         // GET: Berber/Home
         public ActionResult Index()
         {
+            //Method yapılacak.
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
             var gelen = Session["berberkuladi"];
             return View(gelen != null ? "Index" : "BerberGiris");
         }
@@ -30,11 +35,16 @@ namespace Berberim.UI.Areas.Berber.Controllers
         {
             var sonuc = (from i in db.SALON where i.EMAIL == email && i.SIFRE == sifre select i).FirstOrDefault();
 
+
             if (sonuc != null)
-            {
+            {             
+
                 if (sonuc.STATUS == Constants.RecordStatu.Active)
                 {
                     Session["berberkuladi"] = sonuc;
+                    var gelenSalon = (SALON)Session["berberkuladi"];
+                    var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+                    ViewBag.salonControl = salon;
                     return View("Index");
                 }
                 ViewBag.mesaj = "Kullanıcınız aktif durumda olmadığından giriş yapamamaktasınız, kullanıcınızı aktif hale getirmek için bizimle iletişime geçebilirsiniz.";
@@ -54,6 +64,8 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
         public ActionResult BerberSalonEkle()
         {
+            var gelen = (SALON)Session["berberkuladi"];
+            ViewBag.email = gelen.EMAIL;
             return View("BerberSalonEkle");
         }
 
@@ -78,7 +90,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
                     ADRES = salonadres,
                     TEL = salontel,
                     HAKKINDA = salonhakkinda,
-                    EMAIL = salonmail,
+                    EMAIL = gelen.EMAIL,
                     VITRINYAZI = vitrinyazi,
                     SALONID = gelen.ID,
                     IL = il,
@@ -387,7 +399,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
         [HttpPost]
         public ActionResult BerberİslemEkle(string islemad, int islemfiyat)
         {
-            var gelen = (SALONSAYFA)Session["berberkuladi"];
+            var gelen = (SALON)Session["berberkuladi"];
 
             var islemekle = new ISLEM();
             if (gelen != null)
@@ -445,7 +457,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
         [HttpPost]
         public ActionResult KampanyaEkle(string baslik, string icerik, int fiyat, DateTime tarih)
         {
-            var gelen = (SALONSAYFA)Session["berberkuladi"];
+            var gelen = (SALON)Session["berberkuladi"];
 
             KAMPANYA kekle = new KAMPANYA();
             if (gelen != null)
@@ -455,7 +467,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 kekle.ICERIK = icerik;
                 kekle.FIYAT = fiyat;
                 kekle.SALONID = gelen.ID;
-                kekle.SALONAD = gelen.AD;
+                kekle.SALONAD = gelen.ADSOYAD;
                 kekle.SONGUN = tarih;
                 db.KAMPANYA.Add(kekle);
                 db.SaveChanges();
@@ -478,5 +490,5 @@ namespace Berberim.UI.Areas.Berber.Controllers
             }
             return View("BerberGiris");
         }
-    }
+    }    
 }

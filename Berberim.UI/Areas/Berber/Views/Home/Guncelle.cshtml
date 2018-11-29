@@ -51,7 +51,7 @@
                         <label class=" form-control-label">Salon Maili</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                            @Html.TextBoxFor(a => a.EMAIL, new {@class = "form-control", @maxlength = "50", type = "email"})
+                            @Html.TextBoxFor(a => a.EMAIL, new { @readonly = "readonly", @class = "form-control", @maxlength = "50", type = "email"})
                         </div>
                         <small class="form-text text-muted"></small>
                     </div>

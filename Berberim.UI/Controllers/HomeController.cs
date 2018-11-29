@@ -56,8 +56,7 @@ namespace Berberim.UI.Controllers
                 EMAIL = m.EMAIL,
                 ADRES = m.ADRES,
                 SIFRE = m.SIFRE,
-                STATUS = Constants.RecordStatu.Active,
-                DOGUMTARIHI = m.DOGUMTARIHI,
+                STATUS = Constants.RecordStatu.Active,            
                 TEL = m.TEL,
                 FOTO = m.FOTO,
             };
