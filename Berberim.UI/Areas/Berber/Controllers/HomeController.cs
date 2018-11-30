@@ -37,7 +37,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
 
             if (sonuc != null)
-            {             
+            {
 
                 if (sonuc.STATUS == Constants.RecordStatu.Active)
                 {
@@ -490,5 +490,21 @@ namespace Berberim.UI.Areas.Berber.Controllers
             }
             return View("BerberGiris");
         }
-    }    
+
+        public ActionResult BerberKayıt()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult BerberKayıt(string email, string sifre)
+        {
+            var sonuc = (from i in db.SALON where i.EMAIL == email && i.SIFRE == sifre select i).FirstOrDefault();
+
+
+            return View();
+
+
+        }
+    }
 }

@@ -38,9 +38,12 @@
             <div class="wrap-login100" style="height: 615px;">
                 @using (Html.BeginForm("MusteriKayit", "Home", FormMethod.Post, new { style = "padding: 120px 65px 40px 65px !important;", @class = "login100-form validate-form" }))
                 {
-                    <span class="login100-form-title p-b-34">
+                <span class="login100-form-title p-b-34">
+                    <a href="~/Home/BerberKayıt" class="txt2">
                         Kayıt Ol
-                    </span> <br/>
+                    </a>
+                        
+                </span> <br/>
                     <div class="container-login100-form-btn" style="color: red">
                         @ViewBag.uyarı
                     </div>
