@@ -9711,6 +9711,7 @@
     <Content Include="BerberimAdminPanel\vendors\mjolnic-bootstrap-colorpicker\src\js\colorpicker-component.js" />
     <Content Include="BerberimAdminPanel\vendors\mjolnic-bootstrap-colorpicker\src\js\colorpicker-defaults.js" />
     <Content Include="BerberimAdminPanel\vendors\mjolnic-bootstrap-colorpicker\src\js\colorpicker-plugin-wrapper.js" />
+    <Content Include="BerberimAdminPanel\vendors\mocha\media\logo.png" />
     <Content Include="BerberimAdminPanel\vendors\mocha\media\logo.svg" />
     <Content Include="BerberimAdminPanel\vendors\mocha\mocha.css" />
     <Content Include="BerberimAdminPanel\vendors\mocha\mocha.js" />
