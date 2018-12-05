@@ -39,9 +39,9 @@
                         <th>
                             @Html.DisplayNameFor(model => model.TEL)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DOGUMTARIHI)
-                        </th>
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.)
+                        </th>*@
                         <th>
                             Durum
                         </th>
@@ -67,10 +67,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.TEL)
                             </td>
-                            <td>
+                            @*<td>
                                 @Html.DisplayFor(modelItem => item.DOGUMTARIHI)
-                            </td>
-
+                            </td>*@
 
                             @*@if (item.IsActive == true)
                             {
@@ -80,7 +79,6 @@
                             {
                                 <td><span class="label label-danger">Pasif</span></td>
                             }*@
-
 
                             <td>@Html.ActionLink("Durum", "MusteriGuncelle", new { id = item.ID })</td>
                         </tr>
