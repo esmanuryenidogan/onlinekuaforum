@@ -27,7 +27,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
             var sonuc = (from i in _db.ADMIN where i.STATUS == Constants.RecordStatu.Active && i.EMAIL.Equals(email) && i.SİFRE.Equals(sifre)select i).FirstOrDefault();
             if (sonuc != null)
             {
-                Session["loginadmin"] = sonuc;
+                Session.Add("loginadmin",sonuc) ;
                 return View("Index");
             }
             ViewBag.girismesaj = "Kullanıcı adı veya şifre hatalı.";
