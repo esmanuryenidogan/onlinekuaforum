@@ -55,7 +55,7 @@ namespace Berberim.UI.Controllers
                 SOYAD = m.SOYAD,
                 EMAIL = m.EMAIL,
                 ADRES = m.ADRES,
-                SIFRE = m.SIFRE,
+                SIFRE = m.SIFRE,              
                 STATUS = Constants.RecordStatu.Active,            
                 TEL = m.TEL,
                 FOTO = m.FOTO,
