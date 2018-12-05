@@ -66,6 +66,7 @@
     <Compile Include="MusteriClass.cs" />
     <Compile Include="PersonalClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalonControl.cs" />
     <Compile Include="tabMenu.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -118,6 +118,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult BerberDuzenle()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salonControl;
+
             if (gelen != null)
             {
                 var salon = (from i in db.SALONSAYFA where i.EMAIL == gelen.EMAIL select i).ToList();
@@ -136,6 +140,9 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult Guncelle(int ID)
         {
             var gelen = (SALON)Session["berberkuladi"];
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salonControl;
 
             if (gelen != null)
             {
@@ -187,6 +194,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult SalonFotograflarGor()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salonControl;
+
             if (gelen != null)
             {
                 var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
@@ -259,6 +270,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult KesilenSaclarGor()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salonControl;
+
 
             if (gelen != null)
             {
@@ -322,6 +337,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult PersonelDuzenle()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salonControl;
+
 
             if (gelen != null)
             {
@@ -375,6 +394,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult Berberİslem()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salonControl;
+
 
             if (gelen != null)
             {
@@ -427,6 +450,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult Kampanyalar()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salonControl;
+
             if (gelen != null)
             {
                 var kampanyalar = (from i in db.KAMPANYA where i.SALONID == gelen.ID select i).ToList();
@@ -481,6 +508,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult BerberRandevular()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salonControl;
+
 
             if (gelen != null)
             {
@@ -501,9 +532,23 @@ namespace Berberim.UI.Areas.Berber.Controllers
         {
             var sonuc = (from i in db.SALON where i.EMAIL == email && i.SIFRE == sifre select i).FirstOrDefault();
 
+            SALON berberkayit = new SALON();
 
-            return View();
+            if (sonuc == null)
+            {
 
+                berberkayit.EMAIL = email;
+                berberkayit.SIFRE = sifre;
+                berberkayit.CREATEDATE = DateTime.UtcNow;
+                berberkayit.STATUS = 2;
+
+                db.SALON.Add(berberkayit);
+                db.SaveChanges();
+
+                return View("BerberGiris");
+            }
+            else
+                return View("BerberKayıt");
 
         }
     }

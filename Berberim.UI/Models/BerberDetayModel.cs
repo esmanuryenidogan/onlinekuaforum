@@ -9,7 +9,7 @@ namespace Berberim.UI.Models
 {
     public class BerberDetayModel
     {
-        public SALON Berber { get; set; }
+        public SALONSAYFA Berber { get; set; }
         public List<PERSONEL> Personeller { get; set; }
         public List<SALONFOTO> SalonFotolar { get; set; }
         public List<BSACMODEL> KesilenSacModeller { get; set; }
@@ -18,6 +18,6 @@ namespace Berberim.UI.Models
         public List<string> RandevuSaat { get; set; }
         public List<string> RandevuTarih { get; set; }
         public List<KAMPANYA> Kampanya { get; set; }
-
+        
     }
 }
