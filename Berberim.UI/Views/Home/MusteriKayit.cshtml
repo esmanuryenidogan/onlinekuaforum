@@ -38,22 +38,14 @@
             <div class="wrap-login100" style="height: 615px;">
                 @using (Html.BeginForm("MusteriKayit", "Home", FormMethod.Post, new { style = "padding: 120px 65px 40px 65px !important;", @class = "login100-form validate-form" }))
                 {
-                <span class="login100-form-title p-b-34">
-                    <a href="~/Home/BerberKayıt" class="txt2">
-                        Kayıt Ol
-                    </a>
-                        
-                </span> <br/>
+                    <span class="login100-form-title p-b-34">
+                        <a href="~/Home/BerberKayıt" class="txt2">
+                            Kayıt Ol
+                        </a>
+
+                    </span> <br />
                     <div class="container-login100-form-btn" style="color: red">
                         @ViewBag.uyarı
-                    </div>
-                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-                        <input id="first-name" class="input100" type="text" name="email" placeholder="E-Posta">
-                        <span class="focus-input100"></span>
-                    </div>
-                    <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type">
-                        <input class="input100" type="text" name="sifre" placeholder="Şifre">
-                        <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type">
                         <input id="first-name" class="input100" type="text" name="ad" placeholder="Ad">
@@ -64,16 +56,29 @@
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+                        <input id="first-name" class="input100" type="text" name="email" placeholder="E-Posta">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type">
+                        <input class="input100" type="text" name="sifre" placeholder="Şifre">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
                         <input id="first-name" class="input100" type="text" name="tel" placeholder="Telefon">
                         <span class="focus-input100"></span>
                     </div>
-                
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+                        <input id="first-name" class="input100" type="text" name="adres" placeholder="Adres">
+                        <span class="focus-input100"></span>
+                    </div>
+
                     <div class="container-login100-form-btn">
-                        <input type="submit" value="Kayıt Ol" class="login100-form-btn"/>
+                        <input type="submit" value="Kayıt Ol" class="login100-form-btn" />
                     </div>
                     <div class="w-full text-center p-t-27 p-b-239">
                         <a href="~/Home/MusteriGiris" class="txt2">
-                          Giriş Yap
+                            Giriş Yap
                         </a>
                     </div>
                 }

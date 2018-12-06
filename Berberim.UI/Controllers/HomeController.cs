@@ -55,7 +55,7 @@ namespace Berberim.UI.Controllers
                 SOYAD = m.SOYAD,
                 EMAIL = m.EMAIL,
                 ADRES = m.ADRES,
-                SIFRE = m.SIFRE,
+                SIFRE = m.SIFRE,              
                 STATUS = Constants.RecordStatu.Active,            
                 TEL = m.TEL,
                 FOTO = m.FOTO,
@@ -149,7 +149,7 @@ namespace Berberim.UI.Controllers
         public ActionResult SalonSayfa(int id)
         {
             var gelen = Session["musteri"];
-            var sonuc = (from i in _db.SALON where i.ID == id select i).SingleOrDefault();
+            var sonuc = (from i in _db.SALONSAYFA where i.ID == id select i).SingleOrDefault();
             var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.ID select i).ToList();
             var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.ID select i).ToList();
             var musteriyorumlar = (from i in _db.YORUM where i.SALONID == id select i).ToList();
@@ -218,12 +218,12 @@ namespace Berberim.UI.Controllers
                 return View("MusteriGiris");
             }
 
-            var sonuc = (from i in _db.SALON where i.ID == id select i).SingleOrDefault();
+            var sonuc = (from i in _db.SALONSAYFA where i.SALONID == id select i).SingleOrDefault();
             var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.ID select i).ToList();
             var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.ID select i).ToList();
-            var musteriyorumlar = (from i in _db.YORUM where i.SALONID == id select i).ToList();
-            var salonfotolar = (from i in _db.SALONFOTO where i.SALONID == id select i).ToList();
-            var kesilensacmodeller = (from i in _db.BSACMODEL where i.SALONID == id select i).ToList();
+            var musteriyorumlar = (from i in _db.YORUM where i.SALONID == sonuc.ID select i).ToList();
+            var salonfotolar = (from i in _db.SALONFOTO where i.SALONID == sonuc.ID select i).ToList();
+            var kesilensacmodeller = (from i in _db.BSACMODEL where i.SALONID == sonuc.ID select i).ToList();
             var kampanya = (from i in _db.KAMPANYA select i).ToList();
             var yorumsay = (from i in _db.YORUM where i.SALONID == sonuc.ID select i.ID).Count();
             ViewBag.yorumsay = yorumsay;
@@ -310,7 +310,7 @@ namespace Berberim.UI.Controllers
             {
                 return View("MusteriGiris");
             }
-            var sonuc = (from i in _db.SALON where i.ID == id select i).SingleOrDefault();
+            var sonuc = (from i in _db.SALONSAYFA where i.ID == id select i).SingleOrDefault();
             var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.ID select i).ToList();
             var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.ID select i).ToList();
 

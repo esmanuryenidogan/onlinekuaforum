@@ -116,8 +116,12 @@
                         <div class="h_gallery_item">
                             <img style="width: 263px; height: 309px;" src="~/Resimler/SalonVitrinFoto/@item.VITRINFOTO" alt="">
                             <div class="hover">
-                                <a href="#"><h4>@item.AD</h4></a>
-                                <a class="light" href="~/Common/Anasayfa/img/gallery/gallery-1.jpg"><i class="fa fa-arrow-circle-right"></i></a>
+
+                                <a href="@Url.Action("SalonSayfa", "Home",  new { @id = item.ID })">
+                                    <h4>@item.AD</h4>
+                                    <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
+                                </a>
+
                             </div>
                         </div>
 
@@ -134,9 +138,10 @@
                         <div class="h_gallery_item">
                             <img style="width: 263px; height: 309px;" src="~/SalonFotolar/kampanya.png" alt="">
                             <div class="hover">
-                                <a href="@Url.Action("KampanyaSatınAl", "Home", new { @id = item.SALONID })"><h4>@item.BASLIK<br />@item.FIYAT TL</h4></a>
-                                <a href="@Url.Action("KampanyaSatınAl", "Home")" class="light">
-                                    <i class="fa fa-arrow-circle-right"></i>
+                                <a href="@Url.Action("KampanyaSatınAl", "Home", new { @id = item.SALONID })">
+                                    <h4>@item.BASLIK<br />@item.FIYAT TL</h4>
+
+                                    <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
                                 </a>
                             </div>
                         </div>
@@ -384,12 +389,12 @@
     </script>
 
     <script>
-                                                                                                                                //function myClick(deger) {
-                                                                                        //    if (deger != null) {
-                                                                                        //        var nesne = document.getElementsByClassName(deger);
-                                                                                        //        nesne.style.display = true;
-                                                                                        //    }
-                                                                                        //}
+                                                                                                                                                        //function myClick(deger) {
+                                                                                                                //    if (deger != null) {
+                                                                                                                //        var nesne = document.getElementsByClassName(deger);
+                                                                                                                //        nesne.style.display = true;
+                                                                                                                //    }
+                                                                                                                //}
     </script>
 
 </body>
