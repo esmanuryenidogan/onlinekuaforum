@@ -14,7 +14,6 @@ namespace Berberim.UI.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         private readonly OnlineKuaforumDbContext _db = new OnlineKuaforumDbContext();
-        private SalonClass _ekle = new SalonClass();
 
         // GET: Admin/Home
         public ActionResult AdminGiris()
@@ -28,6 +27,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
             if (sonuc != null)
             {
                 Session.Add("loginadmin",sonuc) ;
+                Session.Add("adminadsoyad",sonuc.AD + " " + sonuc.SOYAD) ;
                 return View("Index");
             }
             ViewBag.girismesaj = "Kullanıcı adı veya şifre hatalı.";
@@ -98,38 +98,42 @@ namespace Berberim.UI.Areas.Admin.Controllers
             return View("AdminGiris");
         }
 
-        public ActionResult BerberKayıt()
-        {
-            var salon = _db.SALON.Where(i => i.STATUS == Constants.RecordStatu.Passive).ToList();
-            return View(salon);
-        }
+        #region BerberKayıt
 
-        [HttpPost]
-        public ActionResult BerberKayıt(int id)
-        {
-            var updSalon = _db.SALON.FirstOrDefault(a => a.ID == id);
-            if (updSalon != null)
-            {
-                updSalon.STATUS = Constants.RecordStatu.Active;
-                updSalon.SIFRE = CreatePassword(6);
-            }
+        //public ActionResult BerberKayıt()
+        //{
+        //    var salon = _db.SALON.Where(i => i.STATUS == Constants.RecordStatu.Passive).ToList();
+        //    return View(salon);
+        //}
 
-            _db.SaveChanges();
-            return RedirectToAction("BerberKayıt");
-        }
+        //[HttpPost]
+        //public ActionResult BerberKayıt(int id)
+        //{
+        //    var updSalon = _db.SALON.FirstOrDefault(a => a.ID == id);
+        //    if (updSalon != null)
+        //    {
+        //        updSalon.STATUS = Constants.RecordStatu.Active;
+        //        updSalon.SIFRE = CreatePassword(6);
+        //    }
 
-        public string CreatePassword(int size)
-        {
-            char[] cr = "0123456789ABCDEFGHIJKLMNOPQRSTUCWXYZ".ToCharArray();
-            string result = string.Empty;
-            Random r = new Random();
-            for (int i = 0; i < size; i++)
-            {
-                result += cr[r.Next(0, cr.Length - 1)].ToString();
-            }
+        //    _db.SaveChanges();
+        //    return RedirectToAction("BerberKayıt");
+        //}
 
-            return result;
-        }
+        //public string CreatePassword(int size)
+        //{
+        //    char[] cr = "0123456789ABCDEFGHIJKLMNOPQRSTUCWXYZ".ToCharArray();
+        //    string result = string.Empty;
+        //    Random r = new Random();
+        //    for (int i = 0; i < size; i++)
+        //    {
+        //        result += cr[r.Next(0, cr.Length - 1)].ToString();
+        //    }
+
+        //    return result;
+        //}
+
+        #endregion
 
         public ActionResult CikisYap()
         {
@@ -151,8 +155,7 @@ namespace Berberim.UI.Areas.Admin.Controllers
 
         public ActionResult TrendSacSil(int id)
         {
-            var trendsacsil = new TRENDHAIR();
-            _db.TRENDHAIRS.Remove(_db.TRENDHAIRS.Find(id));
+            _db.TRENDHAIRS.Remove(_db.TRENDHAIRS.FirstOrDefault(a=>a.ID==id) ?? throw new InvalidOperationException());
             _db.SaveChanges();
             return View("TrendSacGor", _db.TRENDHAIRS);
         }
@@ -189,7 +192,6 @@ namespace Berberim.UI.Areas.Admin.Controllers
             return View("Index");
         }
 
-        private MusteriClass mekle = new MusteriClass();
         public ActionResult MusteriKayitGor()
         {
             var gelen = (ADMIN)Session["loginadmin"];
