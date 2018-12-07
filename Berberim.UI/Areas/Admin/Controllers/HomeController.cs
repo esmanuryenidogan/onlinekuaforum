@@ -98,6 +98,11 @@ namespace Berberim.UI.Areas.Admin.Controllers
             return View("AdminGiris");
         }
 
+        public ActionResult Blog()
+        {
+            return View();
+        }
+
         #region BerberKayıt
 
         //public ActionResult BerberKayıt()

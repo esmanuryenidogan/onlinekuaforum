@@ -25,5 +25,12 @@ namespace Berberim.UI.Controllers
             };
             return View(data);
         }
+
+        public ActionResult CıkısYap()
+        {
+            Session["musteri"] = null;
+            return View("Index");
+        }
+
     }
 }
