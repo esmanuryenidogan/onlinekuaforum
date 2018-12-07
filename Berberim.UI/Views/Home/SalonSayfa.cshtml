@@ -254,6 +254,7 @@
                             <div class="comment-list">
                                 <div class="single-comment justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
+                                       
                                         <div class="thumb">
                                             <img src="~/BerberPanel/images/admin.jpg" alt="" style="width:60px;height:60px;">
                                         </div>
@@ -273,14 +274,13 @@
                     </div>
                     <div class="comment-form">
                         <h4>Yorumunuzu Bizimle Paylaşın</h4>
-                        @foreach (var item in Model.SalonFotolar)
+                        @using (Html.BeginForm("SalonSayfa", "Home", FormMethod.Post))
                         {
                             <div class="form-group">
                                 <textarea class="form-control mb-10" rows="5" name="yorum" placeholder="Mesajınız" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mesajınız'" required=""></textarea>
                             </div>
-                            <a href="@Url.Action("YorumKaydet", "Home",  new { @id = item.ID })">Yorum
-                            </a>
-
+                            
+                            <input type="submit" name="yorumyap" value="Yorum Yap" class="genric-btn success" />
                         }
 
                     </div>

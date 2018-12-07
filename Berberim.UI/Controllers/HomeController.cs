@@ -56,6 +56,7 @@ namespace Berberim.UI.Controllers
                 EMAIL = m.EMAIL,
                 ADRES = m.ADRES,
                 SIFRE = m.SIFRE,
+                CİNSİYET =m.CİNSİYET,
                 STATUS = Constants.RecordStatu.Active,
                 TEL = m.TEL,
                 FOTO = m.FOTO,
@@ -170,8 +171,11 @@ namespace Berberim.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult SalonSayfa(string text, int id)
+        public ActionResult SalonSayfa(string yorum, int id)
         {
+            if (Session["musteri"] == null)
+                return View("MusteriGiris");
+
             var gelen = Session["musteri"].ToString();
 
             var musteriId = (from i in _db.MUSTERİ where i.EMAIL == gelen select i.ID).FirstOrDefault();
@@ -182,19 +186,21 @@ namespace Berberim.UI.Controllers
             {
                 var myorum = new YORUM()
                 {
-                    MYORUM = text,
+                    MYORUM = yorum,
                     MUSTERIID = musteriId,
-                    SALONID = berberbilgi.ID,
+                    SALONID = id,
                     MUSTERIAD = musteribilgi?.AD,
                     MUSTERISOYAD = musteribilgi?.SOYAD,
-                    STATUS = Constants.RecordStatu.Active
+                    STATUS = Constants.RecordStatu.Active,
+                    CİNSİYET = musteribilgi.CİNSİYET
                 };
                 _db.YORUM.Add(myorum);
                 _db.SaveChanges();
 
-                return View("Index");
             }
-            return View("MusteriGiris");
+            var model = SalonSayfa(id);
+
+            return View("SalonSayfa");
         }
 
         public ActionResult TrendSacVitrin()
@@ -405,19 +411,6 @@ namespace Berberim.UI.Controllers
         public ActionResult Contact()
         {
             return View();
-        }
-    
-        public ActionResult YorumKaydet(int id,string yorum)
-        {
-            YORUM yorumYap = new YORUM();
-            yorumYap.MYORUM = yorum;
-            yorumYap.STATUS = 2;
-           
-
-            _db.YORUM.Add(yorumYap);
-            _db.SaveChanges();
-
-            return View("Index");
         }
 
     }

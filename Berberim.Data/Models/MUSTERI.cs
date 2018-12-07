@@ -17,6 +17,7 @@ namespace Berberim.Data.Models
         public string TEL { get; set; }      
         public string SIFRE { get; set; }
         public string FOTO { get; set; }
+        public string CİNSİYET { get; set; }
 
         public int MUSTERIID { get; set; }
         public RANDEVU RANDEVU { get; set; }

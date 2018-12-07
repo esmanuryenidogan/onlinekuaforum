@@ -44,9 +44,7 @@
                         </a>
 
                     </span> <br />
-                    <div class="container-login100-form-btn" style="color: red">
-                        @ViewBag.uyarı
-                    </div>
+
                     <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type">
                         <input id="first-name" class="input100" type="text" name="ad" placeholder="Ad">
                         <span class="focus-input100"></span>
@@ -60,7 +58,7 @@
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type">
-                        <input class="input100" type="text" name="sifre" placeholder="Şifre">
+                        <input class="input100" type="password" name="sifre" placeholder="Şifre">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -69,18 +67,23 @@
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-                        <input id="first-name" class="input100" type="text" name="adres" placeholder="Adres">
+                        <input id="first-name" class="input100" type="text" name="CİNSİYET" placeholder="Cinsiyet">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="container-login100-form-btn">
                         <input type="submit" value="Kayıt Ol" class="login100-form-btn" />
                     </div>
+                    <br />
+                    <div class="container-login100-form-btn" style="color: red">
+                        @ViewBag.uyarı
+                    </div>
                     <div class="w-full text-center p-t-27 p-b-239">
                         <a href="~/Home/MusteriGiris" class="txt2">
                             Giriş Yap
                         </a>
                     </div>
+
                 }
                 <div class="login100-more" style="background-image: url('/Common/KullaniciGiris/images/barber.jpg');"></div>
             </div>
