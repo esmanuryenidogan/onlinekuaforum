@@ -55,8 +55,8 @@ namespace Berberim.UI.Controllers
                 SOYAD = m.SOYAD,
                 EMAIL = m.EMAIL,
                 ADRES = m.ADRES,
-                SIFRE = m.SIFRE,              
-                STATUS = Constants.RecordStatu.Active,            
+                SIFRE = m.SIFRE,
+                STATUS = Constants.RecordStatu.Active,
                 TEL = m.TEL,
                 FOTO = m.FOTO,
             };
@@ -148,7 +148,7 @@ namespace Berberim.UI.Controllers
 
         public ActionResult SalonSayfa(int id)
         {
-            var sonuc = _db.SALONSAYFA.FirstOrDefault(a=>a.ID==id);
+            var sonuc = _db.SALONSAYFA.FirstOrDefault(a => a.ID == id);
             var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.ID select i).ToList();
             var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.ID select i).ToList();
             var musteriyorumlar = (from i in _db.YORUM where i.SALONID == id select i).ToList();
@@ -405,6 +405,19 @@ namespace Berberim.UI.Controllers
         public ActionResult Contact()
         {
             return View();
+        }
+    
+        public ActionResult YorumKaydet(int id,string yorum)
+        {
+            YORUM yorumYap = new YORUM();
+            yorumYap.MYORUM = yorum;
+            yorumYap.STATUS = 2;
+           
+
+            _db.YORUM.Add(yorumYap);
+            _db.SaveChanges();
+
+            return View("Index");
         }
 
     }
