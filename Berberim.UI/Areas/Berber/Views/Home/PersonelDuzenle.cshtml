@@ -30,17 +30,18 @@
                     </div>
                     <div class="row form-group">
                         <div class="col col-sm-4"><label for="input-normal" class=" form-control-label">Ünvanı</label></div>
-                        <div class="col col-sm-8"><input type="text" id="input-normal" name="input-normal" placeholder="" class="form-control"></div>
+                        <div class="col col-sm-8"><input type="text" id="input-normal" name="unvan" placeholder="" class="form-control"></div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-sm-4"><label for="input-normal" class=" form-control-label">Cinsiyeti</label></div>
-                        <div class="col col-sm-8"><input type="text" id="input-normal" name="input-normal" placeholder="" class="form-control"></div>
+                        <div class="col col-sm-8"><input type="text" id="input-normal" name="cinsiyet" placeholder="" class="form-control"></div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-sm-4"><label for="input-normal" class=" form-control-label">Fotoğrafı</label></div>
                         <div class="col col-sm-8">
-                            <input type="file" name="foto" accept="image/*" required /></div>
-                        </div>                 
+                            <input type="file" name="foto" accept="image/*" />
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Vazgeç</button>
@@ -59,7 +60,19 @@
             </div>
             <div class="card-body">
                 <div class="mx-auto d-block">
-                    <img class="rounded-circle mx-auto d-block" src="~/Resimler/admin.jpg" alt="Card image cap">
+                    @if (item.FOTO != null)
+                    {
+                        <img class="rounded-circle mx-auto d-block" height="150" width="150" src="~/Common/Personeller/@item.FOTO" alt="Card image cap">
+                    }
+                    @if (item.FOTO == null && item.CINSIYET == "Erkek")
+                    {
+                        <img class="rounded-circle mx-auto d-block" height="150" width="150" src="~/Common/KullanıcıAvatar/iconfinder_male3_403019.png" alt="Card image cap">
+                    }
+                    @if (item.FOTO == null && item.CINSIYET == "Kadın")
+                    {
+                        <img class="rounded-circle mx-auto d-block" height="150" width="150" src="~/Common/KullanıcıAvatar/iconfinder_female_628285.png" alt="Card image cap">
+                    }
+
                     <h5 class="text-sm-center mt-2 mb-1">@item.ADSOYAD</h5>
                     <div class="location text-sm-center"><i class="ti-cut"></i> @item.UNVAN</div>
                 </div>

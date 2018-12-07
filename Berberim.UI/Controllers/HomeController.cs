@@ -150,12 +150,12 @@ namespace Berberim.UI.Controllers
         public ActionResult SalonSayfa(int id)
         {
             var sonuc = _db.SALONSAYFA.FirstOrDefault(a => a.ID == id);
-            var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.ID select i).ToList();
-            var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.ID select i).ToList();
+            var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.SALONID select i).ToList();
+            var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.SALONID select i).ToList();
             var musteriyorumlar = (from i in _db.YORUM where i.SALONID == id select i).ToList();
             var salonfotolar = (from i in _db.SALONFOTO where i.SALONID == id select i).ToList();
             var kesilensacmodeller = (from i in _db.BSACMODEL where i.SALONID == id select i).ToList();
-            var yorumsay = (from i in _db.YORUM where i.SALONID == sonuc.ID select i.ID).Count();
+            var yorumsay = (from i in _db.YORUM where i.SALONID == sonuc.SALONID select i.ID).Count();
             ViewBag.yorumsay = yorumsay;
 
             BerberDetayModel model = new BerberDetayModel

@@ -236,8 +236,19 @@
                             <div class="item">
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img class="rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="" style="width:90px !important;height:90px !important">
-                                        @*<img src="~/Resimler/@item.MUSTERI.FOTO" alt="">*@
+                                        @if (item.CİNSİYET == "Erkek")
+                                        {
+                                            <img class="rounded-circle" src="~/Common/KullanıcıAvatar/iconfinder_male3_403019.png" alt="" style="width:90px !important;height:90px !important">
+
+
+                                        }
+                                        else
+                                        {
+                                            <img class="rounded-circle" src="~/Common/KullanıcıAvatar/iconfinder_female_628285.png" alt="" style="width:90px !important;height:90px !important">
+
+
+                                        }
+
                                     </div>
                                     <div class="media-body">
                                         <p>@item.MYORUM</p>

@@ -254,10 +254,19 @@
                             <div class="comment-list">
                                 <div class="single-comment justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
-                                       
-                                        <div class="thumb">
-                                            <img src="~/BerberPanel/images/admin.jpg" alt="" style="width:60px;height:60px;">
-                                        </div>
+
+                                        @if (item.CİNSİYET == "Erkek")
+                                        {
+                                            <div class="thumb">
+                                                <img src="~/Common/KullanıcıAvatar/iconfinder_male3_403019.png" alt="" style="width:60px;height:60px;">
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="thumb">
+                                                <img src="~/Common/KullanıcıAvatar/iconfinder_female_628285.png" alt="" style="width:60px;height:60px;">
+                                            </div>
+                                        }
                                         <div class="desc">
                                             <h5><a href="#">@item.MUSTERIAD</a></h5>
                                             <p class="date">4 Haziran 2018 </p>
@@ -279,7 +288,7 @@
                             <div class="form-group">
                                 <textarea class="form-control mb-10" rows="5" name="yorum" placeholder="Mesajınız" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mesajınız'" required=""></textarea>
                             </div>
-                            
+
                             <input type="submit" name="yorumyap" value="Yorum Yap" class="genric-btn success" />
                         }
 
@@ -460,9 +469,20 @@
 
                             @foreach (var item in Model.Personeller)
                             {
-
                                 <div class="media post_item">
-                                    <img class="author_img rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="post" width="100" height="90">
+
+                                    @if (item.FOTO != null)
+                                    {
+                                        <img class="rounded-circle mx-auto d-block" height="90" width="100" src="~/Common/Personeller/@item.FOTO" alt="Card image cap">
+                                    }
+                                    @if (item.FOTO == null && item.CINSIYET == "Erkek")
+                                    {
+                                        <img class="rounded-circle mx-auto d-block" height="90" width="100" src="~/Common/KullanıcıAvatar/iconfinder_male3_403019.png" alt="Card image cap">
+                                    }
+                                    @if (item.FOTO == null && item.CINSIYET == "Kadın")
+                                    {
+                                        <img class="rounded-circle mx-auto d-block" height="90" width="100" src="~/Common/KullanıcıAvatar/iconfinder_female_628285.png" alt="Card image cap">
+                                    }
                                     <div class="media-body">
                                         <a href="blog-details.html"><h3>@item.ADSOYAD</h3></a>
                                         <p>@item.UNVAN</p>
@@ -482,7 +502,7 @@
                             <ul class="list cat-list">
                                 @foreach (var item in Model.Islemler)
                                 {
-                                    <li>
+                                    <li style="width: 100%;">
                                         <div class="d-flex justify-content-between">
                                             <p>@item.AD</p>
                                             <p>@item.FIYAT TL</p>

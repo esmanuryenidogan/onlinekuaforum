@@ -362,7 +362,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
             return View("BerberGiris");
         }
         [HttpPost]
-        public ActionResult PersonelEkle(string personeladsoyad)
+        public ActionResult PersonelEkle(string personeladsoyad, string unvan, string cinsiyet, string foto)
         {
             var gelen = (SALON)Session["berberkuladi"];
 
@@ -372,9 +372,21 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 pekle.ADSOYAD = personeladsoyad;
                 pekle.STATUS = Constants.RecordStatu.Active;
                 pekle.SALONID = gelen.ID;
-                pekle.FOTO = "";
-                pekle.UNVAN = "";
-                pekle.CINSIYET = "";
+                if (foto != null && Request.Files.Count > 0)
+                {
+                    string dosyaAdi = Guid.NewGuid().ToString().Replace("-", "");
+                    var httpPostedFileBase = Request.Files[0];
+                    if (httpPostedFileBase != null)
+                    {
+                        string uzanti = System.IO.Path.GetExtension(httpPostedFileBase.FileName);
+                        string tamYolYeri = "~/Common/Personeller/" + dosyaAdi + uzanti;
+                        httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
+                        pekle.FOTO = dosyaAdi + uzanti;
+                    }
+
+                }
+                pekle.UNVAN = unvan;
+                pekle.CINSIYET = cinsiyet;
                 db.PERSONEL.Add(pekle);
                 db.SaveChanges();
 

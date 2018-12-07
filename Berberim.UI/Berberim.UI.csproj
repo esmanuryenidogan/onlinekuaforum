@@ -14327,6 +14327,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Berber\Models\" />
+    <Folder Include="Common\Personeller\" />
     <Folder Include="Resimler\KesilenSaclar\" />
     <Folder Include="Resimler\PersonelFotolar\" />
     <Folder Include="Resimler\SalonFotograflar\" />
