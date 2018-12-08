@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="~/Common/Anasayfa/img/favicon.png" type="image/png">
-    <title>onlineKuaförüm</title>
+    <title>Online Kuaförüm</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/Common/Anasayfa/css/bootstrap.css">
     <link rel="stylesheet" href="~/Common/Anasayfa/vendors/linericon/style.css">
@@ -112,20 +112,20 @@
             <div class="gallery_f_inner row imageGallery1">
                 @foreach (var item in Model.salon)
                 {
-                    <div class="col-lg-3 col-md-4 col-sm-6 ap">
-                        <div class="h_gallery_item">
-                            <img style="width: 263px; height: 309px;" src="~/Resimler/SalonVitrinFoto/@item.VITRINFOTO" alt="">
-                            <div class="hover">
+                   
+                <div class="col-lg-3 col-md-4 col-sm-6 ap">
+                    <div class="h_gallery_item" style="width: 220px;">
+                        <img style="height: 309px;" src="~/Resimler/SalonVitrinFoto/@item.VITRINFOTO" alt="">
+                        <div class="hover">
+                            <a href="@Url.Action("SalonSayfa", "Home",  new { @id = item.ID })">
+                                <h4>@item.AD</h4>
 
-                                <a href="@Url.Action("SalonSayfa", "Home",  new { @id = item.ID })">
-                                    <h4>@item.AD</h4>
-                                    <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
-                                </a>
-
-                            </div>
+                                <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
+                            </a>
                         </div>
-
                     </div>
+
+                </div>
 
                 }
 
@@ -134,34 +134,34 @@
             <div class="gallery_f_inner row imageGallery1">
                 @foreach (var item in Model.kampanya)
                 {
-                    <div class="col-lg-3 col-md-4 col-sm-6 unp" style="display: none">
-                        <div class="h_gallery_item">
-                            <img style="width: 263px; height: 309px;" src="~/SalonFotolar/kampanya.png" alt="">
-                            <div class="hover">
-                                <a href="@Url.Action("KampanyaSatınAl", "Home", new { @id = item.SALONID })">
-                                    <h4>@item.BASLIK<br />@item.FIYAT TL</h4>
+                <div class="col-lg-3 col-md-4 col-sm-6 unp" style="display: none">
+                    <div class="h_gallery_item" style="width: 220px;">
+                        <img style="height: 309px;" src="~/SalonFotolar/kampanya.png" alt="">
+                        <div class="hover">
+                            <a href="@Url.Action("KampanyaSatınAl", "Home", new { @id = item.SALONID })">
+                                <h4>@item.BASLIK<br />@item.FIYAT TL</h4>
 
-                                    <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
-                                </a>
-                            </div>
+                                <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
+                            </a>
                         </div>
-
                     </div>
+
+                </div>
 
                 }
 
                 @foreach (var item in Model.trendSac)
                 {
-                    <div class="col-lg-3 col-md-4 col-sm-6 unv" style="display: none">
-                        <div class="h_gallery_item">
-                            <img style="width: 263px; height: 309px;" src="~/Resimler/TrendSac/@item.FOTO" alt="">
-                            <div class="hover">
-                                <a href="#"><h4></h4></a>
-                                <a class="light" href="~/Resimler/TrendSac/@item.FOTO"><i class="fa fa-expand"></i></a>
-                            </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 unv" style="display: none">
+                    <div class="h_gallery_item" style="width: 220px;">
+                        <img style="height: 309px;" src="~/Resimler/TrendSac/@item.FOTO" alt="">
+                        <div class="hover">
+                            <a href="#"><h4></h4></a>
+                            <a class="light" href="~/Resimler/TrendSac/@item.FOTO"><i class="fa fa-expand"></i></a>
                         </div>
-
                     </div>
+
+                </div>
 
                 }
             </div>
