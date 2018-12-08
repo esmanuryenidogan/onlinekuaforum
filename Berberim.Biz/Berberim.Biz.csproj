@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RandevuEmail.cs" />
     <Compile Include="SalonClass.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="MusteriClass.cs" />

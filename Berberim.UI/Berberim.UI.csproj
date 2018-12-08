@@ -12008,6 +12008,7 @@
     <Content Include="Common\KullaniciGiris\vendor\select2\select2.js" />
     <Content Include="Common\KullaniciGiris\vendor\select2\select2.min.css" />
     <Content Include="Common\KullaniciGiris\vendor\select2\select2.min.js" />
+    <Content Include="Common\KullanıcıAvatar\DefaultSalon.jpg" />
     <Content Include="Common\KullanıcıAvatar\iconfinder_female_628285.png" />
     <Content Include="Common\KullanıcıAvatar\iconfinder_male3_403019.png" />
     <Content Include="Common\SacModelleriGallery\css\pure-js-lightbox.css" />
