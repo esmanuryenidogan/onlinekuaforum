@@ -133,51 +133,62 @@
                 <div class="col-lg-8 posts-list">
                     <div class="single-post row">
                         <div class="col-lg-12">
-                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                                <!-- Indicators -->                            
-                                <ol class="carousel-indicators">
-                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                    @{
-                                        var yeni = 0;
-                                    }
-                                    @foreach (var item in Model.SalonFotolar)
-                                    {
+                            @if (Model.SalonFotolar.Count > 0)
+                            {
+                                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                        @{
+                                            var yeni = 0;
+                                        }
+                                        @foreach (var item in Model.SalonFotolar)
+                                        {
 
-                                        yeni = yeni + 1;
-                                        <li data-target="#myCarousel" data-slide-to="@yeni"></li>
+                                            yeni = yeni + 1;
+                                            <li data-target="#myCarousel" data-slide-to="@yeni"></li>
 
-                                    }
-                                </ol>
-                                <div class="carousel-inner">
-                                    @foreach (var item in Model.SalonFotolar)
-                                    {
-                                        <div class="item active">
-                                            <img src="~/Resimler/SalonFotograflar/@item.FOTO" alt="Los Angeles" style="width:750px;height:350px;">
-                                        </div>
-                                        break;
-                                    }
-                                    @foreach (var item in Model.SalonFotolar.Skip(1))
-                                    {
+                                        }
+                                    </ol>
+                                    <div class="carousel-inner">
+                                        @foreach (var item in Model.SalonFotolar)
+                                        {
+                                            <div class="item active">
+                                                <img src="~/Resimler/SalonFotograflar/@item.FOTO" alt="Los Angeles" style="width:750px;height:350px;">
+                                            </div>
+                                            break;
+                                        }
+                                        @foreach (var item in Model.SalonFotolar.Skip(1))
+                                        {
 
 
-                                        <div class="item">
-                                            <img src="~/Resimler/SalonFotograflar/@item.FOTO" alt="Los Angeles" style="width:750px;height:350px;">
-                                        </div>
-                                    }
+                                            <div class="item">
+                                                <img src="~/Resimler/SalonFotograflar/@item.FOTO" alt="Los Angeles" style="width:750px;height:350px;">
+                                            </div>
+                                        }
+                                    </div>
+
+
+                                    <!-- Wrapper for slides -->
+                                    <!-- Left and right controls -->
+                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                    <img src="~/Resimler/SalonVitrinFoto/@Model.Berber.VITRINFOTO" alt="Los Angeles" style="width:750px;height:350px;">
                                 </div>
 
+                            }
 
-                                <!-- Wrapper for slides -->
-                                <!-- Left and right controls -->
-                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
                         </div>
                         <div class="col-lg-3  col-md-3">
                             <div class="blog_info text-right">
@@ -193,18 +204,13 @@
                                     <li><a href="#">No:10, 34123<i class="lnr lnr-eye"></i></a></li>
                                     <li><a href="#">Fatih/İstanbul<i class="lnr lnr-bubble"></i></a></li>
                                 </ul>
-                                <ul class="social-links">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-github"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                </ul>
+
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9 blog_details" style="padding-top:7px">
-                            <h2>Hakkımızda Kısmı</h2>
+                            <h2>@Model.Berber.AD</h2>
                             <p class="excert">
-                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
+                                @Model.Berber.HAKKINDA
                             </p>
                             <p>
                                 Boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has the willpower to actually sit through a self-imposed
@@ -213,9 +219,9 @@
                                 Boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has the willpower to actually sit through a self-imposed
                             </p>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg-12" style="    margin-top: 25px;">
                             <div class="quotes">
-                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training.
+                                @Model.Berber.VITRINYAZI
                             </div>
 
 
@@ -417,16 +423,16 @@
                                                                         <input type="radio" name="rSaat" value="09:00" id="option1" checked> 09:00
                                                                     </label>
                                                                     <label class="btn btn-success circle">
-                                                                        <input type="radio" name="rSaat"  value="10:00" id="option2"> 10:00
+                                                                        <input type="radio" name="rSaat" value="10:00" id="option2"> 10:00
                                                                     </label>
                                                                     <label class="btn btn-success circle">
-                                                                        <input type="radio" name="rSaat"  value="11:00" id="option3"> 11:00
+                                                                        <input type="radio" name="rSaat" value="11:00" id="option3"> 11:00
                                                                     </label>
                                                                     <label class="btn btn-success circle">
-                                                                        <input type="radio" name="rSaat"  value="12:00" id="option4"> 12:00
+                                                                        <input type="radio" name="rSaat" value="12:00" id="option4"> 12:00
                                                                     </label>
                                                                     <label class="btn btn-success circle">
-                                                                        <input type="radio" name="rSaat"  value="13:00" id="option5"> 13:00
+                                                                        <input type="radio" name="rSaat" value="13:00" id="option5"> 13:00
                                                                     </label>
                                                                     <label class="btn btn-danger circle" disabled>
                                                                         <input type="radio" name="rSaat" value="14:00" id="option6"> 14:00
@@ -443,7 +449,7 @@
                                                                     <label class="btn btn-danger" disabled>
                                                                         <input type="radio" name="rSaat" value="18:00" id="option8"> 18:00
                                                                     </label>
-                                                                </div>                                                           
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

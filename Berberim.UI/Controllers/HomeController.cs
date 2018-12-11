@@ -22,12 +22,18 @@ namespace Berberim.UI.Controllers
 
         public ActionResult Index()
         {
+            var musteriEmail = "";
+
+
+            if (Session["musteri"] != null)
+                musteriEmail = Session["musteri"].ToString();
+
             var data = new tabMenu
             {
                 salon = _db.SALONSAYFA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                 kampanya = _db.KAMPANYA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                 trendSac = _db.TRENDHAIRS.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
-                musteri = _db.MUSTERİ.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                musteri = _db.MUSTERİ.Where(i => i.EMAIL == musteriEmail).ToList(),
                 randevu = _db.RANDEVU.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                 musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
             };
@@ -82,7 +88,7 @@ namespace Berberim.UI.Controllers
                     salon = _db.SALONSAYFA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                     kampanya = _db.KAMPANYA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                     trendSac = _db.TRENDHAIRS.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
-                    musteri = _db.MUSTERİ.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                    musteri = _db.MUSTERİ.Where(i => i.EMAIL == sonuc.EMAIL).ToList(),
                     randevu = _db.RANDEVU.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                     musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
                 };
