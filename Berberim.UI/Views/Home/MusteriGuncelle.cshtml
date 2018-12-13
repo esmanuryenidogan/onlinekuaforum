@@ -1,0 +1,116 @@
+﻿@model Berberim.Data.Models.MUSTERI
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Online Kuaförüm</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" href="~/Common/Anasayfa/img/favicon.png" type="image/png">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Common/KullaniciGiris/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Common/KullaniciGiris/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Common/KullaniciGiris/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Common/KullaniciGiris/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Common/KullaniciGiris/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Common/KullaniciGiris/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Common/KullaniciGiris/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Common/KullaniciGiris/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Common/KullaniciGiris/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Common/KullaniciGiris/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100" style="height: 615px;">
+                @using (Html.BeginForm("MusteriGuncelle", "Home", FormMethod.Post, new { style = "padding: 120px 65px 40px 65px !important;", @class = "login100-form validate-form" }))
+                {
+                    <span class="login100-form-title p-b-34">
+                        <a href="~/Home/BerberKayıt" class="txt2">
+                            Profil Düzenleme
+                        </a>
+
+                    </span> <br />
+
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type">
+                        @Html.TextBoxFor(a => a.AD, new { @class = "input100", @maxlength = "50" })
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type">
+                        @Html.TextBoxFor(a => a.SOYAD, new { @class = "input100", @maxlength = "50" })
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+                        @Html.TextBoxFor(a => a.EMAIL, new { @class = "input100", @maxlength = "50", @readonly = "readonly" })
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type">
+                        <input class="input100" type="password" name="sifre" placeholder="Şifre">
+                     
+                    </div>
+
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+                        @Html.TextBoxFor(a => a.TEL, new { @class = "input100", @maxlength = "50" })
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+                        @Html.TextBoxFor(a => a.CİNSİYET, new { @class = "input100", @maxlength = "50" })
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <input type="submit" value="Kaydet" style="cursor: pointer;" class="login100-form-btn" />
+                    </div>
+                    <br />
+
+                    <div class="w-full text-center p-t-27 p-b-239">
+                       
+                    </div>
+
+                }
+                <div class="login100-more" style="background-image: url('/Common/KullaniciGiris/images/barber.jpg');"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="~/Common/KullaniciGiris/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Common/KullaniciGiris/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Common/KullaniciGiris/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Common/KullaniciGiris/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Common/KullaniciGiris/vendor/select2/select2.min.js"></script>
+    <script>
+        $(".selection-2").select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $('#dropDownSelect1')
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/Common/KullaniciGiris/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Common/KullaniciGiris/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Common/KullaniciGiris/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Common/KullaniciGiris/js/main.js"></script>
+
+</body>
+</html>
