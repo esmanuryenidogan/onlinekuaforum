@@ -36,7 +36,10 @@ namespace Berberim.UI.Controllers
                 randevu = _db.RANDEVU.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
                 musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
             };
-            ViewBag.tumSalonButtonShow = true;
+
+            if (data.salon.Count > 5)
+                ViewBag.tumSalonButtonShow = true;
+
             return View(data);
 
         }
