@@ -1,8 +1,8 @@
 ﻿@model Berberim.Biz.tabMenu
 
+
 <!doctype html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -83,103 +83,18 @@
                             <div style="background: transparent;background: rgba(0, 0, 0, 0.5);" class="banner_content text-center">
                                 <h2 style="font-weight: 0 !important;">@item.AD @item.SOYAD</h2>
                                 <p>Önümüzdeki tarihlerde herhangi bir randevunuz bulunmamaktadır.</p>
-                                <a href="@Url.Action("MusteriGiris", "Home")" data-toggle="modal" data-target="#largeModal" class="btn theme_btn">PROFİLİMİ DÜZENLE</a>
+
+                                @Html.ActionLink("PROFİLİMİ DÜZENLE", "MusteriGuncelle", new { id = item.ID }, new { @class = "btn theme_btn" })
                             </div>
                         }
                     }
                 }
 
-
             </div>
 
         </div>
     </section>
-    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    @if (ViewBag.kampanyaGelen == true)
-                    {
-                        <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Kampanya Alımını Tamamla</h4>
 
-                    }
-                    else
-                    {
-                        <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Randevuyu Tamamla</h4>
-
-                    }
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <div class="row" style="padding-bottom: 20px;">
-                            <div class="col-sm-3" style="text-align: right;">Personel Seçimi</div>
-                            <div class="col-sm-8" style="position: relative;top: -7px;">
-                                <div class="input-group-icon mt-8">
-                                    <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
-
-
-                                    <div class="form-select" id="default-select">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row" style="padding-bottom: 20px;">
-                            <div class="col-sm-3" style="text-align: right;">İşlem Seçimi</div>
-                            <div class="col-sm-8" style="position: relative;top: -7px;">
-                                <div class="input-group-icon mt-8">
-                                    <div class="icon"><i class="fa fa-scissors" aria-hidden="true"></i></div>
-
-
-                                    <div class="form-select" id="default-select">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row" style="padding-bottom: 20px;">
-                            <div class="col-sm-3" style="text-align: right;">Tarih Seçimi</div>
-                            <div class="col-sm-8" style="position: relative;top: -8px;">
-                                <input type="date" name="first_name" placeholder="Tarih Seçiniz" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tarih Seçiniz'" required="" class="single-input">
-                            </div>
-
-                        </div>
-                        <div class="row" style="padding-bottom: 20px;">
-                            <div class="col-sm-3" style="text-align: right;">Saat Seçimi</div>
-                            <div class="col-sm-8">
-                                <a href="#" class="randevuButton genric-btn  circle" style="margin-bottom:5px">09:00</a>
-                                <a href="#" class="randevuButton genric-btn  circle" style="margin-bottom:5px">10:00</a>
-                                <a href="#" class="randevuButton genric-btn  circle" style="margin-bottom:5px">11:00</a>
-                                <a href="#" class="randevuButton genric-btn  circle" style="margin-bottom:5px">12:00</a>
-                                <a href="#" class="randevuButton genric-btn  circle" style="margin-bottom:5px">13:00</a>
-                                <a href="#" class="randevuButton genric-btn  circle" style="margin-bottom:5px">14:00</a>
-                                <a href="#" class="randevuButton genric-btn  circle" style="margin-bottom:5px">15:00</a>
-                                <a href="#" class=" genric-btn danger  circle">16:00</a>
-                                <a href="#" class=" genric-btn danger  circle">17:00</a>
-                                <a href="#" class="randevuButton genric-btn  circle">18:00</a>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="genric-btn primary-border radius" data-dismiss="modal">Vazgeç</button>
-
-                        <button type="button" class="genric-btn success">Kampanyayı Kaydet</button>
-
-
-                        <button type="button" class="genric-btn success">Randevuyu Kaydet</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--================End Home Banner Area =================-->
     <!--================Home Gallery Area =================-->
     <section class="home_gallery_area p_120">
@@ -198,24 +113,25 @@
             <div class="gallery_f_inner row imageGallery1">
                 @foreach (var item in Model.salon)
                 {
-
                     <div class="col-lg-3 col-md-4 col-sm-6 ap">
-                        <div class="h_gallery_item" style="width: 220px;">
-                            <img style="height: 309px;" src="~/Resimler/SalonVitrinFoto/@item.VITRINFOTO" alt="">
-                            <div class="hover">
-                                <a href="@Url.Action("SalonSayfa", "Home",  new { @id = item.SALONID })">
-                                    <h4>@item.AD</h4>
+                        <div>
+                            <div class="h_gallery_item" style="width: 220px;margin-right: 50px;">
+                                <img style="height: 309px;" src="~/Resimler/SalonVitrinFoto/@item.VITRINFOTO" alt="">
+                                <div class="hover">
+                                    <a href="@Url.Action("SalonSayfa", "Home",  new { @id = item.SALONID })">
+                                        <h4>@item.AD</h4>
 
-                                    <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
-                                </a>
+                                        <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-
                     </div>
-
                 }
 
             </div>
+
+
 
             <div class="gallery_f_inner row imageGallery1">
                 @foreach (var item in Model.kampanya)
@@ -252,58 +168,20 @@
                 }
             </div>
 
-            <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Randevuyu Tamamla</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div>
-                                <div class="row" style="padding-bottom: 20px;">
-                                    <div class="col-sm-3" style="text-align: right;">Personel Seçimi</div>
-                                    <div class="col-sm-8" style="position: relative;top: -7px;">
 
-                                    </div>
-
-                                </div>
-                                <div class="row" style="padding-bottom: 20px;">
-                                    <div class="col-sm-3" style="text-align: right;">İşlem Seçimi</div>
-                                    <div class="col-sm-8" style="position: relative;top: -7px;">
-
-                                    </div>
-
-                                </div>
-                                <div class="row" style="padding-bottom: 20px;">
-                                    <div class="col-sm-3" style="text-align: right;">Tarih Seçimi</div>
-
-                                </div>
-                                <div class="row" style="padding-bottom: 20px;">
-                                    <div class="col-sm-3" style="text-align: right;">Saat Seçimi</div>
-
-
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="genric-btn primary-border radius" data-dismiss="modal">Vazgeç</button>
-
-                                <button type="button" class="genric-btn success">Randevuyu Kaydet</button>
-                            </div>
-                        </div>
+            @if (ViewBag.tumSalonButtonShow == true)
+            {
+                <div class="button_more">
+                    <div class="insta_btn">
+                        @Html.ActionLink("Tümünü Göster", "TumSalonlar", "Home", new { @class = "btn theme_btn" })
                     </div>
                 </div>
-            </div>
+            }
 
-
-
-            <div class="button_more">
-
-            </div>
         </div>
+
     </section>
+
     <!--================End Home Gallery Area =================-->
     <!--================Testimonials Area =================-->
     <section class="testimonials_area p_120">
@@ -486,12 +364,12 @@
     </script>
 
     <script>
-                                                                                                                                                                //function myClick(deger) {
-                                                                                                                        //    if (deger != null) {
-                                                                                                                        //        var nesne = document.getElementsByClassName(deger);
-                                                                                                                        //        nesne.style.display = true;
-                                                                                                                        //    }
-                                                                                                                        //}
+                                                                                                                                                                                                        //function myClick(deger) {
+                                                                                                                                                                //    if (deger != null) {
+                                                                                                                                                                //        var nesne = document.getElementsByClassName(deger);
+                                                                                                                                                                //        nesne.style.display = true;
+                                                                                                                                                                //    }
+                                                                                                                                                                //}
     </script>
 
 </body>

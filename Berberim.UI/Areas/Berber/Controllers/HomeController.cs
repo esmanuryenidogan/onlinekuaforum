@@ -110,7 +110,11 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 db.SALONSAYFA.Add(berberekle);
                 db.SaveChanges();
 
-                return View();
+                var berberSalon = BerberDuzenle();
+                ViewData["Model"] = berberSalon;
+                var model = ViewData.Model;
+
+                return View("BerberDuzenle", model);
             }
             return View();
         }
@@ -118,16 +122,24 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult BerberDuzenle()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            if (gelen == null)
+            {
+                return View("BerberGiris");
+            }
             var gelenSalon = (SALON)Session["berberkuladi"];
             var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
             ViewBag.salonControl = salonControl;
 
-            if (gelen != null)
+            if (salonControl != null)
             {
                 var salon = (from i in db.SALONSAYFA where i.EMAIL == gelen.EMAIL select i).ToList();
                 return View(salon);
             }
-            return View("BerberGiris");
+            else
+            {               
+                return View("Index");
+            }
+
         }
         SALONSAYFA ssil = new SALONSAYFA();
         public ActionResult BerberSil(int ID)
@@ -156,23 +168,23 @@ namespace Berberim.UI.Areas.Berber.Controllers
         {
             var mevcut = db.SALONSAYFA.Find(u.ID);
             string salonadeski = mevcut?.AD;
-            string fotos = mevcut?.VITRINFOTO;
-            if (Request.Files.Count != 0)
-            {
-                string dosyaAdi = Guid.NewGuid().ToString().Replace("-", "");
-                var httpPostedFileBase = Request.Files[0];
-                if (httpPostedFileBase != null)
-                {
-                    string uzanti = System.IO.Path.GetExtension(httpPostedFileBase.FileName);
-                    string tamYolYeri = "~/Resimler/SalonVitrinFoto/" + dosyaAdi + uzanti;
-                    httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
-                    if (mevcut != null) mevcut.VITRINFOTO = dosyaAdi + uzanti;
-                }
-            }
-            else
-            {
-                if (mevcut != null) mevcut.VITRINFOTO = fotos;
-            }
+            //string fotos = mevcut?.VITRINFOTO;
+            //if (Request.Files.Count != 0)
+            //{
+            //    string dosyaAdi = Guid.NewGuid().ToString().Replace("-", "");
+            //    var httpPostedFileBase = Request.Files[0];
+            //    if (httpPostedFileBase != null)
+            //    {
+            //        string uzanti = System.IO.Path.GetExtension(httpPostedFileBase.FileName);
+            //        string tamYolYeri = "~/Resimler/SalonVitrinFoto/" + dosyaAdi + uzanti;
+            //        httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
+            //        if (mevcut != null) mevcut.VITRINFOTO = dosyaAdi + uzanti;
+            //    }
+            //}
+            //else
+            //{
+            //    if (mevcut != null) mevcut.VITRINFOTO = fotos;
+            //}
             if (mevcut != null)
             {
                 mevcut.AD = u.AD;
@@ -194,11 +206,16 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult SalonFotograflarGor()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            if (gelen == null)
+            {
+                return View("BerberGiris");
+            }
+
             var gelenSalon = (SALON)Session["berberkuladi"];
             var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
             ViewBag.salonControl = salonControl;
 
-            if (gelen != null)
+            if (salonControl != null)
             {
                 var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
 
@@ -212,7 +229,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
             }
             else
             {
-                return View();
+                return View("Index");
             }
 
         }
@@ -264,25 +281,38 @@ namespace Berberim.UI.Areas.Berber.Controllers
             db.SALONFOTO.Add(salonfotoekle);
             db.SaveChanges();
 
-            return View("Index");
+            var salonFotolar = SalonFotograflarGor();
+
+            ViewData["Model"] = salonFotolar;
+            var model = ViewData.Model;
+
+            return View("SalonFotograflarGor", model);
         }
 
         public ActionResult KesilenSaclarGor()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            if (gelen == null)
+            {
+                return View("BerberGiris");
+            }
             var gelenSalon = (SALON)Session["berberkuladi"];
             var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
             ViewBag.salonControl = salonControl;
 
 
-            if (gelen != null)
+            if (salonControl != null)
             {
                 var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i.ID).FirstOrDefault();
                 var kesilenmodeller = (from i in db.BSACMODEL where i.SALONID == salon select i).ToList();
 
                 return View(kesilenmodeller);
             }
-            return View("BerberGiris");
+            else
+            {
+                return View("Index");
+            }
+
         }
 
         public ActionResult KesilenSacSil(int ID)
@@ -331,24 +361,37 @@ namespace Berberim.UI.Areas.Berber.Controllers
             db.BSACMODEL.Add(kesilensacfotoekle);
             db.SaveChanges();
 
-            return View("Index");
+            var kesilenSaclar = KesilenSaclarGor();
+            ViewData["Model"] = kesilenSaclar;
+            var model = ViewData.Model;
+
+            return View("KesilenSaclarGor", model);
         }
 
         public ActionResult PersonelDuzenle()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            if (gelen == null)
+            {
+                return View("BerberGiris");
+            }
+
             var gelenSalon = (SALON)Session["berberkuladi"];
             var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
             ViewBag.salonControl = salonControl;
 
 
-            if (gelen != null)
+            if (salonControl != null)
             {
                 var personel = (from i in db.PERSONEL where i.SALONID == gelen.ID select i).ToList();
 
                 return View(personel);
             }
-            return View("BerberGiris");
+            else
+            {
+                return View("Index");
+            }
+
         }
 
         public ActionResult PersonelEkle()
@@ -390,7 +433,12 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 db.PERSONEL.Add(pekle);
                 db.SaveChanges();
 
-                return View("Index");
+                var personelDuzenle = PersonelDuzenle();
+
+                ViewData["Model"] = personelDuzenle;
+                var model = ViewData.Model;
+
+                return View("PersonelDuzenle", model);
             }
             return View();
         }
@@ -406,18 +454,26 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult Berberİslem()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            if (gelen == null)
+            {
+                return View("BerberGiris");
+            }
             var gelenSalon = (SALON)Session["berberkuladi"];
             var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
             ViewBag.salonControl = salonControl;
 
 
-            if (gelen != null)
+            if (salonControl != null)
             {
                 var islemler = (from i in db.ISLEM where i.SALONID == gelen.ID select i).ToList();
 
                 return View(islemler);
             }
-            return View("BerberGiris");
+            else
+            {
+                return View("Index");
+            }
+
         }
 
         public ActionResult BerberİslemEkle()
@@ -428,6 +484,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
             {
                 return View();
             }
+
             return View("BerberGiris");
         }
 
@@ -446,7 +503,12 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 db.ISLEM.Add(islemekle);
                 db.SaveChanges();
 
-                return View("Index");
+                var islemler = Berberİslem();
+
+                ViewData["Model"] = islemler;
+                var model = ViewData.Model;
+
+                return View("Berberİslem", model);
             }
             return View();
         }
@@ -462,16 +524,25 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult Kampanyalar()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            if (gelen == null)
+            {
+                return View("BerberGiris");
+            }
             var gelenSalon = (SALON)Session["berberkuladi"];
             var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
             ViewBag.salonControl = salonControl;
 
-            if (gelen != null)
+            if (salonControl != null)
             {
                 var kampanyalar = (from i in db.KAMPANYA where i.SALONID == gelen.ID select i).ToList();
                 return View(kampanyalar);
             }
-            return View("BerberGiris");
+            else
+            {
+               
+                return View("Index");
+            }
+
         }
 
         public ActionResult KampanyaSil(int ID)
@@ -511,7 +582,11 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 db.KAMPANYA.Add(kekle);
                 db.SaveChanges();
 
-                return View("Index");
+                var kampanyalar = Kampanyalar();
+                ViewData["Model"] = kampanyalar;
+                var model = ViewData.Model;
+
+                return View("Kampanyalar", model);
             }
             ViewBag.tarih = "Geçmiş Tarih Seçilemez !";
             return View();
@@ -520,18 +595,26 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult BerberRandevular()
         {
             var gelen = (SALON)Session["berberkuladi"];
+            if (gelen == null)
+            {
+                return View("BerberGiris");
+            }
             var gelenSalon = (SALON)Session["berberkuladi"];
             var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
             ViewBag.salonControl = salonControl;
 
 
-            if (gelen != null)
+            if (salonControl != null)
             {
                 var salonID = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i.ID).SingleOrDefault();
                 var randevukontrol = (from i in db.RANDEVU where i.SALONID == salonID select i).ToList();
                 return View(randevukontrol);
             }
-            return View("BerberGiris");
+            else
+            {
+                return View("Index");
+            }
+
         }
 
         public ActionResult BerberKayıt()

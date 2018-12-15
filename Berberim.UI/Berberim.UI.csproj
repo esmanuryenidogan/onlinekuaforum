@@ -12021,6 +12021,7 @@
     <Content Include="Common\SacModelleriGallery\img\img_6.jpg" />
     <Content Include="Common\SacModelleriGallery\src\pure-js-lightbox.js" />
     <Content Include="Common\SacModelleriGallery\src\pure-js-lightbox.min.js" />
+    <Content Include="Common\SalonFotoSlider\fft352_mf22790085.Jpeg" />
     <Content Include="Common\SalonFotoSlider\SliderGallery.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -14262,6 +14263,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Home\MusteriGuncelle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
