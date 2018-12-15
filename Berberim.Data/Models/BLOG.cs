@@ -14,7 +14,8 @@ namespace Berberim.Data.Models
         public int VIPSALON1 { get; set; }
         public int VIPSALON2 { get; set; }
         public int VIPSALON3 { get; set; }
-        public string POPULARPOST { get; set; }
+        public int VIPSALON4 { get; set; }
+
 
     }
 }
