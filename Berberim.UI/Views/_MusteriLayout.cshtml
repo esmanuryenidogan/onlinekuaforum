@@ -82,7 +82,15 @@
                         {
                             <div style="background: transparent;background: rgba(0, 0, 0, 0.5);" class="banner_content text-center">
                                 <h2 style="font-weight: 0 !important;">@item.AD @item.SOYAD</h2>
-                                <p>Önümüzdeki tarihlerde herhangi bir randevunuz bulunmamaktadır.</p>
+                                @if (ViewBag.randevum != null)
+                                {
+                                    <p>Sizi Bekleyen Randevunuz</p>
+                                    <p>@ViewBag.randevum</p>
+                                }
+                                else
+                                {
+                                    <p>Önümüzdeki tarihlerde herhangi bir randevunuz bulunmamaktadır.</p>
+                                }
 
                                 @Html.ActionLink("PROFİLİMİ DÜZENLE", "MusteriGuncelle", new { id = item.ID }, new { @class = "btn theme_btn" })
                             </div>
@@ -364,12 +372,12 @@
     </script>
 
     <script>
-                                                                                                                                                                                                        //function myClick(deger) {
-                                                                                                                                                                //    if (deger != null) {
-                                                                                                                                                                //        var nesne = document.getElementsByClassName(deger);
-                                                                                                                                                                //        nesne.style.display = true;
-                                                                                                                                                                //    }
-                                                                                                                                                                //}
+                                                                                                                                                                                                                        //function myClick(deger) {
+                                                                                                                                                                                //    if (deger != null) {
+                                                                                                                                                                                //        var nesne = document.getElementsByClassName(deger);
+                                                                                                                                                                                //        nesne.style.display = true;
+                                                                                                                                                                                //    }
+                                                                                                                                                                                //}
     </script>
 
 </body>

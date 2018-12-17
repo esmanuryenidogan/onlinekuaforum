@@ -16,33 +16,41 @@ namespace Berberim.Biz
         {
             _db = new OnlineKuaforumDbContext();
         }
-        public static async Task<bool> RandevuMail(string body,string subject,string from,string to,string cc)
+        public static async Task<bool> RandevuMail(string body, string subject, string from, string to, string cc)
         {
-           
-            var message = new MailMessage();
-            message.To.Add(new MailAddress(to));   
-            message.From = new MailAddress(from);
-            message.CC.Add(new MailAddress(cc));
-            message.Subject = subject;
-            message.Body = body;
-            message.IsBodyHtml = true;
 
-            using (var smtp = new SmtpClient())
-            {
-                var credential = new NetworkCredential
-                {
-                    UserName = "38d96fd3370aa2",  // replace with valid value
-                    Password = "591628a8bef258"  // replace with valid value
-                };
+            SmtpClient client = new SmtpClient("smtp.mailtrap.io");         
+            client.Credentials = new NetworkCredential("38d96fd3370aa2", "591628a8bef258");
 
-                smtp.Credentials = credential;
-                smtp.Host = "smtp.mailtrap.io";
-                smtp.Port = 465;
-                smtp.EnableSsl = true;
-                await smtp.SendMailAsync(message);
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress("atakangmc@gmail.com");
+            mailMessage.To.Add(to);
+            mailMessage.CC.Add(cc);
+            mailMessage.Subject = subject;
+            mailMessage.Body = body;
 
-                return true;
-            }
+            client.Send(mailMessage);
+
+            return true;
+        }
+
+        public static async Task<bool> SalonaEmail(string body, string subject, string from, string to, string cc)
+        {
+
+            SmtpClient client = new SmtpClient("smtp.mailtrap.io");
+            client.Credentials = new NetworkCredential("38d96fd3370aa2", "591628a8bef258");
+
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress("atakangmc@gmail.com");
+            mailMessage.To.Add(to);
+            mailMessage.CC.Add(cc);
+            mailMessage.Subject = subject;
+            mailMessage.Body = body;
+
+            client.Send(mailMessage);
+
+            return true;
         }
     }
 }
+

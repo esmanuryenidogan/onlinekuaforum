@@ -33,7 +33,7 @@ namespace Berberim.UI.Controllers
                 kampanya = _db.KAMPANYA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList(),
                 trendSac = _db.TRENDHAIRS.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList(),
                 musteri = _db.MUSTERİ.Where(i => i.EMAIL == musteriEmail).ToList(),
-                randevu = _db.RANDEVU.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                randevu = _db.RANDEVU.Where(i => i.MUSTERIMAIL == musteriEmail).ToList(),
                 musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
             };
 
@@ -93,9 +93,23 @@ namespace Berberim.UI.Controllers
                     kampanya = _db.KAMPANYA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList(),
                     trendSac = _db.TRENDHAIRS.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList(),
                     musteri = _db.MUSTERİ.Where(i => i.EMAIL == sonuc.EMAIL).ToList(),
-                    randevu = _db.RANDEVU.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList(),
+                    randevu = _db.RANDEVU.Where(i => i.MUSTERIMAIL == sonuc.EMAIL).ToList(),
                     musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
                 };
+
+                var maxDate = DateTime.MinValue;
+                var randevuBilgi = "";
+                if (data.randevu.Count > 0)
+                {
+                    foreach (var randevu in data.randevu)
+                    {
+                        maxDate = randevu.RANDEVUTARIH > maxDate ? randevu.RANDEVUTARIH : maxDate;
+                        randevuBilgi = randevu.SALONAD + " " + randevu.RANDEVUSAAT + " ";
+                    }
+
+                    ViewBag.randevum = randevuBilgi + maxDate;
+                }
+
 
                 Session["musteriadsoyad"] = sonuc.AD + " " + sonuc.SOYAD;
                 Session["musteri"] = sonuc.EMAIL;
@@ -167,6 +181,7 @@ namespace Berberim.UI.Controllers
             var salonfotolar = (from i in _db.SALONFOTO where i.SALONID == id select i).ToList();
             var kesilensacmodeller = (from i in _db.BSACMODEL where i.SALONID == id select i).ToList();
             var yorumsay = (from i in _db.YORUM where i.SALONID == sonuc.SALONID select i.ID).Count();
+            var salonlar = _db.SALONSAYFA.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().ToList();
             ViewBag.yorumsay = yorumsay;
 
             BerberDetayModel model = new BerberDetayModel
@@ -176,7 +191,8 @@ namespace Berberim.UI.Controllers
                 Personeller = personeller,
                 SalonFotolar = salonfotolar,
                 KesilenSacModeller = kesilensacmodeller,
-                MusteriYorumlar = musteriyorumlar
+                MusteriYorumlar = musteriyorumlar,
+                Salonlar = salonlar
             };
             return View(model);
         }
@@ -190,7 +206,7 @@ namespace Berberim.UI.Controllers
             var gelen = Session["musteri"].ToString();
 
             var musteriId = (from i in _db.MUSTERİ where i.EMAIL == gelen select i.ID).FirstOrDefault();
-            var berberbilgi = (from i in _db.SALON where i.ID == id select i).FirstOrDefault();
+            var berberbilgi = (from i in _db.SALONSAYFA where i.ID == id select i).FirstOrDefault();
             var musteribilgi = (from i in _db.MUSTERİ where i.ID == musteriId select i).FirstOrDefault();
 
             if (rtarih != null)
@@ -207,8 +223,8 @@ namespace Berberim.UI.Controllers
                         MUSTERIAD = musteribilgi?.AD,
                         MUSTERITEL = musteribilgi?.TEL,
                         MUSTERIMAIL = musteribilgi?.EMAIL,
-                        SALONAD = berberbilgi?.ADSOYAD,
-                        SALONTEL = berberbilgi?.TELEFON,
+                        SALONAD = berberbilgi?.AD,
+                        SALONTEL = berberbilgi?.TEL,
                         SALONMAIL = berberbilgi?.EMAIL,
                         ISLEMID = islem,
                         RANDEVUTARIH = tarih,
@@ -346,12 +362,15 @@ namespace Berberim.UI.Controllers
                 _db.RANDEVU.Add(ral);
                 _db.SaveChanges();
 
-                return View("Index");
+                string body = "Randevu Bilgileriniz" + " " + tarih + " " + saat;
+                var email = RandevuEmail.RandevuMail(body, "Randevu Bilgileri", "atakangmc@gmail.com", berberbilgi?.EMAIL, musteribilgi?.EMAIL);
+
             }
 
             var gelenmodel = Session["gelenmodel"];
             ViewBag.tarih = "Geçmiş Tarih Seçilemez !";
-            return View(gelenmodel);
+
+            return View("SalonSayfa");
         }
 
         public ActionResult MusteriRandevuGoruntule()
@@ -446,6 +465,13 @@ namespace Berberim.UI.Controllers
             ViewBag.tumSalonButtonShow = true;
 
             return View("Index", data);
+        }
+
+       
+        public ActionResult SalonaMail(string mesaj)
+        {
+            //var email = RandevuEmail.SalonaEmail();
+            return View("SalonSayfa");
         }
     }
 }

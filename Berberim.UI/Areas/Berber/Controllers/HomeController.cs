@@ -302,9 +302,8 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
 
             if (salonControl != null)
-            {
-                var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i.ID).FirstOrDefault();
-                var kesilenmodeller = (from i in db.BSACMODEL where i.SALONID == salon select i).ToList();
+            {              
+                var kesilenmodeller = (from i in db.BSACMODEL where i.SALONID == gelenSalon.ID select i).ToList();
 
                 return View(kesilenmodeller);
             }
@@ -341,8 +340,6 @@ namespace Berberim.UI.Areas.Berber.Controllers
             var gelen = (SALON)Session["berberkuladi"];
             if (gelen != null)
             {
-                var salonId = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i.ID).SingleOrDefault();
-
                 if (Request.Files.Count > 0)
                 {
                     string dosyaAdi = Guid.NewGuid().ToString().Replace("-", "");
@@ -354,7 +351,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
                         httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
                         kesilensacfotoekle.FOTO = dosyaAdi + uzanti;
                     }
-                    kesilensacfotoekle.SALONID = salonId;
+                    kesilensacfotoekle.SALONID = gelen.ID;
                     kesilensacfotoekle.STATUS = Constants.RecordStatu.Active;
                 }
             }

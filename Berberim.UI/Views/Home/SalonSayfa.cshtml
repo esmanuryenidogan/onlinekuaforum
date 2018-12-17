@@ -212,7 +212,7 @@
                             <p class="excert">
                                 @Model.Berber.HAKKINDA
                             </p>
-                         
+
                         </div>
                         <div class="col-lg-12" style="    margin-top: 25px;">
                             <div class="quotes">
@@ -288,7 +288,7 @@
                             }
                             else
                             {
-                                <a href="@Url.Action("MusteriGiris", "Home")"  class="genric-btn success">Yorum Yap</a>
+                                <a href="@Url.Action("MusteriGiris", "Home")" class="genric-btn success">Yorum Yap</a>
                             }
 
                         }
@@ -382,7 +382,7 @@
 
                                                                             foreach (var item in Model.Islemler)
                                                                             {
-                                                                                islemler.Add(new SelectListItem { Text = item.AD , Value = item.ID.ToString()});
+                                                                                islemler.Add(new SelectListItem { Text = item.AD, Value = item.ID.ToString() });
                                                                             }
 
                                                                         }
@@ -444,7 +444,7 @@
                                                         <button type="button" class="genric-btn primary-border radius" data-dismiss="modal">Vazgeç</button>
                                                         @if (ViewBag.kampanyaGelen == true)
                                                         {
-                                                            @Html.ActionLink("Kampanya Al", "KampanyaSatınAl", "Home", new { id = Model.Berber.SALONID }, new { @class = "genric-btn success" })
+                                                            @Html.ActionLink("Kampanya Tamamla", "KampanyaSatınAl", "Home", new { id = Model.Berber.SALONID }, new { @class = "genric-btn success" })
 
                                                         }
                                                         else
@@ -556,30 +556,28 @@
                             <p>
                                 Görüşlerinizi , şikayetlerinizi ve önerilerinizi bizimle paylaşabilirsiniz.
                             </p>
-                            <div class="form-group d-flex flex-row">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Mesajınız" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mesajınız'">
+                            @using (Html.BeginForm("SalonaMail", "Home", FormMethod.Post))
+                            {
+                                <div class="form-group d-flex flex-row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="mesaj" placeholder="Mesajınız" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mesajınız'">
+                                    </div>
+
+                                    <button type="submit" class="bbtns" value="Gönder" style="line-height: 32px;height:33px" name="button">Gönder</button>
+
                                 </div>
-                                <a href="#" class="bbtns" style="line-height: 32px;height:33px">Gönder</a>
-                            </div>
+                            }
                             <p class="text-bottom">En kısa sürede tarafınıza dönüş yapılacaktır.</p>
                             <div class="br"></div>
                         </aside>
                         <aside class="single-sidebar-widget tag_cloud_widget">
                             <h3 class="widget_title" style="font-size:15px;">Popüler Salonlar</h3>
                             <ul class="list">
-                                <li><a href="#">İkon Hair</a></li>
-                                <li><a href="#">Nişantaşı Stil</a></li>
-                                <li><a href="#">Merkür Salon</a></li>
-                                <li><a href="#">ShowLine Saç Tasarım</a></li>
-                                <li><a href="#">Neewlod Hair</a></li>
-                                <li><a href="#">Sertaş Hair</a></li>
-                                <li><a href="#">İmaj Erkek Kuaförü</a></li>
-                                <li><a href="#">İva Kuaför</a></li>
-                                <li><a href="#">HK Hair Design</a></li>
-                                <li><a href="#">Black Hair Salon</a></li>
-                                <li><a href="#">Elite Erkek Kuaför</a></li>
-                                <li><a href="#">Star Güzellik Salonu</a></li>
+                                @foreach (var item in Model.Salonlar)
+                                {
+                                    <li><a href="~/Home/SalonSayfa/@item.ID">@item.AD</a></li>
+                                }
+
                             </ul>
                         </aside>
                     </div>
