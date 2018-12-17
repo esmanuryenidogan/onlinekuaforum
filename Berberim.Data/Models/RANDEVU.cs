@@ -23,7 +23,7 @@ namespace Berberim.Data.Models
         public string MUSTERITEL { get; set; }
         public string MUSTERIMAIL { get; set; }
         public DateTime RANDEVUTARIH { get; set; }
-        public int RANDEVUSAAT { get; set; }
+        public string RANDEVUSAAT { get; set; }
 
         public ICollection<SALON> SALON { get; set; }
         

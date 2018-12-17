@@ -196,10 +196,9 @@ namespace Berberim.UI.Controllers
             if (rtarih != null)
             {
                 string personel = Request["Personeller"];
-                string islem = Request["islemler"];
+                var islem = Convert.ToInt32(Request["islemler"]);
 
                 DateTime tarih = Convert.ToDateTime(rtarih);
-                TimeSpan saat = TimeSpan.Parse(rSaat);
                 var simdi = DateTime.Now;
                 if (tarih > simdi)
                 {
@@ -211,9 +210,9 @@ namespace Berberim.UI.Controllers
                         SALONAD = berberbilgi?.ADSOYAD,
                         SALONTEL = berberbilgi?.TELEFON,
                         SALONMAIL = berberbilgi?.EMAIL,
-                        //KOLTUKSAY = berberbilgi?.KOLTUKSAY.ToString(),
+                        ISLEMID = islem,
                         RANDEVUTARIH = tarih,
-                        //RANDEVUSAAT = saat.ToString(),
+                        RANDEVUSAAT = rSaat,
                         PERSONEL = personel,
                         SALONID = id,
                         MUSTERIID = musteriId,

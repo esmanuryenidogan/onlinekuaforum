@@ -382,7 +382,7 @@
 
                                                                             foreach (var item in Model.Islemler)
                                                                             {
-                                                                                islemler.Add(new SelectListItem { Text = item.AD });
+                                                                                islemler.Add(new SelectListItem { Text = item.AD , Value = item.ID.ToString()});
                                                                             }
 
                                                                         }

@@ -136,7 +136,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 return View(salon);
             }
             else
-            {               
+            {
                 return View("Index");
             }
 
@@ -539,7 +539,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
             }
             else
             {
-               
+
                 return View("Index");
             }
 
@@ -599,22 +599,16 @@ namespace Berberim.UI.Areas.Berber.Controllers
             {
                 return View("BerberGiris");
             }
-            var gelenSalon = (SALON)Session["berberkuladi"];
-            var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
             ViewBag.salonControl = salonControl;
 
 
             if (salonControl != null)
             {
-                var salonID = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i.ID).SingleOrDefault();
-                var randevukontrol = (from i in db.RANDEVU where i.SALONID == salonID select i).ToList();
+                var randevukontrol = (from i in db.RANDEVU where i.SALONID == gelen.ID select i).ToList();
                 return View(randevukontrol);
             }
-            else
-            {
-                return View("Index");
-            }
-
+            return View("Index");
         }
 
         public ActionResult BerberKayıt()
