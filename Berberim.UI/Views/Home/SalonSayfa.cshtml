@@ -199,10 +199,10 @@
                                     <a href="#">Bilgilerimiz</a>
                                 </div>
                                 <ul class="blog_meta list">
-                                    <li><a href="#">Millet Caddesi<i class="lnr lnr-user"></i></a></li>
-                                    <li><a href="#">Şehremini Mh.<i class="lnr lnr-calendar-full"></i></a></li>
-                                    <li><i class="lnr lnr-eye"></i><a href="#">No:10, 34123</a></li>
-                                    <li><a href="#">Fatih/İstanbul<i class="lnr lnr-bubble"></i></a></li>
+                                  @*Cadde*@  <li><a href="#">Millet Caddesi@*<i class="lnr lnr-user"></i>*@</a></li>
+                                   @*Mahalle*@  <li><a href="#">Şehremini Mh.</a></li>
+                                   @*No Posta Kodu*@ <li><a href="#">No:10, 34123</a></li>
+                                   @*İl İlce*@ <li><a href="#">Fatih/İstanbul</a></li>
                                 </ul>
 
                             </div>
@@ -215,8 +215,10 @@
 
                         </div>
                         <div class="col-lg-12" style="    margin-top: 25px;">
+
                             <div class="quotes">
-                                @Model.Berber.VITRINYAZI
+
+                                <label style="color:black;font-size:13px">Açık Adres / Tarif</label> :  @Model.Berber.ADRES
                             </div>
 
 
@@ -487,16 +489,15 @@
                             else
                             {
                                 <aside class="single_sidebar_widget author_widget">
-                                    <img class="author_img rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="">
-                                    <h4>Emre Tezcan</h4>
-                                    <p>Salon Sahibi</p>
-                                    <div class="social_icon">
+                                    @*Salon Logo*@ <img class="author_img rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="">
+                              
+                                    <div class="social_icon" style="padding-top: 30px;">
                                         <a href="#"><i class="fa fa-facebook"></i></a>
                                         <a href="#"><i class="fa fa-twitter"></i></a>
                                         <a href="#"><i class="fa fa-github"></i></a>
                                         <a href="#"><i class="fa fa-behance"></i></a>
                                     </div>
-                                    <p>Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.</p>
+                                    <p>@Model.Berber.VITRINYAZI</p>
                                     <div class="br"></div>
                                 </aside>
                             }
