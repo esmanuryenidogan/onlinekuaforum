@@ -154,7 +154,7 @@
                                         @foreach (var item in Model.SalonFotolar)
                                         {
                                             <div class="item active">
-                                                <img src="~/Resimler/SalonFotograflar/@item.FOTO" alt="Los Angeles" style="width:750px;height:350px;">
+                                                <img src="~/Resimler/SalonFotograflar/@item.FOTO" alt="Fotoğraf Yüklemediniz" style="width:750px;height:350px;">
                                             </div>
                                             break;
                                         }
@@ -163,7 +163,7 @@
 
 
                                             <div class="item">
-                                                <img src="~/Resimler/SalonFotograflar/@item.FOTO" alt="Los Angeles" style="width:750px;height:350px;">
+                                                <img src="~/Resimler/SalonFotograflar/@item.FOTO" alt="Fotoğraf Yüklemediniz" style="width:750px;height:350px;">
                                             </div>
                                         }
                                     </div>
@@ -194,15 +194,15 @@
                             <div class="blog_info text-right">
                                 <div class="post_tag">
                                     <a href="#">Salon,</a>
-                                    <a class="active" href="#" style="color:#4cd3e3">Atakan Hair,</a>
+                                    <a class="active" href="#" style="color:#4cd3e3">@Model.Berber.AD,</a>
                                     <a href="#">Adres,</a>
                                     <a href="#">Bilgilerimiz</a>
                                 </div>
                                 <ul class="blog_meta list">
-                                  @*Cadde*@  <li><a href="#">Millet Caddesi@*<i class="lnr lnr-user"></i>*@</a></li>
-                                   @*Mahalle*@  <li><a href="#">Şehremini Mh.</a></li>
-                                   @*No Posta Kodu*@ <li><a href="#">No:10, 34123</a></li>
-                                   @*İl İlce*@ <li><a href="#">Fatih/İstanbul</a></li>
+                                  @*Cadde*@  <li><a href="#">@Model.Berber.CADDE</a></li>
+                                   @*Mahalle*@  <li><a href="#">@Model.Berber.MAHALLE</a></li>
+                                   @*No Posta Kodu*@ <li><a href="#">@Model.Berber.NOPOSTAKODU</a></li>
+                                   @*İl İlce*@ <li><a href="#">@Model.Berber.CADDE</a></li>
                                 </ul>
 
                             </div>
@@ -218,7 +218,7 @@
 
                             <div class="quotes">
 
-                                <label style="color:black;font-size:13px">Açık Adres / Tarif</label> :  @Model.Berber.ADRES
+                                <label style="color:black;font-size:13px">Açık Adres / Tarif</label> :  @Model.Berber.ACIKADRES
                             </div>
 
 
@@ -489,14 +489,21 @@
                             else
                             {
                                 <aside class="single_sidebar_widget author_widget">
-                                    @*Salon Logo*@ <img class="author_img rounded-circle" src="~/BerberPanel/images/admin.jpg" alt="">
-                              
-                                    <div class="social_icon" style="padding-top: 30px;">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-github"></i></a>
-                                        <a href="#"><i class="fa fa-behance"></i></a>
-                                    </div>
+                                    @if (@Model.Berber.LOGO == null)
+                                    {
+                                        <img class="author_img rounded-circle" src="~/Common/SalonLogo/DefaultLogo.jpg" style="width:167px;height:158px" alt="">
+
+                                    }
+                                    else
+                                    {
+                                        <img class="author_img rounded-circle" src="~/Resimler/SalonLogo/@Model.Berber.LOGO" style="width:167px;height:158px" alt="">
+
+                                    }
+                                        <div class="social_icon" style="padding-top: 30px;">
+                                            <a href="@Model.Berber.FACEBOOK"><i class="fa fa-facebook"></i></a>
+                                            <a href="@Model.Berber.INSTGRAM"><i class="fa fa-instagram"></i></a>
+                                            <a href="@Model.Berber.TWITTER"><i class="fa fa-twitter"></i></a>
+                                        </div>
                                     <p>@Model.Berber.VITRINYAZI</p>
                                     <div class="br"></div>
                                 </aside>
@@ -576,7 +583,7 @@
                             <ul class="list">
                                 @foreach (var item in Model.Salonlar)
                                 {
-                                    <li><a href="~/Home/SalonSayfa/@item.ID">@item.AD</a></li>
+                                    <li><a href="~/Home/SalonSayfa/@item.SALONID">@item.AD</a></li>
                                 }
 
                             </ul>
@@ -594,12 +601,12 @@
                 <a class="btn theme_btn" href="#" style="font-weight: 600;">TERCİH EDİLEN SALONLAR</a>
             </div>
             <div class="instagram_image row m0">
-                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-1.jpg" alt=""></a>
-                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-2.jpg" alt=""></a>
-                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-3.jpg" alt=""></a>
-                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-4.jpg" alt=""></a>
-                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-5.jpg" alt=""></a>
-                <a href="#"><img src="~/Common/Anasayfa/img/instagram/ins-6.jpg" alt=""></a>
+                @foreach (var item in Model.Salonlar)
+                {
+                   
+                    <a href="~/Home/SalonSayfa/@item.ID"><img src="~/Resimler/SalonVitrinFoto/@item.VITRINFOTO" style="height:211px" alt=""></a>
+                }
+
             </div>
         </div>
     </section>

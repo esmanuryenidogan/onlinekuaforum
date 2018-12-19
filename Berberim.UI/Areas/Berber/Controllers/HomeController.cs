@@ -70,7 +70,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
         }
 
         [HttpPost]
-        public ActionResult BerberSalonEkle(string salonad, string koltuk, string salonmail, string salonadres, string salontel, string vitrinyazi, string foto, string personeladsoyad, string personelfoto, string salonhakkinda, string il, string ilce)
+        public ActionResult BerberSalonEkle(string salonAd, string salonBilgi, string salonVitrinYazi, string salonTelefon, string salonIl, string salonIlce, string salonCadde, string salonMahalle, string salonNoPostaKodu, string salonAcikAdres, string salonMail, string salonFacebook, string salonInstgram, string salonTwitter, string salonVitrinFotograf, string salonLogo)
         {
             var gelen = (SALON)Session["berberkuladi"];
             var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
@@ -85,18 +85,24 @@ namespace Berberim.UI.Areas.Berber.Controllers
             {
                 var berberekle = new SALONSAYFA
                 {
-                    AD = salonad,
-                    KOLTUKSAY = Convert.ToInt32(koltuk),
-                    ADRES = salonadres,
-                    TEL = salontel,
-                    HAKKINDA = salonhakkinda,
+                    AD = salonAd,
+                    HAKKINDA = salonBilgi,
+                    VITRINYAZI = salonVitrinYazi,
+                    TEL = salonTelefon,
+                    IL = salonIl,
+                    ILCE = salonIlce,
+                    CADDE = salonCadde,
+                    MAHALLE = salonMahalle,
+                    NOPOSTAKODU = salonNoPostaKodu,
+                    ACIKADRES = salonAcikAdres,
                     EMAIL = gelen.EMAIL,
-                    VITRINYAZI = vitrinyazi,
+                    FACEBOOK = salonFacebook,
+                    INSTGRAM = salonInstgram,
+                    TWITTER = salonTwitter,
                     SALONID = gelen.ID,
-                    IL = il,
-                    ILCE = ilce,
                     STATUS = Constants.RecordStatu.Active
                 };
+
 
                 string dosyaAdi = Guid.NewGuid().ToString().Replace("-", "");
                 var httpPostedFileBase = Request.Files[0];
@@ -107,6 +113,20 @@ namespace Berberim.UI.Areas.Berber.Controllers
                     httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
                     berberekle.VITRINFOTO = dosyaAdi + uzanti;
                 }
+
+
+                string dosyaAdi2 = Guid.NewGuid().ToString().Replace("-", "");
+                var httpPostedFileBase2 = Request.Files[0];
+                if (httpPostedFileBase2 != null)
+                {
+                    string uzanti2 = System.IO.Path.GetExtension(httpPostedFileBase2.FileName);
+                    string tamYolYeri2 = "~/Resimler/SalonLogo/" + dosyaAdi2 + uzanti2;
+                    httpPostedFileBase2.SaveAs(Server.MapPath(tamYolYeri2));
+                    berberekle.LOGO = dosyaAdi2 + uzanti2;
+                }
+
+
+
                 db.SALONSAYFA.Add(berberekle);
                 db.SaveChanges();
 
@@ -132,7 +152,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
             if (salonControl != null)
             {
-                var salon = (from i in db.SALONSAYFA where i.EMAIL == gelen.EMAIL select i).ToList();
+                var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).ToList();
                 return View(salon);
             }
             else
@@ -192,7 +212,6 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 mevcut.ILCE = u.ILCE;
                 mevcut.TEL = u.TEL;
                 mevcut.EMAIL = u.EMAIL;
-                mevcut.KOLTUKSAY = u.KOLTUKSAY;
                 mevcut.HAKKINDA = u.HAKKINDA;
                 mevcut.VITRINYAZI = u.VITRINYAZI;
             }
@@ -302,7 +321,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
 
             if (salonControl != null)
-            {              
+            {
                 var kesilenmodeller = (from i in db.BSACMODEL where i.SALONID == gelenSalon.ID select i).ToList();
 
                 return View(kesilenmodeller);

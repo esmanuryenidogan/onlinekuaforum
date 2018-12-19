@@ -12023,6 +12023,7 @@
     <Content Include="Common\SacModelleriGallery\src\pure-js-lightbox.min.js" />
     <Content Include="Common\SalonFotoSlider\fft352_mf22790085.Jpeg" />
     <Content Include="Common\SalonFotoSlider\SliderGallery.css" />
+    <Content Include="Common\SalonLogo\DefaultLogo.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -14334,6 +14335,7 @@
     <Folder Include="Resimler\KesilenSaclar\" />
     <Folder Include="Resimler\PersonelFotolar\" />
     <Folder Include="Resimler\SalonFotograflar\" />
+    <Folder Include="Resimler\SalonLogo\" />
     <Folder Include="Resimler\SalonVitrinFoto\" />
   </ItemGroup>
   <ItemGroup>

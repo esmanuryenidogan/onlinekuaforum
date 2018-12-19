@@ -20,7 +20,14 @@ namespace Berberim.Data.Models
         public string VITRINFOTO { get; set; }
         public string VITRINYAZI { get; set; }
         public string HAKKINDA { get; set; }
-        public int KOLTUKSAY { get; set; }
+        public string CADDE { get; set; }
+        public string MAHALLE { get; set; }
+        public string NOPOSTAKODU { get; set; }
+        public string ACIKADRES { get; set; }
+        public string FACEBOOK { get; set; }
+        public string INSTGRAM { get; set; }
+        public string TWITTER { get; set; }
+        public string LOGO { get; set; }
 
         public ICollection<SALON> SALON { get; set; }
 
