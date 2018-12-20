@@ -128,8 +128,9 @@
                                 <div class="hover">
                                     <a href="@Url.Action("SalonSayfa", "Home",  new { @id = item.SALONID })">
                                         <h4>@item.AD</h4>
-
+                                       @*icon gelecek*@ <h4 style="font-size:14px">@item.IL @item.ILCE</h4>
                                         <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
+
                                     </a>
                                 </div>
                             </div>
@@ -149,7 +150,7 @@
                             <img style="height: 309px;" src="~/SalonFotolar/kampanya.png" alt="">
                             <div class="hover">
                                 <a href="@Url.Action("KampanyaSatınAl", "Home", new { @id = item.SALONID })">
-                                    <h4>@item.BASLIK<br />@item.FIYAT TL</h4>
+                                   <h4>@item.SALONAD</h4><br /> <h4 style="font-size: 14px;">@item.BASLIK<br />@item.FIYAT TL</h4>
 
                                     <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
                                 </a>

@@ -199,10 +199,14 @@
                                     <a href="#">Bilgilerimiz</a>
                                 </div>
                                 <ul class="blog_meta list">
-                                  @*Cadde*@  <li><a href="#">@Model.Berber.CADDE</a></li>
-                                   @*Mahalle*@  <li><a href="#">@Model.Berber.MAHALLE</a></li>
-                                   @*No Posta Kodu*@ <li><a href="#">@Model.Berber.NOPOSTAKODU</a></li>
-                                   @*İl İlce*@ <li><a href="#">@Model.Berber.CADDE</a></li>
+                                    @*Cadde*@
+                                    <li><a href="#">@Model.Berber.CADDE</a></li>
+                                    @*Mahalle*@
+                                    <li><a href="#">@Model.Berber.MAHALLE</a></li>
+                                    @*No Posta Kodu*@
+                                    <li><a href="#">@Model.Berber.NOPOSTAKODU</a></li>
+                                    @*İl İlce*@
+                                    <li><a href="#">@Model.Berber.CADDE</a></li>
                                 </ul>
 
                             </div>
@@ -468,46 +472,65 @@
 
                             <div class="br"></div>
                         </aside>
-                        @{
-                            if (ViewBag.kampanyaGelen == true)
+                        <aside class="single_sidebar_widget author_widget">
+                            @if (@Model.Berber.LOGO == null)
                             {
-                                <aside class="single_sidebar_widget author_widget">
-                                    <h3 class="widget_title" style="font-size:15px;">Kampanya Detayları</h3>
-                                    @foreach (var item in Model.Kampanya)
-                                    {
-                                        <p>Kampanya Başlığı  :   @item.BASLIK</p>
-                                        <p>Kampanya Fiyatı   : @item.FIYAT TL</p>
-                                        <p>Kampanya İçeriği  : @item.ICERIK</p>
-                                        <p>Kampanya Son Günü : @item.SONGUN</p>
+                                <img class="author_img rounded-circle" src="~/Common/SalonLogo/DefaultLogo.jpg" style="width:167px;height:158px" alt="">
 
-
-                                    }
-
-                                    <div class="br"></div>
-                                </aside>
                             }
                             else
                             {
-                                <aside class="single_sidebar_widget author_widget">
-                                    @if (@Model.Berber.LOGO == null)
-                                    {
-                                        <img class="author_img rounded-circle" src="~/Common/SalonLogo/DefaultLogo.jpg" style="width:167px;height:158px" alt="">
+                                <img class="author_img rounded-circle" src="~/Resimler/SalonLogo/@Model.Berber.LOGO" style="width:167px;height:158px" alt="">
 
-                                    }
-                                    else
-                                    {
-                                        <img class="author_img rounded-circle" src="~/Resimler/SalonLogo/@Model.Berber.LOGO" style="width:167px;height:158px" alt="">
+                            }
+                            <div class="social_icon" style="padding-top: 30px;">
+                                <a href="@Model.Berber.FACEBOOK"><i class="fa fa-facebook"></i></a>
+                                <a href="@Model.Berber.INSTGRAM"><i class="fa fa-instagram"></i></a>
+                                <a href="@Model.Berber.TWITTER"><i class="fa fa-twitter"></i></a>
+                            </div>
+                            <p>@Model.Berber.VITRINYAZI</p>
+                            <div class="br"></div>
+                        </aside>
+                        @{
+                            if (ViewBag.kampanyaGelen == true)
+                            {
+                                <aside class="single_sidebar_widget post_category_widget">
+                                    <h3 class="widget_title" style="font-size:15px;">Kampanya Detayları</h3>
+                                    <ul class="list cat-list">
 
-                                    }
-                                        <div class="social_icon" style="padding-top: 30px;">
-                                            <a href="@Model.Berber.FACEBOOK"><i class="fa fa-facebook"></i></a>
-                                            <a href="@Model.Berber.INSTGRAM"><i class="fa fa-instagram"></i></a>
-                                            <a href="@Model.Berber.TWITTER"><i class="fa fa-twitter"></i></a>
-                                        </div>
-                                    <p>@Model.Berber.VITRINYAZI</p>
+                                        <li style="width: 100%;">
+                                            <div class="d-flex justify-content-between">
+                                                <p>Kampanya Başlığı :</p>
+                                                <p>@Model.Kampanya.BASLIK</p>
+                                            </div>
+                                        </li>
+
+                                        <li style="width: 100%;">
+                                            <div class="d-flex justify-content-between">
+                                                <p>Kampanya Fiyat :</p>
+                                                <p>@Model.Kampanya.FIYAT TL</p>
+                                            </div>
+                                        </li>
+                                        <li style="width: 100%;">
+                                            <div class="d-flex justify-content-between">
+                                                <p>Kampanya İçeriği :</p>
+                                                <p>@Model.Kampanya.ICERIK</p>
+                                            </div>
+                                        </li>
+                                        <li style="width: 100%;">
+                                            <div class="d-flex justify-content-between">
+                                                <p>Kampanya Son Gün :</p>
+                                                <p>@Model.Kampanya.SONGUN</p>
+                                            </div>
+                                        </li>
+
+                                    </ul>
                                     <div class="br"></div>
                                 </aside>
                             }
+
+
+
                         }
 
                         <aside class="single_sidebar_widget popular_post_widget">
@@ -541,24 +564,27 @@
                         </aside>
                         <aside class="single_sidebar_widget ads_widget">
                             <a href="#"><img class="img-fluid" src="img/blog/add.jpg" alt=""></a>
-                            <div class="br"></div>
+                         
                         </aside>
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h3 class="widget_title" style="font-size:15px;">Hizmetler</h3>
-                            <ul class="list cat-list">
-                                @foreach (var item in Model.Islemler)
-                                {
-                                    <li style="width: 100%;">
-                                        <div class="d-flex justify-content-between">
-                                            <p>@item.AD</p>
-                                            <p>@item.FIYAT TL</p>
-                                        </div>
-                                    </li>
-                                }
+                        @if (ViewBag.kampanyaGelen != true)
+                        {
+                            <aside class="single_sidebar_widget post_category_widget">
+                                <h3 class="widget_title" style="font-size:15px;">Hizmetler</h3>
+                                <ul class="list cat-list">
+                                    @foreach (var item in Model.Islemler)
+                                    {
+                                        <li style="width: 100%;">
+                                            <div class="d-flex justify-content-between">
+                                                <p>@item.AD</p>
+                                                <p>@item.FIYAT TL</p>
+                                            </div>
+                                        </li>
+                                    }
 
-                            </ul>
-                            <div class="br"></div>
-                        </aside>
+                                </ul>
+                                <div class="br"></div>
+                            </aside>
+                        }
                         <aside class="single-sidebar-widget newsletter_widget">
                             <h3 class="widget_title" style="font-size:15px;">Salon İle İletişime Geçin</h3>
                             <p>
@@ -603,7 +629,7 @@
             <div class="instagram_image row m0">
                 @foreach (var item in Model.Salonlar)
                 {
-                   
+
                     <a href="~/Home/SalonSayfa/@item.ID"><img src="~/Resimler/SalonVitrinFoto/@item.VITRINFOTO" style="height:211px" alt=""></a>
                 }
 

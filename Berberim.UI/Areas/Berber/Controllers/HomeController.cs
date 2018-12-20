@@ -584,6 +584,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult KampanyaEkle(string baslik, string icerik, int fiyat, DateTime tarih)
         {
             var gelen = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.EMAIL == gelen.EMAIL select i).FirstOrDefault();
 
             KAMPANYA kekle = new KAMPANYA();
             if (gelen != null)
@@ -592,8 +593,8 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 kekle.BASLIK = baslik;
                 kekle.ICERIK = icerik;
                 kekle.FIYAT = fiyat;
-                kekle.SALONID = gelen.ID;
-                kekle.SALONAD = gelen.ADSOYAD;
+                kekle.SALONID = salon.ID;
+                kekle.SALONAD = salon.AD;
                 kekle.SONGUN = tarih;
                 db.KAMPANYA.Add(kekle);
                 db.SaveChanges();

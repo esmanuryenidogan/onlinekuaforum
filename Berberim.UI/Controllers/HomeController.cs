@@ -286,14 +286,15 @@ namespace Berberim.UI.Controllers
                 return View("MusteriGiris");
             }
 
-            var sonuc = _db.SALONSAYFA.FirstOrDefault(a => a.SALONID == id);
-            var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.SALONID select i).ToList();
-            var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.SALONID select i).ToList();
-            var musteriyorumlar = (from i in _db.YORUM where i.SALONID == id select i).ToList();
-            var salonfotolar = (from i in _db.SALONFOTO where i.SALONID == id select i).ToList();
-            var kesilensacmodeller = (from i in _db.BSACMODEL where i.SALONID == id select i).ToList();
-            var yorumsay = (from i in _db.YORUM where i.SALONID == sonuc.SALONID select i.ID).Count();
-            var kampanya = (from i in _db.KAMPANYA select i).ToList();
+            var sonuc = (from i in _db.SALONSAYFA where i.SALONID == id select i).SingleOrDefault();
+            var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.ID select i).ToList();
+            var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.ID select i).ToList();
+            var musteriyorumlar = (from i in _db.YORUM where i.SALONID == sonuc.ID select i).ToList();
+            var salonfotolar = (from i in _db.SALONFOTO where i.SALONID == sonuc.ID select i).ToList();
+            var kesilensacmodeller = (from i in _db.BSACMODEL where i.SALONID == sonuc.ID select i).ToList();
+            var kampanya = (from i in _db.KAMPANYA select i).SingleOrDefault();
+            var yorumsay = (from i in _db.YORUM where i.SALONID == sonuc.ID select i.ID).Count();
+            var salonlar = _db.SALONSAYFA.Where(i => i.STATUS == Constants.RecordStatu.Active).Take(6).ToList();
             ViewBag.yorumsay = yorumsay;
 
             BerberDetayModel model = new BerberDetayModel
@@ -304,7 +305,8 @@ namespace Berberim.UI.Controllers
                 SalonFotolar = salonfotolar,
                 KesilenSacModeller = kesilensacmodeller,
                 MusteriYorumlar = musteriyorumlar,
-                Kampanya = kampanya
+                Kampanya = kampanya,
+                Salonlar = salonlar
             };
 
             List<string> randevuSaat = new List<string>
@@ -362,15 +364,52 @@ namespace Berberim.UI.Controllers
                 _db.RANDEVU.Add(ral);
                 _db.SaveChanges();
 
-                string body = "Randevu Bilgileriniz" + " " + tarih + " " + saat;
-                var email = RandevuEmail.RandevuMail(body, "Randevu Bilgileri", "atakangmc@gmail.com", berberbilgi?.EMAIL, musteribilgi?.EMAIL);
-
+                return View("Index");
             }
 
             var gelenmodel = Session["gelenmodel"];
             ViewBag.tarih = "Geçmiş Tarih Seçilemez !";
+            return View(gelenmodel);
+        }
 
-            return View("SalonSayfa");
+        public ActionResult RandevuAl(int id)
+        {
+
+            var gelen = Session["musteri"];
+            if (gelen == null)
+            {
+                return View("MusteriGiris");
+            }
+            var sonuc = (from i in _db.SALONSAYFA where i.ID == id select i).SingleOrDefault();
+            var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.ID select i).ToList();
+            var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.ID select i).ToList();
+
+            BerberDetayModel model = new BerberDetayModel
+            {
+                Berber = sonuc,
+                Islemler = islemler,
+                Personeller = personeller
+            };
+
+            List<string> randevuSaat = new List<string>
+            {
+                "10:00",
+                "11:00",
+                "12:00",
+                "13:00",
+                "14:00",
+                "15:00",
+                "16:00",
+                "17:00",
+                "18:00",
+                "19:00",
+                "20:00"
+            };
+
+            model.RandevuSaat = randevuSaat;
+            Session["model"] = model;
+
+            return View("RandevuAl", model);
         }
 
         public ActionResult MusteriRandevuGoruntule()
@@ -467,7 +506,7 @@ namespace Berberim.UI.Controllers
             return View("Index", data);
         }
 
-       
+
         public ActionResult SalonaMail(string mesaj)
         {
             //var email = RandevuEmail.SalonaEmail();
