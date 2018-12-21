@@ -14238,6 +14238,7 @@
     <Content Include="Common\KullaniciGiris\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Common\KullaniciGiris\vendor\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Areas\Berber\Views\Home\BerberKayıt.cshtml" />
+    <Content Include="Areas\Berber\Views\Home\SalonLogo.cshtml" />
     <None Include="Properties\PublishProfiles\berberi - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\berberi - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\berberim %282%29.pubxml" />

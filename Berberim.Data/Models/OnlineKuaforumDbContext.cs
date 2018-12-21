@@ -30,6 +30,7 @@ namespace Berberim.Data.Models
         public DbSet<SALONSAYFA> SALONSAYFA { get; set; }
         public DbSet<TRENDHAIR> TRENDHAIRS { get; set; }
         public DbSet<YORUM> YORUM { get; set; }
+        public DbSet<SALONLOGO> SALONLOGO { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -164,6 +164,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         SALONSAYFA ssil = new SALONSAYFA();
         public ActionResult BerberSil(int ID)
         {
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
             db.SALONSAYFA.Remove(db.SALONSAYFA.Find(ID));
             db.SaveChanges();
             return View("Index", db.SALONSAYFA);
@@ -186,6 +190,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         [HttpPost]
         public ActionResult Guncelle(SALONSAYFA u)
         {
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
             var mevcut = db.SALONSAYFA.Find(u.ID);
             string salonadeski = mevcut?.AD;
             //string fotos = mevcut?.VITRINFOTO;
@@ -255,10 +263,20 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
         public ActionResult SalonFotograflarSil(int ID)
         {
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
             var salonfotosil = new SALONFOTO();
             db.SALONFOTO.Remove(db.SALONFOTO.Find(ID));
             db.SaveChanges();
-            return View("Index", db.SALONFOTO);
+
+            var salonFotolar = SalonFotograflarGor();
+
+            ViewData["Model"] = salonFotolar;
+            var model = ViewData.Model;
+
+            return View("SalonFotograflarGor", model);
         }
 
         public ActionResult SalonFotografEkle()
@@ -276,6 +294,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult SalonFotografEkle(string foto)
         {
             SALONFOTO salonfotoekle = new SALONFOTO();
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
 
             var gelen = (SALON)Session["berberkuladi"];
             if (gelen != null)
@@ -335,6 +357,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
         public ActionResult KesilenSacSil(int ID)
         {
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
             BSACMODEL sacfotosil = new BSACMODEL();
             db.BSACMODEL.Remove(db.BSACMODEL.Find(ID));
             db.SaveChanges();
@@ -355,6 +381,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         [HttpPost]
         public ActionResult KesilenSacFotoEkle(string foto)
         {
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
             var kesilensacfotoekle = new BSACMODEL();
             var gelen = (SALON)Session["berberkuladi"];
             if (gelen != null)
@@ -424,6 +454,9 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult PersonelEkle(string personeladsoyad, string unvan, string cinsiyet, string foto)
         {
             var gelen = (SALON)Session["berberkuladi"];
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
 
             var pekle = new PERSONEL();
             if (gelen != null)
@@ -461,10 +494,21 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
         public ActionResult PersonelSil(int ID)
         {
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
             var bsil = new PERSONEL();
             db.PERSONEL.Remove(db.PERSONEL.Find(ID));
             db.SaveChanges();
-            return View("Index", db.PERSONEL);
+
+            var personelDuzenle = PersonelDuzenle();
+
+            ViewData["Model"] = personelDuzenle;
+            var model = ViewData.Model;
+
+            return View("PersonelDuzenle", model);
+           
         }
 
         public ActionResult Berberİslem()
@@ -495,6 +539,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult BerberİslemEkle()
         {
             var gelen = (SALON)Session["berberkuladi"];
+
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
 
             if (gelen != null)
             {
@@ -531,10 +579,21 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
         public ActionResult İslemSil(int ID)
         {
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
             var bsil = new ISLEM();
             db.ISLEM.Remove(db.ISLEM.Find(ID));
             db.SaveChanges();
-            return View("Index", db.ISLEM);
+
+            var islemler = Berberİslem();
+
+            ViewData["Model"] = islemler;
+            var model = ViewData.Model;
+
+            return View("Berberİslem", model);
+         
         }
 
         public ActionResult Kampanyalar()
@@ -563,10 +622,19 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
         public ActionResult KampanyaSil(int ID)
         {
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
             var bsil = new KAMPANYA();
             db.KAMPANYA.Remove(db.KAMPANYA.Find(ID));
             db.SaveChanges();
-            return View("Index", db.KAMPANYA);
+
+            var kampanyalar = Kampanyalar();
+            ViewData["Model"] = kampanyalar;
+            var model = ViewData.Model;
+
+            return View("Kampanyalar", model);
         }
 
         public ActionResult KampanyaEkle()
@@ -584,6 +652,10 @@ namespace Berberim.UI.Areas.Berber.Controllers
         public ActionResult KampanyaEkle(string baslik, string icerik, int fiyat, DateTime tarih)
         {
             var gelen = (SALON)Session["berberkuladi"];
+            var salon2 = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon2;
+
+           
             var salon = (from i in db.SALONSAYFA where i.EMAIL == gelen.EMAIL select i).FirstOrDefault();
 
             KAMPANYA kekle = new KAMPANYA();
@@ -593,7 +665,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 kekle.BASLIK = baslik;
                 kekle.ICERIK = icerik;
                 kekle.FIYAT = fiyat;
-                kekle.SALONID = salon.ID;
+                kekle.SALONID = salon.SALONID;
                 kekle.SALONAD = salon.AD;
                 kekle.SONGUN = tarih;
                 db.KAMPANYA.Add(kekle);
@@ -657,5 +729,106 @@ namespace Berberim.UI.Areas.Berber.Controllers
                 return View("BerberKayıt");
 
         }
+
+        public ActionResult SalonLogo()
+        {
+            var gelen = (SALON)Session["berberkuladi"];
+            if (gelen == null)
+            {
+                return View("BerberGiris");
+            }
+
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salonControl = (from i in db.SALONLOGO where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salonControl;
+
+            if (salonControl != null)
+            {
+                var salon = (from i in db.SALONLOGO where i.SALONID == gelen.ID select i).FirstOrDefault();
+
+                if (salon != null)
+                {
+                    var salonfoto = (from i in db.SALONLOGO where i.SALONID == salon.ID select i).ToList();
+                    return View(salonfoto);
+                }
+
+                return View("SalonLogo");
+            }
+            else
+            {
+                return View("Index");
+            }
+
+        }
+
+        public ActionResult LogoSil(int ID)
+        {
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONLOGO where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
+            var salonfotosil = new SALONFOTO();
+            db.SALONLOGO.Remove(db.SALONLOGO.Find(ID));
+            db.SaveChanges();
+
+            var salonLogo = SalonLogo();
+
+            ViewData["Model"] = salonLogo;
+            var model = ViewData.Model;
+
+            return View("SalonLogo", model);
+        }
+
+        public ActionResult LogoEkle()
+        {
+            var gelen = (SALON)Session["berberkuladi"];
+
+            if (gelen != null)
+            {
+                return View();
+            }
+            return View("BerberGiris");
+        }
+
+        [HttpPost]
+        public ActionResult LogoEkle(string foto)
+        {
+            SALONLOGO salonfotoekle = new SALONLOGO();
+            var gelenSalon = (SALON)Session["berberkuladi"];
+            var salon = (from i in db.SALONLOGO where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            ViewBag.salonControl = salon;
+
+
+            var gelen = (SALON)Session["berberkuladi"];
+            if (gelen != null)
+            {
+                var salonId = (from i in db.SALONLOGO where i.SALONID == gelen.ID select i).FirstOrDefault();
+
+                if (Request.Files.Count > 0)
+                {
+                    string dosyaAdi = Guid.NewGuid().ToString().Replace("-", "");
+                    var httpPostedFileBase = Request.Files[0];
+                    if (httpPostedFileBase != null)
+                    {
+                        string uzanti = System.IO.Path.GetExtension(httpPostedFileBase.FileName);
+                        string tamYolYeri = "~/Resimler/SalonFotograflar/" + dosyaAdi + uzanti;
+                        httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
+                        salonfotoekle.LOGO = dosyaAdi + uzanti;
+                    }
+                    salonfotoekle.SALONID = salonId.ID;
+                    salonfotoekle.STATUS = Constants.RecordStatu.Active;
+                }
+            }
+            db.SALONLOGO.Add(salonfotoekle);
+            db.SaveChanges();
+
+            var salonFotolar = SalonLogo();
+
+            ViewData["Model"] = salonFotolar;
+            var model = ViewData.Model;
+
+            return View("SalonLogo", model);
+        }
+
     }
 }
