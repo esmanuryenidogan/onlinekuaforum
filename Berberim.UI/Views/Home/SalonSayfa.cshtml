@@ -450,7 +450,7 @@
                                                         <button type="button" class="genric-btn primary-border radius" data-dismiss="modal">Vazgeç</button>
                                                         @if (ViewBag.kampanyaGelen == true)
                                                         {
-                                                            @Html.ActionLink("Kampanya Tamamla", "KampanyaSatınAl", "Home", new { id = Model.Berber.SALONID }, new { @class = "genric-btn success" })
+                                                            <input type="submit" name="KampanyaAl" value="Kampanyayı Tamamla" class="genric-btn success" />
 
                                                         }
                                                         else
@@ -473,14 +473,14 @@
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget author_widget">
-                            @if (@Model.Berber.LOGO == null)
+                            @if (@Model.SalonLogo == null)
                             {
                                 <img class="author_img rounded-circle" src="~/Common/SalonLogo/DefaultLogo.jpg" style="width:167px;height:158px" alt="">
 
                             }
                             else
                             {
-                                <img class="author_img rounded-circle" src="~/Resimler/SalonLogo/@Model.Berber.LOGO" style="width:167px;height:158px" alt="">
+                                <img class="author_img rounded-circle" src="~/Resimler/SalonLogo/@Model.SalonLogo.LOGO" style="width:167px;height:158px" alt="">
 
                             }
                             <div class="social_icon" style="padding-top: 30px;">

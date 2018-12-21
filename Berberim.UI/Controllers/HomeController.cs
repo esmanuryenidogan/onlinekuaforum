@@ -177,11 +177,12 @@ namespace Berberim.UI.Controllers
             var sonuc = (from i in _db.SALONSAYFA where i.SALONID == id select i).FirstOrDefault();
             var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.SALONID select i).ToList();
             var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.SALONID select i).ToList();
-            var musteriyorumlar = (from i in _db.YORUM where i.SALONID == id select i).ToList();
-            var salonfotolar = (from i in _db.SALONFOTO where i.SALONID == id select i).ToList();
-            var kesilensacmodeller = (from i in _db.BSACMODEL where i.SALONID == id select i).ToList();
+            var musteriyorumlar = (from i in _db.YORUM where i.SALONID == sonuc.SALONID select i).ToList();
+            var salonfotolar = (from i in _db.SALONFOTO where i.SALONID == sonuc.SALONID select i).ToList();
+            var kesilensacmodeller = (from i in _db.BSACMODEL where i.SALONID == sonuc.SALONID select i).ToList();
             var yorumsay = (from i in _db.YORUM where i.SALONID == sonuc.SALONID select i.ID).Count();
             var salonlar = _db.SALONSAYFA.Where(i => i.STATUS == Constants.RecordStatu.Active).Take(6).ToList();
+            var salonLogo = (from i in _db.SALONLOGO where i.SALONID == sonuc.SALONID select i).FirstOrDefault();
             ViewBag.yorumsay = yorumsay;
 
             BerberDetayModel model = new BerberDetayModel
@@ -192,7 +193,8 @@ namespace Berberim.UI.Controllers
                 SalonFotolar = salonfotolar,
                 KesilenSacModeller = kesilensacmodeller,
                 MusteriYorumlar = musteriyorumlar,
-                Salonlar = salonlar
+                Salonlar = salonlar,
+                SalonLogo = salonLogo
             };
             return View(model);
         }
@@ -208,32 +210,58 @@ namespace Berberim.UI.Controllers
             var musteriId = (from i in _db.MUSTERİ where i.EMAIL == gelen select i.ID).FirstOrDefault();
             var berberbilgi = (from i in _db.SALONSAYFA where i.ID == id select i).FirstOrDefault();
             var musteribilgi = (from i in _db.MUSTERİ where i.ID == musteriId select i).FirstOrDefault();
+            var kampanyaID = (from i in _db.KAMPANYA where i.SALONID == id select i.ID).FirstOrDefault();
+            var kampanyabilgileri = (from i in _db.KAMPANYA where i.ID == kampanyaID select i).FirstOrDefault();
+          
 
             if (rtarih != null)
             {
                 string personel = Request["Personeller"];
                 var islem = Convert.ToInt32(Request["islemler"]);
+                var islemBilgisi = (from i in _db.ISLEM where i.ID == islem select i).FirstOrDefault();
 
                 DateTime tarih = Convert.ToDateTime(rtarih);
                 var simdi = DateTime.Now;
                 if (tarih > simdi)
                 {
-                    var randevual = new RANDEVU
+                    var randevual = new RANDEVU();
+                    if (islem != null)
                     {
-                        MUSTERIAD = musteribilgi?.AD,
-                        MUSTERITEL = musteribilgi?.TEL,
-                        MUSTERIMAIL = musteribilgi?.EMAIL,
-                        SALONAD = berberbilgi?.AD,
-                        SALONTEL = berberbilgi?.TEL,
-                        SALONMAIL = berberbilgi?.EMAIL,
-                        ISLEMID = islem,
-                        RANDEVUTARIH = tarih,
-                        RANDEVUSAAT = rSaat,
-                        PERSONEL = personel,
-                        SALONID = id,
-                        MUSTERIID = musteriId,
-                        STATUS = Constants.RecordStatu.Active
-                    };
+                        randevual.MUSTERIAD = musteribilgi?.AD;
+                        randevual.MUSTERITEL = musteribilgi?.TEL;
+                        randevual.MUSTERIMAIL = musteribilgi?.EMAIL;
+                        randevual.SALONAD = berberbilgi?.AD;
+                        randevual.SALONTEL = berberbilgi?.TEL;
+                        randevual.SALONMAIL = berberbilgi?.EMAIL;
+                        randevual.ISLEMID = islem;
+                        randevual.ISLEMADI = islemBilgisi.AD;
+                        randevual.ISLEMFIYAT = islemBilgisi.FIYAT.ToString();
+                        randevual.RANDEVUTARIH = tarih;
+                        randevual.RANDEVUSAAT = rSaat;
+                        randevual.PERSONEL = personel;
+                        randevual.SALONID = id;
+                        randevual.MUSTERIID = musteriId;
+                        randevual.STATUS = Constants.RecordStatu.Active;
+                    }
+                    else
+                    {
+                        randevual.MUSTERIAD = musteribilgi?.AD;
+                        randevual.MUSTERITEL = musteribilgi?.TEL;
+                        randevual.MUSTERIMAIL = musteribilgi?.EMAIL;
+                        randevual.SALONAD = berberbilgi?.AD;
+                        randevual.SALONTEL = berberbilgi?.TEL;
+                        randevual.SALONMAIL = berberbilgi?.EMAIL;
+                        randevual.ISLEMID = islem;
+                        randevual.ISLEMADI = kampanyabilgileri.BASLIK;
+                        randevual.ISLEMFIYAT = kampanyabilgileri.FIYAT.ToString();
+                        randevual.RANDEVUTARIH = tarih;
+                        randevual.RANDEVUSAAT = rSaat;
+                        randevual.PERSONEL = personel;
+                        randevual.SALONID = id;
+                        randevual.MUSTERIID = musteriId;
+                        randevual.STATUS = Constants.RecordStatu.Active;
+                    }
+
                     _db.RANDEVU.Add(randevual);
                     _db.SaveChanges();
 
@@ -288,13 +316,14 @@ namespace Berberim.UI.Controllers
 
             var sonuc = (from i in _db.SALONSAYFA where i.SALONID == id select i).SingleOrDefault();
             var islemler = (from i in _db.ISLEM where i.SALONID == sonuc.ID select i).ToList();
-            var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.ID select i).ToList();
-            var musteriyorumlar = (from i in _db.YORUM where i.SALONID == sonuc.ID select i).ToList();
-            var salonfotolar = (from i in _db.SALONFOTO where i.SALONID == sonuc.ID select i).ToList();
-            var kesilensacmodeller = (from i in _db.BSACMODEL where i.SALONID == sonuc.ID select i).ToList();
+            var personeller = (from i in _db.PERSONEL where i.SALONID == sonuc.SALONID select i).ToList();
+            var musteriyorumlar = (from i in _db.YORUM where i.SALONID == sonuc.SALONID select i).ToList();
+            var salonfotolar = (from i in _db.SALONFOTO where i.SALONID == sonuc.SALONID select i).ToList();
+            var kesilensacmodeller = (from i in _db.BSACMODEL where i.SALONID == sonuc.SALONID select i).ToList();
             var kampanya = (from i in _db.KAMPANYA select i).SingleOrDefault();
-            var yorumsay = (from i in _db.YORUM where i.SALONID == sonuc.ID select i.ID).Count();
+            var yorumsay = (from i in _db.YORUM where i.SALONID == sonuc.SALONID select i.ID).Count();
             var salonlar = _db.SALONSAYFA.Where(i => i.STATUS == Constants.RecordStatu.Active).Take(6).ToList();
+            var salonLogo = (from i in _db.SALONLOGO where i.SALONID == sonuc.SALONID select i).FirstOrDefault();
             ViewBag.yorumsay = yorumsay;
 
             BerberDetayModel model = new BerberDetayModel
@@ -306,7 +335,8 @@ namespace Berberim.UI.Controllers
                 KesilenSacModeller = kesilensacmodeller,
                 MusteriYorumlar = musteriyorumlar,
                 Kampanya = kampanya,
-                Salonlar = salonlar
+                Salonlar = salonlar,
+                SalonLogo = salonLogo
             };
 
             List<string> randevuSaat = new List<string>

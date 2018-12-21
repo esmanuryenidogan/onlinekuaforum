@@ -19,6 +19,7 @@ namespace Berberim.UI.Models
         public List<string> RandevuTarih { get; set; }
         public KAMPANYA Kampanya { get; set; }
         public List<SALONSAYFA> Salonlar { get; set; }
-        
+        public SALONLOGO SalonLogo { get; set; }
+
     }
 }

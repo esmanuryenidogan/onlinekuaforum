@@ -24,6 +24,8 @@ namespace Berberim.Data.Models
         public string MUSTERIMAIL { get; set; }
         public DateTime RANDEVUTARIH { get; set; }
         public string RANDEVUSAAT { get; set; }
+        public string ISLEMADI { get; set; }
+        public string ISLEMFIYAT { get; set; }
 
         public ICollection<SALON> SALON { get; set; }
         

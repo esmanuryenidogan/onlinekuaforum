@@ -227,7 +227,12 @@ namespace Berberim.UI.Areas.Berber.Controllers
             if (adminislem != null) adminislem.AD = u.AD;
 
             db.SaveChanges();
-            return View("Index", db.SALONSAYFA);
+
+            var berberSalon = BerberDuzenle();
+            ViewData["Model"] = berberSalon;
+            var model = ViewData.Model;
+
+            return View("BerberDuzenle", model);
         }
 
         public ActionResult SalonFotograflarGor()
@@ -508,7 +513,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
             var model = ViewData.Model;
 
             return View("PersonelDuzenle", model);
-           
+
         }
 
         public ActionResult Berberİslem()
@@ -593,7 +598,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
             var model = ViewData.Model;
 
             return View("Berberİslem", model);
-         
+
         }
 
         public ActionResult Kampanyalar()
@@ -655,7 +660,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
             var salon2 = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
             ViewBag.salonControl = salon2;
 
-           
+
             var salon = (from i in db.SALONSAYFA where i.EMAIL == gelen.EMAIL select i).FirstOrDefault();
 
             KAMPANYA kekle = new KAMPANYA();
@@ -739,16 +744,20 @@ namespace Berberim.UI.Areas.Berber.Controllers
             }
 
             var gelenSalon = (SALON)Session["berberkuladi"];
-            var salonControl = (from i in db.SALONLOGO where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
+            var salonControl = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
             ViewBag.salonControl = salonControl;
 
             if (salonControl != null)
             {
-                var salon = (from i in db.SALONLOGO where i.SALONID == gelen.ID select i).FirstOrDefault();
+                var salon = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
 
                 if (salon != null)
                 {
-                    var salonfoto = (from i in db.SALONLOGO where i.SALONID == salon.ID select i).ToList();
+                    var salonfoto = (from i in db.SALONLOGO where i.SALONID == salon.SALONID select i).ToList();
+                    if (salonfoto.Count > 0)
+                    {
+                        ViewBag.Logo = true;
+                    }
                     return View(salonfoto);
                 }
 
@@ -802,7 +811,7 @@ namespace Berberim.UI.Areas.Berber.Controllers
             var gelen = (SALON)Session["berberkuladi"];
             if (gelen != null)
             {
-                var salonId = (from i in db.SALONLOGO where i.SALONID == gelen.ID select i).FirstOrDefault();
+                var salonId = (from i in db.SALONSAYFA where i.SALONID == gelen.ID select i).FirstOrDefault();
 
                 if (Request.Files.Count > 0)
                 {
@@ -811,11 +820,11 @@ namespace Berberim.UI.Areas.Berber.Controllers
                     if (httpPostedFileBase != null)
                     {
                         string uzanti = System.IO.Path.GetExtension(httpPostedFileBase.FileName);
-                        string tamYolYeri = "~/Resimler/SalonFotograflar/" + dosyaAdi + uzanti;
+                        string tamYolYeri = "~/Resimler/SalonLogo/" + dosyaAdi + uzanti;
                         httpPostedFileBase.SaveAs(Server.MapPath(tamYolYeri));
                         salonfotoekle.LOGO = dosyaAdi + uzanti;
                     }
-                    salonfotoekle.SALONID = salonId.ID;
+                    salonfotoekle.SALONID = gelen.ID;
                     salonfotoekle.STATUS = Constants.RecordStatu.Active;
                 }
             }

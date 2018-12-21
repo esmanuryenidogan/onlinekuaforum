@@ -1,114 +1,173 @@
 ﻿@model Berberim.Data.Models.SALONSAYFA
 
 @{
-    ViewBag.Title = "Guncelle";
-    Layout = "~/Areas/Berber/Views/_BerberLayout.cshtml";
+                /**/
+
+                ViewBag.Title = "Guncelle";
+                Layout = "~/Areas/Berber/Views/_BerberLayout.cshtml";
 }
 
 @using (Html.BeginForm("Guncelle", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
     <div class="row" style="margin-top: 24px">
-        <div class="col-xs-6 col-sm-6">
+        <div class="col-xs-12 col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <strong>İletişim Bilgileri</strong>
+                    <strong>Genel Bilgiler</strong>
                 </div>
                 <div class="card-body card-block">
                     <div class="form-group">
                         <label class=" form-control-label">Salon Adı</label>
                         <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-home"></i></div>
+                            <div class="input-group-addon"><i class="fa fa-home"></i></div>                         
                             @Html.TextBoxFor(a => a.AD, new { @class = "form-control", @maxlength = "50" })
+
                         </div>
-                        <small class="form-text text-muted"><span class="help-block"><h6 style="color:red">@ViewBag.uyarı</h6><h5 style="color:red">@ViewBag.mesaj</h5></span>
+                        <small class="form-text text-muted">
+                            <span class="help-block"><h6 style="color:red">@ViewBag.uyarı</h6><h5 style="color:red">@ViewBag.mesaj</h5></span>
                         </small>
                     </div>
                     <div class="form-group">
-                        <label class=" form-control-label">Salon İl ve İlçe</label>
+                        <label class=" form-control-label">Salon Hakkında Bilgi</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-home"></i></div>
+                            @Html.TextBoxFor(a => a.HAKKINDA, new { @class = "form-control", @maxlength = "50" })
+                        </div>
+                        <small class="form-text text-muted">
+                            <span class="help-block"></span>
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" form-control-label">Vitrin Yazısı</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-map-alt"></i></div>
+                            @Html.TextBoxFor(a => a.VITRINYAZI, new { @class = "form-control", @maxlength = "50" })
+                        </div>
+                        <small class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                        <label class="" form-control-label">Salon Telefonu</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                            @Html.TextBoxFor(a => a.TEL, new { @class = "form-control", @maxlength = "50" })
+                        </div>
+                        <small class="form-text text-muted"></small>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Adres Bilgileri</strong>
+                </div>
+                <div class="card-body card-block">
+                    <div class="form-group">
+                        <label class=" form-control-label">İl</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
-                            @Html.TextBoxFor(a => a.IL, new { @class = "form-control", @maxlength = "40" })
+                            @Html.TextBoxFor(a => a.IL, new { @class = "form-control", @maxlength = "50" })
                         </div>
-                        <small class="form-text text-muted">Örnek : İstanbul / Fatih</small>
+                        <small class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                        <label class=" form-control-label">İlçe</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+                            @Html.TextBoxFor(a => a.ILCE, new { @class = "form-control", @maxlength = "50" })
+                        </div>
+                        <small class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                        <label class=" form-control-label">Cadde</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-map-alt"></i></div>
+                            @Html.TextBoxFor(a => a.CADDE, new { @class = "form-control", @maxlength = "50" })
+                        </div>
+                        <small class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                        <label class=" form-control-label">Mahalle</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-map-alt"></i></div>
+                            @Html.TextBoxFor(a => a.MAHALLE, new { @class = "form-control", @maxlength = "50" })
+                        </div>
+                        <small class="form-text text-muted"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" form-control-label">No - Posta Kodu</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-map-alt"></i></div>
+                            @Html.TextBoxFor(a => a.NOPOSTAKODU, new { @class = "form-control", @maxlength = "50" })
+                        </div>
+                        <small class="form-text text-muted">Örnek : No:10, 34123</small>
                     </div>
                     <div class="form-group">
                         <label class=" form-control-label">Salon Açık Adres</label>
                         <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-road"></i></div>
-                            @Html.TextBoxFor(a => a.ADRES, new { @class = "form-control", @maxlength = "200" })
+                            <div class="input-group-addon"><i class="ti-map-alt"></i></div>
+                            @Html.TextBoxFor(a => a.ACIKADRES, new { @class = "form-control", @maxlength = "50" })
                         </div>
                         <small class="form-text text-muted"></small>
                     </div>
-                    <div class="form-group">
-                        <label class=" form-control-label">Salon Telefonu</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                            @Html.TextBoxFor(a => a.TEL, new { @class = "form-control", @maxlength = "50", type = "number" })
-                        </div>
-                        <small class="form-text text-muted"></small>
-                    </div>
+
                     <div class="form-group">
                         <label class=" form-control-label">Salon Maili</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                            @Html.TextBoxFor(a => a.EMAIL, new { @readonly = "readonly", @class = "form-control", @maxlength = "50", type = "email"})
+                            @Html.TextBoxFor(a => a.EMAIL, new { @class = "form-control", @maxlength = "50" })
+
                         </div>
                         <small class="form-text text-muted"></small>
                     </div>
-                  
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-6">
-            <div class="card" style="margin-bottom: 48px;">
-                <div class="card-header">
-                    <strong class="card-title">Salon Bilgileri</strong>
-                </div>
-               
-                <div class="form-group" style="width: 550px; margin-left: 20px; margin-top: 20px">
-                    <label class=" form-control-label">Salon Hakkında Bilgi</label>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-info-circle"></i></div>
-                        @Html.TextBoxFor(a => a.HAKKINDA, new {@class = "form-control", @maxlength = "200"})
-                    </div>
-                    <small class="form-text text-muted"></small>
-                </div>
-                <div class="form-group" style="width: 550px;margin-left: 20px; margin-top: -3px">
-                    <label class=" form-control-label">Koltuk Sayısı</label>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></div>
-                        
-                    </div>
-                    <small class="form-text text-muted"></small>
-                </div>
-            </div>
+
+
+        <div class="col-xs-12 col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <strong class="card-title">Vitrin Bilgileri</strong>
+                    <strong>Sosyal Medya Bilgileri</strong>
                 </div>
-                <div class="form-group" style="width: 550px; margin-left: 20px; margin-top: 20px;">
-                    <label class=" form-control-label">Vitrin Yazısı</label>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-comment"></i></div>
-                        @Html.TextBoxFor(a => a.VITRINYAZI, new { @class = "form-control", @maxlength = "80" })
+                <div class="card-body card-block">
+                    <div class="form-group">
+                        <label class=" form-control-label">Facebook Adresi</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-home"></i></div>
+                            @Html.TextBoxFor(a => a.FACEBOOK, new { @class = "form-control", @maxlength = "50" })
+                        </div>
+                        <small class="form-text text-muted">
+                            <span class="help-block"><h6 style="color:red">@ViewBag.uyarı</h6><h5 style="color:red">@ViewBag.mesaj</h5></span>
+                        </small>
                     </div>
-                    <small class="form-text text-muted"></small>
+                    <div class="form-group">
+                        <label class=" form-control-label">İnstagram Adresi</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+                            @Html.TextBoxFor(a => a.INSTGRAM, new { @class = "form-control", @maxlength = "50" })
+                        </div>
+                        <small class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                        <label class=" form-control-label">Twitter Adresi</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-map-alt"></i></div>
+                            @Html.TextBoxFor(a => a.TWITTER, new { @class = "form-control", @maxlength = "50" })
+                        </div>
+                        <small class="form-text text-muted"></small>
+                    </div>
                 </div>
-                
-             <div class="form-group" style="width: 550px;margin-left: 20px; margin-top: -3px;">
-                    <label class=" form-control-label">Vitrin Fotoğrafı</label>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-camera"></i></div>
-                        <input type="file" name="foto" value="resim" class="form-control">
-                    </div>
-                    <small class="form-text text-muted"></small>
-                </div>    
-               
             </div>
-            <div class="card-body pull-right" style="position: relative;top:-20px">
-                <button type="submit" class="btn btn-outline-primary">Kaydet</button>
-            </div>
+        </div>      
+        <div class="card-body pull-right" style="position: relative;top:-20px;text-align: right;">
+            <button type="reset" class="btn btn-outline-danger">Temizle</button>
+            <button type="submit" class="btn btn-outline-primary">Kaydet</button>
         </div>
     </div>
-    
+
 }

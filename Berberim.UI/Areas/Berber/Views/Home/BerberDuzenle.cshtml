@@ -17,34 +17,55 @@
                     <div class="card-body">
                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                             <thead>
-                            <tr>
-                                <th>
-                                   Salon Adı
-                                </th>
-                                <th>
-                                   İl ve İlçe
-                                </th>
-                                <th>
-                                    Adres
-                                </th>
-                                <th>
-                                    Telefon
-                                </th>
-                                <th>
-                                   E-Posta
-                                </th>
-                                <th>
-                                   Salon Hakkında
-                                </th>
-                                  
-                                <th>
-                                    Vitrin Yazısı
-                                </th>
-                                <th>
-                                    Vitrin Fotoğrafı
-                                </th>
-                                <th></th>
-                            </tr>
+                                <tr>
+                                    <th>
+                                        Salon Adı
+                                    </th>
+                                    <th>
+                                        Hakkımda
+                                    </th>
+                                    <th>
+                                        Vitrin Yazım
+                                    </th>
+                                    <th>
+                                        Telefon
+                                    </th>
+                                    <th>
+                                        İl
+                                    </th>
+                                    <th>
+                                        İlçe
+                                    </th>
+
+                                    <th>
+                                        Cadde
+                                    </th>
+                                    <th>
+                                        Mahalle
+                                    </th>
+                                    <th>
+                                        No,Posta Kodu
+                                    </th>
+                                    <th>
+                                        Açık Adres
+                                    </th>
+                                    <th>
+                                        E-Posta
+                                    </th>
+                                    <th>
+                                        Facebook
+                                    </th>
+                                    <th>
+                                        İnstgram
+                                    </th>
+                                    <th>
+                                        Twitter
+                                    </th>
+                                    <th>
+                                        Vitrin Fotoğrafı
+                                    </th>
+                                    <th></th>
+                                </tr>
                             </thead>
                             <tbody>
                             @foreach (var item in Model)
@@ -55,33 +76,54 @@
                                         @Html.DisplayFor(modelItem => item.AD)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.IL)
-                                    </td>                               
+                                        @Html.DisplayFor(modelItem => item.HAKKINDA)
+                                    </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ADRES)
+                                        @Html.DisplayFor(modelItem => item.VITRINYAZI)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.TEL)
                                     </td>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.IL)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ILCE)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CADDE)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MAHALLE)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NOPOSTAKODU)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ACIKADRES)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.EMAIL)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.HAKKINDA)
+                                        @Html.DisplayFor(modelItem => item.FACEBOOK)
                                     </td>
-                                   
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.VITRINYAZI)
+                                        @Html.DisplayFor(modelItem => item.INSTGRAM)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TWITTER)
                                     </td>
                                     <td>
                                         <img width="100" height="100" src="~/Resimler/SalonVitrinFoto/@item.VITRINFOTO">
                                     </td>
-            
-            
+
                                     <td style="padding-top: 45px">
-                                        @Html.ActionLink("Güncelle", "Guncelle", new { id = item.ID },new { @class = "btn btn-outline-info" })
-                                      
+                                        @Html.ActionLink("Güncelle", "Guncelle", new { id = item.ID }, new { @class = "btn btn-outline-info" })
+
                                     </td>
+
                                 </tr>
                             }
                             </tbody>
