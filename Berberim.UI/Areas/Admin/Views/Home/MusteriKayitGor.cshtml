@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Berberim.Data.Models.MUSTERI>
+﻿@using Berberim.Biz
+@model IEnumerable<Berberim.Data.Models.MUSTERI>
 
 @{
     ViewBag.Title = "MusteriKayitGor";
@@ -25,6 +26,9 @@
                 <table class="table table-hover">
                     <tr>
                         <th>
+                            @Html.DisplayNameFor(model => model.ID)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.AD)
                         </th>
                         <th>
@@ -39,19 +43,18 @@
                         <th>
                             @Html.DisplayNameFor(model => model.TEL)
                         </th>
-                        @*<th>
-                            @Html.DisplayNameFor(model => model.)
-                        </th>*@
                         <th>
-                            Durum
+                            DURUM
                         </th>
-        
                         <th></th>
                     </tr>
 
                     @foreach (var item in Model)
                     {
                         <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID)
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.AD)
                             </td>
@@ -68,19 +71,18 @@
                                 @Html.DisplayFor(modelItem => item.TEL)
                             </td>
                             @*<td>
-                                @Html.DisplayFor(modelItem => item.DOGUMTARIHI)
-                            </td>*@
+                                    @Html.DisplayFor(modelItem => item.DOGUMTARIHI)
+                                </td>*@
 
-                            @*@if (item.IsActive == true)
+                            @if (item.STATUS == Constants.RecordStatu.Active)
                             {
                                 <td><span class="label label-success">Aktif</span></td>
                             }
                             else
                             {
                                 <td><span class="label label-danger">Pasif</span></td>
-                            }*@
-
-                            <td>@Html.ActionLink("Durum", "MusteriGuncelle", new { id = item.ID })</td>
+                            }
+                            <td>@Html.ActionLink(item.STATUS == 2 ? "Pasife Al" : "Aktif Et", "MusteriGuncelle", new { id = item.ID })</td>
                         </tr>
                     }
                 </table>

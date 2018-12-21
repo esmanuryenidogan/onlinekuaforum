@@ -207,17 +207,24 @@ namespace Berberim.UI.Areas.Admin.Controllers
 
         public ActionResult MusteriGuncelle(int id)
         {
-            var gelen = (ADMIN)Session["loginadmin"];
-            return gelen != null ? View("MusteriGuncelle", _db.MUSTERİ.Find(id)) : View("AdminGiris");
-        }
+            var mevcut = _db.MUSTERİ.Find(id);
+            var newStatu = 2;
+            switch (mevcut?.STATUS)
+            {
+                case 1:
+                    newStatu = 2;
+                    break;
+                case 2:
+                    newStatu = 1;
+                    break;
+                case 3:
+                    newStatu = 2;
+                    break;
+            }
 
-        [HttpPost]
-        public ActionResult MusteriGuncelle(MUSTERI u)
-        {
-            var mevcut = _db.MUSTERİ.Find(u.ID);
-            if (mevcut != null) mevcut.STATUS = u.STATUS;
+            if (mevcut != null) mevcut.STATUS = newStatu;
             _db.SaveChanges();
-            return View("MusteriKayitGor", _db.MUSTERİ);
+            return RedirectToAction("MusteriKayitGor");
         }
 
         public ActionResult OtomatikMail()
@@ -257,6 +264,11 @@ namespace Berberim.UI.Areas.Admin.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Search(string key)
+        {
+            return View();
         }
     }
 }

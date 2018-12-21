@@ -11,11 +11,10 @@ namespace Berberim.Data.Models
         public int ID { get; set; }
         public int STATUS { get; set; }
         public string BLOGHTML { get; set; }
+        public string BLOGIMG { get; set; }
         public int VIPSALON1 { get; set; }
         public int VIPSALON2 { get; set; }
         public int VIPSALON3 { get; set; }
         public int VIPSALON4 { get; set; }
-
-
     }
 }
