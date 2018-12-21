@@ -11869,8 +11869,11 @@
     <Content Include="Common\Anasayfa\img\blog\cat-post\cat-post-3.jpg" />
     <Content Include="Common\Anasayfa\img\blog\feature-img1.jpg" />
     <Content Include="Common\Anasayfa\img\blog\main-blog\m-blog-1.jpg" />
+    <Content Include="Common\Anasayfa\img\blog\main-blog\m-blog-1a.jpg" />
     <Content Include="Common\Anasayfa\img\blog\main-blog\m-blog-2.jpg" />
+    <Content Include="Common\Anasayfa\img\blog\main-blog\m-blog-2a.jpg" />
     <Content Include="Common\Anasayfa\img\blog\main-blog\m-blog-3.jpg" />
+    <Content Include="Common\Anasayfa\img\blog\main-blog\m-blog-3a.jpg" />
     <Content Include="Common\Anasayfa\img\blog\main-blog\m-blog-4.jpg" />
     <Content Include="Common\Anasayfa\img\blog\main-blog\m-blog-5.jpg" />
     <Content Include="Common\Anasayfa\img\blog\next.jpg" />
