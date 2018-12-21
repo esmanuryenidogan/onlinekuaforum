@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BLOG.cs" />
+    <Compile Include="Models\SALONLOGO.cs" />
     <Compile Include="Models\YORUM.cs" />
     <Compile Include="Models\TRENDHAIR.cs" />
     <Compile Include="Models\SALONSAYFA.cs" />
