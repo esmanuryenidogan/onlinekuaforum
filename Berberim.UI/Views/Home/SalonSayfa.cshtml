@@ -329,142 +329,233 @@
                                         }
                                     }
                                 }
-                                <!-- large modal -->
-                                <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        @using (Html.BeginForm("SalonSayfa", "Home", FormMethod.Post))
-                                        {
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    @if (ViewBag.kampanyaGelen == true)
-                                                    {
-                                                        <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Kampanya Alımını Tamamla</h4>
 
-                                                    }
-                                                    else
-                                                    {
-                                                        <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Randevuyu Tamamla</h4>
 
-                                                    }
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div>
-                                                        <div class="row" style="padding-bottom: 20px;">
-                                                            <div class="col-sm-3" style="text-align: right;">Personel Seçimi</div>
-                                                            <div class="col-sm-8" style="position: relative;top: -7px;">
-                                                                <div class="input-group-icon mt-8">
-                                                                    <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
-                                                                    @{
+                                @if (ViewBag.kampanyaGelen == true)
+                                {
+                                    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            @using (Html.BeginForm("KampanyaSatınAl", "Home", FormMethod.Post))
+                                            {
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                       
+                                                            <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Kampanya Alımını Tamamla</h4>
 
-                                                                        var personeller = new List<SelectListItem>();
-
-                                                                        foreach (var item in Model.Personeller)
-                                                                        {
-                                                                            personeller.Add(new SelectListItem { Text = item.ADSOYAD });
-                                                                        }
-
-                                                                    }
-
-                                                                    <div class="form-select" id="default-select">
-                                                                        @Html.DropDownListFor(m => m.Personeller, personeller, new { @class = "nice-select open", @style = "background-color:white" })
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                        @if (ViewBag.kampanyaGelen != true)
-                                                        {
+                                                      
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div>
                                                             <div class="row" style="padding-bottom: 20px;">
-                                                                <div class="col-sm-3" style="text-align: right;">İşlem Seçimi</div>
+                                                                <div class="col-sm-3" style="text-align: right;">Personel Seçimi</div>
                                                                 <div class="col-sm-8" style="position: relative;top: -7px;">
                                                                     <div class="input-group-icon mt-8">
-                                                                        <div class="icon"><i class="fa fa-scissors" aria-hidden="true"></i></div>
+                                                                        <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
                                                                         @{
 
-                                                                            var islemler = new List<SelectListItem>();
+                                                                            var personeller = new List<SelectListItem>();
 
-                                                                            foreach (var item in Model.Islemler)
+                                                                            foreach (var item in Model.Personeller)
                                                                             {
-                                                                                islemler.Add(new SelectListItem { Text = item.AD, Value = item.ID.ToString() });
+                                                                                personeller.Add(new SelectListItem { Text = item.ADSOYAD });
                                                                             }
 
                                                                         }
 
                                                                         <div class="form-select" id="default-select">
-                                                                            @Html.DropDownListFor(m => m.Islemler, islemler, new { @class = "nice-select open", @style = "background-color:white" })
+                                                                            @Html.DropDownListFor(m => m.Personeller, personeller, new { @class = "nice-select open", @style = "background-color:white" })
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>                                        
+                                                            <div class="row" style="padding-bottom: 20px;">
+                                                                <div class="col-sm-3" style="text-align: right;">Tarih Seçimi</div>
+                                                                <div class="col-sm-8" style="position: relative;top: -8px;">
+                                                                    <input type="date" name="rtarih" placeholder="Tarih Seçiniz" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tarih Seçiniz'" required="" class="single-input">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row" style="padding-bottom: 20px;">
+                                                                <div class="col-sm-3" style="text-align: right;">Saat Seçimi</div>
+                                                                <div class="col-sm-8">
+                                                                    <div class="btn-group" data-toggle="buttons">
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="09:00" id="option1" checked> 09:00
+                                                                        </label>
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="10:00" id="option2"> 10:00
+                                                                        </label>
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="11:00" id="option3"> 11:00
+                                                                        </label>
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="12:00" id="option4"> 12:00
+                                                                        </label>
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="13:00" id="option5"> 13:00
+                                                                        </label>
+                                                                        <label class="btn btn-danger circle" disabled>
+                                                                            <input type="radio" name="rSaat" value="14:00" id="option6"> 14:00
+                                                                        </label>
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="15:00" id="option7"> 15:00
+                                                                        </label>
+                                                                        <label class="btn btn-danger circle" disabled>
+                                                                            <input type="radio" name="rSaat" value="16:00" id="option8"> 16:00
+                                                                        </label>
+                                                                        <label class="btn btn-success">
+                                                                            <input type="radio" name="rSaat" value="17:00" id="option8"> 17:00
+                                                                        </label>
+                                                                        <label class="btn btn-danger" disabled>
+                                                                            <input type="radio" name="rSaat" value="18:00" id="option8"> 18:00
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="genric-btn primary-border radius" data-dismiss="modal">Vazgeç</button>
+                                                            <input type="submit" name="RandevuAl" value="Kampanya Alımını Tamamla" class="genric-btn success" />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <!-- large modal -->
+                                    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            @using (Html.BeginForm("SalonSayfa", "Home", FormMethod.Post))
+                                            {
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                       
+                                                        
+                                                            <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Randevuyu Tamamla</h4>
+
+                                                        
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div>
+                                                            <div class="row" style="padding-bottom: 20px;">
+                                                                <div class="col-sm-3" style="text-align: right;">Personel Seçimi</div>
+                                                                <div class="col-sm-8" style="position: relative;top: -7px;">
+                                                                    <div class="input-group-icon mt-8">
+                                                                        <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                                                                        @{
+
+                                                                            var personeller = new List<SelectListItem>();
+
+                                                                            foreach (var item in Model.Personeller)
+                                                                            {
+                                                                                personeller.Add(new SelectListItem { Text = item.ADSOYAD });
+                                                                            }
+
+                                                                        }
+
+                                                                        <div class="form-select" id="default-select">
+                                                                            @Html.DropDownListFor(m => m.Personeller, personeller, new { @class = "nice-select open", @style = "background-color:white" })
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
                                                             </div>
-                                                        }
-                                                        <div class="row" style="padding-bottom: 20px;">
-                                                            <div class="col-sm-3" style="text-align: right;">Tarih Seçimi</div>
-                                                            <div class="col-sm-8" style="position: relative;top: -8px;">
-                                                                <input type="date" name="rtarih" placeholder="Tarih Seçiniz" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tarih Seçiniz'" required="" class="single-input">
-                                                            </div>
+                                                           
+                                                                <div class="row" style="padding-bottom: 20px;">
+                                                                    <div class="col-sm-3" style="text-align: right;">İşlem Seçimi</div>
+                                                                    <div class="col-sm-8" style="position: relative;top: -7px;">
+                                                                        <div class="input-group-icon mt-8">
+                                                                            <div class="icon"><i class="fa fa-scissors" aria-hidden="true"></i></div>
+                                                                            @{
 
-                                                        </div>
-                                                        <div class="row" style="padding-bottom: 20px;">
-                                                            <div class="col-sm-3" style="text-align: right;">Saat Seçimi</div>
-                                                            <div class="col-sm-8">
-                                                                <div class="btn-group" data-toggle="buttons">
-                                                                    <label class="btn btn-success circle">
-                                                                        <input type="radio" name="rSaat" value="09:00" id="option1" checked> 09:00
-                                                                    </label>
-                                                                    <label class="btn btn-success circle">
-                                                                        <input type="radio" name="rSaat" value="10:00" id="option2"> 10:00
-                                                                    </label>
-                                                                    <label class="btn btn-success circle">
-                                                                        <input type="radio" name="rSaat" value="11:00" id="option3"> 11:00
-                                                                    </label>
-                                                                    <label class="btn btn-success circle">
-                                                                        <input type="radio" name="rSaat" value="12:00" id="option4"> 12:00
-                                                                    </label>
-                                                                    <label class="btn btn-success circle">
-                                                                        <input type="radio" name="rSaat" value="13:00" id="option5"> 13:00
-                                                                    </label>
-                                                                    <label class="btn btn-danger circle" disabled>
-                                                                        <input type="radio" name="rSaat" value="14:00" id="option6"> 14:00
-                                                                    </label>
-                                                                    <label class="btn btn-success circle">
-                                                                        <input type="radio" name="rSaat" value="15:00" id="option7"> 15:00
-                                                                    </label>
-                                                                    <label class="btn btn-danger circle" disabled>
-                                                                        <input type="radio" name="rSaat" value="16:00" id="option8"> 16:00
-                                                                    </label>
-                                                                    <label class="btn btn-success">
-                                                                        <input type="radio" name="rSaat" value="17:00" id="option8"> 17:00
-                                                                    </label>
-                                                                    <label class="btn btn-danger" disabled>
-                                                                        <input type="radio" name="rSaat" value="18:00" id="option8"> 18:00
-                                                                    </label>
+                                                                                var islemler = new List<SelectListItem>();
+
+                                                                                foreach (var item in Model.Islemler)
+                                                                                {
+                                                                                    islemler.Add(new SelectListItem { Text = item.AD, Value = item.ID.ToString() });
+                                                                                }
+
+                                                                            }
+
+                                                                            <div class="form-select" id="default-select">
+                                                                                @Html.DropDownListFor(m => m.Islemler, islemler, new { @class = "nice-select open", @style = "background-color:white" })
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            
+                                                            <div class="row" style="padding-bottom: 20px;">
+                                                                <div class="col-sm-3" style="text-align: right;">Tarih Seçimi</div>
+                                                                <div class="col-sm-8" style="position: relative;top: -8px;">
+                                                                    <input type="date" name="rtarih" placeholder="Tarih Seçiniz" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tarih Seçiniz'" required="" class="single-input">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row" style="padding-bottom: 20px;">
+                                                                <div class="col-sm-3" style="text-align: right;">Saat Seçimi</div>
+                                                                <div class="col-sm-8">
+                                                                    <div class="btn-group" data-toggle="buttons">
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="09:00" id="option1" checked> 09:00
+                                                                        </label>
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="10:00" id="option2"> 10:00
+                                                                        </label>
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="11:00" id="option3"> 11:00
+                                                                        </label>
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="12:00" id="option4"> 12:00
+                                                                        </label>
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="13:00" id="option5"> 13:00
+                                                                        </label>
+                                                                        <label class="btn btn-danger circle" disabled>
+                                                                            <input type="radio" name="rSaat" value="14:00" id="option6"> 14:00
+                                                                        </label>
+                                                                        <label class="btn btn-success circle">
+                                                                            <input type="radio" name="rSaat" value="15:00" id="option7"> 15:00
+                                                                        </label>
+                                                                        <label class="btn btn-danger circle" disabled>
+                                                                            <input type="radio" name="rSaat" value="16:00" id="option8"> 16:00
+                                                                        </label>
+                                                                        <label class="btn btn-success">
+                                                                            <input type="radio" name="rSaat" value="17:00" id="option8"> 17:00
+                                                                        </label>
+                                                                        <label class="btn btn-danger" disabled>
+                                                                            <input type="radio" name="rSaat" value="18:00" id="option8"> 18:00
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="genric-btn primary-border radius" data-dismiss="modal">Vazgeç</button>
-                                                        @if (ViewBag.kampanyaGelen == true)
-                                                        {
-                                                            <input type="submit" name="KampanyaAl" value="Kampanyayı Tamamla" class="genric-btn success" />
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="genric-btn primary-border radius" data-dismiss="modal">Vazgeç</button>
+                    
+                                                                <input type="submit" name="RandevuAl" value="Randevuyu Tamamla" class="genric-btn success" />
 
-                                                        }
-                                                        else
-                                                        {
-                                                            <input type="submit" name="RandevuAl" value="Randevuyu Tamamla" class="genric-btn success" />
-
-                                                        }
+                                                            
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        }
+                                            }
 
+                                        </div>
                                     </div>
-                                </div>
+                                }
 
                             </div>
 
@@ -564,7 +655,7 @@
                         </aside>
                         <aside class="single_sidebar_widget ads_widget">
                             <a href="#"><img class="img-fluid" src="img/blog/add.jpg" alt=""></a>
-                         
+
                         </aside>
                         @if (ViewBag.kampanyaGelen != true)
                         {
@@ -712,6 +803,17 @@
         var test = new pureJSLightBox();
 
     </script>
+    @*<script type="text/javascript">
+        $(function () {
+            $("a.postLink").click(function (e) {
+                e.preventDefault();
+                $.post($(this).attr("href"), function (data) {
+                    // got the result in data variable. do whatever you want now
+                    //may be reload the page
+                });
+            });
+        });
+    </script>*@
 
 </body>
 </html>

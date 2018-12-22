@@ -200,7 +200,7 @@ namespace Berberim.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult SalonSayfa(string yorum, string rAd, string rTelno, string rtarih, string rSaat, string rEmail, string rPersonel, string rIslem, int id)
+        public ActionResult SalonSayfa(string yorum, string rAd, string rTelno, string rtarih, string rSaat, string rEmail, string personeller, string rIslem, int id)
         {
             if (Session["musteri"] == null)
                 return View("MusteriGiris");
@@ -212,7 +212,7 @@ namespace Berberim.UI.Controllers
             var musteribilgi = (from i in _db.MUSTERİ where i.ID == musteriId select i).FirstOrDefault();
             var kampanyaID = (from i in _db.KAMPANYA where i.SALONID == id select i.ID).FirstOrDefault();
             var kampanyabilgileri = (from i in _db.KAMPANYA where i.ID == kampanyaID select i).FirstOrDefault();
-          
+
 
             if (rtarih != null)
             {
@@ -225,42 +225,25 @@ namespace Berberim.UI.Controllers
                 if (tarih > simdi)
                 {
                     var randevual = new RANDEVU();
-                    if (islem != null)
-                    {
-                        randevual.MUSTERIAD = musteribilgi?.AD;
-                        randevual.MUSTERITEL = musteribilgi?.TEL;
-                        randevual.MUSTERIMAIL = musteribilgi?.EMAIL;
-                        randevual.SALONAD = berberbilgi?.AD;
-                        randevual.SALONTEL = berberbilgi?.TEL;
-                        randevual.SALONMAIL = berberbilgi?.EMAIL;
-                        randevual.ISLEMID = islem;
-                        randevual.ISLEMADI = islemBilgisi.AD;
-                        randevual.ISLEMFIYAT = islemBilgisi.FIYAT.ToString();
-                        randevual.RANDEVUTARIH = tarih;
-                        randevual.RANDEVUSAAT = rSaat;
-                        randevual.PERSONEL = personel;
-                        randevual.SALONID = id;
-                        randevual.MUSTERIID = musteriId;
-                        randevual.STATUS = Constants.RecordStatu.Active;
-                    }
-                    else
-                    {
-                        randevual.MUSTERIAD = musteribilgi?.AD;
-                        randevual.MUSTERITEL = musteribilgi?.TEL;
-                        randevual.MUSTERIMAIL = musteribilgi?.EMAIL;
-                        randevual.SALONAD = berberbilgi?.AD;
-                        randevual.SALONTEL = berberbilgi?.TEL;
-                        randevual.SALONMAIL = berberbilgi?.EMAIL;
-                        randevual.ISLEMID = islem;
-                        randevual.ISLEMADI = kampanyabilgileri.BASLIK;
-                        randevual.ISLEMFIYAT = kampanyabilgileri.FIYAT.ToString();
-                        randevual.RANDEVUTARIH = tarih;
-                        randevual.RANDEVUSAAT = rSaat;
-                        randevual.PERSONEL = personel;
-                        randevual.SALONID = id;
-                        randevual.MUSTERIID = musteriId;
-                        randevual.STATUS = Constants.RecordStatu.Active;
-                    }
+
+                    randevual.MUSTERIAD = musteribilgi?.AD;
+                    randevual.MUSTERITEL = musteribilgi?.TEL;
+                    randevual.MUSTERIMAIL = musteribilgi?.EMAIL;
+                    randevual.SALONAD = berberbilgi?.AD;
+                    randevual.SALONTEL = berberbilgi?.TEL;
+                    randevual.SALONMAIL = berberbilgi?.EMAIL;
+                    randevual.ISLEMID = islem;
+                    randevual.ISLEMADI = islemBilgisi.AD;
+                    randevual.ISLEMFIYAT = islemBilgisi.FIYAT.ToString();
+                    randevual.RANDEVUTARIH = tarih;
+                    randevual.RANDEVUSAAT = rSaat;
+                    randevual.PERSONEL = personel;
+                    randevual.SALONID = id;
+                    randevual.MUSTERIID = musteriId;
+                    randevual.STATUS = Constants.RecordStatu.Active;
+
+
+
 
                     _db.RANDEVU.Add(randevual);
                     _db.SaveChanges();
@@ -308,6 +291,7 @@ namespace Berberim.UI.Controllers
 
         public ActionResult KampanyaSatınAl(int id)
         {
+
             var gelen = Session["musteri"];
             if (gelen == null)
             {
@@ -359,42 +343,59 @@ namespace Berberim.UI.Controllers
             return View("SalonSayfa", model);
         }
         [HttpPost]
-        public ActionResult KampanyaSatınAl(int id, string r_ad, string r_telno, string r_email, string r_personel)
+        public ActionResult KampanyaSatınAl(string rtarih, string rSaat, string rEmail, string rPersonel, string rIslem, int id)
         {
+            if (Session["musteri"] == null)
+                return View("MusteriGiris");
+
             var gelen = Session["musteri"].ToString();
-            var musteriID = (from i in _db.MUSTERİ where i.EMAIL == gelen select i.ID).FirstOrDefault();
-            var kampanyaID = (from i in _db.KAMPANYA where i.SALONID == id select i.ID).FirstOrDefault();
+
+            var musteriId = (from i in _db.MUSTERİ where i.EMAIL == gelen select i.ID).FirstOrDefault();
             var berberbilgi = (from i in _db.SALONSAYFA where i.ID == id select i).FirstOrDefault();
-            var musteribilgi = (from i in _db.MUSTERİ where i.ID == musteriID select i).FirstOrDefault();
+            var musteribilgi = (from i in _db.MUSTERİ where i.ID == musteriId select i).FirstOrDefault();
+            var kampanyaID = (from i in _db.KAMPANYA where i.SALONID == id select i.ID).FirstOrDefault();
             var kampanyabilgileri = (from i in _db.KAMPANYA where i.ID == kampanyaID select i).FirstOrDefault();
 
-            string personel = Request["Personeller"];
-            DateTime tarih = Convert.ToDateTime(Request["r_tarih"]);
-            TimeSpan saat = TimeSpan.Parse(Request["r_saat"]);
 
-            var simdi = DateTime.Now;
-            if (tarih > simdi || tarih == simdi)
+            if (rtarih != null)
             {
-                var ral = new RANDEVU()
-                {
-                    SALONID = id,
-                    MUSTERIID = musteriID,
-                    SALONAD = berberbilgi?.AD,
-                    SALONTEL = "",
-                    SALONMAIL = berberbilgi?.EMAIL,
-                    MUSTERIAD = musteribilgi?.AD,
-                    MUSTERITEL = musteribilgi?.TEL,
-                    MUSTERIMAIL = musteribilgi?.EMAIL,
-                    RANDEVUTARIH = tarih,
-                    //RANDEVUSAAT = saat,
-                    PERSONEL = personel,
-                    //KOLTUKSAY = berberbilgi.KOLTUKSAY.ToString(),
-                    STATUS = Constants.RecordStatu.Active
-                };
-                _db.RANDEVU.Add(ral);
-                _db.SaveChanges();
+                string personel = Request["Personeller"];
+                var islem = Convert.ToInt32(Request["islemler"]);
+                var islemBilgisi = (from i in _db.ISLEM where i.ID == islem select i).FirstOrDefault();
 
-                return View("Index");
+                DateTime tarih = Convert.ToDateTime(rtarih);
+                var simdi = DateTime.Now;
+                if (tarih > simdi)
+                {
+                    RANDEVU randevual = new RANDEVU();
+
+                    randevual.MUSTERIAD = musteribilgi?.AD;
+                    randevual.MUSTERITEL = musteribilgi?.TEL;
+                    randevual.MUSTERIMAIL = musteribilgi?.EMAIL;
+                    randevual.SALONAD = berberbilgi?.AD;
+                    randevual.SALONTEL = berberbilgi?.TEL;
+                    randevual.SALONMAIL = berberbilgi?.EMAIL;
+                    randevual.ISLEMID = islem;
+                    randevual.ISLEMADI = kampanyabilgileri.BASLIK;
+                    randevual.ISLEMFIYAT = kampanyabilgileri.FIYAT.ToString();
+                    randevual.RANDEVUTARIH = tarih;
+                    randevual.RANDEVUSAAT = rSaat;
+                    randevual.PERSONEL = personel;
+                    randevual.SALONID = id;
+                    randevual.MUSTERIID = musteriId;
+                    randevual.STATUS = Constants.RecordStatu.Active;
+
+                    _db.RANDEVU.Add(randevual);
+                    _db.SaveChanges();
+
+                    string body = "Randevu Bilgileriniz" + " " + rtarih + " " + rSaat;
+                    var email = RandevuEmail.RandevuMail(body, "Randevu Bilgileri", "atakangmc@gmail.com", berberbilgi?.EMAIL, musteribilgi?.EMAIL);
+                }
+                var Indexİtem = Index();
+                ViewData["Model"] = Indexİtem;
+                var model = ViewData.Model;
+
+                return View("Index", model);
             }
 
             var gelenmodel = Session["gelenmodel"];
