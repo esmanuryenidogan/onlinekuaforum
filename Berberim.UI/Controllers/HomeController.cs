@@ -185,6 +185,47 @@ namespace Berberim.UI.Controllers
             var salonLogo = (from i in _db.SALONLOGO where i.SALONID == sonuc.SALONID select i).FirstOrDefault();
             ViewBag.yorumsay = yorumsay;
 
+            var randevuControl = (from i in _db.RANDEVU where i.SALONID == sonuc.SALONID select i).ToList();
+
+            string suanTarih = DateTime.Now.ToString();
+
+            var dateSplit = suanTarih.Split(' ');
+            var date = dateSplit[0];
+
+            IDictionary<double, string> customSaatler = new Dictionary<double, string>();
+            customSaatler.Add(9, "btn btn-success circle");
+            customSaatler.Add(10, "btn btn-success circle");
+            customSaatler.Add(11, "btn btn-success circle");
+            customSaatler.Add(12, "btn btn-success circle");
+            customSaatler.Add(13, "btn btn-success circle");
+            customSaatler.Add(14, "btn btn-success circle");
+            customSaatler.Add(15, "btn btn-success circle");
+            customSaatler.Add(16, "btn btn-success circle");
+            customSaatler.Add(17, "btn btn-success circle");
+            customSaatler.Add(18, "btn btn-success circle");
+
+            foreach (var item in randevuControl)
+            {
+                string dateRandevu = item.RANDEVUTARIH.ToString();
+                var split = dateRandevu.Split(' ');
+                var randevuDate = split[0];
+
+                if (date == randevuDate)
+                {
+                    var randevuSaat = item.RANDEVUSAAT;
+
+                    foreach (var customSaat in customSaatler.ToList())
+                    {
+                        string saat = customSaat.Key.ToString();
+
+                        if (saat == randevuSaat)
+                        {
+                            customSaatler[customSaat.Key] = "btn btn-danger circle";
+                        }
+                    }
+                }
+            }
+
             BerberDetayModel model = new BerberDetayModel
             {
                 Berber = sonuc,
@@ -196,6 +237,7 @@ namespace Berberim.UI.Controllers
                 Salonlar = salonlar,
                 SalonLogo = salonLogo
             };
+            model.RandevuSaat = customSaatler;
             return View(model);
         }
 
@@ -214,7 +256,7 @@ namespace Berberim.UI.Controllers
             var kampanyabilgileri = (from i in _db.KAMPANYA where i.ID == kampanyaID select i).FirstOrDefault();
 
 
-            if (rtarih != null)
+            if (rtarih != null && rSaat != "on")
             {
                 string personel = Request["Personeller"];
                 var islem = Convert.ToInt32(Request["islemler"]);
@@ -222,37 +264,31 @@ namespace Berberim.UI.Controllers
 
                 DateTime tarih = Convert.ToDateTime(rtarih);
                 var simdi = DateTime.Now;
-                if (tarih > simdi)
-                {
-                    var randevual = new RANDEVU();
 
-                    randevual.MUSTERIAD = musteribilgi?.AD;
-                    randevual.MUSTERITEL = musteribilgi?.TEL;
-                    randevual.MUSTERIMAIL = musteribilgi?.EMAIL;
-                    randevual.SALONAD = berberbilgi?.AD;
-                    randevual.SALONTEL = berberbilgi?.TEL;
-                    randevual.SALONMAIL = berberbilgi?.EMAIL;
-                    randevual.ISLEMID = islem;
-                    randevual.ISLEMADI = islemBilgisi.AD;
-                    randevual.ISLEMFIYAT = islemBilgisi.FIYAT.ToString();
-                    randevual.RANDEVUTARIH = tarih;
-                    randevual.RANDEVUSAAT = rSaat;
-                    randevual.PERSONEL = personel;
-                    randevual.SALONID = id;
-                    randevual.MUSTERIID = musteriId;
-                    randevual.STATUS = Constants.RecordStatu.Active;
+                var randevual = new RANDEVU();
 
+                randevual.MUSTERIAD = musteribilgi?.AD;
+                randevual.MUSTERITEL = musteribilgi?.TEL;
+                randevual.MUSTERIMAIL = musteribilgi?.EMAIL;
+                randevual.SALONAD = berberbilgi?.AD;
+                randevual.SALONTEL = berberbilgi?.TEL;
+                randevual.SALONMAIL = berberbilgi?.EMAIL;
+                randevual.ISLEMID = islem;
+                randevual.ISLEMADI = islemBilgisi.AD;
+                randevual.ISLEMFIYAT = islemBilgisi.FIYAT.ToString();
+                randevual.RANDEVUTARIH = tarih;
+                randevual.RANDEVUSAAT = rSaat;
+                randevual.PERSONEL = personel;
+                randevual.SALONID = id;
+                randevual.MUSTERIID = musteriId;
+                randevual.STATUS = Constants.RecordStatu.Active;
 
+                _db.RANDEVU.Add(randevual);
+                _db.SaveChanges();
 
-
-                    _db.RANDEVU.Add(randevual);
-                    _db.SaveChanges();
-
-                    string body = "Randevu Bilgileriniz" + " " + rtarih + " " + rSaat;
-                    var email = RandevuEmail.RandevuMail(body, "Randevu Bilgileri", "atakangmc@gmail.com", berberbilgi?.EMAIL, musteribilgi?.EMAIL);
-                }
+                string body = "Randevu Bilgileriniz" + " " + rtarih + " " + rSaat;
+                var email = RandevuEmail.RandevuMail(body, "Randevu Bilgileri", "atakangmc@gmail.com", berberbilgi?.EMAIL, musteribilgi?.EMAIL);
             }
-
 
             if (yorum != null && gelen != null)
             {
@@ -270,11 +306,12 @@ namespace Berberim.UI.Controllers
                 _db.SaveChanges();
 
             }
-            var model = SalonSayfa(id);
 
+            var Indexİtem = Index();
+            ViewData["Model"] = Indexİtem;
+            var model = ViewData.Model;
 
-
-            return View("SalonSayfa");
+            return View("Index", model);
         }
 
         public ActionResult TrendSacVitrin()
@@ -310,6 +347,47 @@ namespace Berberim.UI.Controllers
             var salonLogo = (from i in _db.SALONLOGO where i.SALONID == sonuc.SALONID select i).FirstOrDefault();
             ViewBag.yorumsay = yorumsay;
 
+            var randevuControl = (from i in _db.RANDEVU where i.SALONID == sonuc.SALONID select i).ToList();
+
+            string suanTarih = DateTime.Now.ToString();
+
+            var dateSplit = suanTarih.Split(' ');
+            var date = dateSplit[0];
+
+            IDictionary<double, string> customSaatler = new Dictionary<double, string>();
+            customSaatler.Add(9, "btn btn-success circle");
+            customSaatler.Add(10, "btn btn-success circle");
+            customSaatler.Add(11, "btn btn-success circle");
+            customSaatler.Add(12, "btn btn-success circle");
+            customSaatler.Add(13, "btn btn-success circle");
+            customSaatler.Add(14, "btn btn-success circle");
+            customSaatler.Add(15, "btn btn-success circle");
+            customSaatler.Add(16, "btn btn-success circle");
+            customSaatler.Add(17, "btn btn-success circle");
+            customSaatler.Add(18, "btn btn-success circle");
+
+            foreach (var item in randevuControl)
+            {
+                string dateRandevu = item.RANDEVUTARIH.ToString();
+                var split = dateRandevu.Split(' ');
+                var randevuDate = split[0];
+
+                if (date == randevuDate)
+                {
+                    var randevuSaat = item.RANDEVUSAAT;
+
+                    foreach (var customSaat in customSaatler.ToList())
+                    {
+                        string saat = customSaat.Key.ToString();
+
+                        if (saat == randevuSaat)
+                        {
+                            customSaatler[customSaat.Key] = "btn btn-danger circle";
+                        }
+                    }
+                }
+            }
+
             BerberDetayModel model = new BerberDetayModel
             {
                 Berber = sonuc,
@@ -323,21 +401,8 @@ namespace Berberim.UI.Controllers
                 SalonLogo = salonLogo
             };
 
-            List<string> randevuSaat = new List<string>
-            {
-                "10:00",
-                "11:00",
-                "12:00",
-                "13:00",
-                "14:00",
-                "15:00",
-                "16:00",
-                "17:00",
-                "18:00",
-                "19:00",
-                "20:00"
-            };
-            model.RandevuSaat = randevuSaat;
+            model.RandevuSaat = customSaatler;
+
             Session["gelenmodel"] = model;
             ViewBag.kampanyaGelen = true;
             return View("SalonSayfa", model);
@@ -357,7 +422,7 @@ namespace Berberim.UI.Controllers
             var kampanyabilgileri = (from i in _db.KAMPANYA where i.ID == kampanyaID select i).FirstOrDefault();
 
 
-            if (rtarih != null)
+            if (rtarih != null && rSaat != "on")
             {
                 string personel = Request["Personeller"];
                 var islem = Convert.ToInt32(Request["islemler"]);
@@ -437,7 +502,7 @@ namespace Berberim.UI.Controllers
                 "20:00"
             };
 
-            model.RandevuSaat = randevuSaat;
+
             Session["model"] = model;
 
             return View("RandevuAl", model);

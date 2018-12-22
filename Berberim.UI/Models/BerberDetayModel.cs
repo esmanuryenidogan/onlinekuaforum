@@ -15,7 +15,7 @@ namespace Berberim.UI.Models
         public List<BSACMODEL> KesilenSacModeller { get; set; }
         public List<ISLEM> Islemler { get; set; }
         public List<YORUM> MusteriYorumlar { get; set; }
-        public List<string> RandevuSaat { get; set; }
+        public IDictionary<double, string> RandevuSaat { get; set; }
         public List<string> RandevuTarih { get; set; }
         public KAMPANYA Kampanya { get; set; }
         public List<SALONSAYFA> Salonlar { get; set; }

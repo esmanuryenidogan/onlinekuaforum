@@ -339,10 +339,10 @@
                                             {
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                       
-                                                            <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Kampanya Alımını Tamamla</h4>
 
-                                                      
+                                                        <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Kampanya Alımını Tamamla</h4>
+
+
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -371,7 +371,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                            </div>                                        
+                                                            </div>
                                                             <div class="row" style="padding-bottom: 20px;">
                                                                 <div class="col-sm-3" style="text-align: right;">Tarih Seçimi</div>
                                                                 <div class="col-sm-8" style="position: relative;top: -8px;">
@@ -381,39 +381,25 @@
                                                             </div>
                                                             <div class="row" style="padding-bottom: 20px;">
                                                                 <div class="col-sm-3" style="text-align: right;">Saat Seçimi</div>
-                                                                <div class="col-sm-8">
-                                                                    <div class="btn-group" data-toggle="buttons">
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="09:00" id="option1" checked> 09:00
-                                                                        </label>
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="10:00" id="option2"> 10:00
-                                                                        </label>
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="11:00" id="option3"> 11:00
-                                                                        </label>
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="12:00" id="option4"> 12:00
-                                                                        </label>
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="13:00" id="option5"> 13:00
-                                                                        </label>
-                                                                        <label class="btn btn-danger circle" disabled>
-                                                                            <input type="radio" name="rSaat" value="14:00" id="option6"> 14:00
-                                                                        </label>
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="15:00" id="option7"> 15:00
-                                                                        </label>
-                                                                        <label class="btn btn-danger circle" disabled>
-                                                                            <input type="radio" name="rSaat" value="16:00" id="option8"> 16:00
-                                                                        </label>
-                                                                        <label class="btn btn-success">
-                                                                            <input type="radio" name="rSaat" value="17:00" id="option8"> 17:00
-                                                                        </label>
-                                                                        <label class="btn btn-danger" disabled>
-                                                                            <input type="radio" name="rSaat" value="18:00" id="option8"> 18:00
-                                                                        </label>
-                                                                    </div>
+                                                                <div class="col-sm-7">
+                                                                     @foreach (var item in Model.RandevuSaat)
+                                                                    {
+                                                                        <div class="btn-group" data-toggle="buttons">
+                                                                            @if (@item.Value == "btn btn-danger circle")
+                                                                            {
+                                                                                <label class="@item.Value" disabled>
+                                                                                    <input type="radio" name="rSaat"> @item.Key
+                                                                                </label>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <label class="@item.Value">
+                                                                                    <input type="radio" name="rSaat" value="@item.Key"> @item.Key
+                                                                                </label>
+                                                                            }
+
+                                                                        </div>
+                                                                    }
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -438,11 +424,11 @@
                                             {
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                       
-                                                        
-                                                            <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Randevuyu Tamamla</h4>
 
-                                                        
+
+                                                        <h4 class="modal-title" id="myModalLabel" style="padding-top: 5px;padding-left: 5px;">Randevuyu Tamamla</h4>
+
+
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -472,31 +458,31 @@
                                                                 </div>
 
                                                             </div>
-                                                           
-                                                                <div class="row" style="padding-bottom: 20px;">
-                                                                    <div class="col-sm-3" style="text-align: right;">İşlem Seçimi</div>
-                                                                    <div class="col-sm-8" style="position: relative;top: -7px;">
-                                                                        <div class="input-group-icon mt-8">
-                                                                            <div class="icon"><i class="fa fa-scissors" aria-hidden="true"></i></div>
-                                                                            @{
 
-                                                                                var islemler = new List<SelectListItem>();
+                                                            <div class="row" style="padding-bottom: 20px;">
+                                                                <div class="col-sm-3" style="text-align: right;">İşlem Seçimi</div>
+                                                                <div class="col-sm-8" style="position: relative;top: -7px;">
+                                                                    <div class="input-group-icon mt-8">
+                                                                        <div class="icon"><i class="fa fa-scissors" aria-hidden="true"></i></div>
+                                                                        @{
 
-                                                                                foreach (var item in Model.Islemler)
-                                                                                {
-                                                                                    islemler.Add(new SelectListItem { Text = item.AD, Value = item.ID.ToString() });
-                                                                                }
+                                                                            var islemler = new List<SelectListItem>();
 
+                                                                            foreach (var item in Model.Islemler)
+                                                                            {
+                                                                                islemler.Add(new SelectListItem { Text = item.AD, Value = item.ID.ToString() });
                                                                             }
 
-                                                                            <div class="form-select" id="default-select">
-                                                                                @Html.DropDownListFor(m => m.Islemler, islemler, new { @class = "nice-select open", @style = "background-color:white" })
-                                                                            </div>
+                                                                        }
+
+                                                                        <div class="form-select" id="default-select">
+                                                                            @Html.DropDownListFor(m => m.Islemler, islemler, new { @class = "nice-select open", @style = "background-color:white" })
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
-                                                            
+
+                                                            </div>
+
                                                             <div class="row" style="padding-bottom: 20px;">
                                                                 <div class="col-sm-3" style="text-align: right;">Tarih Seçimi</div>
                                                                 <div class="col-sm-8" style="position: relative;top: -8px;">
@@ -506,48 +492,35 @@
                                                             </div>
                                                             <div class="row" style="padding-bottom: 20px;">
                                                                 <div class="col-sm-3" style="text-align: right;">Saat Seçimi</div>
-                                                                <div class="col-sm-8">
-                                                                    <div class="btn-group" data-toggle="buttons">
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="09:00" id="option1" checked> 09:00
-                                                                        </label>
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="10:00" id="option2"> 10:00
-                                                                        </label>
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="11:00" id="option3"> 11:00
-                                                                        </label>
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="12:00" id="option4"> 12:00
-                                                                        </label>
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="13:00" id="option5"> 13:00
-                                                                        </label>
-                                                                        <label class="btn btn-danger circle" disabled>
-                                                                            <input type="radio" name="rSaat" value="14:00" id="option6"> 14:00
-                                                                        </label>
-                                                                        <label class="btn btn-success circle">
-                                                                            <input type="radio" name="rSaat" value="15:00" id="option7"> 15:00
-                                                                        </label>
-                                                                        <label class="btn btn-danger circle" disabled>
-                                                                            <input type="radio" name="rSaat" value="16:00" id="option8"> 16:00
-                                                                        </label>
-                                                                        <label class="btn btn-success">
-                                                                            <input type="radio" name="rSaat" value="17:00" id="option8"> 17:00
-                                                                        </label>
-                                                                        <label class="btn btn-danger" disabled>
-                                                                            <input type="radio" name="rSaat" value="18:00" id="option8"> 18:00
-                                                                        </label>
-                                                                    </div>
+                                                                <div class="col-sm-7">
+
+                                                                    @foreach (var item in Model.RandevuSaat)
+                                                                    {
+                                                                        <div class="btn-group" data-toggle="buttons">
+                                                                            @if (@item.Value == "btn btn-danger circle")
+                                                                            {
+                                                                                <label class="@item.Value" disabled>
+                                                                                    <input type="radio" name="rSaat"> @item.Key
+                                                                                </label>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <label class="@item.Value">
+                                                                                    <input type="radio" name="rSaat" value="@item.Key"> @item.Key
+                                                                                </label>
+                                                                            }
+
+                                                                        </div>
+                                                                    }
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="genric-btn primary-border radius" data-dismiss="modal">Vazgeç</button>
-                    
-                                                                <input type="submit" name="RandevuAl" value="Randevuyu Tamamla" class="genric-btn success" />
 
-                                                            
+                                                            <input type="submit" name="RandevuAl" value="Randevuyu Tamamla" class="genric-btn success" />
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -804,16 +777,16 @@
 
     </script>
     @*<script type="text/javascript">
-        $(function () {
-            $("a.postLink").click(function (e) {
-                e.preventDefault();
-                $.post($(this).attr("href"), function (data) {
-                    // got the result in data variable. do whatever you want now
-                    //may be reload the page
+            $(function () {
+                $("a.postLink").click(function (e) {
+                    e.preventDefault();
+                    $.post($(this).attr("href"), function (data) {
+                        // got the result in data variable. do whatever you want now
+                        //may be reload the page
+                    });
                 });
             });
-        });
-    </script>*@
+        </script>*@
 
 </body>
 </html>
