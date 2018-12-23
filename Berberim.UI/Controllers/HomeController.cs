@@ -37,6 +37,24 @@ namespace Berberim.UI.Controllers
                 musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
             };
 
+            var randevuTarihi = DateTime.MinValue;
+            var salonAd = "";
+            var randevuSaat = "";
+            if (data.randevu.Count > 0)
+            {
+                foreach (var randevu in data.randevu)
+                {
+                    randevuTarihi = randevu.RANDEVUTARIH > randevuTarihi ? randevu.RANDEVUTARIH : randevuTarihi;
+                    randevuSaat = randevu.RANDEVUSAAT;
+                    salonAd = randevu.SALONAD;
+                }
+                var tarih = randevuTarihi.ToString();
+                var randevuTarihim = tarih.Split(' ');
+                ViewBag.salonAd = salonAd;
+                ViewBag.randevuTarih = randevuTarihim[0];
+                ViewBag.randevuSaat = randevuSaat + ":00";
+            }
+
             if (data.salon.Count > 5)
                 ViewBag.tumSalonButtonShow = true;
 
@@ -82,7 +100,7 @@ namespace Berberim.UI.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult MusteriGiris(string mail, string sifre)
+        public ActionResult MusteriGiris(string mail, string sifre, int id)
         {
             var sonuc = (from i in _db.MUSTERİ where i.STATUS == Constants.RecordStatu.Active && i.EMAIL == mail && i.SIFRE == sifre select i).FirstOrDefault();
             if (sonuc != null)
@@ -97,23 +115,40 @@ namespace Berberim.UI.Controllers
                     musteriYorum = _db.YORUM.Where(i => i.STATUS == Constants.RecordStatu.Active).ToList().Take(5).ToList()
                 };
 
-                var maxDate = DateTime.MinValue;
-                var randevuBilgi = "";
+                var randevuTarihi = DateTime.MinValue;
+                var salonAd = "";
+                var randevuSaat = "";
                 if (data.randevu.Count > 0)
                 {
                     foreach (var randevu in data.randevu)
                     {
-                        maxDate = randevu.RANDEVUTARIH > maxDate ? randevu.RANDEVUTARIH : maxDate;
-                        randevuBilgi = randevu.SALONAD + " " + randevu.RANDEVUSAAT + " ";
+                        randevuTarihi = randevu.RANDEVUTARIH > randevuTarihi ? randevu.RANDEVUTARIH : randevuTarihi;
+                        randevuSaat = randevu.RANDEVUSAAT;
+                        salonAd = randevu.SALONAD;
                     }
-
-                    ViewBag.randevum = randevuBilgi + maxDate;
+                    var tarih = randevuTarihi.ToString();
+                    var randevuTarihim = tarih.Split(' ');
+                    ViewBag.salonAd = salonAd;
+                    ViewBag.randevuTarih = randevuTarihim[0];
+                    ViewBag.randevuSaat = randevuSaat + ":00";
                 }
 
 
                 Session["musteriadsoyad"] = sonuc.AD + " " + sonuc.SOYAD;
                 Session["musteri"] = sonuc.EMAIL;
-                return View("Index", data);
+                if (id == 0)
+                {
+                    return View("Index", data);
+                }
+                else
+                {
+                    var salonSayfaItem = SalonSayfa(id);
+                    ViewData["Model"] = salonSayfaItem;
+                    var model = ViewData.Model;
+
+                    return View("SalonSayfa", model);
+                }
+
             }
             ViewBag.mesaj = "Kullanıcı Adı veya Şifre Hatalı!";
             return View();
@@ -250,7 +285,7 @@ namespace Berberim.UI.Controllers
             var gelen = Session["musteri"].ToString();
 
             var musteriId = (from i in _db.MUSTERİ where i.EMAIL == gelen select i.ID).FirstOrDefault();
-            var berberbilgi = (from i in _db.SALONSAYFA where i.ID == id select i).FirstOrDefault();
+            var berberbilgi = (from i in _db.SALONSAYFA where i.SALONID == id select i).FirstOrDefault();
             var musteribilgi = (from i in _db.MUSTERİ where i.ID == musteriId select i).FirstOrDefault();
             var kampanyaID = (from i in _db.KAMPANYA where i.SALONID == id select i.ID).FirstOrDefault();
             var kampanyabilgileri = (from i in _db.KAMPANYA where i.ID == kampanyaID select i).FirstOrDefault();
@@ -292,6 +327,11 @@ namespace Berberim.UI.Controllers
 
             if (yorum != null && gelen != null)
             {
+                string suanTarih = DateTime.Now.ToString();
+
+                var dateSplit = suanTarih.Split(' ');
+                var yorumTarih = dateSplit[0];
+
                 var myorum = new YORUM()
                 {
                     MYORUM = yorum,
@@ -300,7 +340,8 @@ namespace Berberim.UI.Controllers
                     MUSTERIAD = musteribilgi?.AD,
                     MUSTERISOYAD = musteribilgi?.SOYAD,
                     STATUS = Constants.RecordStatu.Active,
-                    CİNSİYET = musteribilgi.CİNSİYET
+                    CİNSİYET = musteribilgi.CİNSİYET,
+                    TARİH = yorumTarih
                 };
                 _db.YORUM.Add(myorum);
                 _db.SaveChanges();
@@ -416,7 +457,7 @@ namespace Berberim.UI.Controllers
             var gelen = Session["musteri"].ToString();
 
             var musteriId = (from i in _db.MUSTERİ where i.EMAIL == gelen select i.ID).FirstOrDefault();
-            var berberbilgi = (from i in _db.SALONSAYFA where i.ID == id select i).FirstOrDefault();
+            var berberbilgi = (from i in _db.SALONSAYFA where i.SALONID == id select i).FirstOrDefault();
             var musteribilgi = (from i in _db.MUSTERİ where i.ID == musteriId select i).FirstOrDefault();
             var kampanyaID = (from i in _db.KAMPANYA where i.SALONID == id select i.ID).FirstOrDefault();
             var kampanyabilgileri = (from i in _db.KAMPANYA where i.ID == kampanyaID select i).FirstOrDefault();

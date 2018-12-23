@@ -96,7 +96,7 @@
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GİRİŞ</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="@Url.Action("MusteriGiris", "Home")">Kullanıcı Giriş</a></li>@*Giriş yapıldıktan sonra çıkış yap butonu gelicek*@
+                                        <li class="nav-item"><a class="nav-link" href="@Url.Action("MusteriGiris", "Home", new { @id = Model.Berber.SALONID })">Kullanıcı Giriş</a></li>@*Giriş yapıldıktan sonra çıkış yap butonu gelicek*@
                                         <li class="nav-item"><a class="nav-link" href="@Url.Action("BerberGiris", "Home", new { area = "Berber" }, null)">Salon Giriş</a></li>
                                     </ul>
                                 </li>
@@ -267,7 +267,7 @@
                                         }
                                         <div class="desc">
                                             <h5><a href="#">@item.MUSTERIAD</a></h5>
-                                            <p class="date">4 Haziran 2018 </p>
+                                            <p class="date">@item.TARİH</p>
                                             <p class="comment">
                                                 @item.MYORUM
                                             </p>
@@ -294,7 +294,7 @@
                             }
                             else
                             {
-                                <a href="@Url.Action("MusteriGiris", "Home")" class="genric-btn success">Yorum Yap</a>
+                                <a href="@Url.Action("MusteriGiris", "Home", new { @id = Model.Berber.SALONID })" class="genric-btn success">Yorum Yap</a>
                             }
 
                         }
@@ -324,7 +324,7 @@
                                         else
                                         {
                                             <div>
-                                                <a href="@Url.Action("MusteriGiris", "Home")" class="genric-btn success circle" style="text-decoration: none;width: 200px;font-size:15px;">Randevu Al</a>
+                                                <a href="@Url.Action("MusteriGiris", "Home", new { @id = Model.Berber.SALONID })" class="genric-btn success circle" style="text-decoration: none;width: 200px;font-size:15px;">Randevu Al</a>
                                             </div>
                                         }
                                     }

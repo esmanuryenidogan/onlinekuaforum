@@ -16,6 +16,7 @@ namespace Berberim.Data.Models
         public string MUSTERISOYAD { get; set; }
         public string MYORUM { get; set; }
         public string CİNSİYET { get; set; }
+        public string TARİH { get; set; }
 
         public ICollection<MUSTERI> MUSTERİ { get; set; }
 

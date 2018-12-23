@@ -51,7 +51,7 @@
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GİRİŞ</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="@Url.Action("MusteriGiris", "Home")">Kullanıcı Giriş</a></li>@*Giriş yapıldıktan sonra çıkış yap butonu gelicek*@
+                                        <li class="nav-item"><a class="nav-link" href="@Url.Action("MusteriGiris", "Home",new { id=0 })">Kullanıcı Giriş</a></li>@*Giriş yapıldıktan sonra çıkış yap butonu gelicek*@
                                         <li class="nav-item"><a class="nav-link" href="@Url.Action("BerberGiris", "Home", new { area = "Berber" }, null)">Salon Giriş</a></li>
                                     </ul>
                                 </li>
@@ -82,10 +82,12 @@
                         {
                             <div style="background: transparent;background: rgba(0, 0, 0, 0.5);" class="banner_content text-center">
                                 <h2 style="font-weight: 0 !important;">@item.AD @item.SOYAD</h2>
-                                @if (ViewBag.randevum != null)
+                                @if (ViewBag.randevuTarih != null)
                                 {
                                     <p>Sizi Bekleyen Randevunuz</p>
-                                    <p>@ViewBag.randevum</p>
+                                    <p>Salon Adı : @ViewBag.salonAd</p>
+                                    <p>Randevu Tarihi : @ViewBag.randevuTarih</p>
+                                    <p>Randevu Saati : @ViewBag.randevuSaat</p>
                                 }
                                 else
                                 {
@@ -99,9 +101,9 @@
                 }
 
             </div>
-
         </div>
     </section>
+
 
     <!--================End Home Banner Area =================-->
     <!--================Home Gallery Area =================-->
@@ -128,7 +130,7 @@
                                 <div class="hover">
                                     <a href="@Url.Action("SalonSayfa", "Home",  new { @id = item.SALONID })">
                                         <h4>@item.AD</h4>
-                                       @*icon gelecek*@ <h4 style="font-size:14px">@item.IL @item.ILCE</h4>
+                                        @*icon gelecek*@ <h4 style="font-size:14px">@item.IL @item.ILCE</h4>
                                         <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
 
                                     </a>
@@ -150,7 +152,7 @@
                             <img style="height: 309px;" src="~/SalonFotolar/kampanya.png" alt="">
                             <div class="hover">
                                 <a href="@Url.Action("KampanyaSatınAl", "Home", new { @id = item.SALONID })">
-                                   <h4>@item.SALONAD</h4><br /> <h4 style="font-size: 14px;">@item.BASLIK<br />@item.FIYAT TL</h4>
+                                    <h4>@item.SALONAD</h4><br /> <h4 style="font-size: 14px;">@item.BASLIK<br />@item.FIYAT TL</h4>
 
                                     <i class="fa fa-arrow-circle-right" style="color:white;font-size:20px"></i>
                                 </a>
@@ -373,12 +375,12 @@
     </script>
 
     <script>
-                                                                                                                                                                                                                        //function myClick(deger) {
-                                                                                                                                                                                //    if (deger != null) {
-                                                                                                                                                                                //        var nesne = document.getElementsByClassName(deger);
-                                                                                                                                                                                //        nesne.style.display = true;
-                                                                                                                                                                                //    }
-                                                                                                                                                                                //}
+                                                                                                                                                                                                                                //function myClick(deger) {
+                                                                                                                                                                                        //    if (deger != null) {
+                                                                                                                                                                                        //        var nesne = document.getElementsByClassName(deger);
+                                                                                                                                                                                        //        nesne.style.display = true;
+                                                                                                                                                                                        //    }
+                                                                                                                                                                                        //}
     </script>
 
 </body>
