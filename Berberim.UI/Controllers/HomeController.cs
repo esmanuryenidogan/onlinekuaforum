@@ -193,16 +193,16 @@ namespace Berberim.UI.Controllers
             var date = dateSplit[0];
 
             IDictionary<double, string> customSaatler = new Dictionary<double, string>();
-            customSaatler.Add(9, "btn btn-success circle");
-            customSaatler.Add(10, "btn btn-success circle");
-            customSaatler.Add(11, "btn btn-success circle");
-            customSaatler.Add(12, "btn btn-success circle");
-            customSaatler.Add(13, "btn btn-success circle");
-            customSaatler.Add(14, "btn btn-success circle");
-            customSaatler.Add(15, "btn btn-success circle");
-            customSaatler.Add(16, "btn btn-success circle");
-            customSaatler.Add(17, "btn btn-success circle");
-            customSaatler.Add(18, "btn btn-success circle");
+            customSaatler.Add(9, "uygun");
+            customSaatler.Add(10, "uygun");
+            customSaatler.Add(11, "uygun");
+            customSaatler.Add(12, "uygun");
+            customSaatler.Add(13, "uygun");
+            customSaatler.Add(14, "uygun");
+            customSaatler.Add(15, "uygun");
+            customSaatler.Add(16, "uygun");
+            customSaatler.Add(17, "uygun");
+            customSaatler.Add(18, "uygun");
 
             foreach (var item in randevuControl)
             {
@@ -220,7 +220,7 @@ namespace Berberim.UI.Controllers
 
                         if (saat == randevuSaat)
                         {
-                            customSaatler[customSaat.Key] = "btn btn-danger circle";
+                            customSaatler[customSaat.Key] = "dolu";
                         }
                     }
                 }

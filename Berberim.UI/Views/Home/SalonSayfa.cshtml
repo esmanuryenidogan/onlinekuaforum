@@ -497,16 +497,16 @@
                                                                     @foreach (var item in Model.RandevuSaat)
                                                                     {
                                                                         <div class="btn-group" data-toggle="buttons">
-                                                                            @if (@item.Value == "btn btn-danger circle")
+                                                                            @if (@item.Value == "dolu")
                                                                             {
-                                                                                <label class="@item.Value" disabled>
-                                                                                    <input type="radio" name="rSaat"> @item.Key
+                                                                                <label class="btn btn-danger circle" disabled>
+                                                                                    <input type="radio" name="rSaat"> @item.Key:00
                                                                                 </label>
                                                                             }
                                                                             else
                                                                             {
-                                                                                <label class="@item.Value">
-                                                                                    <input type="radio" name="rSaat" value="@item.Key"> @item.Key
+                                                                                <label class="btn btn-success circle">
+                                                                                    <input type="radio" name="rSaat" value="@item.Key"> @item.Key:00
                                                                                 </label>
                                                                             }
 
