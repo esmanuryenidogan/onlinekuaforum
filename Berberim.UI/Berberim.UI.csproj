@@ -11967,6 +11967,8 @@
     <Content Include="Common\Anasayfa\vendors\owl-carousel\assets\owl.carousel.css" />
     <Content Include="Common\Anasayfa\vendors\owl-carousel\owl.carousel.min.css" />
     <Content Include="Common\Anasayfa\vendors\owl-carousel\owl.carousel.min.js" />
+    <Content Include="Common\BerberPanel\salonekle.png" />
+    <Content Include="Common\BerberPanel\saloneklee.png" />
     <Content Include="Common\KullaniciGiris\css\main.css" />
     <Content Include="Common\KullaniciGiris\css\util.css" />
     <Content Include="Common\KullaniciGiris\fonts\font-awesome-4.7.0\css\font-awesome.css" />

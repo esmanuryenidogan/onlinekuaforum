@@ -37,15 +37,26 @@ namespace Berberim.UI.Areas.Berber.Controllers
 
 
             if (sonuc != null)
-            {
-
+            {               
                 if (sonuc.STATUS == Constants.RecordStatu.Active)
                 {
                     Session["berberkuladi"] = sonuc;
                     var gelenSalon = (SALON)Session["berberkuladi"];
                     var salon = (from i in db.SALONSAYFA where i.SALONID == gelenSalon.ID select i).FirstOrDefault();
                     ViewBag.salonControl = salon;
-                    return View("Index");
+                    if(salon == null)
+                    {
+                        return View("Index");
+                    }
+                  
+                    else{
+                        var berberDuzenleItem = BerberDuzenle();
+                        ViewData["Model"] = berberDuzenleItem;
+                        var model = ViewData.Model;
+
+                        return View("BerberDuzenle", model);
+                    }
+
                 }
                 ViewBag.mesaj = "Kullanıcınız aktif durumda olmadığından giriş yapamamaktasınız, kullanıcınızı aktif hale getirmek için bizimle iletişime geçebilirsiniz.";
             }
@@ -53,6 +64,8 @@ namespace Berberim.UI.Areas.Berber.Controllers
             {
                 ViewBag.mesaj = "Kullanıcı Adı veya Şifre Hatalı !";
             }
+
+
             return View();
         }
 
